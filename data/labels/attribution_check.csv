@@ -1,0 +1,31 @@
+answer_id,sent_idx,expected_url,note
+gpt-07,12,https://nobugo.nobubank.com/blog/gratis-transfer-unlimited-dengan-nobu-go,states the nobu Go unlimited-transfer promo
+gpt-12,2,https://bni.co.id/id-id,"BNI help channels and wondr, closest is the BNI home page"
+gpt-02,0,none,framing sentence by the model
+gpt-18,3,https://ojk.go.id/id/berita-dan-kegiatan/info-terkini/Pages/Waspada-Penipuan-Mengatasnamakan-Bank-melalui-SMS.aspx,OJK scam warning lists never sharing PIN/OTP
+gpt-17,13,https://btn.co.id/id/About/Gallery/Article/Article/Listing/2026/09/11/lps-adalah,"LPS guarantee conditions, explained in the BTN LPS article"
+gpt-13,9,none,model's own budgeting advice
+gpt-08,18,https://lps.go.id,Rp2 billion guarantee limit
+gpt-08,10,none,model's own summary; no readable page on branch network
+gpt-11,14,none,general advice
+gpt-05,12,https://bca.co.id/id/Individu/layanan/Customer-Service/HaloBCA,Halo BCA 24/7 channels
+gpt-08,19,none,general advice
+gpt-08,0,none,framing sentence
+gpt-03,37,none,heading
+gpt-17,17,https://lps.go.id,Rp2 billion per customer per bank
+gpt-07,13,none,advice
+gem-13,25,none,model's own budgeting advice
+gem-01,5,none,table header
+gem-19,34,none,BI payment-system complaints; the BI page cited is a 404
+gem-13,13,https://money.kompas.com/read/2025/05/18/124912126/daftar-8-bank-digital-tanpa-biaya-admin-bulanan-cek-keunggulannya?page=all,"blu pocket feature, likely from the Kompas list of no-fee digital banks"
+gem-09,6,https://duwitmu.com/tabungan/mybca-vs-livin-by-mandiri,myBCA vs Livin feature comparison
+gem-17,12,https://lps.go.id,LPS guarantee rate condition
+gem-05,17,none,no readable SeaBank help page cited
+gem-19,2,none,framing sentence
+gem-03,10,none,recommendation
+gem-12,3,none,table header
+gem-17,1,https://finance.detik.com/moneter/d-8048383/nabung-di-bank-digital-aman-dijamin-lps,"digital banks are commercial banks, LPS insured"
+gem-06,21,none,model's own budgeting advice
+gem-18,3,https://bca.co.id/id/informasi/awas-modus/2025/02/12/10/09/cara-melindungi-data-pribadi-perbankan-agar-tidak-disalahgunakan,"never share OTP, PIN, password"
+gem-06,3,https://fazz.com/id/newsroom/fazza/bank-digital-tanpa-biaya-admin,Jago has no monthly admin fee
+gem-20,29,https://lps.go.id,guarantee rate and Rp2 billion limit
