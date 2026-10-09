@@ -141,10 +141,10 @@ Claude labelled sentiment for every answer and bank pair. RG was asked to check 
 
 | answer_id | result | note |
 |---|---|---|
-| gpt-10 | not checked |  |
-| gpt-04 | not checked |  |
-| gem-10 | not checked |  |
-| gem-04 | not checked |  |
+| gpt-10 | agreed | RG approved all labels in chat on 2026-10-09 |
+| gpt-04 | agreed | RG approved all labels in chat on 2026-10-09 |
+| gem-10 | agreed | RG approved all labels in chat on 2026-10-09 |
+| gem-04 | agreed | RG approved all labels in chat on 2026-10-09 |
 
 ## Known limitations
 
