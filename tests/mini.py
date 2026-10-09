@@ -1,7 +1,7 @@
 """Six-answer fixture. Every expected value in test_metrics.py is worked out by hand from these rows."""
 import pandas as pd
 
-CFG = {"run_date": "2026-10-09", "attribution_threshold": 0.30, "authority_values": {"High": 1.0, "Medium": 0.7, "Low": 0.4},
+CFG = {"run_date": "2026-10-09", "authority_values": {"High": 1.0, "Medium": 0.7, "Low": 0.4},
        "low_n_answers": 3, "recency_bins": [30, 180, 365], "vis_weights": {"pawc": 1, "authority": 1, "sentiment": 1, "diversity": 1}}
 
 IDS = ["gpt-01", "gpt-02", "gpt-03", "gem-01", "gem-02", "gem-03"]
@@ -41,10 +41,6 @@ page_brand_counts = pd.DataFrame([
     ("https://a.id/1", "BCA", 3), ("https://a.id/2", "Bank Jago", 10), ("https://b.id/1", "BCA", 1),
     ("https://b.id/1", "Krom Bank", 4), ("https://b.id/2", "Bank Jago", 2), ("https://c.id/1", "Bank Jago", 1),
 ], columns=["url", "brand", "count"])
-attribution_scores = pd.DataFrame([
-    ("gpt-01", 0, "https://a.id/1", 0.8), ("gpt-01", 1, "https://b.id/1", 0.2), ("gpt-01", 2, "https://a.id/1", 0.5),
-    ("gem-01", 0, "https://c.id/1", 0.9), ("gem-01", 1, "https://a.id/2", 0.9),
-], columns=["answer_id", "sent_idx", "best_url", "best_score"])
 
 MINI = dict(answers=answers, sentences=sentences, mentions=mentions, sentiment=sentiment, citations=citations,
-            domains=domains, pages=pages, page_brand_counts=page_brand_counts, attribution_scores=attribution_scores)
+            domains=domains, pages=pages, page_brand_counts=page_brand_counts)

@@ -77,20 +77,11 @@ def _readable(inp: dict) -> set:
     return set(p[p.is_readable.astype(str).str.lower() == "true"].url)
 
 
-def _attributed(inp: dict, cfg: dict) -> pd.DataFrame:
-    s = inp["attribution_scores"]
-    s = s[(s.best_score >= cfg["attribution_threshold"]) & s.best_url.isin(_readable(inp))]
-    return s.merge(_sentence_weights(inp["sentences"]), on=["answer_id", "sent_idx"])
-
 
 def _citation_tables(inp: dict, cfg: dict) -> dict:
     c = inp["citations"].merge(inp["answers"][["answer_id", "prompt_no", "pillar"]], on="answer_id")
     c = c.merge(inp["domains"][["domain", "domain_type", "authority_tier"]], on="domain", how="left")
     out = {}
-    att = _attributed(inp, cfg).merge(inp["answers"][["answer_id", "engine"]], on="answer_id")
-    att["domain"] = att.best_url.str.split("/").str[2].str.removeprefix("www.")
-    spd = att.groupby(["domain", "engine"]).agg(source_pawc=("w", "sum"), n_answers=("answer_id", "nunique")).reset_index()
-    out["source_pawc_domain"] = spd
 
     d = c.groupby(["domain", "domain_type", "authority_tier"]).agg(
         citations=("url", "size"), unique_pages=("url", "nunique"), prompts=("prompt_no", "nunique"),
@@ -103,9 +94,6 @@ def _citation_tables(inp: dict, cfg: dict) -> dict:
         d[col] = d.domain.map(e["n"]).fillna(0).astype(int)
         d[f"avg_rank_{col}"] = d.domain.map(e["r"])
         d[f"readable_pages_{col}"] = d.domain.map(rp).fillna(0).astype(int)
-        pawc = d.domain.map(spd[spd.engine == eng].set_index("domain").source_pawc)
-        # 0.0 only when readable cited pages exist and nothing matched; empty when unmeasurable or not cited
-        d[f"source_pawc_{col}"] = pawc.where(pawc.notna(), d[f"readable_pages_{col}"].gt(0).map({True: 0.0, False: float("nan")}))
     d["n"] = len(c)
     out["domains"] = d.sort_values(["citations", "domain"], ascending=[False, True]).reset_index(drop=True)
 
@@ -113,8 +101,6 @@ def _citation_tables(inp: dict, cfg: dict) -> dict:
                                         gem=("engine", lambda s: (s == "Gemini").sum()),
                                         engines=("engine", lambda s: "+".join(sorted(set(s))))).reset_index()
     p = p.sort_values(["citations", "url"], ascending=[False, True]).reset_index(drop=True)
-    pp = p.url.map(att.groupby("best_url").w.sum())
-    p["source_pawc"] = pp.where(pp.notna(), p.url.isin(readable).map({True: 0.0, False: float("nan")}))
     p["rank"] = range(1, len(p) + 1)
     p["n"] = len(c)
     out["pages_top"] = p
@@ -138,15 +124,6 @@ def _citation_tables(inp: dict, cfg: dict) -> dict:
         rows.append({"engine": eng, "top5_share": top5 / len(g), "n": len(g)})
     out["concentration"] = pd.DataFrame(rows)
 
-    sents = inp["sentences"].merge(inp["answers"][["answer_id", "engine"]], on="answer_id")
-    rows = []
-    for eng, g in [("All", sents)] + [(e, sents[sents.engine == e]) for e in ENGINES]:
-        n_att = att[att.answer_id.isin(set(g.answer_id))].shape[0]
-        rows.append({"engine": eng, "n_sentences": len(g), "attributed": n_att, "coverage": n_att / len(g)})
-    out["attribution_coverage"] = pd.DataFrame(rows)
-    a = inp["attribution_scores"][["answer_id", "sent_idx", "best_url", "best_score"]].copy()
-    a["attributed"] = (a.best_score >= cfg["attribution_threshold"]) & a.best_url.isin(readable)
-    out["attribution"] = a
     return out
 
 
@@ -292,7 +269,6 @@ def load_inputs() -> dict:
         "mentions": read_csv("data/interim/mentions.csv"), "sentiment": read_csv("data/labels/sentiment.csv"),
         "citations": read_csv("data/interim/citations.csv"), "domains": read_csv("config/domains.csv"),
         "pages": read_csv("data/interim/pages.csv"), "page_brand_counts": read_csv("data/interim/page_brand_counts.csv"),
-        "attribution_scores": read_csv("data/interim/attribution_scores.csv"),
     }
 
 

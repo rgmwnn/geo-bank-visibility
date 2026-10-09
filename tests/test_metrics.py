@@ -63,16 +63,9 @@ def test_domains_and_pages():
     assert row("authority_mix", engine="ChatGPT", authority_tier="High").citations == 3
 
 
-def test_source_pawc_uses_threshold():
-    # gpt-01 s1 (0.2) is below 0.30 and adds nothing; s0 and s2 go to a.id/1: 0.4016
-    assert row("source_pawc_domain", domain="a.id", engine="ChatGPT").source_pawc == pytest.approx(0.40163, abs=1e-4)
-    assert row("attribution_coverage", engine="ChatGPT").coverage == pytest.approx(2 / 12)
 
 
 def test_unreadable_pages_excluded_everywhere():
-    # gem-01 s1 points at the unreadable a.id/2, so Gemini coverage is 1/12 and a.id has no Gemini source PAWC
-    assert row("attribution_coverage", engine="Gemini").coverage == pytest.approx(1 / 12)
-    assert R["source_pawc_domain"].query("domain == 'a.id' and engine == 'Gemini'").empty
     # a.id/2's 10 Jago mentions are not counted. Page-weighted shares over the 4 readable pages with brands:
     # a1 BCA 1 | b1 BCA 0.2, Krom 0.8 | b2 Jago 1 | c1 Jago 1  ->  Jago (1 + 1) / 4 = 0.5
     j = row("source_sov", brand="Bank Jago")
@@ -127,16 +120,6 @@ def test_soft_404_reason_reported():
     assert (r["count"], r.unit) == (1, "pages")
 
 
-def test_source_pawc_missing_is_empty_not_zero():
-    import copy
-    inp = copy.deepcopy(MINI)
-    inp["pages"].loc[4, "is_readable"] = False  # c.id/1 unreadable
-    c = inp["citations"]
-    inp["citations"] = c[~((c.answer_id == "gpt-02") & (c.domain == "c.id"))]  # ChatGPT no longer cites c.id
-    d = compute_all(inp, CFG)["domains"].set_index("domain")
-    assert pd.isna(d.loc["c.id", "source_pawc_gpt"])
-    assert pd.isna(d.loc["c.id", "source_pawc_gem"]) and d.loc["c.id", "readable_pages_gem"] == 0
-    assert d.loc["b.id", "source_pawc_gem"] == 0.0  # readable pages cited, nothing matched
 
 
 def test_sov_gap_uses_answer_weighted_ai_sov():
@@ -146,14 +129,11 @@ def test_sov_gap_uses_answer_weighted_ai_sov():
     assert j.sov_gap_raw == pytest.approx(4 / 9 - 3 / 11)
 
 
-def test_pages_top_source_pawc():
-    p = R["pages_top"].set_index("url")
-    assert p.loc["https://a.id/1", "source_pawc"] == pytest.approx(0.40163, abs=1e-4)
-    assert p.loc["https://c.id/1", "source_pawc"] == pytest.approx(0.25)
-    assert p.loc["https://b.id/1", "source_pawc"] == 0.0 and pd.isna(p.loc["https://a.id/2", "source_pawc"])
 
 
-def test_attribution_table_has_final_flag():
-    a = R["attribution"].set_index(["answer_id", "sent_idx"]).attributed
-    assert bool(a["gpt-01", 0]) and not bool(a["gpt-01", 1]) and not bool(a["gem-01", 1])
-    assert int(R["attribution"].attributed.sum()) == 3
+
+def test_only_brand_pawc_in_outputs():
+    assert not {"source_pawc_domain", "attribution", "attribution_coverage"} & set(R)
+    assert not [c for df in R.values() for c in df.columns if "source_pawc" in c or "attribut" in c]
+    assert "pawc" in R["brand_engine"].columns and "pawc_norm" in R["vis"].columns
+    assert "attribution_scores" not in MINI

@@ -288,3 +288,7 @@ Dashboard views and design, deployment to GitHub Pages, scheduled re-runs, more 
 | Q1 | Repo name and visibility | Settled: `rgmwnn/geo-bank-visibility`, public |
 | Q2 | Date of the original runs | Settled: all 40 answers, including the prompt 8 re-run, were run on 2026-10-09 |
 | Q3 | How to treat subsidiaries such as blu (BCA Digital) | Settled: they count toward the parent brand (blu scores for BCA), with `sub_brand` kept for detail |
+
+## 9. Decisions after build
+
+- 2026-10-09, RG: PAWC is reported at answer level only (brand PAWC). Source PAWC and the sentence-to-page matching behind it were removed. In the GEO paper, per-source PAWC relies on inline citation markers in the answer; ChatGPT and Gemini answers here do not carry them, and the reconstructed matching agreed with a hand check on only 18 of 30 sentences.

@@ -6,7 +6,6 @@
   "gpt":0,
   "gem":14,
   "engines":"Gemini",
-  "source_pawc":0.2608049386,
   "rank":1,
   "n":399
  },
@@ -17,7 +16,6 @@
   "gpt":1,
   "gem":12,
   "engines":"ChatGPT+Gemini",
-  "source_pawc":0.0,
   "rank":2,
   "n":399
  },
@@ -28,7 +26,6 @@
   "gpt":0,
   "gem":12,
   "engines":"Gemini",
-  "source_pawc":0.5899529422,
   "rank":3,
   "n":399
  },
@@ -39,7 +36,6 @@
   "gpt":10,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.1773220455,
   "rank":4,
   "n":399
  },
@@ -50,7 +46,6 @@
   "gpt":6,
   "gem":2,
   "engines":"ChatGPT+Gemini",
-  "source_pawc":0.0513812947,
   "rank":5,
   "n":399
  },
@@ -61,7 +56,6 @@
   "gpt":1,
   "gem":6,
   "engines":"ChatGPT+Gemini",
-  "source_pawc":0.5440545701,
   "rank":6,
   "n":399
  },
@@ -72,7 +66,6 @@
   "gpt":0,
   "gem":6,
   "engines":"Gemini",
-  "source_pawc":0.0338076009,
   "rank":7,
   "n":399
  },
@@ -83,7 +76,6 @@
   "gpt":0,
   "gem":6,
   "engines":"Gemini",
-  "source_pawc":0.1126043001,
   "rank":8,
   "n":399
  },
@@ -94,7 +86,6 @@
   "gpt":6,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0054454876,
   "rank":9,
   "n":399
  },
@@ -105,7 +96,6 @@
   "gpt":0,
   "gem":5,
   "engines":"Gemini",
-  "source_pawc":0.0172728007,
   "rank":10,
   "n":399
  },
@@ -116,7 +106,6 @@
   "gpt":5,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0443349629,
   "rank":11,
   "n":399
  },
@@ -127,7 +116,6 @@
   "gpt":5,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0110322188,
   "rank":12,
   "n":399
  },
@@ -138,7 +126,6 @@
   "gpt":4,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.1787489326,
   "rank":13,
   "n":399
  },
@@ -149,7 +136,6 @@
   "gpt":0,
   "gem":4,
   "engines":"Gemini",
-  "source_pawc":0.289238511,
   "rank":14,
   "n":399
  },
@@ -160,7 +146,6 @@
   "gpt":0,
   "gem":4,
   "engines":"Gemini",
-  "source_pawc":0.4355866774,
   "rank":15,
   "n":399
  },
@@ -171,7 +156,6 @@
   "gpt":0,
   "gem":4,
   "engines":"Gemini",
-  "source_pawc":0.0194374567,
   "rank":16,
   "n":399
  },
@@ -182,7 +166,6 @@
   "gpt":1,
   "gem":2,
   "engines":"ChatGPT+Gemini",
-  "source_pawc":null,
   "rank":17,
   "n":399
  },
@@ -193,7 +176,6 @@
   "gpt":3,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0145429109,
   "rank":18,
   "n":399
  },
@@ -204,7 +186,6 @@
   "gpt":3,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":null,
   "rank":19,
   "n":399
  },
@@ -215,7 +196,6 @@
   "gpt":0,
   "gem":3,
   "engines":"Gemini",
-  "source_pawc":0.0128379704,
   "rank":20,
   "n":399
  },
@@ -226,7 +206,6 @@
   "gpt":0,
   "gem":3,
   "engines":"Gemini",
-  "source_pawc":0.1247998447,
   "rank":21,
   "n":399
  },
@@ -237,7 +216,6 @@
   "gpt":0,
   "gem":3,
   "engines":"Gemini",
-  "source_pawc":0.0,
   "rank":22,
   "n":399
  },
@@ -248,7 +226,6 @@
   "gpt":0,
   "gem":3,
   "engines":"Gemini",
-  "source_pawc":null,
   "rank":23,
   "n":399
  },
@@ -259,7 +236,6 @@
   "gpt":3,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.2395965952,
   "rank":24,
   "n":399
  },
@@ -270,7 +246,6 @@
   "gpt":1,
   "gem":2,
   "engines":"ChatGPT+Gemini",
-  "source_pawc":null,
   "rank":25,
   "n":399
  },
@@ -281,7 +256,6 @@
   "gpt":3,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0802020212,
   "rank":26,
   "n":399
  },
@@ -292,7 +266,6 @@
   "gpt":0,
   "gem":3,
   "engines":"Gemini",
-  "source_pawc":null,
   "rank":27,
   "n":399
  },
@@ -303,7 +276,6 @@
   "gpt":0,
   "gem":3,
   "engines":"Gemini",
-  "source_pawc":0.0670407816,
   "rank":28,
   "n":399
  },
@@ -314,7 +286,6 @@
   "gpt":0,
   "gem":3,
   "engines":"Gemini",
-  "source_pawc":null,
   "rank":29,
   "n":399
  },
@@ -325,7 +296,6 @@
   "gpt":0,
   "gem":3,
   "engines":"Gemini",
-  "source_pawc":null,
   "rank":30,
   "n":399
  },
@@ -336,7 +306,6 @@
   "gpt":2,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0148524005,
   "rank":31,
   "n":399
  },
@@ -347,7 +316,6 @@
   "gpt":2,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.2323243096,
   "rank":32,
   "n":399
  },
@@ -358,7 +326,6 @@
   "gpt":0,
   "gem":2,
   "engines":"Gemini",
-  "source_pawc":0.0,
   "rank":33,
   "n":399
  },
@@ -369,7 +336,6 @@
   "gpt":0,
   "gem":2,
   "engines":"Gemini",
-  "source_pawc":0.1407920212,
   "rank":34,
   "n":399
  },
@@ -380,7 +346,6 @@
   "gpt":2,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.3080390802,
   "rank":35,
   "n":399
  },
@@ -391,7 +356,6 @@
   "gpt":0,
   "gem":2,
   "engines":"Gemini",
-  "source_pawc":null,
   "rank":36,
   "n":399
  },
@@ -402,7 +366,6 @@
   "gpt":2,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":37,
   "n":399
  },
@@ -413,7 +376,6 @@
   "gpt":2,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":38,
   "n":399
  },
@@ -424,7 +386,6 @@
   "gpt":0,
   "gem":2,
   "engines":"Gemini",
-  "source_pawc":0.0211171533,
   "rank":39,
   "n":399
  },
@@ -435,7 +396,6 @@
   "gpt":2,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":40,
   "n":399
  },
@@ -446,7 +406,6 @@
   "gpt":2,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":41,
   "n":399
  },
@@ -457,7 +416,6 @@
   "gpt":1,
   "gem":1,
   "engines":"ChatGPT+Gemini",
-  "source_pawc":0.013352989,
   "rank":42,
   "n":399
  },
@@ -468,7 +426,6 @@
   "gpt":0,
   "gem":2,
   "engines":"Gemini",
-  "source_pawc":null,
   "rank":43,
   "n":399
  },
@@ -479,7 +436,6 @@
   "gpt":0,
   "gem":2,
   "engines":"Gemini",
-  "source_pawc":0.0,
   "rank":44,
   "n":399
  },
@@ -490,7 +446,6 @@
   "gpt":0,
   "gem":2,
   "engines":"Gemini",
-  "source_pawc":0.0129753185,
   "rank":45,
   "n":399
  },
@@ -501,7 +456,6 @@
   "gpt":0,
   "gem":2,
   "engines":"Gemini",
-  "source_pawc":0.1256595718,
   "rank":46,
   "n":399
  },
@@ -512,7 +466,6 @@
   "gpt":2,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":null,
   "rank":47,
   "n":399
  },
@@ -523,7 +476,6 @@
   "gpt":2,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0206997014,
   "rank":48,
   "n":399
  },
@@ -534,7 +486,6 @@
   "gpt":2,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":49,
   "n":399
  },
@@ -545,7 +496,6 @@
   "gpt":1,
   "gem":1,
   "engines":"ChatGPT+Gemini",
-  "source_pawc":0.0,
   "rank":50,
   "n":399
  },
@@ -556,7 +506,6 @@
   "gpt":1,
   "gem":1,
   "engines":"ChatGPT+Gemini",
-  "source_pawc":0.0351987982,
   "rank":51,
   "n":399
  },
@@ -567,7 +516,6 @@
   "gpt":2,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0160976528,
   "rank":52,
   "n":399
  },
@@ -578,7 +526,6 @@
   "gpt":1,
   "gem":1,
   "engines":"ChatGPT+Gemini",
-  "source_pawc":0.0395367533,
   "rank":53,
   "n":399
  },
@@ -589,7 +536,6 @@
   "gpt":2,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.022556391,
   "rank":54,
   "n":399
  },
@@ -600,7 +546,6 @@
   "gpt":2,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":55,
   "n":399
  },
@@ -611,7 +556,6 @@
   "gpt":1,
   "gem":1,
   "engines":"ChatGPT+Gemini",
-  "source_pawc":0.0653030626,
   "rank":56,
   "n":399
  },
@@ -622,7 +566,6 @@
   "gpt":1,
   "gem":1,
   "engines":"ChatGPT+Gemini",
-  "source_pawc":0.0,
   "rank":57,
   "n":399
  },
@@ -633,7 +576,6 @@
   "gpt":2,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":null,
   "rank":58,
   "n":399
  },
@@ -644,7 +586,6 @@
   "gpt":0,
   "gem":2,
   "engines":"Gemini",
-  "source_pawc":0.0154457085,
   "rank":59,
   "n":399
  },
@@ -655,7 +596,6 @@
   "gpt":0,
   "gem":2,
   "engines":"Gemini",
-  "source_pawc":0.0170813379,
   "rank":60,
   "n":399
  },
@@ -666,7 +606,6 @@
   "gpt":0,
   "gem":2,
   "engines":"Gemini",
-  "source_pawc":0.0,
   "rank":61,
   "n":399
  },
@@ -677,7 +616,6 @@
   "gpt":0,
   "gem":1,
   "engines":"Gemini",
-  "source_pawc":0.0202079164,
   "rank":62,
   "n":399
  },
@@ -688,7 +626,6 @@
   "gpt":0,
   "gem":1,
   "engines":"Gemini",
-  "source_pawc":0.0,
   "rank":63,
   "n":399
  },
@@ -699,7 +636,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":64,
   "n":399
  },
@@ -710,7 +646,6 @@
   "gpt":0,
   "gem":1,
   "engines":"Gemini",
-  "source_pawc":0.0,
   "rank":65,
   "n":399
  },
@@ -721,7 +656,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0171358622,
   "rank":66,
   "n":399
  },
@@ -732,7 +666,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":67,
   "n":399
  },
@@ -743,7 +676,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0798737369,
   "rank":68,
   "n":399
  },
@@ -754,7 +686,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":69,
   "n":399
  },
@@ -765,7 +696,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":70,
   "n":399
  },
@@ -776,7 +706,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":71,
   "n":399
  },
@@ -787,7 +716,6 @@
   "gpt":0,
   "gem":1,
   "engines":"Gemini",
-  "source_pawc":0.0239374978,
   "rank":72,
   "n":399
  },
@@ -798,7 +726,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":73,
   "n":399
  },
@@ -809,7 +736,6 @@
   "gpt":0,
   "gem":1,
   "engines":"Gemini",
-  "source_pawc":0.002601164,
   "rank":74,
   "n":399
  },
@@ -820,7 +746,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":75,
   "n":399
  },
@@ -831,7 +756,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":76,
   "n":399
  },
@@ -842,7 +766,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":77,
   "n":399
  },
@@ -853,7 +776,6 @@
   "gpt":0,
   "gem":1,
   "engines":"Gemini",
-  "source_pawc":0.0,
   "rank":78,
   "n":399
  },
@@ -864,7 +786,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":79,
   "n":399
  },
@@ -875,7 +796,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0116216927,
   "rank":80,
   "n":399
  },
@@ -886,7 +806,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0306477259,
   "rank":81,
   "n":399
  },
@@ -897,7 +816,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0683233649,
   "rank":82,
   "n":399
  },
@@ -908,7 +826,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":83,
   "n":399
  },
@@ -919,7 +836,6 @@
   "gpt":0,
   "gem":1,
   "engines":"Gemini",
-  "source_pawc":0.0,
   "rank":84,
   "n":399
  },
@@ -930,7 +846,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0160376252,
   "rank":85,
   "n":399
  },
@@ -941,7 +856,6 @@
   "gpt":0,
   "gem":1,
   "engines":"Gemini",
-  "source_pawc":0.0274411544,
   "rank":86,
   "n":399
  },
@@ -952,7 +866,6 @@
   "gpt":0,
   "gem":1,
   "engines":"Gemini",
-  "source_pawc":null,
   "rank":87,
   "n":399
  },
@@ -963,7 +876,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":null,
   "rank":88,
   "n":399
  },
@@ -974,7 +886,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":89,
   "n":399
  },
@@ -985,7 +896,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":90,
   "n":399
  },
@@ -996,7 +906,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":91,
   "n":399
  },
@@ -1007,7 +916,6 @@
   "gpt":0,
   "gem":1,
   "engines":"Gemini",
-  "source_pawc":0.0,
   "rank":92,
   "n":399
  },
@@ -1018,7 +926,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":93,
   "n":399
  },
@@ -1029,7 +936,6 @@
   "gpt":0,
   "gem":1,
   "engines":"Gemini",
-  "source_pawc":null,
   "rank":94,
   "n":399
  },
@@ -1040,7 +946,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":null,
   "rank":95,
   "n":399
  },
@@ -1051,7 +956,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":96,
   "n":399
  },
@@ -1062,7 +966,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":97,
   "n":399
  },
@@ -1073,7 +976,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":98,
   "n":399
  },
@@ -1084,7 +986,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":null,
   "rank":99,
   "n":399
  },
@@ -1095,7 +996,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":null,
   "rank":100,
   "n":399
  },
@@ -1106,7 +1006,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":101,
   "n":399
  },
@@ -1117,7 +1016,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":102,
   "n":399
  },
@@ -1128,7 +1026,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0350342619,
   "rank":103,
   "n":399
  },
@@ -1139,7 +1036,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":104,
   "n":399
  },
@@ -1150,7 +1046,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":105,
   "n":399
  },
@@ -1161,7 +1056,6 @@
   "gpt":0,
   "gem":1,
   "engines":"Gemini",
-  "source_pawc":null,
   "rank":106,
   "n":399
  },
@@ -1172,7 +1066,6 @@
   "gpt":0,
   "gem":1,
   "engines":"Gemini",
-  "source_pawc":0.0238372725,
   "rank":107,
   "n":399
  },
@@ -1183,7 +1076,6 @@
   "gpt":0,
   "gem":1,
   "engines":"Gemini",
-  "source_pawc":0.0,
   "rank":108,
   "n":399
  },
@@ -1194,7 +1086,6 @@
   "gpt":0,
   "gem":1,
   "engines":"Gemini",
-  "source_pawc":0.0021076643,
   "rank":109,
   "n":399
  },
@@ -1205,7 +1096,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0832206508,
   "rank":110,
   "n":399
  },
@@ -1216,7 +1106,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":111,
   "n":399
  },
@@ -1227,7 +1116,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":112,
   "n":399
  },
@@ -1238,7 +1126,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":113,
   "n":399
  },
@@ -1249,7 +1136,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.2019113141,
   "rank":114,
   "n":399
  },
@@ -1260,7 +1146,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":115,
   "n":399
  },
@@ -1271,7 +1156,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":116,
   "n":399
  },
@@ -1282,7 +1166,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":117,
   "n":399
  },
@@ -1293,7 +1176,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.2992046097,
   "rank":118,
   "n":399
  },
@@ -1304,7 +1186,6 @@
   "gpt":0,
   "gem":1,
   "engines":"Gemini",
-  "source_pawc":0.0,
   "rank":119,
   "n":399
  },
@@ -1315,7 +1196,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":120,
   "n":399
  },
@@ -1326,7 +1206,6 @@
   "gpt":0,
   "gem":1,
   "engines":"Gemini",
-  "source_pawc":null,
   "rank":121,
   "n":399
  },
@@ -1337,7 +1216,6 @@
   "gpt":0,
   "gem":1,
   "engines":"Gemini",
-  "source_pawc":0.0,
   "rank":122,
   "n":399
  },
@@ -1348,7 +1226,6 @@
   "gpt":0,
   "gem":1,
   "engines":"Gemini",
-  "source_pawc":null,
   "rank":123,
   "n":399
  },
@@ -1359,7 +1236,6 @@
   "gpt":0,
   "gem":1,
   "engines":"Gemini",
-  "source_pawc":null,
   "rank":124,
   "n":399
  },
@@ -1370,7 +1246,6 @@
   "gpt":0,
   "gem":1,
   "engines":"Gemini",
-  "source_pawc":null,
   "rank":125,
   "n":399
  },
@@ -1381,7 +1256,6 @@
   "gpt":0,
   "gem":1,
   "engines":"Gemini",
-  "source_pawc":null,
   "rank":126,
   "n":399
  },
@@ -1392,7 +1266,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":null,
   "rank":127,
   "n":399
  },
@@ -1403,7 +1276,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":128,
   "n":399
  },
@@ -1414,7 +1286,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":129,
   "n":399
  },
@@ -1425,7 +1296,6 @@
   "gpt":0,
   "gem":1,
   "engines":"Gemini",
-  "source_pawc":0.0,
   "rank":130,
   "n":399
  },
@@ -1436,7 +1306,6 @@
   "gpt":0,
   "gem":1,
   "engines":"Gemini",
-  "source_pawc":0.1513811371,
   "rank":131,
   "n":399
  },
@@ -1447,7 +1316,6 @@
   "gpt":0,
   "gem":1,
   "engines":"Gemini",
-  "source_pawc":0.045472501,
   "rank":132,
   "n":399
  },
@@ -1458,7 +1326,6 @@
   "gpt":0,
   "gem":1,
   "engines":"Gemini",
-  "source_pawc":0.0,
   "rank":133,
   "n":399
  },
@@ -1469,7 +1336,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":null,
   "rank":134,
   "n":399
  },
@@ -1480,7 +1346,6 @@
   "gpt":0,
   "gem":1,
   "engines":"Gemini",
-  "source_pawc":null,
   "rank":135,
   "n":399
  },
@@ -1491,7 +1356,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":null,
   "rank":136,
   "n":399
  },
@@ -1502,7 +1366,6 @@
   "gpt":0,
   "gem":1,
   "engines":"Gemini",
-  "source_pawc":0.0,
   "rank":137,
   "n":399
  },
@@ -1513,7 +1376,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":null,
   "rank":138,
   "n":399
  },
@@ -1524,7 +1386,6 @@
   "gpt":0,
   "gem":1,
   "engines":"Gemini",
-  "source_pawc":0.046700021,
   "rank":139,
   "n":399
  },
@@ -1535,7 +1396,6 @@
   "gpt":0,
   "gem":1,
   "engines":"Gemini",
-  "source_pawc":null,
   "rank":140,
   "n":399
  },
@@ -1546,7 +1406,6 @@
   "gpt":0,
   "gem":1,
   "engines":"Gemini",
-  "source_pawc":0.0018667062,
   "rank":141,
   "n":399
  },
@@ -1557,7 +1416,6 @@
   "gpt":0,
   "gem":1,
   "engines":"Gemini",
-  "source_pawc":0.2891461343,
   "rank":142,
   "n":399
  },
@@ -1568,7 +1426,6 @@
   "gpt":0,
   "gem":1,
   "engines":"Gemini",
-  "source_pawc":0.0,
   "rank":143,
   "n":399
  },
@@ -1579,7 +1436,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0609843571,
   "rank":144,
   "n":399
  },
@@ -1590,7 +1446,6 @@
   "gpt":0,
   "gem":1,
   "engines":"Gemini",
-  "source_pawc":0.0,
   "rank":145,
   "n":399
  },
@@ -1601,7 +1456,6 @@
   "gpt":0,
   "gem":1,
   "engines":"Gemini",
-  "source_pawc":0.0120299615,
   "rank":146,
   "n":399
  },
@@ -1612,7 +1466,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":147,
   "n":399
  },
@@ -1623,7 +1476,6 @@
   "gpt":0,
   "gem":1,
   "engines":"Gemini",
-  "source_pawc":0.0,
   "rank":148,
   "n":399
  },
@@ -1634,7 +1486,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.1451001865,
   "rank":149,
   "n":399
  },
@@ -1645,7 +1496,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.1652173137,
   "rank":150,
   "n":399
  },
@@ -1656,7 +1506,6 @@
   "gpt":0,
   "gem":1,
   "engines":"Gemini",
-  "source_pawc":null,
   "rank":151,
   "n":399
  },
@@ -1667,7 +1516,6 @@
   "gpt":0,
   "gem":1,
   "engines":"Gemini",
-  "source_pawc":null,
   "rank":152,
   "n":399
  },
@@ -1678,7 +1526,6 @@
   "gpt":0,
   "gem":1,
   "engines":"Gemini",
-  "source_pawc":0.0,
   "rank":153,
   "n":399
  },
@@ -1689,7 +1536,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":null,
   "rank":154,
   "n":399
  },
@@ -1700,7 +1546,6 @@
   "gpt":0,
   "gem":1,
   "engines":"Gemini",
-  "source_pawc":0.0,
   "rank":155,
   "n":399
  },
@@ -1711,7 +1556,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0452007501,
   "rank":156,
   "n":399
  },
@@ -1722,7 +1566,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":157,
   "n":399
  },
@@ -1733,7 +1576,6 @@
   "gpt":0,
   "gem":1,
   "engines":"Gemini",
-  "source_pawc":0.0,
   "rank":158,
   "n":399
  },
@@ -1744,7 +1586,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":159,
   "n":399
  },
@@ -1755,7 +1596,6 @@
   "gpt":0,
   "gem":1,
   "engines":"Gemini",
-  "source_pawc":0.0,
   "rank":160,
   "n":399
  },
@@ -1766,7 +1606,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":161,
   "n":399
  },
@@ -1777,7 +1616,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":162,
   "n":399
  },
@@ -1788,7 +1626,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":163,
   "n":399
  },
@@ -1799,7 +1636,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":164,
   "n":399
  },
@@ -1810,7 +1646,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":165,
   "n":399
  },
@@ -1821,7 +1656,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.071876061,
   "rank":166,
   "n":399
  },
@@ -1832,7 +1666,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":167,
   "n":399
  },
@@ -1843,7 +1676,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0444432975,
   "rank":168,
   "n":399
  },
@@ -1854,7 +1686,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":169,
   "n":399
  },
@@ -1865,7 +1696,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":170,
   "n":399
  },
@@ -1876,7 +1706,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":171,
   "n":399
  },
@@ -1887,7 +1716,6 @@
   "gpt":0,
   "gem":1,
   "engines":"Gemini",
-  "source_pawc":0.0020405701,
   "rank":172,
   "n":399
  },
@@ -1898,7 +1726,6 @@
   "gpt":0,
   "gem":1,
   "engines":"Gemini",
-  "source_pawc":0.0,
   "rank":173,
   "n":399
  },
@@ -1909,7 +1736,6 @@
   "gpt":0,
   "gem":1,
   "engines":"Gemini",
-  "source_pawc":0.0,
   "rank":174,
   "n":399
  },
@@ -1920,7 +1746,6 @@
   "gpt":0,
   "gem":1,
   "engines":"Gemini",
-  "source_pawc":0.0,
   "rank":175,
   "n":399
  },
@@ -1931,7 +1756,6 @@
   "gpt":0,
   "gem":1,
   "engines":"Gemini",
-  "source_pawc":0.0,
   "rank":176,
   "n":399
  },
@@ -1942,7 +1766,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":177,
   "n":399
  },
@@ -1953,7 +1776,6 @@
   "gpt":0,
   "gem":1,
   "engines":"Gemini",
-  "source_pawc":null,
   "rank":178,
   "n":399
  },
@@ -1964,7 +1786,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0259113233,
   "rank":179,
   "n":399
  },
@@ -1975,7 +1796,6 @@
   "gpt":0,
   "gem":1,
   "engines":"Gemini",
-  "source_pawc":0.0,
   "rank":180,
   "n":399
  },
@@ -1986,7 +1806,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0211547884,
   "rank":181,
   "n":399
  },
@@ -1997,7 +1816,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":null,
   "rank":182,
   "n":399
  },
@@ -2008,7 +1826,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":183,
   "n":399
  },
@@ -2019,7 +1836,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":null,
   "rank":184,
   "n":399
  },
@@ -2030,7 +1846,6 @@
   "gpt":0,
   "gem":1,
   "engines":"Gemini",
-  "source_pawc":null,
   "rank":185,
   "n":399
  },
@@ -2041,7 +1856,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0014473581,
   "rank":186,
   "n":399
  },
@@ -2052,7 +1866,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":null,
   "rank":187,
   "n":399
  },
@@ -2063,7 +1876,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":null,
   "rank":188,
   "n":399
  },
@@ -2074,7 +1886,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":null,
   "rank":189,
   "n":399
  },
@@ -2085,7 +1896,6 @@
   "gpt":0,
   "gem":1,
   "engines":"Gemini",
-  "source_pawc":null,
   "rank":190,
   "n":399
  },
@@ -2096,7 +1906,6 @@
   "gpt":0,
   "gem":1,
   "engines":"Gemini",
-  "source_pawc":null,
   "rank":191,
   "n":399
  },
@@ -2107,7 +1916,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0429004224,
   "rank":192,
   "n":399
  },
@@ -2118,7 +1926,6 @@
   "gpt":0,
   "gem":1,
   "engines":"Gemini",
-  "source_pawc":0.0212571411,
   "rank":193,
   "n":399
  },
@@ -2129,7 +1936,6 @@
   "gpt":0,
   "gem":1,
   "engines":"Gemini",
-  "source_pawc":0.0,
   "rank":194,
   "n":399
  },
@@ -2140,7 +1946,6 @@
   "gpt":0,
   "gem":1,
   "engines":"Gemini",
-  "source_pawc":0.0558913029,
   "rank":195,
   "n":399
  },
@@ -2151,7 +1956,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.3217354387,
   "rank":196,
   "n":399
  },
@@ -2162,7 +1966,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.15511569,
   "rank":197,
   "n":399
  },
@@ -2173,7 +1976,6 @@
   "gpt":0,
   "gem":1,
   "engines":"Gemini",
-  "source_pawc":0.0137684602,
   "rank":198,
   "n":399
  },
@@ -2184,7 +1986,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":null,
   "rank":199,
   "n":399
  },
@@ -2195,7 +1996,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":200,
   "n":399
  },
@@ -2206,7 +2006,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.1726701416,
   "rank":201,
   "n":399
  },
@@ -2217,7 +2016,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0344318036,
   "rank":202,
   "n":399
  },
@@ -2228,7 +2026,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0566264442,
   "rank":203,
   "n":399
  },
@@ -2239,7 +2036,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":204,
   "n":399
  },
@@ -2250,7 +2046,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":205,
   "n":399
  },
@@ -2261,7 +2056,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":206,
   "n":399
  },
@@ -2272,7 +2066,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":207,
   "n":399
  },
@@ -2283,7 +2076,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0220041898,
   "rank":208,
   "n":399
  },
@@ -2294,7 +2086,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":209,
   "n":399
  },
@@ -2305,7 +2096,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":210,
   "n":399
  },
@@ -2316,7 +2106,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":211,
   "n":399
  },
@@ -2327,7 +2116,6 @@
   "gpt":0,
   "gem":1,
   "engines":"Gemini",
-  "source_pawc":null,
   "rank":212,
   "n":399
  },
@@ -2338,7 +2126,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0073995275,
   "rank":213,
   "n":399
  },
@@ -2349,7 +2136,6 @@
   "gpt":0,
   "gem":1,
   "engines":"Gemini",
-  "source_pawc":null,
   "rank":214,
   "n":399
  },
@@ -2360,7 +2146,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.1475507257,
   "rank":215,
   "n":399
  },
@@ -2371,7 +2156,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":216,
   "n":399
  },
@@ -2382,7 +2166,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":217,
   "n":399
  },
@@ -2393,7 +2176,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.011367798,
   "rank":218,
   "n":399
  },
@@ -2404,7 +2186,6 @@
   "gpt":0,
   "gem":1,
   "engines":"Gemini",
-  "source_pawc":0.0,
   "rank":219,
   "n":399
  },
@@ -2415,7 +2196,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":220,
   "n":399
  },
@@ -2426,7 +2206,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":null,
   "rank":221,
   "n":399
  },
@@ -2437,7 +2216,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":null,
   "rank":222,
   "n":399
  },
@@ -2448,7 +2226,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":223,
   "n":399
  },
@@ -2459,7 +2236,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":224,
   "n":399
  },
@@ -2470,7 +2246,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":225,
   "n":399
  },
@@ -2481,7 +2256,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":226,
   "n":399
  },
@@ -2492,7 +2266,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":227,
   "n":399
  },
@@ -2503,7 +2276,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":228,
   "n":399
  },
@@ -2514,7 +2286,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":229,
   "n":399
  },
@@ -2525,7 +2296,6 @@
   "gpt":0,
   "gem":1,
   "engines":"Gemini",
-  "source_pawc":0.0,
   "rank":230,
   "n":399
  },
@@ -2536,7 +2306,6 @@
   "gpt":0,
   "gem":1,
   "engines":"Gemini",
-  "source_pawc":0.0,
   "rank":231,
   "n":399
  },
@@ -2547,7 +2316,6 @@
   "gpt":0,
   "gem":1,
   "engines":"Gemini",
-  "source_pawc":0.0,
   "rank":232,
   "n":399
  },
@@ -2558,7 +2326,6 @@
   "gpt":0,
   "gem":1,
   "engines":"Gemini",
-  "source_pawc":null,
   "rank":233,
   "n":399
  },
@@ -2569,7 +2336,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":null,
   "rank":234,
   "n":399
  },
@@ -2580,7 +2346,6 @@
   "gpt":0,
   "gem":1,
   "engines":"Gemini",
-  "source_pawc":0.0,
   "rank":235,
   "n":399
  },
@@ -2591,7 +2356,6 @@
   "gpt":0,
   "gem":1,
   "engines":"Gemini",
-  "source_pawc":0.0,
   "rank":236,
   "n":399
  },
@@ -2602,7 +2366,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":237,
   "n":399
  },
@@ -2613,7 +2376,6 @@
   "gpt":0,
   "gem":1,
   "engines":"Gemini",
-  "source_pawc":0.0551153385,
   "rank":238,
   "n":399
  },
@@ -2624,7 +2386,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0404734426,
   "rank":239,
   "n":399
  },
@@ -2635,7 +2396,6 @@
   "gpt":1,
   "gem":0,
   "engines":"ChatGPT",
-  "source_pawc":0.0,
   "rank":240,
   "n":399
  },
@@ -2646,7 +2406,6 @@
   "gpt":0,
   "gem":1,
   "engines":"Gemini",
-  "source_pawc":0.0,
   "rank":241,
   "n":399
  },
@@ -2657,7 +2416,6 @@
   "gpt":0,
   "gem":1,
   "engines":"Gemini",
-  "source_pawc":0.0075270424,
   "rank":242,
   "n":399
  },
@@ -2668,7 +2426,6 @@
   "gpt":0,
   "gem":1,
   "engines":"Gemini",
-  "source_pawc":0.0318905989,
   "rank":243,
   "n":399
  }

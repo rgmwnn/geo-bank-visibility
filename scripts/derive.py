@@ -120,54 +120,6 @@ def brand_counts(text: str, brands) -> list[dict]:
     return list(out.values())
 
 
-def load_stopwords() -> set[str]:
-    return set((ROOT / "config/stopwords.txt").read_text(encoding="utf-8").split())
-
-
-def tokens(text: str, stop: set[str]) -> list[str]:
-    text = re.sub(r"(?<=\d)[.,](?=\d)", "", text.lower())
-    return [t for t in re.findall(r"[a-z0-9]+", text) if t not in stop]
-
-
-def _bigrams(toks: list[str]) -> set[tuple[str, str]]:
-    return set(zip(toks, toks[1:]))
-
-
-def overlap(sentence: str, page_text: str, stop: set[str]) -> float:
-    return _overlap(tokens(sentence, stop), *_page_index(page_text, stop))
-
-
-def _page_index(page_text: str, stop: set[str]) -> tuple[set, set]:
-    toks = tokens(page_text, stop)
-    return set(toks), _bigrams(toks)
-
-
-def _overlap(sent_toks: list[str], page_uni: set, page_bi: set) -> float:
-    if not sent_toks:
-        return 0.0
-    if len(sent_toks) < 3:
-        uni = set(sent_toks)
-        return len(uni & page_uni) / len(uni)
-    bi = _bigrams(sent_toks)
-    return len(bi & page_bi) / len(bi)
-
-
-def attribution_scores(sentences: pd.DataFrame, citations: pd.DataFrame, page_texts: dict[str, str]) -> pd.DataFrame:
-    stop = load_stopwords()
-    index = {u: _page_index(t, stop) for u, t in page_texts.items()}
-    by_answer = {a: g.sort_values("rank")[["rank", "url"]].values.tolist() for a, g in citations.groupby("answer_id")}
-    rows = []
-    for s in sentences.itertuples():
-        toks = tokens(s.text, stop)
-        scored = [(_overlap(toks, *index[u]), rank, u) for rank, u in by_answer.get(s.answer_id, []) if u in index]
-        scored.sort(key=lambda x: (-x[0], x[1]))
-        best = scored[0] if scored else (0.0, None, None)
-        second = scored[1] if len(scored) > 1 else (0.0, None, None)
-        rows.append({"answer_id": s.answer_id, "sent_idx": s.sent_idx, "best_url": best[2],
-                     "best_score": round(best[0], 4), "second_url": second[2], "second_score": round(second[0], 4)})
-    return pd.DataFrame(rows, columns=["answer_id", "sent_idx", "best_url", "best_score", "second_url", "second_score"])
-
-
 def load_body(cache: Path, key: str, meta: dict) -> tuple[bytes | None, str]:
     rendered = cache / f"{key}.rendered.html"
     if meta.get("rendered") and rendered.exists():
@@ -180,7 +132,7 @@ def main(cache: Path = ROOT / ".cache/crawl") -> None:
     cfg = load_config()
     brands = load_brands(ROOT / "config/brands.yaml")
     cits = read_csv("data/interim/citations.csv")
-    pages, counts, texts = [], [], {}
+    pages, counts = [], []
     for url in sorted(cits["url"].unique()):
         key = cache_key(url)
         meta = json.loads((cache / f"{key}.json").read_text(encoding="utf-8"))
@@ -199,22 +151,10 @@ def main(cache: Path = ROOT / ".cache/crawl") -> None:
         row["body_source"] = source
         pages.append(row)
         if row["is_readable"]:
-            texts[url] = extracted["text"]
             counts += [{"url": url, **c} for c in brand_counts(extracted["text"], brands)]
     write_csv(pd.DataFrame(pages), "data/interim/pages.csv")
     write_csv(pd.DataFrame(counts, columns=["url", "brand", "count", "first_pos_ratio"]), "data/interim/page_brand_counts.csv")
-    write_csv(attribution_scores(read_csv("data/interim/sentences.csv"), cits, texts), "data/interim/attribution_scores.csv")
 
 
 if __name__ == "__main__":
     main()
-
-
-def threshold_agreement(scores: pd.DataFrame, labels: pd.DataFrame, t: float) -> int:
-    m = labels.merge(scores, on=["answer_id", "sent_idx"], how="left")
-    hit = 0
-    for r in m.itertuples():
-        attributed = pd.notna(r.best_score) and r.best_score >= t and pd.notna(r.best_url)
-        if (attributed and r.best_url == r.expected_url) or (not attributed and r.expected_url == "none"):
-            hit += 1
-    return hit

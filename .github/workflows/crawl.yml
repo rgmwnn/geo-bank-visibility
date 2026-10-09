@@ -35,7 +35,7 @@ jobs:
           ls .cache/prev
       - name: Fetch cited pages
         run: python -m scripts.crawl
-      - name: Derive page facts, brand counts and attribution scores
+      - name: Derive page facts and brand counts
         run: python -m scripts.derive
       - uses: actions/upload-artifact@v4
         with:
@@ -46,7 +46,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
-          git add data/interim/pages.csv data/interim/page_brand_counts.csv data/interim/attribution_scores.csv
+          git add data/interim/pages.csv data/interim/page_brand_counts.csv
           git commit -m "data: crawl results $(date -u +%Y-%m-%dT%H:%MZ)" || echo "no changes"
           git pull --rebase origin "${GITHUB_REF_NAME}"
           git push origin "HEAD:${GITHUB_REF_NAME}"

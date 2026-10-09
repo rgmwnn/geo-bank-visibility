@@ -1,7 +1,5 @@
 run_date: "2026-10-09"
 expected_counts: {answers: 40, citations: 399, unique_urls: 243, domains: 97}
-attribution_threshold: 0.30
-attribution_min_agreement: 24   # out of 30 hand-labelled sentences
 authority_values: {High: 1.0, Medium: 0.7, Low: 0.4}
 low_n_answers: 3
 readable_min_words: 50

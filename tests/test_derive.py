@@ -2,7 +2,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from scripts.derive import attribution_scores, extract_html, extract_pdf, page_row
+from scripts.derive import extract_html, extract_pdf, page_row
 
 FIX = Path(__file__).parent / "fixtures"
 
@@ -22,21 +22,6 @@ def test_consent_wall_not_readable():
 def test_pdf_text():
     d = extract_pdf((FIX / "report.pdf").read_bytes(), 300)
     assert d["n_pages"] == 2 and d["n_words"] > 0
-
-
-def test_overlap_and_attribution_tie_to_higher_rank():
-    pages = {"https://a.id": "bunga tabungan seabank 3,5 persen per tahun tanpa saldo minimum",
-             "https://b.id": "bunga tabungan seabank 3,5 persen per tahun tanpa saldo minimum"}
-    sents = pd.DataFrame([{"answer_id": "x", "sent_idx": 0, "text": "SeaBank memberi bunga tabungan 3,5 persen per tahun."}])
-    cits = pd.DataFrame([{"answer_id": "x", "rank": 2, "url": "https://a.id"}, {"answer_id": "x", "rank": 1, "url": "https://b.id"}])
-    r = attribution_scores(sents, cits, pages).iloc[0]
-    assert r.best_url == "https://b.id" and r.best_score > 0.5
-
-
-def test_no_candidates_gives_empty_best():
-    r = attribution_scores(pd.DataFrame([{"answer_id": "x", "sent_idx": 0, "text": "abc def ghi"}]),
-                           pd.DataFrame([{"answer_id": "x", "rank": 1, "url": "https://a.id"}]), {}).iloc[0]
-    assert pd.isna(r.best_url) and r.best_score == 0.0
 
 
 def test_brand_counts_unambiguous_only_and_rollup():

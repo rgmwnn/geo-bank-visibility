@@ -1,6 +1,5 @@
 import pandas as pd
 
-from scripts.derive import threshold_agreement
 from scripts.io import ROOT, load_config, read_csv
 
 
@@ -23,8 +22,6 @@ def build_report() -> str:
     sents = read_csv("data/interim/sentences.csv")
     ments = read_csv("data/interim/mentions.csv")
     pages = read_csv("data/interim/pages.csv")
-    scores = read_csv("data/interim/attribution_scores.csv")
-    check = read_csv("data/labels/attribution_check.csv")
     hits = read_csv("data/labels/ambiguous_hits.csv")
     spot = read_csv("data/labels/sentiment_spotcheck.csv")
     readable = pages.is_readable.astype(str) == "True"
@@ -77,27 +74,6 @@ def build_report() -> str:
             "Every unreadable page:", "",
             _table(p[~readable][["url", "reason"]].rename(columns={"url": "URL", "reason": "Reason"})), ""]
 
-    t0 = cfg["attribution_threshold"]
-    scan = pd.DataFrame([(t, threshold_agreement(scores, check, t)) for t in
-                         [0.15, 0.20, 0.25, 0.30, 0.35, 0.40, 0.45, 0.50]], columns=["Threshold", "Agreement (of 30)"])
-    agree = threshold_agreement(scores, check, t0)
-    att = scores[(scores.best_score >= t0) & scores.best_url.isin(set(p[readable].url))]
-    cov = att.merge(answers[["answer_id", "engine"]], on="answer_id").groupby("engine").size() / \
-        sents.merge(answers[["answer_id", "engine"]], on="answer_id").groupby("engine").size()
-    out += ["## Attribution check", "",
-            "Source PAWC needs to know which cited page each answer sentence came from. Neither engine marks this, "
-            "so the pipeline matches each sentence to the cited page that shares the most word pairs with it.", "",
-            f"To check the matching, Claude labelled 30 sentences by hand (15 per engine, fixed random seed) before "
-            f"looking at the scores, using page titles and URLs. At the chosen threshold of {t0:.2f} the automatic match "
-            f"agrees on {agree} of 30. The target was {cfg['attribution_min_agreement']}, so the target was not met.", "",
-            _table(scan), "",
-            "Most disagreements are claims that appear on several cited pages (for example the Rp2 billion LPS limit appears "
-            "on lps.go.id, a BTN article, detik and zaipad). The matcher finds a page that contains the claim, which is not "
-            "always the page a person would pick. Read Source PAWC as the share of an answer found in each cited page, "
-            "not as proof of where the engine took it from.", "",
-            "Share of sentences matched to a readable cited page:", "",
-            _table(cov.rename("Coverage").map(_pct).rename_axis("Engine").reset_index()), ""]
-
     out += ["## Ambiguous brand hits", "",
             "Aliases that are also ordinary words were reviewed one by one in context. Lowercase \"jago\" is never "
             "counted because the alias is case-sensitive.", "",
@@ -110,8 +86,7 @@ def build_report() -> str:
     out += ["## Known limitations", "",
             "- One run per prompt per engine, from RG's accounts on 2026-10-09. AI answers vary between runs, so this is a snapshot.",
             "- Every prompt asked for 10 sources, which pushes both engines to cite more than they would by default.",
-            "- Source PAWC uses reconstructed attribution (word-pair overlap), not attribution the engines published. See the check above.",
-            "- Pages that blocked the crawler or returned too little text cannot count toward Source PAWC or Source-SOV.",
+            "- Pages that blocked the crawler or returned too little text cannot count toward Source-SOV, recency or schema results.",
             "- Source-SOV gives each page equal weight. The raw mention count version is kept as `source_sov_raw`.",
             "- Brand counts in crawled pages skip bare ambiguous aliases (for example \"Jago\" without \"Bank\"), which undercounts some digital banks in sources.",
             "- Sentiment and domain types were labelled by Claude. The spot-check result is shown above.",

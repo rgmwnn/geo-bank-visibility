@@ -94,32 +94,6 @@ Every unreadable page:
 | https://shinhan.co.id/individu/simpanan/tabungan-berjangka-shinhan | robots_unreachable |
 | https://sikapiuangmu.ojk.go.id/FrontEnd/images/FileDownload/535_Majalah%20Edukasi%20Konsumen%20Edisi%20Juni%202021.pdf | HTTP 403 |
 
-## Attribution check
-
-Source PAWC needs to know which cited page each answer sentence came from. Neither engine marks this, so the pipeline matches each sentence to the cited page that shares the most word pairs with it.
-
-To check the matching, Claude labelled 30 sentences by hand (15 per engine, fixed random seed) before looking at the scores, using page titles and URLs. At the chosen threshold of 0.30 the automatic match agrees on 18 of 30. The target was 24, so the target was not met.
-
-| Threshold | Agreement (of 30) |
-|---|---|
-| 0.15 | 9 |
-| 0.2 | 13 |
-| 0.25 | 15 |
-| 0.3 | 18 |
-| 0.35 | 17 |
-| 0.4 | 17 |
-| 0.45 | 17 |
-| 0.5 | 17 |
-
-Most disagreements are claims that appear on several cited pages (for example the Rp2 billion LPS limit appears on lps.go.id, a BTN article, detik and zaipad). The matcher finds a page that contains the claim, which is not always the page a person would pick. Read Source PAWC as the share of an answer found in each cited page, not as proof of where the engine took it from.
-
-Share of sentences matched to a readable cited page:
-
-| Engine | Coverage |
-|---|---|
-| ChatGPT | 37.2% |
-| Gemini | 34.2% |
-
 ## Ambiguous brand hits
 
 Aliases that are also ordinary words were reviewed one by one in context. Lowercase "jago" is never counted because the alias is case-sensitive.
@@ -150,8 +124,7 @@ Claude labelled sentiment for every answer and bank pair. RG was asked to check 
 
 - One run per prompt per engine, from RG's accounts on 2026-10-09. AI answers vary between runs, so this is a snapshot.
 - Every prompt asked for 10 sources, which pushes both engines to cite more than they would by default.
-- Source PAWC uses reconstructed attribution (word-pair overlap), not attribution the engines published. See the check above.
-- Pages that blocked the crawler or returned too little text cannot count toward Source PAWC or Source-SOV.
+- Pages that blocked the crawler or returned too little text cannot count toward Source-SOV, recency or schema results.
 - Source-SOV gives each page equal weight. The raw mention count version is kept as `source_sov_raw`.
 - Brand counts in crawled pages skip bare ambiguous aliases (for example "Jago" without "Bank"), which undercounts some digital banks in sources.
 - Sentiment and domain types were labelled by Claude. The spot-check result is shown above.
