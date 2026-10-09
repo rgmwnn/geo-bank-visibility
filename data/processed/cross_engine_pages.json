@@ -12,8 +12,8 @@
  {
   "url":"https:\/\/lps.go.id",
   "domain":"lps.go.id",
-  "citations":9,
-  "gpt":7,
+  "citations":8,
+  "gpt":6,
   "gem":2,
   "engines":"ChatGPT+Gemini",
   "rank":5,
@@ -27,6 +27,16 @@
   "gem":6,
   "engines":"ChatGPT+Gemini",
   "rank":6,
+  "n":399
+ },
+ {
+  "url":"https:\/\/bca.co.id\/id\/Individu\/layanan\/e-banking\/BCA-Mobile\/Perbedaan-BCA-Mobile-dan-myBCA",
+  "domain":"bca.co.id",
+  "citations":3,
+  "gpt":1,
+  "gem":2,
+  "engines":"ChatGPT+Gemini",
+  "rank":17,
   "n":399
  },
  {
@@ -46,7 +56,7 @@
   "gpt":1,
   "gem":1,
   "engines":"ChatGPT+Gemini",
-  "rank":41,
+  "rank":42,
   "n":399
  },
  {
@@ -56,7 +66,7 @@
   "gpt":1,
   "gem":1,
   "engines":"ChatGPT+Gemini",
-  "rank":49,
+  "rank":50,
   "n":399
  },
  {
@@ -66,7 +76,7 @@
   "gpt":1,
   "gem":1,
   "engines":"ChatGPT+Gemini",
-  "rank":50,
+  "rank":51,
   "n":399
  },
  {
@@ -76,7 +86,7 @@
   "gpt":1,
   "gem":1,
   "engines":"ChatGPT+Gemini",
-  "rank":52,
+  "rank":53,
   "n":399
  },
  {
@@ -86,7 +96,7 @@
   "gpt":1,
   "gem":1,
   "engines":"ChatGPT+Gemini",
-  "rank":55,
+  "rank":56,
   "n":399
  },
  {
@@ -96,7 +106,7 @@
   "gpt":1,
   "gem":1,
   "engines":"ChatGPT+Gemini",
-  "rank":56,
+  "rank":57,
   "n":399
  }
 ]

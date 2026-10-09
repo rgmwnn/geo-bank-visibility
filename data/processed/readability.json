@@ -3,81 +3,73 @@
   "cut":"domain_type",
   "value":"All",
   "reason":"readable",
-  "pages":182,
-  "share":0.755186722,
-  "n":241
- },
- {
-  "cut":"domain_type",
-  "value":"All",
-  "reason":"too_little_text",
-  "pages":20,
-  "share":0.0829875519,
-  "n":241
+  "pages":195,
+  "share":0.8024691358,
+  "n":243
  },
  {
   "cut":"domain_type",
   "value":"All",
   "reason":"http_403",
   "pages":13,
-  "share":0.0539419087,
-  "n":241
+  "share":0.0534979424,
+  "n":243
+ },
+ {
+  "cut":"domain_type",
+  "value":"All",
+  "reason":"too_little_text",
+  "pages":9,
+  "share":0.037037037,
+  "n":243
+ },
+ {
+  "cut":"domain_type",
+  "value":"All",
+  "reason":"http_404",
+  "pages":8,
+  "share":0.0329218107,
+  "n":243
  },
  {
   "cut":"domain_type",
   "value":"All",
   "reason":"robots_disallowed",
   "pages":7,
-  "share":0.0290456432,
-  "n":241
+  "share":0.0288065844,
+  "n":243
  },
  {
   "cut":"domain_type",
   "value":"All",
   "reason":"robots_unreachable",
-  "pages":7,
-  "share":0.0290456432,
-  "n":241
+  "pages":6,
+  "share":0.024691358,
+  "n":243
  },
  {
   "cut":"domain_type",
   "value":"All",
-  "reason":"http_404",
-  "pages":7,
-  "share":0.0290456432,
-  "n":241
- },
- {
-  "cut":"domain_type",
-  "value":"All",
-  "reason":"http_429",
-  "pages":2,
-  "share":0.0082987552,
-  "n":241
+  "reason":"soft_404",
+  "pages":3,
+  "share":0.012345679,
+  "n":243
  },
  {
   "cut":"domain_type",
   "value":"All",
   "reason":"http_307",
   "pages":1,
-  "share":0.0041493776,
-  "n":241
- },
- {
-  "cut":"domain_type",
-  "value":"All",
-  "reason":"ReadTimeout",
-  "pages":1,
-  "share":0.0041493776,
-  "n":241
+  "share":0.0041152263,
+  "n":243
  },
  {
   "cut":"domain_type",
   "value":"All",
   "reason":"http_202",
   "pages":1,
-  "share":0.0041493776,
-  "n":241
+  "share":0.0041152263,
+  "n":243
  },
  {
   "cut":"domain_type",
@@ -91,57 +83,65 @@
   "cut":"domain_type",
   "value":"bank_official",
   "reason":"readable",
-  "pages":98,
-  "share":0.8235294118,
-  "n":119
+  "pages":108,
+  "share":0.8925619835,
+  "n":121
  },
  {
   "cut":"domain_type",
   "value":"bank_official",
   "reason":"too_little_text",
-  "pages":12,
-  "share":0.1008403361,
-  "n":119
+  "pages":4,
+  "share":0.0330578512,
+  "n":121
  },
  {
   "cut":"domain_type",
   "value":"bank_official",
   "reason":"robots_unreachable",
-  "pages":4,
-  "share":0.0336134454,
-  "n":119
+  "pages":3,
+  "share":0.0247933884,
+  "n":121
  },
  {
   "cut":"domain_type",
   "value":"bank_official",
   "reason":"robots_disallowed",
   "pages":2,
-  "share":0.0168067227,
-  "n":119
+  "share":0.0165289256,
+  "n":121
+ },
+ {
+  "cut":"domain_type",
+  "value":"bank_official",
+  "reason":"soft_404",
+  "pages":1,
+  "share":0.0082644628,
+  "n":121
  },
  {
   "cut":"domain_type",
   "value":"bank_official",
   "reason":"http_307",
   "pages":1,
-  "share":0.0084033613,
-  "n":119
+  "share":0.0082644628,
+  "n":121
  },
  {
   "cut":"domain_type",
   "value":"bank_official",
   "reason":"http_202",
   "pages":1,
-  "share":0.0084033613,
-  "n":119
+  "share":0.0082644628,
+  "n":121
  },
  {
   "cut":"domain_type",
   "value":"bank_official",
   "reason":"http_404",
   "pages":1,
-  "share":0.0084033613,
-  "n":119
+  "share":0.0082644628,
+  "n":121
  },
  {
   "cut":"domain_type",
@@ -202,7 +202,7 @@
  {
   "cut":"domain_type",
   "value":"forum_ugc",
-  "reason":"http_429",
+  "reason":"readable",
   "pages":1,
   "share":0.2,
   "n":5
@@ -211,8 +211,8 @@
   "cut":"domain_type",
   "value":"news_media",
   "reason":"readable",
-  "pages":20,
-  "share":0.625,
+  "pages":22,
+  "share":0.6875,
   "n":32
  },
  {
@@ -226,7 +226,7 @@
  {
   "cut":"domain_type",
   "value":"news_media",
-  "reason":"too_little_text",
+  "reason":"http_404",
   "pages":2,
   "share":0.0625,
   "n":32
@@ -234,23 +234,7 @@
  {
   "cut":"domain_type",
   "value":"news_media",
-  "reason":"ReadTimeout",
-  "pages":1,
-  "share":0.03125,
-  "n":32
- },
- {
-  "cut":"domain_type",
-  "value":"news_media",
-  "reason":"http_429",
-  "pages":1,
-  "share":0.03125,
-  "n":32
- },
- {
-  "cut":"domain_type",
-  "value":"news_media",
-  "reason":"http_404",
+  "reason":"too_little_text",
   "pages":1,
   "share":0.03125,
   "n":32
@@ -282,17 +266,17 @@
  {
   "cut":"domain_type",
   "value":"regulator",
-  "reason":"too_little_text",
-  "pages":5,
-  "share":0.1136363636,
+  "reason":"http_404",
+  "pages":4,
+  "share":0.0909090909,
   "n":44
  },
  {
   "cut":"domain_type",
   "value":"regulator",
-  "reason":"http_404",
-  "pages":4,
-  "share":0.0909090909,
+  "reason":"too_little_text",
+  "pages":3,
+  "share":0.0681818182,
   "n":44
  },
  {
@@ -320,19 +304,19 @@
   "n":44
  },
  {
-  "cut":"engine_citations",
-  "value":"All",
-  "reason":"readable",
-  "pages":317,
-  "share":0.7944862155,
-  "n":399
+  "cut":"domain_type",
+  "value":"regulator",
+  "reason":"soft_404",
+  "pages":2,
+  "share":0.0454545455,
+  "n":44
  },
  {
   "cut":"engine_citations",
   "value":"All",
-  "reason":"too_little_text",
-  "pages":28,
-  "share":0.0701754386,
+  "reason":"readable",
+  "pages":333,
+  "share":0.8345864662,
   "n":399
  },
  {
@@ -346,17 +330,25 @@
  {
   "cut":"engine_citations",
   "value":"All",
+  "reason":"too_little_text",
+  "pages":13,
+  "share":0.0325814536,
+  "n":399
+ },
+ {
+  "cut":"engine_citations",
+  "value":"All",
   "reason":"http_404",
-  "pages":11,
-  "share":0.0275689223,
+  "pages":12,
+  "share":0.030075188,
   "n":399
  },
  {
   "cut":"engine_citations",
   "value":"All",
   "reason":"robots_unreachable",
-  "pages":10,
-  "share":0.0250626566,
+  "pages":9,
+  "share":0.022556391,
   "n":399
  },
  {
@@ -371,16 +363,16 @@
   "cut":"engine_citations",
   "value":"All",
   "reason":"http_307",
-  "pages":4,
-  "share":0.0100250627,
+  "pages":3,
+  "share":0.007518797,
   "n":399
  },
  {
   "cut":"engine_citations",
   "value":"All",
-  "reason":"http_429",
-  "pages":2,
-  "share":0.0050125313,
+  "reason":"soft_404",
+  "pages":3,
+  "share":0.007518797,
   "n":399
  },
  {
@@ -393,26 +385,10 @@
  },
  {
   "cut":"engine_citations",
-  "value":"All",
-  "reason":"ReadTimeout",
-  "pages":1,
-  "share":0.0025062657,
-  "n":399
- },
- {
-  "cut":"engine_citations",
   "value":"ChatGPT",
   "reason":"readable",
-  "pages":161,
-  "share":0.8090452261,
-  "n":199
- },
- {
-  "cut":"engine_citations",
-  "value":"ChatGPT",
-  "reason":"too_little_text",
-  "pages":16,
-  "share":0.0804020101,
+  "pages":172,
+  "share":0.864321608,
   "n":199
  },
  {
@@ -434,9 +410,9 @@
  {
   "cut":"engine_citations",
   "value":"ChatGPT",
-  "reason":"http_307",
-  "pages":4,
-  "share":0.0201005025,
+  "reason":"too_little_text",
+  "pages":5,
+  "share":0.0251256281,
   "n":199
  },
  {
@@ -445,6 +421,14 @@
   "reason":"robots_unreachable",
   "pages":4,
   "share":0.0201005025,
+  "n":199
+ },
+ {
+  "cut":"engine_citations",
+  "value":"ChatGPT",
+  "reason":"http_307",
+  "pages":3,
+  "share":0.0150753769,
   "n":199
  },
  {
@@ -465,10 +449,18 @@
  },
  {
   "cut":"engine_citations",
+  "value":"ChatGPT",
+  "reason":"soft_404",
+  "pages":1,
+  "share":0.0050251256,
+  "n":199
+ },
+ {
+  "cut":"engine_citations",
   "value":"Gemini",
   "reason":"readable",
-  "pages":156,
-  "share":0.78,
+  "pages":161,
+  "share":0.805,
   "n":200
  },
  {
@@ -482,41 +474,33 @@
  {
   "cut":"engine_citations",
   "value":"Gemini",
-  "reason":"too_little_text",
-  "pages":12,
-  "share":0.06,
+  "reason":"http_404",
+  "pages":11,
+  "share":0.055,
   "n":200
  },
  {
   "cut":"engine_citations",
   "value":"Gemini",
-  "reason":"http_404",
-  "pages":10,
-  "share":0.05,
+  "reason":"too_little_text",
+  "pages":8,
+  "share":0.04,
   "n":200
  },
  {
   "cut":"engine_citations",
   "value":"Gemini",
   "reason":"robots_unreachable",
-  "pages":6,
-  "share":0.03,
+  "pages":5,
+  "share":0.025,
   "n":200
  },
  {
   "cut":"engine_citations",
   "value":"Gemini",
-  "reason":"http_429",
+  "reason":"soft_404",
   "pages":2,
   "share":0.01,
-  "n":200
- },
- {
-  "cut":"engine_citations",
-  "value":"Gemini",
-  "reason":"ReadTimeout",
-  "pages":1,
-  "share":0.005,
   "n":200
  }
 ]

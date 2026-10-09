@@ -1,6 +1,6 @@
 engine,intent,n,no_brand_rate
-All,All,40,0.175
-ChatGPT,All,20,0.2
+All,All,40,0.2
+ChatGPT,All,20,0.25
 Gemini,All,20,0.15
 All,Best,16,0.0
 ChatGPT,Best,8,0.0
@@ -11,8 +11,8 @@ Gemini,Compare,4,0.25
 All,Decision brief,8,0.0
 ChatGPT,Decision brief,4,0.0
 Gemini,Decision brief,4,0.0
-All,How-to,6,0.6666666666666666
-ChatGPT,How-to,3,0.6666666666666666
+All,How-to,6,0.8333333333333334
+ChatGPT,How-to,3,1.0
 Gemini,How-to,3,0.6666666666666666
 All,Informational,2,0.5
 ChatGPT,Informational,1,1.0

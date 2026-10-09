@@ -1,39 +1,39 @@
 [
  {
-  "brand":"BRI",
-  "engine":"ChatGPT",
-  "n_answers":7,
-  "low_n":false,
-  "pawc":0.0768207391,
-  "pawc_norm":1.0,
-  "authority":0.9142857143,
-  "sentiment_norm":1.0,
-  "diversity":null,
-  "vis":97.1428571429
- },
- {
   "brand":"Bank Jago",
   "engine":"ChatGPT",
   "n_answers":10,
   "low_n":false,
   "pawc":0.0743734107,
-  "pawc_norm":0.9681423467,
+  "pawc_norm":1.0,
   "authority":0.9090909091,
   "sentiment_norm":0.9,
   "diversity":null,
-  "vis":92.5744418602
+  "vis":93.6363636364
+ },
+ {
+  "brand":"BRI",
+  "engine":"ChatGPT",
+  "n_answers":6,
+  "low_n":false,
+  "pawc":0.0666278993,
+  "pawc_norm":0.8958564449,
+  "authority":0.9,
+  "sentiment_norm":1.0,
+  "diversity":null,
+  "vis":93.1952148311
  },
  {
   "brand":"BCA",
   "engine":"ChatGPT",
   "n_answers":9,
   "low_n":false,
-  "pawc":0.0526746368,
-  "pawc_norm":0.6856825038,
+  "pawc":0.060075712,
+  "pawc_norm":0.807757927,
   "authority":0.9191011236,
   "sentiment_norm":1.0,
   "diversity":null,
-  "vis":86.8261209137
+  "vis":90.8953016859
  },
  {
   "brand":"SeaBank",
@@ -41,23 +41,11 @@
   "n_answers":10,
   "low_n":false,
   "pawc":0.0476274604,
-  "pawc_norm":0.6199818034,
+  "pawc_norm":0.6403828998,
   "authority":0.9090909091,
   "sentiment_norm":1.0,
   "diversity":null,
-  "vis":84.3024237484
- },
- {
-  "brand":"BNI",
-  "engine":"ChatGPT",
-  "n_answers":4,
-  "low_n":false,
-  "pawc":0.0354235629,
-  "pawc_norm":0.4611197877,
-  "authority":0.94,
-  "sentiment_norm":1.0,
-  "diversity":null,
-  "vis":80.0373262571
+  "vis":84.9824602947
  },
  {
   "brand":"Allo Bank",
@@ -65,11 +53,23 @@
   "n_answers":1,
   "low_n":true,
   "pawc":0.0286256792,
-  "pawc_norm":0.3726295723,
+  "pawc_norm":0.3848913061,
   "authority":0.94,
   "sentiment_norm":1.0,
   "diversity":null,
-  "vis":77.0876524093
+  "vis":77.4963768687
+ },
+ {
+  "brand":"BNI",
+  "engine":"ChatGPT",
+  "n_answers":3,
+  "low_n":false,
+  "pawc":0.0252307231,
+  "pawc_norm":0.339243862,
+  "authority":0.92,
+  "sentiment_norm":1.0,
+  "diversity":null,
+  "vis":75.3081287321
  },
  {
   "brand":"Bank Neo Commerce",
@@ -77,23 +77,23 @@
   "n_answers":4,
   "low_n":false,
   "pawc":0.0376468695,
-  "pawc_norm":0.4900612764,
+  "pawc_norm":0.5061872131,
   "authority":0.8692307692,
   "sentiment_norm":0.875,
   "diversity":null,
-  "vis":74.4764015201
+  "vis":75.0139327445
  },
  {
   "brand":"Bank Mandiri",
   "engine":"ChatGPT",
   "n_answers":3,
   "low_n":false,
-  "pawc":0.0214415856,
-  "pawc_norm":0.2791119412,
+  "pawc":0.0237970214,
+  "pawc_norm":0.3199667891,
   "authority":0.92,
   "sentiment_norm":1.0,
   "diversity":null,
-  "vis":73.3037313724
+  "vis":74.6655596367
  },
  {
   "brand":"Krom Bank",
@@ -101,11 +101,11 @@
   "n_answers":3,
   "low_n":false,
   "pawc":0.0200841381,
-  "pawc_norm":0.2614416152,
+  "pawc_norm":0.2700446025,
   "authority":0.8965517241,
   "sentiment_norm":1.0,
   "diversity":null,
-  "vis":71.9331113103
+  "vis":72.2198775542
  },
  {
   "brand":"Bank Saqu",
@@ -113,11 +113,11 @@
   "n_answers":1,
   "low_n":true,
   "pawc":0.0003896669,
-  "pawc_norm":0.0050724175,
+  "pawc_norm":0.0052393302,
   "authority":1.0,
   "sentiment_norm":1.0,
   "diversity":null,
-  "vis":66.8357472494
+  "vis":66.8413110082
  },
  {
   "brand":"Nobu Bank",
@@ -125,23 +125,11 @@
   "n_answers":1,
   "low_n":true,
   "pawc":0.0134220393,
-  "pawc_norm":0.174718955,
+  "pawc_norm":0.18046825,
   "authority":0.82,
   "sentiment_norm":1.0,
   "diversity":null,
-  "vis":66.4906318348
- },
- {
-  "brand":"BTN",
-  "engine":"ChatGPT",
-  "n_answers":1,
-  "low_n":true,
-  "pawc":0.000845093,
-  "pawc_norm":0.0110008443,
-  "authority":1.0,
-  "sentiment_norm":0.5,
-  "diversity":null,
-  "vis":50.3666948098
+  "vis":66.6822749994
  },
  {
   "brand":"BCA",

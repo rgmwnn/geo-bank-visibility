@@ -1,18 +1,17 @@
 engine,pillar,domain_type,citations,share,n
-All,All,bank_official,184,0.46115288220551376,399
-All,All,regulator,67,0.16791979949874686,399
+All,All,bank_official,186,0.46616541353383456,399
+All,All,regulator,65,0.16290726817042606,399
 All,All,blog_aggregator,52,0.13032581453634084,399
 All,All,fintech_platform,45,0.11278195488721804,399
 All,All,news_media,40,0.10025062656641603,399
 All,All,other,5,0.012531328320802004,399
 All,All,forum_ugc,5,0.012531328320802004,399
 All,All,app_store,1,0.002506265664160401,399
-All,Digital experience,bank_official,41,0.5125,80
+All,Digital experience,bank_official,43,0.5375,80
 All,Digital experience,blog_aggregator,21,0.2625,80
 All,Digital experience,fintech_platform,9,0.1125,80
 All,Digital experience,forum_ugc,4,0.05,80
 All,Digital experience,news_media,3,0.0375,80
-All,Digital experience,regulator,2,0.025,80
 All,Fees & rates,bank_official,53,0.5353535353535354,99
 All,Fees & rates,blog_aggregator,17,0.1717171717171717,99
 All,Fees & rates,fintech_platform,15,0.15151515151515152,99
@@ -37,16 +36,15 @@ All,Trust,bank_official,20,0.3333333333333333,60
 All,Trust,news_media,8,0.13333333333333333,60
 All,Trust,fintech_platform,7,0.11666666666666667,60
 All,Trust,blog_aggregator,2,0.03333333333333333,60
-ChatGPT,All,bank_official,126,0.6331658291457286,199
-ChatGPT,All,regulator,52,0.2613065326633166,199
+ChatGPT,All,bank_official,128,0.6432160804020101,199
+ChatGPT,All,regulator,50,0.25125628140703515,199
 ChatGPT,All,blog_aggregator,9,0.04522613065326633,199
 ChatGPT,All,news_media,7,0.035175879396984924,199
 ChatGPT,All,other,2,0.010050251256281407,199
 ChatGPT,All,forum_ugc,2,0.010050251256281407,199
 ChatGPT,All,app_store,1,0.005025125628140704,199
-ChatGPT,Digital experience,bank_official,32,0.8,40
+ChatGPT,Digital experience,bank_official,34,0.85,40
 ChatGPT,Digital experience,blog_aggregator,4,0.1,40
-ChatGPT,Digital experience,regulator,2,0.05,40
 ChatGPT,Digital experience,forum_ugc,1,0.025,40
 ChatGPT,Digital experience,news_media,1,0.025,40
 ChatGPT,Fees & rates,bank_official,41,0.8367346938775511,49

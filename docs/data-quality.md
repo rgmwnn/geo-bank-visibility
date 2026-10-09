@@ -10,10 +10,10 @@ Run date of all answers: 2026-10-09. Engines: ChatGPT and Gemini, 20 prompts eac
 |---|---|---|
 | Answers | 40 | 40 |
 | Citations (links under the source heading, deduplicated within an answer) | 399 | 399 |
-| Unique cited URLs | 241 | 241 |
-| Unique cited domains | 99 | 99 |
-| Answer sentences |  | 870 |
-| Brand mentions (parent brand credited) |  | 407 |
+| Unique cited URLs | 243 | 243 |
+| Unique cited domains | 97 | 97 |
+| Answer sentences |  | 894 |
+| Brand mentions (parent brand credited) |  | 427 |
 | Brands mentioned |  | 19 |
 
 ## Citations per answer
@@ -27,34 +27,33 @@ Data fixes made before analysis:
 
 ## Crawl outcomes
 
-182 of 241 unique pages were readable (75.5%). They cover 79.4% of all citations.
+195 of 243 unique pages were readable (80.2%). They cover 83.5% of all citations.
 
 | Outcome | Pages |
 |---|---|
-| readable | 182 |
-| fewer than 50 words of text | 20 |
+| readable | 195 |
 | HTTP 403 | 13 |
+| fewer than 50 words of text | 9 |
+| HTTP 404 | 8 |
 | robots_disallowed | 7 |
-| robots_unreachable | 7 |
-| HTTP 404 | 7 |
-| HTTP 429 | 2 |
+| robots_unreachable | 6 |
+| soft 404 (error page with status 200) | 3 |
 | HTTP 307 | 1 |
-| ReadTimeout | 1 |
 | HTTP 202 | 1 |
 
 Every unreadable page:
 
 | URL | Reason |
 |---|---|
-| https://allobank.com/promo/suku-bunga-baru-allo-bank | fewer than 50 words of text |
-| https://apps.lps.go.id/BankPesertaLPSRate | fewer than 50 words of text |
 | https://banksaqu.co.id/support/742/apakah-internet-banking-aman-digunakan | fewer than 50 words of text |
 | https://bca.co.id/id/Individu/layanan/e-banking/BCA-Mobile/Perbedaan-BCA-Mobile-dan-myBCA | fewer than 50 words of text |
-| https://bca.co.id/id/Individu/layanan/e-banking/myBCA | fewer than 50 words of text |
 | https://bca.co.id/id/informasi/senasib/2026/01/15/09/20/tata-cara-pengaduan-nasabah | fewer than 50 words of text |
 | https://bca.co.id/id/tentang-bca/Hubungan-Investor/laporan-presentasi/Laporan-Tahunan | fewer than 50 words of text |
+| https://bi.go.id/id/fungsi-utama/sistem-pembayaran/perlindungan-konsumen/default.aspx | soft 404 (error page with status 200) |
+| https://bi.go.id/id/layanan-konsumen/default.aspx | soft 404 (error page with status 200) |
 | https://bni.co.id/Portals/1/BNI/Perusahaan/HubunganInvestor/Docs/AR-BNI-2025-ID.pdf | robots_disallowed |
 | https://bni.co.id/Portals/1/BNI/Perusahaan/HubunganInvestor/Docs/BNI-AR-2025-IND.pdf | robots_disallowed |
+| https://bni.co.id/id-id/layanan/pengaduan-nasabah | soft 404 (error page with status 200) |
 | https://bri.co.id | HTTP 307 |
 | https://bukarekening.bri.co.id | robots_unreachable |
 | https://cnbcindonesia.com/research/20260520105714-128-736266/daftar-bunga-deposito-terbaru-bank-digital-per-21-mei-2026-allo-jago | HTTP 403 |
@@ -68,17 +67,14 @@ Every unreadable page:
 | https://find.ojk.go.id/Home | robots_unreachable |
 | https://find.ojk.go.id/LJK | robots_unreachable |
 | https://fliphtml5.com/eixhx/IB577---Digital-Mei-2026 | HTTP 403 |
-| https://halopacitan.com/read/8-bank-digital-tanpa-biaya-admin-bulanan-yang-wajib-anda-tahu | fewer than 50 words of text |
-| https://hukumonline.com/klinik/a/langkah-hukum-jika-bank-tidak-merespons-pengaduan-nasabah-lt638f2a1b2c4d5 | ReadTimeout |
+| https://hukumonline.com/klinik/a/langkah-hukum-jika-bank-tidak-merespons-pengaduan-nasabah-lt638f2a1b2c4d5 | HTTP 404 |
 | https://investor.id/finance/455687/laba-4-bank-besar-menguat-sentuh-rp-12676-triliun-hingga-agustus-2026 | HTTP 403 |
 | https://investor.id/market/427603/bca-bbca-ekspansi-cabang-baru-di-2026-fokus-jangkau-indonesia-timur | HTTP 403 |
-| https://investortrust.id/financial/5075/punya-1112-kantor-bsi-masuk-jajaran-lima-besar-bank-dengan-kantor-terbanyak | HTTP 429 |
 | https://ir-bri.com/misc/AR/flipbook/AR2024-ID/76 | HTTP 202 |
 | https://jago.com/id/features/jagoan-level | HTTP 404 |
 | https://kompas.com/skola/read/2026/03/10/140000369/cara-melaporkan-masalah-perbankan-ke-ojk-dan-bi | HTTP 404 |
 | https://kontak157.ojk.go.id | robots_unreachable |
 | https://lapssjk.id/page/berita/complaint-channels-for-the-dispute-resolution-process | fewer than 50 words of text |
-| https://lapssjk.id/page/informasi | fewer than 50 words of text |
 | https://lapssjk.id/page/informasi/free-consultation-services | HTTP 404 |
 | https://lemon8-app.com/experience/aplikasi-mobile-bca | HTTP 404 |
 | https://lps.go.id/konten/unggahan/2023/07/AR-LPS-2023.pdf | robots_disallowed |
@@ -95,16 +91,8 @@ Every unreadable page:
 | https://pohonilmu.com/bank-digital-gratis-biaya-admin | HTTP 403 |
 | https://reddit.com/r/finansial/comments/1dk3jpa | robots_disallowed |
 | https://reddit.com/r/indotech/comments/1m5bkch | robots_disallowed |
-| https://seabank.co.id/fees-rates | fewer than 50 words of text |
-| https://seabank.co.id/product/virtual-account | fewer than 50 words of text |
-| https://seabank.co.id/produk-layanan/konvensional | fewer than 50 words of text |
-| https://seabank.co.id/pusat-bantuan/artikel/10023-bagaimana-cara-membuka-deposito | fewer than 50 words of text |
-| https://seabank.co.id/pusat-bantuan/artikel/10080 | fewer than 50 words of text |
-| https://seabank.co.id/pusat-bantuan/artikel/10080-berapa-bunga-dan-tenor-deposito-seabank | fewer than 50 words of text |
 | https://shinhan.co.id/individu/simpanan/tabungan-berjangka-shinhan | robots_unreachable |
 | https://sikapiuangmu.ojk.go.id/FrontEnd/images/FileDownload/535_Majalah%20Edukasi%20Konsumen%20Edisi%20Juni%202021.pdf | HTTP 403 |
-| https://smbci.com/id/tentang-kami/segmen-usaha/smbc-senior | robots_unreachable |
-| https://youtube.com/watch?v=jYps3zfolbM | HTTP 429 |
 
 ## Attribution check
 
@@ -114,8 +102,8 @@ To check the matching, Claude labelled 30 sentences by hand (15 per engine, fixe
 
 | Threshold | Agreement (of 30) |
 |---|---|
-| 0.15 | 10 |
-| 0.2 | 13 |
+| 0.15 | 9 |
+| 0.2 | 12 |
 | 0.25 | 15 |
 | 0.3 | 18 |
 | 0.35 | 17 |
@@ -129,8 +117,8 @@ Share of sentences matched to a readable cited page:
 
 | Engine | Coverage |
 |---|---|
-| ChatGPT | 38.6% |
-| Gemini | 33.7% |
+| ChatGPT | 39.2% |
+| Gemini | 33.9% |
 
 ## Ambiguous brand hits
 
@@ -141,7 +129,7 @@ Aliases that are also ordinary words were reviewed one by one in context. Lowerc
 | Allo | keep | 1 |
 | Amar | keep | 1 |
 | Jago | keep | 6 |
-| Mandiri | keep | 4 |
+| Mandiri | keep | 6 |
 | Neo | keep | 1 |
 | Neobank | keep | 3 |
 | blu | keep | 6 |

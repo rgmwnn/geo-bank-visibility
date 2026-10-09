@@ -26,8 +26,8 @@
  {
   "domain":"bankmandiri.co.id",
   "engine":"ChatGPT",
-  "source_pawc":0.1241089264,
-  "n_answers":2
+  "source_pawc":0.2471767101,
+  "n_answers":3
  },
  {
   "domain":"bankmandiri.co.id",
@@ -56,8 +56,8 @@
  {
   "domain":"bca.co.id",
   "engine":"ChatGPT",
-  "source_pawc":0.0529280463,
-  "n_answers":2
+  "source_pawc":0.15699488,
+  "n_answers":3
  },
  {
   "domain":"bca.co.id",
@@ -104,7 +104,7 @@
  {
   "domain":"btn.co.id",
   "engine":"ChatGPT",
-  "source_pawc":0.2914961335,
+  "source_pawc":0.2992046097,
   "n_answers":1
  },
  {
@@ -138,6 +138,12 @@
   "n_answers":1
  },
  {
+  "domain":"halopacitan.com",
+  "engine":"Gemini",
+  "source_pawc":0.046700021,
+  "n_answers":1
+ },
+ {
   "domain":"hokibank.co.id",
   "engine":"Gemini",
   "source_pawc":0.4355866774,
@@ -164,7 +170,7 @@
  {
   "domain":"id.unstore.io",
   "engine":"ChatGPT",
-  "source_pawc":0.0379622433,
+  "source_pawc":0.0234215044,
   "n_answers":1
  },
  {
@@ -177,12 +183,6 @@
   "domain":"idntimes.com",
   "engine":"ChatGPT",
   "source_pawc":0.1451001865,
-  "n_answers":1
- },
- {
-  "domain":"idntimes.com",
-  "engine":"Gemini",
-  "source_pawc":0.0215685664,
   "n_answers":1
  },
  {
@@ -236,7 +236,7 @@
  {
   "domain":"krom.id",
   "engine":"ChatGPT",
-  "source_pawc":0.1350232432,
+  "source_pawc":0.1278866124,
   "n_answers":2
  },
  {
@@ -302,7 +302,7 @@
  {
   "domain":"ojk.go.id",
   "engine":"ChatGPT",
-  "source_pawc":0.4903831293,
+  "source_pawc":0.4962289734,
   "n_answers":4
  },
  {
@@ -326,7 +326,7 @@
  {
   "domain":"seabank.co.id",
   "engine":"ChatGPT",
-  "source_pawc":0.176973291,
+  "source_pawc":0.1841099218,
   "n_answers":6
  },
  {

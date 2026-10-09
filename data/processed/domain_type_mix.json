@@ -3,16 +3,16 @@
   "engine":"All",
   "pillar":"All",
   "domain_type":"bank_official",
-  "citations":184,
-  "share":0.4611528822,
+  "citations":186,
+  "share":0.4661654135,
   "n":399
  },
  {
   "engine":"All",
   "pillar":"All",
   "domain_type":"regulator",
-  "citations":67,
-  "share":0.1679197995,
+  "citations":65,
+  "share":0.1629072682,
   "n":399
  },
  {
@@ -67,8 +67,8 @@
   "engine":"All",
   "pillar":"Digital experience",
   "domain_type":"bank_official",
-  "citations":41,
-  "share":0.5125,
+  "citations":43,
+  "share":0.5375,
   "n":80
  },
  {
@@ -101,14 +101,6 @@
   "domain_type":"news_media",
   "citations":3,
   "share":0.0375,
-  "n":80
- },
- {
-  "engine":"All",
-  "pillar":"Digital experience",
-  "domain_type":"regulator",
-  "citations":2,
-  "share":0.025,
   "n":80
  },
  {
@@ -307,16 +299,16 @@
   "engine":"ChatGPT",
   "pillar":"All",
   "domain_type":"bank_official",
-  "citations":126,
-  "share":0.6331658291,
+  "citations":128,
+  "share":0.6432160804,
   "n":199
  },
  {
   "engine":"ChatGPT",
   "pillar":"All",
   "domain_type":"regulator",
-  "citations":52,
-  "share":0.2613065327,
+  "citations":50,
+  "share":0.2512562814,
   "n":199
  },
  {
@@ -363,8 +355,8 @@
   "engine":"ChatGPT",
   "pillar":"Digital experience",
   "domain_type":"bank_official",
-  "citations":32,
-  "share":0.8,
+  "citations":34,
+  "share":0.85,
   "n":40
  },
  {
@@ -373,14 +365,6 @@
   "domain_type":"blog_aggregator",
   "citations":4,
   "share":0.1,
-  "n":40
- },
- {
-  "engine":"ChatGPT",
-  "pillar":"Digital experience",
-  "domain_type":"regulator",
-  "citations":2,
-  "share":0.05,
   "n":40
  },
  {

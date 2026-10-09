@@ -1,20 +1,20 @@
 [
  {
   "engine":"All",
-  "n_sentences":870,
-  "attributed":314,
-  "coverage":0.3609195402
+  "n_sentences":894,
+  "attributed":327,
+  "coverage":0.3657718121
  },
  {
   "engine":"ChatGPT",
-  "n_sentences":425,
-  "attributed":164,
-  "coverage":0.3858823529
+  "n_sentences":449,
+  "attributed":176,
+  "coverage":0.3919821826
  },
  {
   "engine":"Gemini",
   "n_sentences":445,
-  "attributed":150,
-  "coverage":0.3370786517
+  "attributed":151,
+  "coverage":0.3393258427
  }
 ]

@@ -3,13 +3,13 @@
   "engine":"All",
   "intent":"All",
   "n":40,
-  "no_brand_rate":0.175
+  "no_brand_rate":0.2
  },
  {
   "engine":"ChatGPT",
   "intent":"All",
   "n":20,
-  "no_brand_rate":0.2
+  "no_brand_rate":0.25
  },
  {
   "engine":"Gemini",
@@ -75,13 +75,13 @@
   "engine":"All",
   "intent":"How-to",
   "n":6,
-  "no_brand_rate":0.6666666667
+  "no_brand_rate":0.8333333333
  },
  {
   "engine":"ChatGPT",
   "intent":"How-to",
   "n":3,
-  "no_brand_rate":0.6666666667
+  "no_brand_rate":1.0
  },
  {
   "engine":"Gemini",

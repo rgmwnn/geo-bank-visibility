@@ -1,107 +1,107 @@
 [
  {
   "engine":"All",
-  "group":">365",
-  "citations":100,
-  "share":0.3154574132,
-  "n":317
+  "group":"unknown",
+  "citations":116,
+  "share":0.3483483483,
+  "n":333
  },
  {
   "engine":"All",
-  "group":"unknown",
-  "citations":100,
-  "share":0.3154574132,
-  "n":317
+  "group":">365",
+  "citations":102,
+  "share":0.3063063063,
+  "n":333
  },
  {
   "engine":"All",
   "group":"31-180",
-  "citations":55,
-  "share":0.1735015773,
-  "n":317
+  "citations":56,
+  "share":0.1681681682,
+  "n":333
  },
  {
   "engine":"All",
   "group":"181-365",
   "citations":32,
-  "share":0.1009463722,
-  "n":317
+  "share":0.0960960961,
+  "n":333
  },
  {
   "engine":"All",
   "group":"0-30",
-  "citations":30,
-  "share":0.094637224,
-  "n":317
+  "citations":27,
+  "share":0.0810810811,
+  "n":333
  },
  {
   "engine":"ChatGPT",
   "group":"unknown",
-  "citations":70,
-  "share":0.4347826087,
-  "n":161
+  "citations":83,
+  "share":0.4825581395,
+  "n":172
  },
  {
   "engine":"ChatGPT",
   "group":">365",
   "citations":40,
-  "share":0.248447205,
-  "n":161
- },
- {
-  "engine":"ChatGPT",
-  "group":"0-30",
-  "citations":22,
-  "share":0.1366459627,
-  "n":161
+  "share":0.2325581395,
+  "n":172
  },
  {
   "engine":"ChatGPT",
   "group":"31-180",
   "citations":20,
-  "share":0.1242236025,
-  "n":161
+  "share":0.1162790698,
+  "n":172
+ },
+ {
+  "engine":"ChatGPT",
+  "group":"0-30",
+  "citations":20,
+  "share":0.1162790698,
+  "n":172
  },
  {
   "engine":"ChatGPT",
   "group":"181-365",
   "citations":9,
-  "share":0.0559006211,
-  "n":161
+  "share":0.0523255814,
+  "n":172
  },
  {
   "engine":"Gemini",
   "group":">365",
-  "citations":60,
-  "share":0.3846153846,
-  "n":156
+  "citations":62,
+  "share":0.3850931677,
+  "n":161
  },
  {
   "engine":"Gemini",
   "group":"31-180",
-  "citations":35,
-  "share":0.2243589744,
-  "n":156
+  "citations":36,
+  "share":0.2236024845,
+  "n":161
  },
  {
   "engine":"Gemini",
   "group":"unknown",
-  "citations":30,
-  "share":0.1923076923,
-  "n":156
+  "citations":33,
+  "share":0.2049689441,
+  "n":161
  },
  {
   "engine":"Gemini",
   "group":"181-365",
   "citations":23,
-  "share":0.1474358974,
-  "n":156
+  "share":0.1428571429,
+  "n":161
  },
  {
   "engine":"Gemini",
   "group":"0-30",
-  "citations":8,
-  "share":0.0512820513,
-  "n":156
+  "citations":7,
+  "share":0.0434782609,
+  "n":161
  }
 ]
