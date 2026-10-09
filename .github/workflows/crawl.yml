@@ -5,6 +5,7 @@ on:
     paths: [crawl/request.txt]
 permissions:
   contents: write
+  actions: read
 concurrency:
   group: crawl
   cancel-in-progress: false
@@ -23,6 +24,15 @@ jobs:
         run: |
           pip install playwright==1.47.0
           python -m playwright install --with-deps chromium
+      - name: Reuse pages fetched by earlier crawl runs on this branch
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p .cache/prev
+          for id in $(gh run list -R "$GITHUB_REPOSITORY" --workflow crawl.yml --branch "$GITHUB_REF_NAME" --status success --limit 5 --json databaseId --jq '.[].databaseId'); do
+            gh run download "$id" -R "$GITHUB_REPOSITORY" -n crawl-cache -D ".cache/prev/$id" || true
+          done
+          ls .cache/prev
       - name: Fetch cited pages
         run: python -m scripts.crawl
       - name: Derive page facts, brand counts and attribution scores

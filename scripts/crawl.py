@@ -30,6 +30,38 @@ def retry_wait(headers: dict, default: int = 5, cap: int = 30) -> int:
     return min(int(value), cap) if value.isdigit() else default
 
 
+def _good(meta: dict, body_exists: bool) -> bool:
+    return meta.get("http_status") == 200 and not meta.get("fetch_error") and body_exists
+
+
+def should_fetch(cache: Path, key: str) -> bool:
+    meta_path = cache / f"{key}.json"
+    if not meta_path.exists():
+        return True
+    return not _good(json.loads(meta_path.read_text(encoding="utf-8")), (cache / f"{key}.bin").exists())
+
+
+def merge_caches(dirs: list[Path], out: Path) -> None:
+    """Combine earlier crawl caches: per page keep the newest good fetch, or the newest attempt if none was good."""
+    import shutil
+
+    best: dict[str, tuple[bool, str, Path]] = {}
+    for d in dirs:
+        for meta_path in d.glob("*.json"):
+            meta = json.loads(meta_path.read_text(encoding="utf-8"))
+            cand = (_good(meta, (d / f"{meta_path.stem}.bin").exists()), meta.get("fetched_at", ""), d)
+            if meta_path.stem not in best or cand[:2] > best[meta_path.stem][:2]:
+                best[meta_path.stem] = cand
+    out.mkdir(parents=True, exist_ok=True)
+    for key, (_, _, d) in best.items():
+        for suffix in (".json", ".bin", ".rendered.html"):
+            src = d / f"{key}{suffix}"
+            if src.exists():
+                shutil.copyfile(src, out / f"{key}{suffix}")
+            elif (out / f"{key}{suffix}").exists():
+                (out / f"{key}{suffix}").unlink()
+
+
 def by_host(urls: list[str]) -> dict[str, list[str]]:
     groups: dict[str, list[str]] = defaultdict(list)
     for u in urls:
@@ -71,6 +103,8 @@ def _fetch_host(urls: list[str], cache: Path, delay: float, timeout: int) -> Non
     last = 0.0
     for url in urls:
         key = cache_key(url)
+        if not should_fetch(cache, key):
+            continue
         meta = {"url": url, "final_url": "", "http_status": None, "fetch_error": "", "content_type": "",
                 "content_kind": "", "encoding": "", "fetched_at": datetime.now(timezone.utc).isoformat(timespec="seconds")}
         wait = delay - (time.monotonic() - last)
@@ -119,7 +153,7 @@ def render_short_pages(cache: Path, min_words: int, timeout_ms: int = 30000) -> 
         if not body.exists():
             continue
         html = body.read_bytes().decode(meta.get("encoding") or "utf-8", errors="replace")
-        if needs_render(meta, extract_html(html, meta["url"])["n_words"], min_words):
+        if not meta.get("rendered") and needs_render(meta, extract_html(html, meta["url"])["n_words"], min_words):
             todo.append((meta_path, meta))
     print(f"rendering {len(todo)} short pages", flush=True)
     with sync_playwright() as pw:
@@ -144,6 +178,9 @@ def main() -> None:
     from scripts.io import load_config
 
     urls = sorted(read_csv("data/interim/citations.csv")["url"].unique())
+    prev = ROOT / ".cache/prev"
+    if prev.exists():
+        merge_caches(sorted(p for p in prev.iterdir() if p.is_dir()), ROOT / ".cache/crawl")
     fetch_all(urls, ROOT / ".cache/crawl")
     render_short_pages(ROOT / ".cache/crawl", load_config()["readable_min_words"])
 
