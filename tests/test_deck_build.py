@@ -88,5 +88,7 @@ def test_letterbox_content_stays_inside_the_band(deck):
         for sh in s.shapes:
             top, bottom = sh.top / PX, (sh.top + sh.height) / PX
             is_footnote = sh.has_text_frame and round(top) == 902
+            if is_footnote:
+                assert bottom <= 942, (n, "footnote runs into the bar", sh.text_frame.text[:60])
             if 150 <= top < 942 and not is_footnote:  # content, not bars, slate or footnote
                 assert bottom <= 895, (n, sh.shape_type, round(top), round(bottom))

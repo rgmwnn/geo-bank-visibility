@@ -5,7 +5,7 @@ from PIL import ImageFont
 
 from deck.theme import FONT_DIR
 
-LINE = 1.3  # line height as a multiple of font size
+LINE = 1.4  # line height as a multiple of font size; LibreOffice draws Work Sans at 1.15 spacing with a 1.379 em pitch
 SAFETY = 0.96  # renderers (LibreOffice, Canva) wrap slightly earlier than raw glyph widths
 
 

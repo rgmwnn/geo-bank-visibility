@@ -36,7 +36,14 @@ def numbers(f: dict) -> dict:
     sc = f["sentiment_counts"]
     sch = f["schema_by_type"].set_index("domain_type").any_jsonld
     how_share, how_n = f["intent_named_share"]["How-to"]
-    lead = f["pillar_rates"].pivot(index="pillar", columns="brand", values="mention_rate")
+    pc = f["pillar_counts"]
+    pc_n = pc.groupby("pillar").n.first()
+    pc_top = pc.groupby("pillar").named.max()
+    names = {"Fees & rates": "Fees and rates", "Digital experience": "Digital experience",
+             "Safety & security": "Safety", "Service": "Service", "Trust": "Trust"}
+    leads = ". ".join(f"{names[p]}: {_and(f['pillar_leaders'][p])}, {pc_top[p]} of {pc_n[p]}"
+                      for p in ["Fees & rates", "Digital experience", "Safety & security", "Service", "Trust"]) + "."
+    unb_prompts = f["prompts"] - f["branded_prompts"]
     return {
         "answers": str(f["answers"]), "prompts": str(f["prompts"]), "engines": "2",
         "pillars": str(f["pillars"]), "intents": str(f["intents"]), "per_answer": str(f["citations_per_answer"]),
@@ -50,17 +57,17 @@ def numbers(f: dict) -> dict:
         "vis_sea": num(vis["SeaBank"], 1), "low_n_cut": "3",
         "banks_gpt": str(f["banks_gpt"]), "banks_gem": str(f["banks_gem"]),
         "btpn_gem": str(am["Bank BTPN"]["Gemini"]), "super_gem": str(am["Superbank"]["Gemini"]),
-        "lead_fees": pct(lead.loc["Fees & rates", "Bank Jago"]), "lead_digital": pct(lead.loc["Digital experience", "BCA"]),
-        "lead_safety": pct(lead.loc["Safety & security", "Bank Jago"]), "lead_service": pct(lead.loc["Service", "BRI"]),
-        "lead_trust": pct(lead.loc["Trust", "BCA"]),
+        "pillar_leads": leads, "unb_prompts": str(unb_prompts), "unb_answers": str(unb_prompts * 2),
+        "cit_gpt": str(f["citations_by_engine"]["ChatGPT"]), "cit_gem": str(f["citations_by_engine"]["Gemini"]),
+        "schema_pages": str(int(f["schema_by_type"].n.sum())),
         "pairs": str(f["sentiment_pairs"]), "positive": str(sc["positive"]), "mixed": str(sc["mixed"]),
         "how_named": str(round(how_share * how_n)), "how_n": str(how_n),
         "gpt_first": pct(mix["ChatGPT"]["bank_official"] + mix["ChatGPT"]["regulator"]),
         "gem_third": pct(mix["Gemini"]["fintech_platform"] + mix["Gemini"]["blog_aggregator"] + mix["Gemini"]["news_media"]),
-        "sites_both": str(o["sites_both"]), "sites_total": str(o["sites_total"]),
+        "sites_both": str(o["sites_both"]), "gpt_sites": str(o["sites_both"] + o["sites_gpt_only"]), "sites_total": str(o["sites_total"]),
         "pages_both": str(o["pages_both"]), "pages_total": str(o["pages_total"]),
         "jac_sites": num(o["jaccard_sites"], 2), "jac_pages": num(o["jaccard_pages"], 2),
-        "aku_gem": str(f["gemini_answers_citing"]["akulaku.com"]), "zai_page": str(f["top_pages"].citations.iloc[2]),
+        "aku_page": str(f["top_page_gem_answers"]["akulaku.com"]), "zai_page": str(f["top_page_gem_answers"]["zaipad.com"]),
         "fazz_cit": str(f["gemini_citations"]["fazz.com"]), "fazz_ans": str(f["gemini_answers_citing"]["fazz.com"]),
         "gem_answers": str(f["answers"] // 2),
         "comp_lo": str(min(f["gemini_answers_citing"].values())), "comp_hi": str(max(f["gemini_answers_citing"].values())),
@@ -74,6 +81,10 @@ def numbers(f: dict) -> dict:
         "bca_rate": pct(mr["BCA"]["All"]), "sea_rate": pct(mr["SeaBank"]["All"], 1),
         "sparktoro_prompts": "12", "vis_lo": "0", "vis_hi": "100",
     }
+
+
+def _and(names: list[str]) -> str:
+    return names[0] if len(names) == 1 else ", ".join(names[:-1]) + " and " + names[-1]
 
 
 def _cold_banks(names: list[str]) -> str:
@@ -119,13 +130,13 @@ def slides(f: dict) -> list[dict]:
          f"all of them comparisons.",
          f"Each prompt was asked once in ChatGPT and once in Gemini, with a request for {N['per_answer']} sources.",
          f"The lit circle is prompt {N['cold_no']}, the cold open."],
-        chart="prompt_grid", part="PART I · METHOD", foot="source: data/interim/answers.csv",
+        chart="prompt_grid", part="PART I · METHOD", foot=f"source: data/interim/answers.csv  ·  n = {N['prompts']} prompts",
         notes="The prompt set is written to be unbranded so share of voice is fair. Only the head-to-head comparisons "
               "name banks.")
     add("letterbox", "stack", f"From {N['answers']} answers to {N['readable']} readable source pages",
         ["Each step is code in the public repo, covered by tests. Only links under each answer's source list count as "
          "citations."],
-        chart="pipeline", part="PART I · METHOD", foot=f"code and data: {REPO}",
+        chart="pipeline", part="PART I · METHOD", foot=f"code and data: {REPO}  ·  n = {N['answers']} answers",
         notes="Parse the answers, split them into sentences, match bank names, extract the listed sources, deduplicate "
               "the pages, then crawl them from GitHub's servers while respecting robots.txt.")
     add("letterbox", "metrics", "What is measured",
@@ -147,50 +158,54 @@ def slides(f: dict) -> list[dict]:
          "Claude labelled sentiment and site types; RG spot-checked a sample.",
          "Pages that blocked the crawler drop out of page-level measures.",
          f"Banks named in fewer than {N['low_n_cut']} answers are marked low n."],
-        chart="funnel", part="PART I · METHOD", bullets=True, foot="source: data/interim/pages.csv, page_brand_counts.csv",
+        chart="funnel", part="PART I · METHOD", bullets=True, foot=f"source: data/interim/pages.csv, page_brand_counts.csv  ·  n = {N['pages']} pages",
         notes="The funnel shows how much of the cited web could be read. The list is what the data cannot tell you.")
 
     add("title_card", "card", "The answers", ["Who gets named, how early, and in what tone"], part="PART II")
     add("letterbox", "side", "BCA, Bank Jago and SeaBank are each named in more than half of all answers",
         [f"BCA and Bank Jago appear in {N['bca_n']} of {N['answers']} answers, SeaBank in {N['sea_n']}, "
          f"BRI in {N['bri_n']}."],
-        chart="mention_dots", part="PART II · THE ANSWERS", foot="source: data/processed/brand_engine.csv  ·  top 10 banks",
+        chart="mention_dots", part="PART II · THE ANSWERS", foot=f"source: data/processed/brand_engine.csv  ·  top 10 banks  ·  n = {N['gem_answers']} answers per engine",
         notes="One dot per engine. The line between the dots is the gap between the engines for that bank.")
-    add("letterbox", "side", "BCA has the highest visibility score",
+    add("letterbox", "side", "BCA scores highest, with Bank Jago and BRI close behind",
         [f"VIS {N['vis_bca']} for BCA, then Bank Jago {N['vis_jago']}, BRI {N['vis_bri']} and SeaBank {N['vis_sea']}.",
          f"Dashed bars are banks named in fewer than {N['low_n_cut']} answers. Read those as unranked."],
-        chart="vis_rank", part="PART II · THE ANSWERS", foot="source: data/processed/vis.csv",
+        chart="vis_rank", part="PART II · THE ANSWERS", foot=f"source: data/processed/vis.csv  ·  n = {N['answers']} answers",
         notes="VIS combines prominence in the answer, the authority of the pages cited alongside the bank, sentiment and "
               "whether both engines name it.")
     add("letterbox", "stack", f"Gemini names a wider field: {N['banks_gem']} banks against ChatGPT's {N['banks_gpt']}",
         [f"Bright marks are banks only one engine named. Gemini alone named Bank BTPN (Jenius) in {N['btpn_gem']} "
          f"answers and Superbank in {N['super_gem']}."],
-        chart="wider_field", part="PART II · THE ANSWERS", foot="source: data/processed/brand_engine.csv",
+        chart="wider_field", part="PART II · THE ANSWERS",
+        foot=f"source: data/processed/brand_engine.csv  ·  n = {N['gem_answers']} answers per engine",
         notes="Apps and subsidiaries credit their parent bank, so Jenius counts for Bank BTPN and blu for BCA.")
-    add("letterbox", "stack", "Each customer need has its own leading bank",
-        [f"Fees and rates: Bank Jago and SeaBank ({N['lead_fees']}). Digital experience: BCA ({N['lead_digital']}). "
-         f"Safety: Bank Jago ({N['lead_safety']}). Service: BRI ({N['lead_service']}). Trust: BCA ({N['lead_trust']})."],
+    add("letterbox", "stack", "No bank leads every customer need, and no lead is more than one answer",
+        [f"Counted on the {N['unb_prompts']} prompts that name no bank. {N['pillar_leads']}"],
         chart="pillar_heatmap", part="PART II · THE ANSWERS",
-        foot="source: data/processed/brand_pillar.csv  ·  share of answers in each pillar that name the bank",
-        notes="Outlined cells are the leader in each row. BCA's digital lead comes largely through its apps.")
+        foot=f"source: data/interim/answers.csv, mentions.csv  ·  share of a need's answers that name the bank  ·  "
+             f"n = {N['unb_answers']} answers",
+        notes="The three comparison prompts name banks, which puts those banks in the answer, so they are left out here. "
+              "Outlined cells lead their row, ties together. Every lead is a tie or one answer, so read the rows as close.")
     add("letterbox", "side", "Named often and named early go together",
         ["BCA and Bank Jago lead on both measures.",
          "BRI scores higher on PAWC than SeaBank while appearing in fewer answers: when BRI is named, it takes up more "
          "of the answer."],
         chart="often_vs_early", part="PART II · THE ANSWERS",
-        foot=f"source: data/processed/brand_engine.csv  ·  banks named in at least {N['low_n_cut']} answers",
+        foot=f"source: data/processed/brand_engine.csv  ·  banks named in at least {N['low_n_cut']} answers  ·  "
+             f"n = {N['answers']} answers",
         notes="Brand PAWC rises when a bank is named early and talked about at length.")
     add("letterbox", "stack", "No answer was negative about a bank",
         [f"Of {N['pairs']} answer and bank pairs, {N['positive']} are positive. The {N['mixed']} mixed labels attach a "
          f"condition, such as a minimum balance for free transfers. Being named at all is what to measure."],
         chart="sentiment_marks", part="PART II · THE ANSWERS",
-        foot="source: data/labels/sentiment.csv  ·  labelled by Claude, spot-checked by RG",
+        foot=f"source: data/labels/sentiment.csv  ·  labelled by Claude, spot-checked by RG  ·  n = {N['pairs']} pairs",
         notes="Each mark is one bank in one answer.")
     add("letterbox", "side", "How-to answers rarely name a bank",
         ["Every best and decision-brief answer named at least one bank.",
          f"Only {N['how_named']} of {N['how_n']} how-to answers did. Explainers on deposit insurance, scams and "
-         f"complaints are a gap for banks."],
-        chart="intent_named", part="PART II · THE ANSWERS", foot="source: data/processed/no_brand_rate.csv",
+         f"complaints look like a gap for banks."],
+        chart="intent_named", part="PART II · THE ANSWERS",
+        foot=f"source: data/processed/no_brand_rate.csv  ·  n = {N['answers']} answers",
         notes="Questions about how something works get general answers without bank names.")
 
     add("title_card", "card", "The sources", ["Which pages the engines lean on"], part="PART III")
@@ -198,42 +213,53 @@ def slides(f: dict) -> list[dict]:
         [f"{N['gpt_first']} of ChatGPT's citations go to bank and regulator sites. {N['gem_third']} of Gemini's go to "
          f"fintech platforms, blogs and news."],
         chart="source_mix", part="PART III · THE SOURCES",
-        foot="source: data/processed/domain_type_mix.csv  ·  each share rounded on its own, so sums can differ by 1 point",
+        foot=f"source: data/processed/domain_type_mix.csv  ·  shares rounded on their own, sums can differ by 1 point  ·  "
+             f"n = {N['cit_gpt']} and {N['cit_gem']} citations",
         notes="Site types were labelled per domain. Percentages are rounded.")
-    add("letterbox", "side", "The two engines barely share a source",
-        [f"{N['sites_both']} of {N['sites_total']} sites and {N['pages_both']} of {N['pages_total']} pages are cited by "
-         f"both. That is a Jaccard overlap of {N['jac_sites']} for sites and {N['jac_pages']} for pages.",
+    add("letterbox", "side", f"The engines share sites more than pages: {N['sites_both']} of {N['sites_total']} sites, "
+                             f"{N['pages_both']} of {N['pages_total']} pages",
+        [f"{N['sites_both']} of ChatGPT's {N['gpt_sites']} sites are also cited by Gemini, but rarely the same page. "
+         f"The Jaccard overlap is {N['jac_sites']} for sites and {N['jac_pages']} for pages.",
          "Writesonic found 0.119 between ChatGPT and Gemini across 88,969 prompts, without saying whether it "
          "compared pages or sites."],
         chart="overlap", part="PART III · THE SOURCES",
-        foot="source: data/interim/citations.csv  ·  Writesonic, AI citation source overlap study",
+        foot=f"source: data/interim/citations.csv  ·  Writesonic, AI citation source overlap study  ·  "
+             f"n = {N['sites_total']} sites, {N['pages_total']} pages",
         notes="A bank that wants to appear in both engines cannot rely on one set of pages.")
     add("letterbox", "stack", "Most cited sites: ChatGPT on the left, Gemini on the right",
         ["Bank and regulator sites lead for ChatGPT. Fazz, Akulaku and Zaipad are cited only by Gemini."],
-        chart="mirror_sites", part="PART III · THE SOURCES", foot="source: data/processed/domains.csv  ·  top sites by citations",
+        chart="mirror_sites", part="PART III · THE SOURCES",
+        foot=f"source: data/processed/domains.csv  ·  top sites by citations  ·  n = {N['citations']} citations",
         notes="The fold in the middle is the comparison: the same sites, two very different weights.")
     add("letterbox", "stack", "A few comparison articles appear across Gemini's answers",
-        [f"One Akulaku article is cited in {N['aku_gem']} of Gemini's {N['gem_answers']} answers, one Zaipad article in "
+        [f"One Akulaku article is cited in {N['aku_page']} of Gemini's {N['gem_answers']} answers, one Zaipad article in "
          f"{N['zai_page']}, and Fazz articles {N['fazz_cit']} times across {N['fazz_ans']} answers. ChatGPT cites none "
          f"of them.",
          "Akulaku held 27.24% of Bank Neo Commerce in May 2023 (Bisnis). The article has not been checked for bias."],
-        chart="top_pages", part="PART III · THE SOURCES", foot="source: data/processed/pages_top.csv  ·  most cited pages",
+        chart="top_pages", part="PART III · THE SOURCES",
+        foot=f"source: data/processed/pages_top.csv  ·  most cited pages  ·  n = {N['citations']} citations",
         notes="If Gemini keeps citing the same few articles, a bank's place in them could carry into many answers.")
     add("letterbox", "side", "ChatGPT leans on fewer sites",
         [f"Its top five sites hold {N['conc_gpt']} of its citations. Gemini's top five hold {N['conc_gem']}."],
-        chart="concentration", part="PART III · THE SOURCES", foot="source: data/processed/concentration.csv",
+        chart="concentration", part="PART III · THE SOURCES",
+        foot=f"source: data/processed/concentration.csv  ·  n = {N['cit_gpt']} and {N['cit_gem']} citations",
         notes="Higher concentration means a few sites carry more of the answers.")
-    add("letterbox", "side", "Bank Jago and BCA take more of the answers than of their sources",
-        [f"Bank Jago holds {N['jago_ai']} of bank mentions in the answers and {N['jago_src']} in the pages they cite.",
-         f"Bank Mandiri runs the other way: {N['mandiri_src']} in the pages, {N['mandiri_ai']} in the answers."],
+    add("letterbox", "side", "Bank Mandiri gets less of the answers than its sources give it",
+        [f"Bank Mandiri holds {N['mandiri_src']} of bank mentions in the cited pages and {N['mandiri_ai']} in the answers.",
+         f"Bank Jago and BCA lean the other way. Bank Jago holds {N['jago_ai']} of mentions in the answers and "
+         f"{N['jago_src']} in the pages.",
+         "Pages were counted without a bare “Jago” or “blu”, so these two banks' source share may be low and their "
+         "gaps too wide."],
         chart="sov_gap", part="PART III · THE SOURCES",
-        foot="source: data/processed/source_sov.csv  ·  answers weighted equally, pages weighted equally",
+        foot=f"source: data/processed/source_sov.csv  ·  answers and pages weighted equally  ·  "
+             f"n = {N['answers']} answers, {N['readable_bank']} pages",
         notes="A positive gap means the engines talk about the bank more than the cited pages do.")
     add("letterbox", "side", "Gemini's dead links all sit behind a Google redirect",
         [f"{N['wrapped_dead']} of its {N['wrapped']} links wrapped in google.com/search were dead. None of its "
          f"{N['direct']} direct links were.",
          "The Tow Center found Gemini gave more fabricated links than correct ones in its 2025 tests (Nieman Lab)."],
-        chart="dead_links", part="PART III · THE SOURCES", foot="source: data/interim/citations.csv, pages.csv",
+        chart="dead_links", part="PART III · THE SOURCES",
+        foot=f"source: data/interim/citations.csv, pages.csv  ·  n = {N['cit_gem']} Gemini citations",
         notes="The redirect wrapper is where Gemini's broken links concentrate in this data.")
     add("letterbox", "side", "Pages without schema still get cited",
         [f"Bank sites carry schema on {N['sch_bank']} of cited pages, against {N['sch_news']} for news and "
@@ -241,15 +267,16 @@ def slides(f: dict) -> list[dict]:
          f"Only {N['dated']} of {N['readable_cit']} readable citations point to a page with a structured publish date.",
          "Google: “there's also no special schema.org structured data that you need to add.”"],
         chart="schema", part="PART III · THE SOURCES",
-        foot="source: data/processed/schema.csv, recency.csv  ·  Google Search Central, AI features and your website",
+        foot=f"source: data/processed/schema.csv, recency.csv  ·  Google Search Central  ·  "
+             f"n = {N['schema_pages']} pages, {N['readable_cit']} citations",
         notes="This suggests schema did not decide which pages got cited. It is a pattern, not a test.")
 
     add("title_card", "card", "What it means", ["For banks, and for people who measure AI search"], part="PART IV")
     add("letterbox", "list", "For banks",
         ["Plan for each engine. ChatGPT cites bank and regulator pages; Gemini cites comparison sites, blogs and news.",
          "Fee and rate pages look like the most direct route. ChatGPT cites SeaBank's and blu's fee pages by name.",
-         f"Know what the comparison articles say about you. Akulaku, Zaipad and Fazz appear in {N['comp_lo']} to "
-         f"{N['comp_hi']} of Gemini's {N['gem_answers']} answers.",
+         f"Know what the comparison sites say about you. Gemini cites Akulaku's, Zaipad's and Fazz's sites in "
+         f"{N['comp_lo']} to {N['comp_hi']} of its {N['gem_answers']} answers.",
          "No answer was negative. Measure whether you are named at all.",
          f"Write the explainers. Only {N['how_named']} of {N['how_n']} how-to answers named a bank."],
         part="PART IV · WHAT IT MEANS", numbered=True,

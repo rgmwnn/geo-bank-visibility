@@ -27,6 +27,18 @@ def _wrapped_links(answers: pd.DataFrame) -> set:
     return wrapped
 
 
+def pillar_counts(answers: pd.DataFrame, mentions: pd.DataFrame, exclude=()) -> pd.DataFrame:
+    """Per pillar and bank: answers in the pillar (n) and answers naming the bank (named), both engines.
+    Prompts listed in exclude are left out."""
+    a = answers[~answers.prompt_no.isin(list(exclude))]
+    n = a.groupby("pillar").size().rename("n")
+    named = (mentions[mentions.answer_id.isin(a.answer_id)].drop_duplicates(["answer_id", "brand"])
+             .merge(a[["answer_id", "pillar"]], on="answer_id").groupby(["pillar", "brand"]).size().rename("named"))
+    out = named.reset_index().merge(n.reset_index(), on="pillar")
+    out["mention_rate"] = out.named / out.n
+    return out[["pillar", "brand", "n", "named", "mention_rate"]].sort_values(["pillar", "brand"]).reset_index(drop=True)
+
+
 def load() -> dict:
     answers = read_csv("data/interim/answers.csv")
     sentences = read_csv("data/interim/sentences.csv")
@@ -63,10 +75,17 @@ def load() -> dict:
     f["brand_engine"] = brand_engine
     f["vis"] = vis[["brand", "n_answers", "vis", "low_n"]].assign(low_n=_truthy(vis.low_n))
 
-    bp = brand_pillar[(brand_pillar.engine == "All") & (brand_pillar.n_answers_mentioning > 0)]
-    f["pillar_rates"] = bp[["pillar", "brand", "n", "mention_rate"]].reset_index(drop=True)
-    f["pillar_leaders"] = (bp.sort_values(["pillar", "mention_rate", "brand"], ascending=[True, False, True])
-                           .groupby("pillar").head(1)[["pillar", "brand", "mention_rate"]].reset_index(drop=True))
+    # Pillars are compared on the unbranded prompts only: a comparison prompt puts its named banks in the answer.
+    from scripts.brands import find_matches, load_brands
+    from scripts.io import ROOT
+    brands = load_brands(ROOT / "config/brands.yaml")
+    prompts = answers.drop_duplicates("prompt_no")
+    f["branded_prompt_nos"] = sorted(int(r.prompt_no) for r in prompts.itertuples() if find_matches(r.prompt, brands))
+    f["branded_prompts"] = len(f["branded_prompt_nos"])
+    pc = pillar_counts(answers, mentions, exclude=f["branded_prompt_nos"])
+    f["pillar_counts"] = pc
+    f["pillar_rates"] = pc[["pillar", "brand", "n", "mention_rate"]]
+    f["pillar_leaders"] = {p: sorted(g[g.named == g.named.max()].brand) for p, g in pc.groupby("pillar")}
 
     counts = sentiment.label.value_counts()
     f["sentiment_counts"] = {k: int(counts.get(k, 0)) for k in ["positive", "neutral", "mixed", "negative"]}
@@ -96,6 +115,13 @@ def load() -> dict:
     f["gemini_answers_citing"] = {d: int(gem_answers.get(d, 0)) for d in ["akulaku.com", "zaipad.com", "fazz.com"]}
     f["gemini_citations"] = {d: int((citations[(citations.engine == "Gemini")].domain == d).sum())
                              for d in ["akulaku.com", "zaipad.com", "fazz.com"]}
+    # Page level: each site's most cited page, and how many Gemini answers cite that page
+    f["top_page_gem_answers"] = {}
+    for d in ["akulaku.com", "zaipad.com", "fazz.com"]:
+        url = pages_top[pages_top.domain == d].sort_values("citations", ascending=False).url.iloc[0]
+        f["top_page_gem_answers"][d] = int(citations[(citations.engine == "Gemini") & (citations.url == url)]
+                                           .answer_id.nunique())
+    f["citations_by_engine"] = citations.engine.value_counts().to_dict()
     f["concentration"] = dict(zip(concentration.engine, concentration.top5_share))
 
     f["sov_gap"] = (source_sov[source_sov.ai_mentions > 0]
@@ -132,11 +158,6 @@ def load() -> dict:
     f["pillars"] = answers.pillar.nunique()
     f["intents"] = answers.intent.nunique()
     f["citations_per_answer"] = int(citations.groupby("answer_id").size().mode().iloc[0])
-    from scripts.brands import find_matches, load_brands
-    from scripts.io import ROOT
-    brands = load_brands(ROOT / "config/brands.yaml")
-    prompts = answers.drop_duplicates("prompt_no")
-    f["branded_prompts"] = int(sum(bool(find_matches(t, brands)) for t in prompts.prompt))
     f["digital_prompts"] = sorted(DIGITAL_PROMPTS)
     f["rendered_pages"] = int((pages.body_source == "rendered").sum())
     return f

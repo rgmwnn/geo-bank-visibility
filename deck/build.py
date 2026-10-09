@@ -145,7 +145,8 @@ def lay_card(slide, s, n, art):
 
 def lay_side(slide, s, n, art):
     y = _title(slide, s, LEFT, 190, 600)
-    _body(slide, s["body"], LEFT, y + 26, 600, bullets=s.get("bullets", False))
+    bullets = s.get("bullets", False)
+    _body(slide, s["body"], LEFT, y + 26, 600, gap=10 if bullets else 14, bullets=bullets)
     if s.get("chart"):
         picture(slide, art[s["chart"]], (770, 180, 1060, 700), valign="middle")
 
@@ -187,7 +188,7 @@ def lay_cold_open(slide, s, n, art):
     prompt = f"“{s['prompt']}”"
     h = est_h(prompt, 1500, 22)
     text(slide, LEFT, y, 1500, h, [P(prompt, 22)])
-    y += h + 10
+    y += h + 24
     h = est_h(s["english"], 1500, 14)
     text(slide, LEFT, y, 1500, h, [P(s["english"], 14, C["secondary"])])
     y += h + 60

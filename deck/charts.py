@@ -246,14 +246,18 @@ def chart_wider_field(f: dict, path: Path) -> Path:
 
 def chart_pillar_heatmap(f: dict, path: Path) -> Path:
     banks = _top_banks(f, 8)
+    banks += [b for v in f["pillar_leaders"].values() for b in v if b not in banks]
     pillars = ["Fees & rates", "Digital experience", "Safety & security", "Service", "Trust"]
+    row_n = f["pillar_counts"].groupby("pillar").n.first().to_dict()
+    LAST_DATA["pillar_heatmap"] = {"row_n": row_n, "banks": list(banks)}
     pr = f["pillar_rates"].pivot(index="pillar", columns="brand", values="mention_rate").reindex(index=pillars, columns=banks).fillna(0)
     top = pr.max(axis=1)
     fig, ax = _fig(1680, 560)
     fig.subplots_adjust(left=0.17, right=0.97, top=0.86, bottom=0.03)
     for i, p in enumerate(pillars):
         y = len(pillars) - 1 - i
-        ax.text(-0.6, y, p, ha="right", va="center", fontsize=15, color=C["secondary"])
+        ax.text(-0.6, y + 0.13, p, ha="right", va="center", fontsize=15, color=C["secondary"])
+        _mono(ax, -0.6, y - 0.2, f"n = {row_n[p]}", ha="right", va="center", fontsize=11.5)
         for j, b in enumerate(banks):
             v = pr.loc[p, b]
             lead = v == top[p]
@@ -354,6 +358,10 @@ def chart_source_mix(f: dict, path: Path) -> Path:
     order = ["bank_official", "regulator", "fintech_platform", "blog_aggregator", "news_media", "forum_ugc", "app_store", "other"]
     fig, ax = _fig(1680, 460)
     fig.subplots_adjust(left=0.09, right=0.99, top=0.9, bottom=0.04)
+    # Each row lights the types its claim is about: first-party for ChatGPT, third-party for Gemini.
+    lit_types = {"ChatGPT": {"bank_official", "regulator"},
+                 "Gemini": {"fintech_platform", "blog_aggregator", "news_media"}}
+    LAST_DATA["source_mix_lit"] = lit_types
     for row, e in ((1.25, "ChatGPT"), (0, "Gemini")):
         mix = f["source_mix"][e]
         x = 0.0
@@ -362,16 +370,15 @@ def chart_source_mix(f: dict, path: Path) -> Path:
             w = mix.get(t, 0)
             if not w:
                 continue
-            first_party = t in ("bank_official", "regulator")
-            col = ENGINE_COLOR[e] if first_party else C["secondary"]
-            alpha = (1 if t == "bank_official" else 0.6) if first_party else {"fintech_platform": 0.55, "blog_aggregator": 0.38,
-                                                                               "news_media": 0.24}.get(t, 0.12)
+            lit = t in lit_types[e]
+            col, alpha = (ENGINE_COLOR[e], 1) if lit else (C["secondary"], 0.22)
             ax.add_patch(Rectangle((x, row - 0.28), w, 0.56, facecolor=col, alpha=alpha, edgecolor=C["bg"], lw=2))
             if w >= 0.06:
-                _mono(ax, x + w / 2, row + 0.4, f"{pct(w)}", ha="center", fontsize=15, color=C["text"])
+                _mono(ax, x + w / 2, row + 0.4, f"{pct(w)}", ha="center", fontsize=15,
+                      color=C["text"] if lit else C["secondary"])
                 if w >= 0.13:
                     ax.text(x + w / 2, row - 0.02, TYPE_LABEL[t], ha="center", va="center", fontsize=13.5,
-                            color=C["bg"] if (first_party and t == "bank_official") else C["text"])
+                            color=C["bg"] if lit else C["text"])
                 else:
                     _mono(ax, x + w / 2, row - 0.46, TYPE_LABEL[t].lower(), ha="center", fontsize=11, color=C["text"])
             x += w
@@ -410,11 +417,15 @@ def chart_mirror_sites(f: dict, path: Path) -> Path:
     fig.subplots_adjust(left=0.01, right=0.99, top=0.92, bottom=0.02)
     n = len(t)
     gap = 9.0
+    lit = set(t[t.gpt == 0].domain)  # the sites only Gemini cites, the slide's claim
+    LAST_DATA["mirror_sites_lit"] = lit
     for i, r in t.iterrows():
         y = n - 1 - i
-        ax.barh(y, -r.gpt, left=-gap, height=0.58, color=C["gpt"])
-        ax.barh(y, r.gem, left=gap, height=0.58, color=C["gem"])
-        ax.text(0, y, r.domain, ha="center", va="center", fontsize=14, color=C["text"])
+        on = r.domain in lit
+        ax.barh(y, -r.gpt, left=-gap, height=0.58, color=C["gpt"], alpha=0.45)
+        ax.barh(y, r.gem, left=gap, height=0.58, color=C["gem"], alpha=1 if on else 0.45)
+        ax.text(0, y, r.domain, ha="center", va="center", fontsize=14, color=C["text"] if on else C["secondary"],
+                fontweight="bold" if on else "normal")
         if r.gpt:
             _mono(ax, -gap - r.gpt - 0.6, y, str(r.gpt), ha="right", va="center", fontsize=12, color=C["text"])
         else:
@@ -477,12 +488,14 @@ def chart_sov_gap(f: dict, path: Path) -> Path:
     d = d.sort_values("pts", ascending=False).reset_index(drop=True)
     fig, ax = _fig(1180, 600)
     fig.subplots_adjust(left=0.28, right=0.96, top=0.88, bottom=0.04)
-    lit = {"Bank Jago", "BCA", "Bank Mandiri"}
+    lit = {"Bank Mandiri"}  # the slide's claim; Jago and BCA gaps depend on alias counting
+    named = {"Bank Jago", "BCA"}  # named in the body, shown at secondary weight
+    LAST_DATA["sov_gap_lit"] = lit
     n = len(d)
     for i, r in d.iterrows():
         y = n - 1 - i
-        on = r.brand in lit
-        ax.barh(y, r.pts, height=0.56, color=C["text"] if (on and r.pts > 0) else (C["secondary"] if on else C["dim"]))
+        on = r.brand in lit or r.brand in named
+        ax.barh(y, r.pts, height=0.56, color=C["text"] if r.brand in lit else (C["secondary"] if on else C["dim"]))
         ax.text(-10.2, y, r.brand, ha="right", va="center", fontsize=15, color=C["text"] if on else C["secondary"])
         lab = f"{r.pts:+.1f} pts"
         _mono(ax, r.pts + (0.25 if r.pts >= 0 else -0.25), y, lab, va="center", ha="left" if r.pts >= 0 else "right",

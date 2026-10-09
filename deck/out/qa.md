@@ -20,3 +20,7 @@ Open: none.
 Design DAHXhYnEu0c, 32 pages, imported from the deck branch. Every page read back as a thumbnail and compared with the local render: Work Sans and IBM Plex Mono survived, letterbox bars, slates and transparent charts match, speaker notes present (checked pages 2 and 24). No repairs needed in Canva.
 
 Note: the two thin engine-colour lines on the cover, hero and title cards read faintly in Canva's small thumbnails; at full size they render as drawn.
+
+## Final-review fix pass
+
+Re-rendered after the fixes. Slides checked by eye: 2 (prompt and translation now 24 px apart), 9, 12, 14 (unbranded prompts, row n), 17, 19 (Gemini third-party segments lit), 20, 21 (Gemini-only sites lit), 22, 24 (Bank Mandiri lit, alias caveat), 26, 28. Every chart footnote carries its n and stays on one line above the bar.
