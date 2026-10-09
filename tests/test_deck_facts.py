@@ -21,3 +21,9 @@ def test_cold_open_prompt_13_has_banks_from_both_engines():
 
 def test_readable_pages_naming_a_bank():
     assert F["readable_pages_with_bank"] == 148
+
+
+def test_prompt_design_counts():
+    assert (F["prompts"], F["pillars"], F["intents"], F["citations_per_answer"]) == (20, 5, 5, 10)
+    assert F["branded_prompts"] == 3
+    assert len(F["digital_prompts"]) == 10

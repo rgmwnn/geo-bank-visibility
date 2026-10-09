@@ -10,6 +10,7 @@ import numpy as np  # noqa: E402
 import pandas as pd  # noqa: E402
 from matplotlib.patches import Circle, FancyBboxPatch, Rectangle  # noqa: E402
 
+from deck.fmt import num, pct  # noqa: E402
 from deck.theme import C, MONO, SANS, register_fonts  # noqa: E402
 
 LAST_DATA: dict = {}
@@ -174,10 +175,10 @@ def chart_mention_dots(f: dict, path: Path) -> Path:
         ax.scatter([m], [y], s=150, facecolor=C["bg"], edgecolor=C["gem"], linewidth=2.4, zorder=3)
         ax.scatter([g], [y], s=110, color=C["gpt"], zorder=4, edgecolor=C["bg"], linewidth=1.5)
         if g == m:
-            _mono(ax, g + 0.025, y, f"{g:.0%} in both", va="center", fontsize=11)
+            _mono(ax, g + 0.025, y, f"{pct(g)} in both", va="center", fontsize=11)
     for t in (0, 0.2, 0.4, 0.6):
         ax.plot([t, t], [-0.6, len(banks) - 0.4], color=C["dim"], lw=0.6, zorder=0)
-        _mono(ax, t, len(banks) - 0.1, f"{t:.0%}", ha="center", fontsize=12)
+        _mono(ax, t, len(banks) - 0.1, f"{pct(t)}", ha="center", fontsize=12)
     ax.scatter([0.0], [len(banks) + 0.75], s=110, color=C["gpt"], clip_on=False)
     _mono(ax, 0.015, len(banks) + 0.75, "ChatGPT", va="center", color=C["text"], fontsize=13)
     ax.scatter([0.13], [len(banks) + 0.75], s=150, facecolor=C["bg"], edgecolor=C["gem"], linewidth=2.4, clip_on=False)
@@ -203,7 +204,7 @@ def chart_vis_rank(f: dict, path: Path) -> Path:
             ax.barh(y, r.vis, height=0.56, color=C["text"] if lit else C["secondary"], alpha=1 if lit else 0.55)
         ax.text(-1.2, y, r.brand, ha="right", va="center", fontsize=13.5,
                 color=C["text"] if lit else C["secondary"])
-        _mono(ax, r.vis + 1, y, f"{r.vis:.1f}", va="center", fontsize=12, color=C["text"] if lit else C["secondary"])
+        _mono(ax, r.vis + 1, y, num(r.vis, 1), va="center", fontsize=12, color=C["text"] if lit else C["secondary"])
         if r.low_n:
             _mono(ax, 76, y, f"low n · {int(r.n_answers)} answer{'s' if r.n_answers > 1 else ''}",
                   va="center", fontsize=11, color=C["secondary"])
@@ -244,7 +245,7 @@ def chart_pillar_heatmap(f: dict, path: Path) -> Path:
     banks = _top_banks(f, 8)
     pillars = ["Fees & rates", "Digital experience", "Safety & security", "Service", "Trust"]
     pr = f["pillar_rates"].pivot(index="pillar", columns="brand", values="mention_rate").reindex(index=pillars, columns=banks).fillna(0)
-    leaders = dict(zip(f["pillar_leaders"].pillar, f["pillar_leaders"].brand))
+    top = pr.max(axis=1)
     fig, ax = _fig(1680, 560)
     fig.subplots_adjust(left=0.13, right=0.99, top=0.86, bottom=0.03)
     for i, p in enumerate(pillars):
@@ -252,13 +253,13 @@ def chart_pillar_heatmap(f: dict, path: Path) -> Path:
         ax.text(-0.6, y, p, ha="right", va="center", fontsize=15, color=C["secondary"])
         for j, b in enumerate(banks):
             v = pr.loc[p, b]
-            lead = leaders[p] == b
+            lead = v == top[p]
             ax.add_patch(FancyBboxPatch((j - 0.44, y - 0.4), 0.88, 0.8, boxstyle="round,pad=0,rounding_size=0.04",
                                         facecolor=C["text"], alpha=0.06 + 0.8 * v, lw=0))
             if lead:
                 ax.add_patch(FancyBboxPatch((j - 0.44, y - 0.4), 0.88, 0.8, boxstyle="round,pad=0,rounding_size=0.04",
                                             facecolor="none", edgecolor=C["text"], lw=2))
-            _mono(ax, j, y, f"{v:.0%}" if v else "·", ha="center", va="center", fontsize=14,
+            _mono(ax, j, y, f"{pct(v)}" if v else "·", ha="center", va="center", fontsize=14,
                   color=C["bg"] if v >= 0.5 else C["text"])
     for j, b in enumerate(banks):
         ax.text(j, len(pillars) - 0.35, b, ha="center", va="bottom", fontsize=14, color=C["secondary"])
@@ -285,7 +286,7 @@ def chart_often_vs_early(f: dict, path: Path) -> Path:
                 color=C["text"] if on else C["secondary"])
     for t in (0, 0.2, 0.4, 0.6):
         ax.axvline(t, color=C["dim"], lw=0.6, zorder=0)
-        _mono(ax, t, -0.0085, f"{t:.0%}", ha="center", fontsize=12)
+        _mono(ax, t, -0.0085, f"{pct(t)}", ha="center", fontsize=12)
     for t in (0, 0.02, 0.04, 0.06):
         ax.axhline(t, color=C["dim"], lw=0.6, zorder=0)
         _mono(ax, -0.012, t, f"{t:.2f}", ha="right", va="center", fontsize=12)
@@ -338,7 +339,7 @@ def chart_intent_named(f: dict, path: Path) -> Path:
         ax.barh(y, 1, height=0.5, color=C["dim"], alpha=0.5)
         ax.barh(y, share, height=0.5, color=C["text"] if lit else C["secondary"])
         ax.text(-0.02, y, it, ha="right", va="center", fontsize=16, color=C["text"] if lit else C["secondary"])
-        _mono(ax, 1.02, y, f"{share:.0%}  of {n}", va="center", fontsize=13, color=C["text"] if lit else C["secondary"])
+        _mono(ax, 1.02, y, f"{pct(share)}  of {n}", va="center", fontsize=13, color=C["text"] if lit else C["secondary"])
     ax.set_xlim(0, 1.22)
     ax.set_ylim(-0.6, len(order) - 0.4)
     _bare(ax)
@@ -363,11 +364,11 @@ def chart_source_mix(f: dict, path: Path) -> Path:
                                                                                "news_media": 0.24}.get(t, 0.12)
             ax.add_patch(Rectangle((x, row - 0.28), w, 0.56, facecolor=col, alpha=alpha, edgecolor=C["bg"], lw=2))
             if w >= 0.06:
-                _mono(ax, x + w / 2, row + 0.4, f"{w:.0%}", ha="center", fontsize=15, color=C["text"])
+                _mono(ax, x + w / 2, row + 0.4, f"{pct(w)}", ha="center", fontsize=15, color=C["text"])
                 ax.text(x + w / 2, row - 0.02, TYPE_LABEL[t], ha="center", va="center", fontsize=13.5,
                         color=C["bg"] if (first_party and t == "bank_official") else C["text"])
             x += w
-        small = [f"{TYPE_LABEL[t].lower()} {mix[t]:.0%}" for t in order if 0 < mix.get(t, 0) < 0.06]
+        small = [f"{TYPE_LABEL[t].lower()} {pct(mix[t])}" for t in order if 0 < mix.get(t, 0) < 0.06]
         if small:
             _mono(ax, 1.0, row - 0.44, "smaller:  " + "  ·  ".join(small), ha="right", fontsize=11.5)
     ax.set_xlim(0, 1.0)
@@ -456,7 +457,7 @@ def chart_concentration(f: dict, path: Path) -> Path:
         ax.barh(row, 1, height=0.42, color=C["dim"], alpha=0.5)
         ax.barh(row, s, height=0.42, color=ENGINE_COLOR[e])
         ax.text(-0.02, row, e, ha="right", va="center", fontsize=17, color=C["text"])
-        _mono(ax, 1.02, row, f"{s:.0%}", va="center", fontsize=22, color=C["text"])
+        _mono(ax, 1.02, row, f"{pct(s)}", va="center", fontsize=22, color=C["text"])
     _mono(ax, 0, -0.55, "share of each engine's citations held by its top five sites", fontsize=12)
     ax.set_xlim(0, 1.15)
     ax.set_ylim(-0.7, 1.5)
@@ -521,9 +522,9 @@ def chart_schema(f: dict, path: Path) -> Path:
         ax.scatter([s.loc[t, "any_jsonld"]], [y], s=120, facecolor=C["bg"], edgecolor=C["text"] if lit else C["secondary"],
                    linewidth=2, zorder=3)
         ax.text(-0.02, y, TYPE_LABEL[t], ha="right", va="center", fontsize=15, color=C["text"] if lit else C["secondary"])
-        _mono(ax, s.loc[t, "any_jsonld"] + 0.025, y + 0.22, f"schema {s.loc[t, 'any_jsonld']:.0%}", fontsize=11.5,
+        _mono(ax, s.loc[t, "any_jsonld"] + 0.025, y + 0.22, f"schema {pct(s.loc[t, 'any_jsonld'])}", fontsize=11.5,
               color=C["text"] if lit else C["secondary"])
-        _mono(ax, share[t] + 0.01, y - 0.32, f"cited {share[t]:.0%}", fontsize=11.5, color=C["text"] if lit else C["secondary"])
+        _mono(ax, share[t] + 0.01, y - 0.32, f"cited {pct(share[t])}", fontsize=11.5, color=C["text"] if lit else C["secondary"])
     ax.add_patch(Rectangle((0.0, len(keep) + 0.05), 0.03, 0.22, facecolor=C["secondary"], clip_on=False))
     _mono(ax, 0.045, len(keep) + 0.08, "share of all citations", fontsize=12)
     ax.scatter([0.4], [len(keep) + 0.16], s=110, facecolor=C["bg"], edgecolor=C["secondary"], linewidth=2, clip_on=False)

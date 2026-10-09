@@ -6,6 +6,8 @@ from scripts.parse import URL_RE, normalize_url, split_citation_section
 
 ENGINES = ["ChatGPT", "Gemini"]
 COLD_OPEN_PROMPT = 13
+# Prompts that name a digital bank or ask about apps and online features (analyst classification, findings doc)
+DIGITAL_PROMPTS = {1, 3, 4, 9, 10, 11, 13, 14, 17, 20}
 COLD_OPEN_ENGLISH = ("I'm a freelancer with irregular income. I need an account with no minimum balance "
                      "that lets me split money into pockets. Which bank fits?")
 
@@ -126,4 +128,15 @@ def load() -> dict:
         "banks_gem": sorted(cold[cold.engine == "Gemini"].brand.unique()),
     }
     f["prompt_grid"] = answers[answers.engine == "ChatGPT"][["prompt_no", "pillar", "intent"]].reset_index(drop=True)
+    f["prompts"] = answers.prompt_no.nunique()
+    f["pillars"] = answers.pillar.nunique()
+    f["intents"] = answers.intent.nunique()
+    f["citations_per_answer"] = int(citations.groupby("answer_id").size().mode().iloc[0])
+    from scripts.brands import find_matches, load_brands
+    from scripts.io import ROOT
+    brands = load_brands(ROOT / "config/brands.yaml")
+    prompts = answers.drop_duplicates("prompt_no")
+    f["branded_prompts"] = int(sum(bool(find_matches(t, brands)) for t in prompts.prompt))
+    f["digital_prompts"] = sorted(DIGITAL_PROMPTS)
+    f["rendered_pages"] = int((pages.body_source == "rendered").sum())
     return f
