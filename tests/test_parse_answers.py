@@ -1,7 +1,7 @@
 import pytest
 
 from scripts.io import ROOT
-from scripts.parse import load_answers, split_citation_section
+from scripts.parse import RERUNS, load_answers, split_citation_section
 
 
 def test_heading_variants_split():
@@ -24,8 +24,10 @@ def test_missing_heading_raises():
 
 
 def test_load_answers_real_file():
-    df = load_answers(ROOT / "data/raw/geo-bank-research.xlsx", ROOT / "data/raw/chatgpt-prompt08-rerun.md")
+    df = load_answers(ROOT / "data/raw/geo-bank-research.xlsx", RERUNS)
     assert len(df) == 40 and df.answer_id.is_unique
-    assert "Laporan Tahunan" in df.set_index("answer_id").loc["gpt-08", "answer_raw"]
+    a = df.set_index("answer_id").answer_raw
+    assert "Laporan Tahunan" in a["gpt-08"]
+    assert "myBCA" in a["gpt-09"] and "tabungan jangka panjang" not in a["gpt-09"].lower()
     assert not df.answer_raw.str.contains("\r").any()
     assert (df.run_date == "2026-10-09").all()

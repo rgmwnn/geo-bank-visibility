@@ -194,9 +194,34 @@ gpt-08,19,"Bandingkan biaya dan akses. Untuk tabungan bertahun-tahun, biaya bula
 gpt-08,20,"Kesimpulan: BCA, Mandiri, BRI, dan BNI merupakan empat pilihan bank besar yang layak dibandingkan.",14
 gpt-08,21,Saya tidak akan menyebut salah satunya sebagai yang “paling terpercaya” secara mutlak tanpa ukuran dan data yang sebanding.,18
 gpt-08,22,"Untuk tabungan jangka panjang, pilih berdasarkan kebutuhan layanan, lalu verifikasi kondisi keuangan, izin OJK, dan status LPS.",17
-gpt-09,0,"Untuk tabungan jangka panjang, saya akan memprioritaskan bank yang memiliki rekam jejak kuat, diawasi OJK, dan menjadi peserta penjaminan LPS—bukan semata-mata bank yang menawarkan bunga tertinggi.",26
-gpt-09,1,OJK menyatakan pada Maret 2026 bahwa kondisi perbankan Indonesia tetap solid dengan risiko yang terjaga.,15
-gpt-09,2,"Pilihan yang masuk akal untuk dibandingkan adalah BCA, Bank Mandiri, BRI, dan BNI untuk rekening utama, serta bank digital berizin dan peserta LPS untuk rekening tabungan tambahan.",27
+gpt-09,0,"Kalau dibandingkan, myBCA lebih menarik untuk mengelola beberapa rekening BCA dalam satu aplikasi, sedangkan Livin’ by Mandiri lebih menonjol sebagai aplikasi serba ada dengan banyak fitur finansial dan gaya hidup.",30
+gpt-09,1,"Keduanya mendukung kebutuhan perbankan harian seperti transfer, pembayaran, dan QRIS.",10
+gpt-09,2,"Catatan: BCA memiliki dua aplikasi yang relevan, yaitu myBCA dan BCA mobile.",12
+gpt-09,3,"Untuk perbandingan fitur yang lebih lengkap dengan Livin’, saya akan berfokus pada myBCA.",13
+gpt-09,4,Perbandingan singkat,2
+gpt-09,5,Aspek myBCA Livin’ by Mandiri,5
+gpt-09,6,Fokus Mengelola rekening dan layanan BCA dalam satu aplikasi Aplikasi perbankan dan layanan finansial terpadu,15
+gpt-09,7,Kelola banyak rekening Bisa mengakses beberapa rekening melalui BCA ID Mendukung beragam rekening dan layanan dalam ekosistem Mandiri,18
+gpt-09,8,Transfer antarbank BI-FAST umumnya Rp2.500/transaksi BI-FAST Rp2.500/transaksi,7
+gpt-09,9,"QRIS Pembayaran QRIS tersedia QRIS, termasuk fitur pembayaran dan QR transfer",11
+gpt-09,10,Investasi Fitur investasi tersedia Fitur investasi tersedia,7
+gpt-09,11,Valuta asing Poket Valas dengan 18 mata uang Tabungan multi-mata uang dan transfer valas,14
+gpt-09,12,"Fitur tambahan Pembayaran, top-up, dan layanan rekening Setor/tarik tunai tanpa kartu, e-wallet, lifestyle, dan layanan tambahan lainnya",17
+gpt-09,13,"Sumber resmi: BCA menjelaskan fitur dan perbedaan myBCA dengan BCA mobile, sedangkan Mandiri menyebutkan lebih dari 150 fitur pada Livin’ dalam laporan tahunannya.",23
+gpt-09,14,"Biaya dan limit dapat berubah berdasarkan jenis transaksi, rekening, dan ketentuan yang berlaku.",13
+gpt-09,15,Mana yang lebih cocok untuk Anda?,6
+gpt-09,16,Pilih myBCA jika…,3
+gpt-09,17,Anda sudah menjadi nasabah BCA dan ingin mengelola beberapa rekening sekaligus.,11
+gpt-09,18,"Anda ingin akses layanan BCA lewat aplikasi, web, dan perangkat lain yang didukung.",13
+gpt-09,19,Anda memerlukan fitur seperti Poket Valas untuk berbagai mata uang.,10
+gpt-09,20,Pilih Livin’ by Mandiri jika…,5
+gpt-09,21,Anda ingin banyak layanan terkumpul dalam satu aplikasi.,8
+gpt-09,22,"Anda sering memakai QRIS, transfer, e-wallet, atau membutuhkan setor dan tarik tunai tanpa kartu.",14
+gpt-09,23,Anda tertarik pada fitur tambahan seperti layanan lifestyle dan transaksi valas.,11
+gpt-09,24,Kesimpulan,1
+gpt-09,25,"Untuk pengelolaan rekening BCA yang terintegrasi, pilih myBCA.",8
+gpt-09,26,"Untuk kebutuhan beragam yang ingin dipusatkan dalam satu aplikasi, Livin’ by Mandiri patut dipertimbangkan.",14
+gpt-09,27,Tidak ada dasar yang cukup dari daftar fitur saja untuk menyatakan salah satunya lebih stabil atau lebih aman; keduanya tetap perlu digunakan dengan pengamanan akun yang baik.,27
 gpt-10,0,"Ringkasnya: SeaBank lebih menarik untuk tabungan yang langsung mendapat bunga harian, sedangkan Bank Jago lebih unggul untuk mengatur uang berdasarkan tujuan.",21
 gpt-10,1,"Untuk memilih yang lebih menguntungkan, bandingkan bunga pada jenis rekening yang benar-benar akan kamu gunakan, bukan bunga deposito dengan bunga tabungan biasa.",22
 gpt-10,2,Perbandingan bunga dan biaya,4
@@ -307,17 +332,16 @@ gpt-17,4,Rp2 miliar,2
 gpt-17,5,"Per nasabah, per bank — bukan per rekening atau per aplikasi.",11
 gpt-17,6,"Contohnya, jika Anda memiliki tabungan Rp1,2 miliar dan deposito Rp600 juta pada bank yang sama, total simpanan Rp1,8 miliar masih di bawah batas Rp2 miliar, dengan syarat lainnya terpenuhi.",29
 gpt-17,7,"Jika uang tersebar di dua bank berbeda, batas penjaminannya dihitung terpisah untuk masing-masing bank.",14
-gpt-17,8,PT Bank Tabungan Negara (Persero) Tbk,6
-gpt-17,9,Syarat agar simpanan dijamin LPS,5
-gpt-17,10,Pastikan memenuhi ketentuan 3T:,4
-gpt-17,11,Tercatat dalam pembukuan resmi bank.,5
-gpt-17,12,Tingkat bunga tidak melebihi batas LPS yang berlaku untuk bank tersebut. Periksa juga apakah cashback atau bonus memengaruhi perhitungan bunga efektif.,21
-gpt-17,13,"Tidak menyebabkan bank menjadi tidak sehat, misalnya terkait tindakan nasabah yang merugikan bank.",13
-gpt-17,14,Cara mengecek bank digital,4
-gpt-17,15,"Sebelum menaruh uang, periksa nama badan hukum bank dan tingkat bunga penjaminannya melalui situs resmi LPS atau pencarian tingkat bunga penjaminan LPS.",22
-gpt-17,16,Pastikan banknya sendiri merupakan peserta penjaminan—jangan hanya mengandalkan logo atau klaim di aplikasi.,13
-gpt-17,17,"Intinya: batas jaminan adalah Rp2 miliar per nasabah per bank, selama simpanan memenuhi syarat LPS.",15
-gpt-17,18,"Jika Anda menyimpan dana besar di bank digital, jangan hanya membandingkan bunga; cek juga apakah bunga yang ditawarkan masih berada dalam batas penjaminan.",23
+gpt-17,8,Syarat agar simpanan dijamin LPS,5
+gpt-17,9,Pastikan memenuhi ketentuan 3T:,4
+gpt-17,10,Tercatat dalam pembukuan resmi bank.,5
+gpt-17,11,Tingkat bunga tidak melebihi batas LPS yang berlaku untuk bank tersebut. Periksa juga apakah cashback atau bonus memengaruhi perhitungan bunga efektif.,21
+gpt-17,12,"Tidak menyebabkan bank menjadi tidak sehat, misalnya terkait tindakan nasabah yang merugikan bank.",13
+gpt-17,13,Cara mengecek bank digital,4
+gpt-17,14,"Sebelum menaruh uang, periksa nama badan hukum bank dan tingkat bunga penjaminannya melalui situs resmi LPS atau pencarian tingkat bunga penjaminan LPS.",22
+gpt-17,15,Pastikan banknya sendiri merupakan peserta penjaminan—jangan hanya mengandalkan logo atau klaim di aplikasi.,13
+gpt-17,16,"Intinya: batas jaminan adalah Rp2 miliar per nasabah per bank, selama simpanan memenuhi syarat LPS.",15
+gpt-17,17,"Jika Anda menyimpan dana besar di bank digital, jangan hanya membandingkan bunga; cek juga apakah bunga yang ditawarkan masih berada dalam batas penjaminan.",23
 gpt-18,0,"Cara paling efektif melindungi rekening bank dari penipuan dan phishing adalah menjaga kerahasiaan kode akses, memeriksa tautan sebelum membukanya, dan segera menghubungi bank jika ada aktivitas mencurigakan.",27
 gpt-18,1,"Penipu sering menyamar sebagai petugas bank, mengirim SMS atau WhatsApp palsu, atau membuat situs yang terlihat seperti situs resmi.",19
 gpt-18,2,10 langkah untuk melindungi rekening,5

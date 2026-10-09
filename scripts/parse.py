@@ -3,7 +3,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from scripts.io import load_config
+from scripts.io import ROOT, load_config
 
 HEADING_RE = re.compile(
     r"^[ \t]*#{0,4}[ \t]*"
@@ -13,6 +13,9 @@ HEADING_RE = re.compile(
 )
 
 ENGINES = {"ChatGPT": "gpt", "Gemini": "gem"}
+# RG's re-runs that replace an answer in the sheet: (engine prefix, prompt number) -> file
+RERUNS = {("gpt", 8): ROOT / "data/raw/chatgpt-prompt08-rerun.md",
+          ("gpt", 9): ROOT / "data/raw/chatgpt-prompt09-rerun.md"}
 
 
 def split_citation_section(text: str) -> tuple[str, str]:
@@ -23,15 +26,15 @@ def split_citation_section(text: str) -> tuple[str, str]:
     return text[: last.start()], text[last.end():]
 
 
-def load_answers(xlsx: Path, rerun: Path) -> pd.DataFrame:
+def load_answers(xlsx: Path, reruns: dict[tuple[str, int], Path]) -> pd.DataFrame:
     sheet = pd.read_excel(xlsx)
-    rerun_text = rerun.read_text(encoding="utf-8")
+    rerun_text = {k: p.read_text(encoding="utf-8") for k, p in reruns.items()}
     run_date = load_config()["run_date"]
     rows = []
     for engine, prefix in ENGINES.items():
         for _, r in sheet.iterrows():
             no = int(r["#"])
-            text = rerun_text if (prefix == "gpt" and no == 8) else str(r[engine])
+            text = rerun_text.get((prefix, no), str(r[engine]))
             rows.append({
                 "answer_id": f"{prefix}-{no:02d}",
                 "engine": engine,
@@ -100,9 +103,9 @@ def build_citations(answers: pd.DataFrame) -> pd.DataFrame:
 
 
 def main() -> None:
-    from scripts.io import ROOT, write_csv
+    from scripts.io import write_csv
 
-    answers = load_answers(ROOT / "data/raw/geo-bank-research.xlsx", ROOT / "data/raw/chatgpt-prompt08-rerun.md")
+    answers = load_answers(ROOT / "data/raw/geo-bank-research.xlsx", RERUNS)
     answers["answer_body"] = answers["answer_raw"].map(lambda t: split_citation_section(t)[0].strip())
     cits = build_citations(answers)
     exp = load_config()["expected_counts"]

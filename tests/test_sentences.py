@@ -43,3 +43,9 @@ def test_br_tags_and_bullet_char():
 def test_bare_numbering_and_punctuation_only_lines_dropped():
     assert split_sentences(clean_body("Langkah awal.\n\n1.\n\nCara komplain ke bank\n\n.\n\nSelesai.")) == [
         "Langkah awal.", "Cara komplain ke bank", "Selesai."]
+
+
+def test_long_chip_title_between_favicon_and_plus_dropped():
+    md = ("Isi pertama.\n\n![](https://www.google.com/s2/favicons?domain=x)\n\nPerbedaan BCA Mobile dan myBCA\n\n+4\n\n"
+          "Isi kedua yang panjang sekali di sini.")
+    assert split_sentences(clean_body(md)) == ["Isi pertama.", "Isi kedua yang panjang sekali di sini."]

@@ -22,3 +22,5 @@ gem-20,7,blu,87,"Buka chat dan ketik nama bank digital yang ingin Anda cek (cont
 gem-20,15,blu,0,blu $\rightarrow$ PT Bank Digital BCA,keep,refers to the bank in context
 gem-20,19,Neobank,0,Neobank $\rightarrow$ PT Bank Neo Commerce Tbk,keep,refers to the bank in context
 gem-04,22,Neo,62,"Terjamin LPS 100% Bank Digital mana pun (Jago, SeaBank, Krom, Neo) Asal suku bunga tabungan yang diambil $\le$ Tingkat Bunga Penjaminan LPS.",keep,Neo is listed among digital banks (Bank Neo Commerce)
+gpt-09,7,Mandiri,126,Kelola banyak rekening Bisa mengakses beberapa rekening melalui BCA ID Mendukung beragam rekening dan layanan dalam ekosistem Mandiri,keep,refers to Bank Mandiri in context
+gpt-09,13,Mandiri,85,"Sumber resmi: BCA menjelaskan fitur dan perbedaan myBCA dengan BCA mobile, sedangkan Mandiri menyebutkan lebih dari 150 fitur pada Livin’ dalam laporan tahunannya.",keep,refers to Bank Mandiri in context

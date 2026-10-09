@@ -31,7 +31,10 @@ def clean_body(body: str) -> str:
     after_favicon = False
     body = ANY_IMAGE_RE.sub(lambda m: f"\n{FAVICON}\n" if "s2/favicons" in m.group(0) else "\n", body)
     body = re.sub(r"(?m)^\s*(<br\s*/?>\s*)+", "", body, flags=re.IGNORECASE)
-    for line in body.split("\n"):
+    lines = body.split("\n")
+    nonblank = [i for i, ln in enumerate(lines) if ln.strip()]
+    next_of = {i: lines[j] for i, j in zip(nonblank, nonblank[1:])}
+    for idx, line in enumerate(lines):
         if not line.strip() or not line.strip().strip("|").strip():
             continue
         if line.strip() == FAVICON:
@@ -40,6 +43,9 @@ def clean_body(body: str) -> str:
         if DOMAIN_LINE_RE.match(line):
             continue
         if PLUS_RE.match(line) or line.strip() == "Add to Favorites" or HR_RE.match(line) or TABLE_SEP_RE.match(line):
+            after_favicon = False
+            continue
+        if after_favicon and PLUS_RE.match(next_of.get(idx, "")):
             after_favicon = False
             continue
         if after_favicon and len(line.split()) <= 4 and not LIST_RE.match(line):

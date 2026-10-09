@@ -105,10 +105,31 @@ gpt-08,20,BCA,,BCA,12
 gpt-08,20,Bank Mandiri,,Mandiri,17
 gpt-08,20,BRI,,BRI,26
 gpt-08,20,BNI,,BNI,35
-gpt-09,2,BCA,,BCA,50
-gpt-09,2,Bank Mandiri,,Bank Mandiri,55
-gpt-09,2,BRI,,BRI,69
-gpt-09,2,BNI,,BNI,78
+gpt-09,0,BCA,myBCA,myBCA,20
+gpt-09,0,BCA,,BCA,74
+gpt-09,0,Bank Mandiri,Livin' by Mandiri,Livin’ by Mandiri,109
+gpt-09,2,BCA,,BCA,9
+gpt-09,2,BCA,myBCA,myBCA,55
+gpt-09,2,BCA,BCA mobile,BCA mobile,65
+gpt-09,3,Bank Mandiri,Livin' by Mandiri,Livin’,51
+gpt-09,3,BCA,myBCA,myBCA,83
+gpt-09,5,BCA,myBCA,myBCA,6
+gpt-09,5,Bank Mandiri,Livin' by Mandiri,Livin’ by Mandiri,12
+gpt-09,6,BCA,,BCA,37
+gpt-09,7,BCA,,BCA,64
+gpt-09,7,Bank Mandiri,,Mandiri,126
+gpt-09,13,BCA,,BCA,14
+gpt-09,13,BCA,myBCA,myBCA,50
+gpt-09,13,BCA,BCA mobile,BCA mobile,63
+gpt-09,13,Bank Mandiri,,Mandiri,85
+gpt-09,13,Bank Mandiri,Livin' by Mandiri,Livin’,131
+gpt-09,16,BCA,myBCA,myBCA,6
+gpt-09,17,BCA,,BCA,27
+gpt-09,18,BCA,,BCA,25
+gpt-09,20,Bank Mandiri,Livin' by Mandiri,Livin’ by Mandiri,6
+gpt-09,25,BCA,,BCA,27
+gpt-09,25,BCA,myBCA,myBCA,56
+gpt-09,26,Bank Mandiri,Livin' by Mandiri,Livin’ by Mandiri,67
 gpt-10,0,SeaBank,,SeaBank,12
 gpt-10,0,Bank Jago,,Bank Jago,96
 gpt-10,3,Bank Jago,,Bank Jago,6
@@ -167,7 +188,6 @@ gpt-16,1,BRI,,BRI,18
 gpt-16,1,BRI,,AgenBRILink,88
 gpt-16,2,BCA,,BCA,34
 gpt-16,3,BCA,,BCA,0
-gpt-17,8,BTN,,Bank Tabungan Negara,3
 gem-01,6,Amar Bank,,Amar Bank,0
 gem-01,6,Amar Bank,,Amar,19
 gem-01,7,Bank Saqu,,Bank Saqu,0

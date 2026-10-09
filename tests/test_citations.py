@@ -24,5 +24,5 @@ def test_duplicate_within_answer_kept_once():
 def test_real_counts():
     main()
     c = read_csv("data/interim/citations.csv")
-    assert (len(c), c.url.nunique(), c.domain.nunique()) == (399, 241, 99)
+    assert (len(c), c.url.nunique(), c.domain.nunique()) == (399, 243, 97)
     assert c.groupby("answer_id").size().drop("gpt-02").eq(10).all()

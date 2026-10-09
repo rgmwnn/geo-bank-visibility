@@ -121,6 +121,8 @@ gpt-08,BCA,positive,1,3;20,one of four big banks worth comparing
 gpt-08,BNI,positive,1,12;14;20,one of four big banks worth comparing
 gpt-08,BRI,positive,1,9;11;20,one of four big banks worth comparing
 gpt-08,Bank Mandiri,positive,1,6;20,one of four big banks worth comparing
+gpt-09,BCA,positive,1,0;2;3;5;6;7;13;16;17;18;25,recommends myBCA for managing several BCA accounts in one app
+gpt-09,Bank Mandiri,positive,1,0;3;5;7;13;20;26,Livin' recommended as the all-in-one app with many features
 gpt-10,Bank Jago,positive,1,0;3;6;9;12,better for goal-based saving and more free transfers
 gpt-10,SeaBank,positive,1,0;3;9;11;13,better for daily interest
 gpt-12,BNI,positive,1,0;2;4;5;6;7;9;11;14;15,recommended for youth savings and digital help channels
@@ -134,4 +136,3 @@ gpt-15,Bank Jago,positive,1,2;13,suggested as the main emergency-fund account
 gpt-15,SeaBank,positive,1,4,worth checking as a comparison
 gpt-16,BCA,positive,1,2;3,good alternative with branch staff help
 gpt-16,BRI,positive,1,0;1,most recommended for its wide network
-gpt-17,BTN,neutral,0,8,named only as an example bank in the LPS explanation
