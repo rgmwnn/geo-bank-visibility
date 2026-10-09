@@ -1,0 +1,17 @@
+[
+ {
+  "engine":"All",
+  "top5_share":0.3558897243,
+  "n":399
+ },
+ {
+  "engine":"ChatGPT",
+  "top5_share":0.4924623116,
+  "n":199
+ },
+ {
+  "engine":"Gemini",
+  "top5_share":0.355,
+  "n":200
+ }
+]

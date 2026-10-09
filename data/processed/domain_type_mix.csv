@@ -1,0 +1,99 @@
+engine,pillar,domain_type,citations,share,n
+All,All,bank_official,184,0.46115288220551376,399
+All,All,regulator,67,0.16791979949874686,399
+All,All,blog_aggregator,52,0.13032581453634084,399
+All,All,fintech_platform,45,0.11278195488721804,399
+All,All,news_media,40,0.10025062656641603,399
+All,All,other,5,0.012531328320802004,399
+All,All,forum_ugc,5,0.012531328320802004,399
+All,All,app_store,1,0.002506265664160401,399
+All,Digital experience,bank_official,41,0.5125,80
+All,Digital experience,blog_aggregator,21,0.2625,80
+All,Digital experience,fintech_platform,9,0.1125,80
+All,Digital experience,forum_ugc,4,0.05,80
+All,Digital experience,news_media,3,0.0375,80
+All,Digital experience,regulator,2,0.025,80
+All,Fees & rates,bank_official,53,0.5353535353535354,99
+All,Fees & rates,blog_aggregator,17,0.1717171717171717,99
+All,Fees & rates,fintech_platform,15,0.15151515151515152,99
+All,Fees & rates,news_media,11,0.1111111111111111,99
+All,Fees & rates,other,1,0.010101010101010102,99
+All,Fees & rates,app_store,1,0.010101010101010102,99
+All,Fees & rates,forum_ugc,1,0.010101010101010102,99
+All,Safety & security,bank_official,30,0.375,80
+All,Safety & security,regulator,29,0.3625,80
+All,Safety & security,fintech_platform,9,0.1125,80
+All,Safety & security,blog_aggregator,5,0.0625,80
+All,Safety & security,news_media,4,0.05,80
+All,Safety & security,other,3,0.0375,80
+All,Service,bank_official,40,0.5,80
+All,Service,news_media,14,0.175,80
+All,Service,regulator,13,0.1625,80
+All,Service,blog_aggregator,7,0.0875,80
+All,Service,fintech_platform,5,0.0625,80
+All,Service,other,1,0.0125,80
+All,Trust,regulator,23,0.38333333333333336,60
+All,Trust,bank_official,20,0.3333333333333333,60
+All,Trust,news_media,8,0.13333333333333333,60
+All,Trust,fintech_platform,7,0.11666666666666667,60
+All,Trust,blog_aggregator,2,0.03333333333333333,60
+ChatGPT,All,bank_official,126,0.6331658291457286,199
+ChatGPT,All,regulator,52,0.2613065326633166,199
+ChatGPT,All,blog_aggregator,9,0.04522613065326633,199
+ChatGPT,All,news_media,7,0.035175879396984924,199
+ChatGPT,All,other,2,0.010050251256281407,199
+ChatGPT,All,forum_ugc,2,0.010050251256281407,199
+ChatGPT,All,app_store,1,0.005025125628140704,199
+ChatGPT,Digital experience,bank_official,32,0.8,40
+ChatGPT,Digital experience,blog_aggregator,4,0.1,40
+ChatGPT,Digital experience,regulator,2,0.05,40
+ChatGPT,Digital experience,forum_ugc,1,0.025,40
+ChatGPT,Digital experience,news_media,1,0.025,40
+ChatGPT,Fees & rates,bank_official,41,0.8367346938775511,49
+ChatGPT,Fees & rates,blog_aggregator,4,0.08163265306122448,49
+ChatGPT,Fees & rates,news_media,1,0.02040816326530612,49
+ChatGPT,Fees & rates,other,1,0.02040816326530612,49
+ChatGPT,Fees & rates,app_store,1,0.02040816326530612,49
+ChatGPT,Fees & rates,forum_ugc,1,0.02040816326530612,49
+ChatGPT,Safety & security,regulator,25,0.625,40
+ChatGPT,Safety & security,bank_official,15,0.375,40
+ChatGPT,Service,bank_official,26,0.65,40
+ChatGPT,Service,regulator,9,0.225,40
+ChatGPT,Service,news_media,3,0.075,40
+ChatGPT,Service,other,1,0.025,40
+ChatGPT,Service,blog_aggregator,1,0.025,40
+ChatGPT,Trust,regulator,16,0.5333333333333333,30
+ChatGPT,Trust,bank_official,12,0.4,30
+ChatGPT,Trust,news_media,2,0.06666666666666667,30
+Gemini,All,bank_official,58,0.29,200
+Gemini,All,fintech_platform,45,0.225,200
+Gemini,All,blog_aggregator,43,0.215,200
+Gemini,All,news_media,33,0.165,200
+Gemini,All,regulator,15,0.075,200
+Gemini,All,forum_ugc,3,0.015,200
+Gemini,All,other,3,0.015,200
+Gemini,Digital experience,blog_aggregator,17,0.425,40
+Gemini,Digital experience,fintech_platform,9,0.225,40
+Gemini,Digital experience,bank_official,9,0.225,40
+Gemini,Digital experience,forum_ugc,3,0.075,40
+Gemini,Digital experience,news_media,2,0.05,40
+Gemini,Fees & rates,fintech_platform,15,0.3,50
+Gemini,Fees & rates,blog_aggregator,13,0.26,50
+Gemini,Fees & rates,bank_official,12,0.24,50
+Gemini,Fees & rates,news_media,10,0.2,50
+Gemini,Safety & security,bank_official,15,0.375,40
+Gemini,Safety & security,fintech_platform,9,0.225,40
+Gemini,Safety & security,blog_aggregator,5,0.125,40
+Gemini,Safety & security,news_media,4,0.1,40
+Gemini,Safety & security,regulator,4,0.1,40
+Gemini,Safety & security,other,3,0.075,40
+Gemini,Service,bank_official,14,0.35,40
+Gemini,Service,news_media,11,0.275,40
+Gemini,Service,blog_aggregator,6,0.15,40
+Gemini,Service,fintech_platform,5,0.125,40
+Gemini,Service,regulator,4,0.1,40
+Gemini,Trust,bank_official,8,0.26666666666666666,30
+Gemini,Trust,fintech_platform,7,0.23333333333333334,30
+Gemini,Trust,regulator,7,0.23333333333333334,30
+Gemini,Trust,news_media,6,0.2,30
+Gemini,Trust,blog_aggregator,2,0.06666666666666667,30

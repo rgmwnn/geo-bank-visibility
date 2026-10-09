@@ -1,0 +1,286 @@
+engine,intent,brand,n,n_answers_mentioning,mention_rate,ai_mentions,ai_sov,pawc,first_mention_pos,sentiment_mean,n_pos,n_neu,n_neg,n_mixed
+All,Best,Allo Bank,16,3,0.1875,6,0.024896265560165973,0.03875971360668119,0.4478844169246646,1.0,3,0,0,0
+All,Best,Amar Bank,16,1,0.0625,2,0.008298755186721992,0.0024114184938003806,0.3157894736842105,1.0,1,0,0,0
+All,Best,BCA,16,13,0.8125,58,0.24066390041493776,0.07322954537052678,0.3130803314430618,0.9230769230769231,12,0,0,1
+All,Best,BNI,16,5,0.3125,13,0.05394190871369295,0.016541989338794104,0.6001862099253403,0.8,4,1,0,0
+All,Best,BRI,16,8,0.5,21,0.08713692946058091,0.046163339886565125,0.3753660439801744,0.875,7,1,0,0
+All,Best,BSI,16,2,0.125,6,0.024896265560165973,0.004183493200351868,0.7333333333333334,1.0,2,0,0,0
+All,Best,BTN,16,1,0.0625,1,0.004149377593360996,0.00468715720415361,0.7,0.0,0,1,0,0
+All,Best,Bank Aladin Syariah,16,1,0.0625,1,0.004149377593360996,0.0030386831271798156,0.42105263157894735,1.0,1,0,0,0
+All,Best,Bank BTPN,16,4,0.25,9,0.03734439834024896,0.007519878140701274,0.56476966873706,1.0,4,0,0,0
+All,Best,Bank Jago,16,12,0.75,30,0.12448132780082988,0.05055515226852046,0.39062324749686955,0.8333333333333334,10,0,0,2
+All,Best,Bank Mandiri,16,8,0.5,22,0.0912863070539419,0.04410971289762615,0.31719002917372485,0.875,7,1,0,0
+All,Best,Bank Neo Commerce,16,7,0.4375,11,0.04564315352697095,0.05321665685569255,0.4191437512718049,0.7142857142857143,5,2,0,0
+All,Best,Bank Saqu,16,3,0.1875,6,0.024896265560165973,0.011289311290927685,0.3864235752780645,1.0,3,0,0,0
+All,Best,CIMB Niaga,16,1,0.0625,2,0.008298755186721992,0.005341363732646559,0.7,1.0,1,0,0,0
+All,Best,Danamon,16,1,0.0625,2,0.008298755186721992,0.002777610858567431,0.9,1.0,1,0,0,0
+All,Best,Krom Bank,16,8,0.5,13,0.05394190871369295,0.03690177197376794,0.5042001376025831,0.875,7,1,0,0
+All,Best,Nobu Bank,16,1,0.0625,4,0.016597510373443983,0.016777549087050574,0.07142857142857142,1.0,1,0,0,0
+All,Best,SeaBank,16,13,0.8125,30,0.12448132780082988,0.046069672313072664,0.4314928879556783,1.0,13,0,0,0
+All,Best,Superbank,16,3,0.1875,4,0.016597510373443983,0.009683533862096545,0.3842621259029928,1.0,3,0,0,0
+All,Compare,Allo Bank,8,0,0.0,0,0.0,0.0,,,0,0,0,0
+All,Compare,Amar Bank,8,0,0.0,0,0.0,0.0,,,0,0,0,0
+All,Compare,BCA,8,2,0.25,12,0.15789473684210525,0.05489612205520483,0.3333333333333333,1.0,1,0,0,0
+All,Compare,BNI,8,3,0.375,22,0.2894736842105263,0.11845346983810603,0.2222222222222222,1.0,2,0,0,0
+All,Compare,BRI,8,3,0.375,21,0.27631578947368424,0.10140789430738852,0.2222222222222222,1.0,2,0,0,0
+All,Compare,BSI,8,0,0.0,0,0.0,0.0,,,0,0,0,0
+All,Compare,BTN,8,0,0.0,0,0.0,0.0,,,0,0,0,0
+All,Compare,Bank Aladin Syariah,8,0,0.0,0,0.0,0.0,,,0,0,0,0
+All,Compare,Bank BTPN,8,0,0.0,0,0.0,0.0,,,0,0,0,0
+All,Compare,Bank Jago,8,2,0.25,8,0.10526315789473684,0.04995969622435822,0.0,1.0,2,0,0,0
+All,Compare,Bank Mandiri,8,2,0.25,5,0.06578947368421052,0.0517602756688329,0.3333333333333333,1.0,1,0,0,0
+All,Compare,Bank Neo Commerce,8,0,0.0,0,0.0,0.0,,,0,0,0,0
+All,Compare,Bank Saqu,8,0,0.0,0,0.0,0.0,,,0,0,0,0
+All,Compare,CIMB Niaga,8,0,0.0,0,0.0,0.0,,,0,0,0,0
+All,Compare,Danamon,8,0,0.0,0,0.0,0.0,,,0,0,0,0
+All,Compare,Krom Bank,8,0,0.0,0,0.0,0.0,,,0,0,0,0
+All,Compare,Nobu Bank,8,0,0.0,0,0.0,0.0,,,0,0,0,0
+All,Compare,SeaBank,8,2,0.25,8,0.10526315789473684,0.050608575127946906,0.0,1.0,2,0,0,0
+All,Compare,Superbank,8,0,0.0,0,0.0,0.0,,,0,0,0,0
+All,Decision brief,Allo Bank,8,0,0.0,0,0.0,0.0,,,0,0,0,0
+All,Decision brief,Amar Bank,8,0,0.0,0,0.0,0.0,,,0,0,0,0
+All,Decision brief,BCA,8,6,0.75,26,0.35135135135135137,0.09393057094448576,0.3902397872986108,0.8333333333333334,5,0,0,1
+All,Decision brief,BNI,8,1,0.125,2,0.02702702702702703,0.011040041767193382,0.7058823529411765,1.0,1,0,0,0
+All,Decision brief,BRI,8,2,0.25,11,0.14864864864864866,0.08284966912759881,0.20588235294117646,1.0,2,0,0,0
+All,Decision brief,BSI,8,0,0.0,0,0.0,0.0,,,0,0,0,0
+All,Decision brief,BTN,8,0,0.0,0,0.0,0.0,,,0,0,0,0
+All,Decision brief,Bank Aladin Syariah,8,0,0.0,0,0.0,0.0,,,0,0,0,0
+All,Decision brief,Bank BTPN,8,1,0.125,3,0.04054054054054054,0.002681166782105351,0.6666666666666666,0.0,0,0,0,1
+All,Decision brief,Bank Jago,8,6,0.75,16,0.21621621621621623,0.11005814813988953,0.1896973896973897,0.8333333333333334,5,0,0,1
+All,Decision brief,Bank Mandiri,8,1,0.125,1,0.013513513513513514,0.005321686074602026,0.5882352941176471,1.0,1,0,0,0
+All,Decision brief,Bank Neo Commerce,8,0,0.0,0,0.0,0.0,,,0,0,0,0
+All,Decision brief,Bank Saqu,8,0,0.0,0,0.0,0.0,,,0,0,0,0
+All,Decision brief,CIMB Niaga,8,0,0.0,0,0.0,0.0,,,0,0,0,0
+All,Decision brief,Danamon,8,0,0.0,0,0.0,0.0,,,0,0,0,0
+All,Decision brief,Krom Bank,8,1,0.125,3,0.04054054054054054,0.0024982816744969893,0.7567567567567568,1.0,1,0,0,0
+All,Decision brief,Nobu Bank,8,0,0.0,0,0.0,0.0,,,0,0,0,0
+All,Decision brief,SeaBank,8,5,0.625,12,0.16216216216216217,0.050259902808407295,0.33044121044121044,1.0,5,0,0,0
+All,Decision brief,Superbank,8,0,0.0,0,0.0,0.0,,,0,0,0,0
+All,How-to,Allo Bank,6,0,0.0,0,0.0,0.0,,,0,0,0,0
+All,How-to,Amar Bank,6,0,0.0,0,0.0,0.0,,,0,0,0,0
+All,How-to,BCA,6,0,0.0,0,0.0,0.0,,,0,0,0,0
+All,How-to,BNI,6,0,0.0,0,0.0,0.0,,,0,0,0,0
+All,How-to,BRI,6,0,0.0,0,0.0,0.0,,,0,0,0,0
+All,How-to,BSI,6,0,0.0,0,0.0,0.0,,,0,0,0,0
+All,How-to,BTN,6,1,0.16666666666666666,1,0.5,0.0028169766329220612,0.42105263157894735,0.0,0,1,0,0
+All,How-to,Bank Aladin Syariah,6,0,0.0,0,0.0,0.0,,,0,0,0,0
+All,How-to,Bank BTPN,6,0,0.0,0,0.0,0.0,,,0,0,0,0
+All,How-to,Bank Jago,6,1,0.16666666666666666,1,0.5,0.014993691209060411,0.4666666666666667,0.0,0,1,0,0
+All,How-to,Bank Mandiri,6,0,0.0,0,0.0,0.0,,,0,0,0,0
+All,How-to,Bank Neo Commerce,6,0,0.0,0,0.0,0.0,,,0,0,0,0
+All,How-to,Bank Saqu,6,0,0.0,0,0.0,0.0,,,0,0,0,0
+All,How-to,CIMB Niaga,6,0,0.0,0,0.0,0.0,,,0,0,0,0
+All,How-to,Danamon,6,0,0.0,0,0.0,0.0,,,0,0,0,0
+All,How-to,Krom Bank,6,0,0.0,0,0.0,0.0,,,0,0,0,0
+All,How-to,Nobu Bank,6,0,0.0,0,0.0,0.0,,,0,0,0,0
+All,How-to,SeaBank,6,0,0.0,0,0.0,0.0,,,0,0,0,0
+All,How-to,Superbank,6,0,0.0,0,0.0,0.0,,,0,0,0,0
+All,Informational,Allo Bank,2,0,0.0,0,0.0,0.0,,,0,0,0,0
+All,Informational,Amar Bank,2,0,0.0,0,0.0,0.0,,,0,0,0,0
+All,Informational,BCA,2,1,0.5,3,0.21428571428571427,0.0345336441223607,0.23333333333333334,0.0,0,1,0,0
+All,Informational,BNI,2,0,0.0,0,0.0,0.0,,,0,0,0,0
+All,Informational,BRI,2,0,0.0,0,0.0,0.0,,,0,0,0,0
+All,Informational,BSI,2,0,0.0,0,0.0,0.0,,,0,0,0,0
+All,Informational,BTN,2,0,0.0,0,0.0,0.0,,,0,0,0,0
+All,Informational,Bank Aladin Syariah,2,0,0.0,0,0.0,0.0,,,0,0,0,0
+All,Informational,Bank BTPN,2,0,0.0,0,0.0,0.0,,,0,0,0,0
+All,Informational,Bank Jago,2,1,0.5,3,0.21428571428571427,0.03536226039593237,0.23333333333333334,0.0,0,1,0,0
+All,Informational,Bank Mandiri,2,0,0.0,0,0.0,0.0,,,0,0,0,0
+All,Informational,Bank Neo Commerce,2,1,0.5,2,0.14285714285714285,0.0065881846700959175,0.6333333333333333,0.0,0,1,0,0
+All,Informational,Bank Saqu,2,0,0.0,0,0.0,0.0,,,0,0,0,0
+All,Informational,CIMB Niaga,2,0,0.0,0,0.0,0.0,,,0,0,0,0
+All,Informational,Danamon,2,0,0.0,0,0.0,0.0,,,0,0,0,0
+All,Informational,Krom Bank,2,1,0.5,1,0.07142857142857142,0.028081190295630557,0.23333333333333334,0.0,0,1,0,0
+All,Informational,Nobu Bank,2,0,0.0,0,0.0,0.0,,,0,0,0,0
+All,Informational,SeaBank,2,1,0.5,3,0.21428571428571427,0.034117505921130595,0.23333333333333334,0.0,0,1,0,0
+All,Informational,Superbank,2,1,0.5,2,0.14285714285714285,0.033919611956205305,0.23333333333333334,0.0,0,1,0,0
+ChatGPT,Best,Allo Bank,8,1,0.125,2,0.018867924528301886,0.07156419792712368,0.0,1.0,1,0,0,0
+ChatGPT,Best,Amar Bank,8,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,Best,BCA,8,6,0.75,25,0.2358490566037736,0.06306735526603234,0.2852847566115932,1.0,6,0,0,0
+ChatGPT,Best,BNI,8,2,0.25,6,0.05660377358490566,0.0072956550309986445,0.6926877470355731,1.0,2,0,0,0
+ChatGPT,Best,BRI,8,4,0.5,15,0.14150943396226415,0.06297992126046677,0.22801383399209485,1.0,4,0,0,0
+ChatGPT,Best,BSI,8,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,Best,BTN,8,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,Best,Bank Aladin Syariah,8,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,Best,Bank BTPN,8,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,Best,Bank Jago,8,6,0.75,17,0.16037735849056603,0.05536259369920341,0.348578326276977,0.8333333333333334,5,0,0,1
+ChatGPT,Best,Bank Mandiri,8,2,0.25,7,0.0660377358490566,0.02812186440648018,0.141798418972332,1.0,2,0,0,0
+ChatGPT,Best,Bank Neo Commerce,8,4,0.5,6,0.05660377358490566,0.0941171736962748,0.21757019217663892,0.75,3,1,0,0
+ChatGPT,Best,Bank Saqu,8,1,0.125,2,0.018867924528301886,0.0009741671503315633,0.5555555555555556,1.0,1,0,0,0
+ChatGPT,Best,CIMB Niaga,8,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,Best,Danamon,8,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,Best,Krom Bank,8,3,0.375,5,0.04716981132075472,0.050210345303417114,0.3308702791461412,1.0,3,0,0,0
+ChatGPT,Best,Nobu Bank,8,1,0.125,4,0.03773584905660377,0.03355509817410115,0.07142857142857142,1.0,1,0,0,0
+ChatGPT,Best,SeaBank,8,6,0.75,17,0.16037735849056603,0.045615994340570926,0.3056988821606513,1.0,6,0,0,0
+ChatGPT,Best,Superbank,8,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,Compare,Allo Bank,4,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,Compare,Amar Bank,4,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,Compare,BCA,4,1,0.25,1,0.027777777777777776,0.05096419931573524,0.6666666666666666,,0,0,0,0
+ChatGPT,Compare,BNI,4,2,0.5,14,0.3888888888888889,0.1625265045766668,0.3333333333333333,1.0,1,0,0,0
+ChatGPT,Compare,BRI,4,2,0.5,10,0.2777777777777778,0.12124627159858448,0.3333333333333333,1.0,1,0,0,0
+ChatGPT,Compare,BSI,4,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,Compare,BTN,4,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,Compare,Bank Aladin Syariah,4,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,Compare,Bank BTPN,4,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,Compare,Bank Jago,4,1,0.25,5,0.1388888888888889,0.056206405801809106,0.0,1.0,1,0,0,0
+ChatGPT,Compare,Bank Mandiri,4,1,0.25,1,0.027777777777777776,0.05096419931573524,0.6666666666666666,,0,0,0,0
+ChatGPT,Compare,Bank Neo Commerce,4,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,Compare,Bank Saqu,4,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,Compare,CIMB Niaga,4,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,Compare,Danamon,4,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,Compare,Krom Bank,4,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,Compare,Nobu Bank,4,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,Compare,SeaBank,4,1,0.25,5,0.1388888888888889,0.057660007248529765,0.0,1.0,1,0,0,0
+ChatGPT,Compare,Superbank,4,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,Decision brief,Allo Bank,4,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,Decision brief,Amar Bank,4,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,Decision brief,BCA,4,2,0.5,4,0.15384615384615385,0.0862742739710062,0.3653846153846154,1.0,2,0,0,0
+ChatGPT,Decision brief,BNI,4,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,Decision brief,BRI,4,1,0.25,4,0.15384615384615385,0.13689758161882562,0.0,1.0,1,0,0,0
+ChatGPT,Decision brief,BSI,4,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,Decision brief,BTN,4,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,Decision brief,Bank Aladin Syariah,4,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,Decision brief,Bank BTPN,4,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,Decision brief,Bank Jago,4,3,0.75,11,0.4230769230769231,0.2049354601734993,0.07008547008547009,0.6666666666666666,2,0,0,1
+ChatGPT,Decision brief,Bank Mandiri,4,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,Decision brief,Bank Neo Commerce,4,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,Decision brief,Bank Saqu,4,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,Decision brief,CIMB Niaga,4,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,Decision brief,Danamon,4,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,Decision brief,Krom Bank,4,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,Decision brief,Nobu Bank,4,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,Decision brief,SeaBank,4,3,0.75,7,0.2692307692307692,0.08924530603152331,0.39658119658119656,1.0,3,0,0,0
+ChatGPT,Decision brief,Superbank,4,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,How-to,Allo Bank,3,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,How-to,Amar Bank,3,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,How-to,BCA,3,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,How-to,BNI,3,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,How-to,BRI,3,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,How-to,BSI,3,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,How-to,BTN,3,1,0.3333333333333333,1,1.0,0.0056339532658441225,0.42105263157894735,0.0,0,1,0,0
+ChatGPT,How-to,Bank Aladin Syariah,3,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,How-to,Bank BTPN,3,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,How-to,Bank Jago,3,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,How-to,Bank Mandiri,3,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,How-to,Bank Neo Commerce,3,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,How-to,Bank Saqu,3,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,How-to,CIMB Niaga,3,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,How-to,Danamon,3,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,How-to,Krom Bank,3,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,How-to,Nobu Bank,3,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,How-to,SeaBank,3,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,How-to,Superbank,3,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,Informational,Allo Bank,1,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,Informational,Amar Bank,1,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,Informational,BCA,1,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,Informational,BNI,1,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,Informational,BRI,1,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,Informational,BSI,1,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,Informational,BTN,1,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,Informational,Bank Aladin Syariah,1,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,Informational,Bank BTPN,1,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,Informational,Bank Jago,1,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,Informational,Bank Mandiri,1,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,Informational,Bank Neo Commerce,1,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,Informational,Bank Saqu,1,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,Informational,CIMB Niaga,1,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,Informational,Danamon,1,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,Informational,Krom Bank,1,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,Informational,Nobu Bank,1,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,Informational,SeaBank,1,0,0.0,0,0.0,0.0,,,0,0,0,0
+ChatGPT,Informational,Superbank,1,0,0.0,0,0.0,0.0,,,0,0,0,0
+Gemini,Best,Allo Bank,8,2,0.25,4,0.02962962962962963,0.005955229286238712,0.6718266253869969,1.0,2,0,0,0
+Gemini,Best,Amar Bank,8,1,0.125,2,0.014814814814814815,0.004822836987600761,0.3157894736842105,1.0,1,0,0,0
+Gemini,Best,BCA,8,7,0.875,33,0.24444444444444444,0.0833917354750212,0.33690510987003497,0.8571428571428571,6,0,0,1
+Gemini,Best,BNI,8,3,0.375,7,0.05185185185185185,0.025788323646589565,0.5385185185185185,0.6666666666666666,2,1,0,0
+Gemini,Best,BRI,8,4,0.5,6,0.044444444444444446,0.029346758512663475,0.522718253968254,0.75,3,1,0,0
+Gemini,Best,BSI,8,2,0.25,6,0.044444444444444446,0.008366986400703736,0.7333333333333334,1.0,2,0,0,0
+Gemini,Best,BTN,8,1,0.125,1,0.007407407407407408,0.00937431440830722,0.7,0.0,0,1,0,0
+Gemini,Best,Bank Aladin Syariah,8,1,0.125,1,0.007407407407407408,0.006077366254359631,0.42105263157894735,1.0,1,0,0,0
+Gemini,Best,Bank BTPN,8,4,0.5,9,0.06666666666666667,0.015039756281402548,0.56476966873706,1.0,4,0,0,0
+Gemini,Best,Bank Jago,8,6,0.75,13,0.0962962962962963,0.045747710837837526,0.4326681687167621,0.8333333333333334,5,0,0,1
+Gemini,Best,Bank Mandiri,8,6,0.75,15,0.1111111111111111,0.06009756138877212,0.37565389924085574,0.8333333333333334,5,1,0,0
+Gemini,Best,Bank Neo Commerce,8,3,0.375,5,0.037037037037037035,0.012316140015110307,0.687908496732026,0.6666666666666666,2,1,0,0
+Gemini,Best,Bank Saqu,8,2,0.25,4,0.02962962962962963,0.021604455431523804,0.3018575851393189,1.0,2,0,0,0
+Gemini,Best,CIMB Niaga,8,1,0.125,2,0.014814814814814815,0.010682727465293118,0.7,1.0,1,0,0,0
+Gemini,Best,Danamon,8,1,0.125,2,0.014814814814814815,0.005555221717134862,0.9,1.0,1,0,0,0
+Gemini,Best,Krom Bank,8,5,0.625,8,0.05925925925925926,0.02359319864411877,0.6081980526764481,0.8,4,1,0,0
+Gemini,Best,Nobu Bank,8,0,0.0,0,0.0,0.0,,,0,0,0,0
+Gemini,Best,SeaBank,8,7,0.875,13,0.0962962962962963,0.046523350285574396,0.5393163214942728,1.0,7,0,0,0
+Gemini,Best,Superbank,8,3,0.375,4,0.02962962962962963,0.01936706772419309,0.3842621259029928,1.0,3,0,0,0
+Gemini,Compare,Allo Bank,4,0,0.0,0,0.0,0.0,,,0,0,0,0
+Gemini,Compare,Amar Bank,4,0,0.0,0,0.0,0.0,,,0,0,0,0
+Gemini,Compare,BCA,4,1,0.25,11,0.275,0.05882804479467442,0.0,1.0,1,0,0,0
+Gemini,Compare,BNI,4,1,0.25,8,0.2,0.07438043509954526,0.0,1.0,1,0,0,0
+Gemini,Compare,BRI,4,1,0.25,11,0.275,0.08156951701619254,0.0,1.0,1,0,0,0
+Gemini,Compare,BSI,4,0,0.0,0,0.0,0.0,,,0,0,0,0
+Gemini,Compare,BTN,4,0,0.0,0,0.0,0.0,,,0,0,0,0
+Gemini,Compare,Bank Aladin Syariah,4,0,0.0,0,0.0,0.0,,,0,0,0,0
+Gemini,Compare,Bank BTPN,4,0,0.0,0,0.0,0.0,,,0,0,0,0
+Gemini,Compare,Bank Jago,4,1,0.25,3,0.075,0.04371298664690733,0.0,1.0,1,0,0,0
+Gemini,Compare,Bank Mandiri,4,1,0.25,4,0.1,0.05255635202193057,0.0,1.0,1,0,0,0
+Gemini,Compare,Bank Neo Commerce,4,0,0.0,0,0.0,0.0,,,0,0,0,0
+Gemini,Compare,Bank Saqu,4,0,0.0,0,0.0,0.0,,,0,0,0,0
+Gemini,Compare,CIMB Niaga,4,0,0.0,0,0.0,0.0,,,0,0,0,0
+Gemini,Compare,Danamon,4,0,0.0,0,0.0,0.0,,,0,0,0,0
+Gemini,Compare,Krom Bank,4,0,0.0,0,0.0,0.0,,,0,0,0,0
+Gemini,Compare,Nobu Bank,4,0,0.0,0,0.0,0.0,,,0,0,0,0
+Gemini,Compare,SeaBank,4,1,0.25,3,0.075,0.04355714300736404,0.0,1.0,1,0,0,0
+Gemini,Compare,Superbank,4,0,0.0,0,0.0,0.0,,,0,0,0,0
+Gemini,Decision brief,Allo Bank,4,0,0.0,0,0.0,0.0,,,0,0,0,0
+Gemini,Decision brief,Amar Bank,4,0,0.0,0,0.0,0.0,,,0,0,0,0
+Gemini,Decision brief,BCA,4,4,1.0,22,0.4583333333333333,0.10158686791796531,0.40266737325560853,0.75,3,0,0,1
+Gemini,Decision brief,BNI,4,1,0.25,2,0.041666666666666664,0.022080083534386764,0.7058823529411765,1.0,1,0,0,0
+Gemini,Decision brief,BRI,4,1,0.25,7,0.14583333333333334,0.02880175663637201,0.4117647058823529,1.0,1,0,0,0
+Gemini,Decision brief,BSI,4,0,0.0,0,0.0,0.0,,,0,0,0,0
+Gemini,Decision brief,BTN,4,0,0.0,0,0.0,0.0,,,0,0,0,0
+Gemini,Decision brief,Bank Aladin Syariah,4,0,0.0,0,0.0,0.0,,,0,0,0,0
+Gemini,Decision brief,Bank BTPN,4,1,0.25,3,0.0625,0.005362333564210702,0.6666666666666666,0.0,0,0,0,1
+Gemini,Decision brief,Bank Jago,4,3,0.75,5,0.10416666666666667,0.015180836106279773,0.30930930930930933,1.0,3,0,0,0
+Gemini,Decision brief,Bank Mandiri,4,1,0.25,1,0.020833333333333332,0.010643372149204052,0.5882352941176471,1.0,1,0,0,0
+Gemini,Decision brief,Bank Neo Commerce,4,0,0.0,0,0.0,0.0,,,0,0,0,0
+Gemini,Decision brief,Bank Saqu,4,0,0.0,0,0.0,0.0,,,0,0,0,0
+Gemini,Decision brief,CIMB Niaga,4,0,0.0,0,0.0,0.0,,,0,0,0,0
+Gemini,Decision brief,Danamon,4,0,0.0,0,0.0,0.0,,,0,0,0,0
+Gemini,Decision brief,Krom Bank,4,1,0.25,3,0.0625,0.0049965633489939786,0.7567567567567568,1.0,1,0,0,0
+Gemini,Decision brief,Nobu Bank,4,0,0.0,0,0.0,0.0,,,0,0,0,0
+Gemini,Decision brief,SeaBank,4,2,0.5,5,0.10416666666666667,0.011274499585291285,0.23123123123123124,1.0,2,0,0,0
+Gemini,Decision brief,Superbank,4,0,0.0,0,0.0,0.0,,,0,0,0,0
+Gemini,How-to,Allo Bank,3,0,0.0,0,0.0,0.0,,,0,0,0,0
+Gemini,How-to,Amar Bank,3,0,0.0,0,0.0,0.0,,,0,0,0,0
+Gemini,How-to,BCA,3,0,0.0,0,0.0,0.0,,,0,0,0,0
+Gemini,How-to,BNI,3,0,0.0,0,0.0,0.0,,,0,0,0,0
+Gemini,How-to,BRI,3,0,0.0,0,0.0,0.0,,,0,0,0,0
+Gemini,How-to,BSI,3,0,0.0,0,0.0,0.0,,,0,0,0,0
+Gemini,How-to,BTN,3,0,0.0,0,0.0,0.0,,,0,0,0,0
+Gemini,How-to,Bank Aladin Syariah,3,0,0.0,0,0.0,0.0,,,0,0,0,0
+Gemini,How-to,Bank BTPN,3,0,0.0,0,0.0,0.0,,,0,0,0,0
+Gemini,How-to,Bank Jago,3,1,0.3333333333333333,1,1.0,0.029987382418120823,0.4666666666666667,0.0,0,1,0,0
+Gemini,How-to,Bank Mandiri,3,0,0.0,0,0.0,0.0,,,0,0,0,0
+Gemini,How-to,Bank Neo Commerce,3,0,0.0,0,0.0,0.0,,,0,0,0,0
+Gemini,How-to,Bank Saqu,3,0,0.0,0,0.0,0.0,,,0,0,0,0
+Gemini,How-to,CIMB Niaga,3,0,0.0,0,0.0,0.0,,,0,0,0,0
+Gemini,How-to,Danamon,3,0,0.0,0,0.0,0.0,,,0,0,0,0
+Gemini,How-to,Krom Bank,3,0,0.0,0,0.0,0.0,,,0,0,0,0
+Gemini,How-to,Nobu Bank,3,0,0.0,0,0.0,0.0,,,0,0,0,0
+Gemini,How-to,SeaBank,3,0,0.0,0,0.0,0.0,,,0,0,0,0
+Gemini,How-to,Superbank,3,0,0.0,0,0.0,0.0,,,0,0,0,0
+Gemini,Informational,Allo Bank,1,0,0.0,0,0.0,0.0,,,0,0,0,0
+Gemini,Informational,Amar Bank,1,0,0.0,0,0.0,0.0,,,0,0,0,0
+Gemini,Informational,BCA,1,1,1.0,3,0.21428571428571427,0.0690672882447214,0.23333333333333334,0.0,0,1,0,0
+Gemini,Informational,BNI,1,0,0.0,0,0.0,0.0,,,0,0,0,0
+Gemini,Informational,BRI,1,0,0.0,0,0.0,0.0,,,0,0,0,0
+Gemini,Informational,BSI,1,0,0.0,0,0.0,0.0,,,0,0,0,0
+Gemini,Informational,BTN,1,0,0.0,0,0.0,0.0,,,0,0,0,0
+Gemini,Informational,Bank Aladin Syariah,1,0,0.0,0,0.0,0.0,,,0,0,0,0
+Gemini,Informational,Bank BTPN,1,0,0.0,0,0.0,0.0,,,0,0,0,0
+Gemini,Informational,Bank Jago,1,1,1.0,3,0.21428571428571427,0.07072452079186474,0.23333333333333334,0.0,0,1,0,0
+Gemini,Informational,Bank Mandiri,1,0,0.0,0,0.0,0.0,,,0,0,0,0
+Gemini,Informational,Bank Neo Commerce,1,1,1.0,2,0.14285714285714285,0.013176369340191835,0.6333333333333333,0.0,0,1,0,0
+Gemini,Informational,Bank Saqu,1,0,0.0,0,0.0,0.0,,,0,0,0,0
+Gemini,Informational,CIMB Niaga,1,0,0.0,0,0.0,0.0,,,0,0,0,0
+Gemini,Informational,Danamon,1,0,0.0,0,0.0,0.0,,,0,0,0,0
+Gemini,Informational,Krom Bank,1,1,1.0,1,0.07142857142857142,0.056162380591261114,0.23333333333333334,0.0,0,1,0,0
+Gemini,Informational,Nobu Bank,1,0,0.0,0,0.0,0.0,,,0,0,0,0
+Gemini,Informational,SeaBank,1,1,1.0,3,0.21428571428571427,0.06823501184226119,0.23333333333333334,0.0,0,1,0,0
+Gemini,Informational,Superbank,1,1,1.0,2,0.14285714285714285,0.06783922391241061,0.23333333333333334,0.0,0,1,0,0
