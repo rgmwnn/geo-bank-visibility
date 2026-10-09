@@ -166,6 +166,8 @@ def _page_tables(inp: dict, cfg: dict) -> dict:
     def reason(r):
         if r.is_readable:
             return "readable"
+        if str(getattr(r, "soft_404", "")).lower() == "true":
+            return "soft_404"
         err = str(r.fetch_error) if pd.notna(r.fetch_error) else ""
         if err:
             return err.split(":")[0]

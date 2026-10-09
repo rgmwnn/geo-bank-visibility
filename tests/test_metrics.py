@@ -95,3 +95,12 @@ def test_vis_equal_weights_and_low_n():
     assert bool(b.low_n) is False
     v = row("vis_engine", brand="Bank Jago", engine="ChatGPT")
     assert v.n_answers == 1 and bool(v.low_n) is True
+
+
+def test_soft_404_reason_reported():
+    import copy
+    inp = copy.deepcopy(MINI)
+    inp["pages"] = inp["pages"].assign(soft_404=[False, False, False, True, False])
+    inp["pages"].loc[3, "is_readable"] = False
+    rd = compute_all(inp, CFG)["readability"]
+    assert rd.query("cut == 'domain_type' and value == 'All' and reason == 'soft_404'").pages.iloc[0] == 1

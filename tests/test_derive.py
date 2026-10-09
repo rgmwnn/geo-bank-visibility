@@ -48,3 +48,12 @@ def test_brand_counts_unambiguous_only_and_rollup():
     rows = {r["brand"]: r for r in brand_counts("Bank Jago dan Jago. blu by BCA Digital. BCA hebat.", B)}
     assert rows["Bank Jago"]["count"] == 1 and rows["BCA"]["count"] == 2
     assert rows["Bank Jago"]["first_pos_ratio"] == 0.0
+
+
+def test_soft_404_title_not_readable():
+    meta = {"url": "u", "final_url": "u", "http_status": 200, "fetch_error": "", "content_kind": "html"}
+    for title in ["404", "404 Error Page", "Halaman Tidak Ditemukan", "Page Not Found | Bank"]:
+        row = page_row(meta, {"title": title, "text": "kata " * 80, "n_words": 80}, 50)
+        assert row["is_readable"] is False and row["soft_404"] is True
+    ok = page_row(meta, {"title": "BNI Taplus | BNI", "text": "kata " * 80, "n_words": 80}, 50)
+    assert ok["is_readable"] is True and ok["soft_404"] is False

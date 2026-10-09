@@ -12,6 +12,7 @@ from scripts.io import ROOT, load_config, read_csv, write_csv
 ARTICLE_TYPES = {"Article", "NewsArticle", "BlogPosting", "Report"}
 FAQ_TYPES = {"FAQPage"}
 ORG_TYPES = {"Organization", "BankOrCreditUnion", "FinancialService", "Corporation"}
+SOFT_404_RE = re.compile(r"\b404\b|not found|error page|tidak ditemukan", re.IGNORECASE)
 
 
 def cache_key(url: str) -> str:
@@ -90,10 +91,11 @@ def page_row(meta: dict, extracted: dict, min_words: int) -> dict:
     types = set(extracted.get("schema_types") or [])
     status = meta.get("http_status")
     n_words = int(extracted.get("n_words") or 0)
+    soft_404 = bool(SOFT_404_RE.search(extracted.get("title") or ""))
     return {
         "url": meta["url"], "final_url": meta.get("final_url", ""), "http_status": status,
         "fetch_error": meta.get("fetch_error", ""), "content_kind": meta.get("content_kind", ""),
-        "is_readable": bool(status == 200 and n_words >= min_words),
+        "is_readable": bool(status == 200 and n_words >= min_words and not soft_404), "soft_404": soft_404,
         "title": extracted.get("title", ""), "n_words": n_words, "n_pages": extracted.get("n_pages", ""),
         "published_date": extracted.get("published_date", ""), "date_source": extracted.get("date_source", ""),
         "schema_types": ";".join(sorted(types)),
