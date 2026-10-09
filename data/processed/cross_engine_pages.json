@@ -6,6 +6,7 @@
   "gpt":1,
   "gem":12,
   "engines":"ChatGPT+Gemini",
+  "source_pawc":0.0,
   "rank":2,
   "n":399
  },
@@ -16,6 +17,7 @@
   "gpt":6,
   "gem":2,
   "engines":"ChatGPT+Gemini",
+  "source_pawc":0.0513812947,
   "rank":5,
   "n":399
  },
@@ -26,6 +28,7 @@
   "gpt":1,
   "gem":6,
   "engines":"ChatGPT+Gemini",
+  "source_pawc":0.5440545701,
   "rank":6,
   "n":399
  },
@@ -36,6 +39,7 @@
   "gpt":1,
   "gem":2,
   "engines":"ChatGPT+Gemini",
+  "source_pawc":null,
   "rank":17,
   "n":399
  },
@@ -46,6 +50,7 @@
   "gpt":1,
   "gem":2,
   "engines":"ChatGPT+Gemini",
+  "source_pawc":null,
   "rank":25,
   "n":399
  },
@@ -56,6 +61,7 @@
   "gpt":1,
   "gem":1,
   "engines":"ChatGPT+Gemini",
+  "source_pawc":0.013352989,
   "rank":42,
   "n":399
  },
@@ -66,6 +72,7 @@
   "gpt":1,
   "gem":1,
   "engines":"ChatGPT+Gemini",
+  "source_pawc":0.0,
   "rank":50,
   "n":399
  },
@@ -76,6 +83,7 @@
   "gpt":1,
   "gem":1,
   "engines":"ChatGPT+Gemini",
+  "source_pawc":0.0351987982,
   "rank":51,
   "n":399
  },
@@ -86,6 +94,7 @@
   "gpt":1,
   "gem":1,
   "engines":"ChatGPT+Gemini",
+  "source_pawc":0.0395367533,
   "rank":53,
   "n":399
  },
@@ -96,6 +105,7 @@
   "gpt":1,
   "gem":1,
   "engines":"ChatGPT+Gemini",
+  "source_pawc":0.0653030626,
   "rank":56,
   "n":399
  },
@@ -106,6 +116,7 @@
   "gpt":1,
   "gem":1,
   "engines":"ChatGPT+Gemini",
+  "source_pawc":0.0,
   "rank":57,
   "n":399
  }

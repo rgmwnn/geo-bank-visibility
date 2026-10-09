@@ -4,7 +4,7 @@
   "engine":"All",
   "n_answers":22,
   "low_n":false,
-  "pawc":0.0644843766,
+  "pawc":0.0645813424,
   "pawc_norm":1.0,
   "authority":0.797260274,
   "sentiment_norm":0.9318181818,
@@ -16,60 +16,60 @@
   "engine":"All",
   "n_answers":22,
   "low_n":false,
-  "pawc":0.0562427965,
-  "pawc_norm":0.8721926063,
+  "pawc":0.0574535709,
+  "pawc_norm":0.8896311041,
   "authority":0.8082191781,
   "sentiment_norm":0.8863636364,
   "diversity":1.0,
-  "vis":89.1693855188
+  "vis":89.6053479648
  },
  {
   "brand":"BRI",
   "engine":"All",
   "n_answers":12,
   "low_n":false,
-  "pawc":0.0502204287,
-  "pawc_norm":0.7787999414,
+  "pawc":0.0526961952,
+  "pawc_norm":0.8159662416,
   "authority":0.8075,
   "sentiment_norm":0.9583333333,
   "diversity":1.0,
-  "vis":88.6158318694
+  "vis":89.5449893741
  },
  {
   "brand":"SeaBank",
   "engine":"All",
   "n_answers":21,
   "low_n":false,
-  "pawc":0.0403074398,
-  "pawc_norm":0.6250729548,
+  "pawc":0.0417054747,
+  "pawc_norm":0.6457820961,
   "authority":0.8076555024,
   "sentiment_norm":0.9761904762,
   "diversity":1.0,
-  "vis":85.2229733334
- },
- {
-  "brand":"Bank Mandiri",
-  "engine":"All",
-  "n_answers":11,
-  "low_n":false,
-  "pawc":0.0302379954,
-  "pawc_norm":0.4689197136,
-  "authority":0.7572727273,
-  "sentiment_norm":0.9545454545,
-  "diversity":1.0,
-  "vis":79.5184473847
+  "vis":85.7407018666
  },
  {
   "brand":"BNI",
   "engine":"All",
   "n_answers":8,
   "low_n":false,
-  "pawc":0.0274190781,
-  "pawc_norm":0.4252049811,
+  "pawc":0.0303384432,
+  "pawc_norm":0.4697710211,
   "authority":0.80875,
   "sentiment_norm":0.9375,
   "diversity":1.0,
-  "vis":79.2863745264
+  "vis":80.4005255266
+ },
+ {
+  "brand":"Bank Mandiri",
+  "engine":"All",
+  "n_answers":11,
+  "low_n":false,
+  "pawc":0.0305970454,
+  "pawc_norm":0.4737753076,
+  "authority":0.7572727273,
+  "sentiment_norm":0.9545454545,
+  "diversity":1.0,
+  "vis":79.6398372345
  },
  {
   "brand":"Allo Bank",
@@ -77,47 +77,47 @@
   "n_answers":3,
   "low_n":false,
   "pawc":0.0155038854,
-  "pawc_norm":0.2404285544,
-  "authority":0.78,
+  "pawc_norm":0.2400675624,
+  "authority":0.77,
   "sentiment_norm":1.0,
   "diversity":1.0,
-  "vis":75.5107138594
+  "vis":75.2516890594
  },
  {
   "brand":"Bank Neo Commerce",
   "engine":"All",
   "n_answers":8,
   "low_n":false,
-  "pawc":0.021616072,
-  "pawc_norm":0.3352140956,
-  "authority":0.8063291139,
+  "pawc":0.0215567768,
+  "pawc_norm":0.3337926403,
+  "authority":0.8025316456,
   "sentiment_norm":0.8125,
   "diversity":1.0,
-  "vis":73.8510802373
+  "vis":73.7206071472
  },
  {
   "brand":"Krom Bank",
   "engine":"All",
   "n_answers":10,
   "low_n":false,
-  "pawc":0.0166644246,
-  "pawc_norm":0.2584257695,
-  "authority":0.7848484848,
+  "pawc":0.0166545753,
+  "pawc_norm":0.2578852449,
+  "authority":0.7818181818,
   "sentiment_norm":0.9,
   "diversity":1.0,
-  "vis":73.5818563583
+  "vis":73.492585669
  },
  {
   "brand":"Bank Saqu",
   "engine":"All",
   "n_answers":3,
   "low_n":false,
-  "pawc":0.0045157245,
-  "pawc_norm":0.0700281953,
+  "pawc":0.0046114334,
+  "pawc_norm":0.071405041,
   "authority":0.8,
   "sentiment_norm":1.0,
   "diversity":1.0,
-  "vis":71.7507048821
+  "vis":71.785126026
  },
  {
   "brand":"Nobu Bank",
@@ -125,11 +125,11 @@
   "n_answers":1,
   "low_n":true,
   "pawc":0.0067110196,
-  "pawc_norm":0.1040720247,
+  "pawc_norm":0.1039157656,
   "authority":0.82,
   "sentiment_norm":1.0,
   "diversity":0.5,
-  "vis":60.6018006182
+  "vis":60.5978941388
  },
  {
   "brand":"Bank Aladin Syariah",
@@ -137,11 +137,11 @@
   "n_answers":1,
   "low_n":true,
   "pawc":0.0012154733,
-  "pawc_norm":0.0188491122,
+  "pawc_norm":0.0188208112,
   "authority":0.76,
   "sentiment_norm":1.0,
   "diversity":0.5,
-  "vis":56.9712278056
+  "vis":56.9705202795
  },
  {
   "brand":"Amar Bank",
@@ -149,11 +149,11 @@
   "n_answers":1,
   "low_n":true,
   "pawc":0.0009645674,
-  "pawc_norm":0.0149581565,
+  "pawc_norm":0.0149356976,
   "authority":0.76,
   "sentiment_norm":1.0,
   "diversity":0.5,
-  "vis":56.8739539128
+  "vis":56.8733924388
  },
  {
   "brand":"BSI",
@@ -161,11 +161,11 @@
   "n_answers":2,
   "low_n":true,
   "pawc":0.0016733973,
-  "pawc_norm":0.0259504297,
+  "pawc_norm":0.0259114663,
   "authority":0.745,
   "sentiment_norm":1.0,
   "diversity":0.5,
-  "vis":56.773760742
+  "vis":56.7727866587
  },
  {
   "brand":"CIMB Niaga",
@@ -173,11 +173,11 @@
   "n_answers":1,
   "low_n":true,
   "pawc":0.0021365455,
-  "pawc_norm":0.0331327619,
+  "pawc_norm":0.0330830146,
   "authority":0.67,
   "sentiment_norm":1.0,
   "diversity":0.5,
-  "vis":55.0783190465
+  "vis":55.0770753649
  },
  {
   "brand":"Superbank",
@@ -185,11 +185,11 @@
   "n_answers":4,
   "low_n":false,
   "pawc":0.0055693941,
-  "pawc_norm":0.0863681164,
+  "pawc_norm":0.0862384388,
   "authority":0.73,
   "sentiment_norm":0.875,
   "diversity":0.5,
-  "vis":54.7842029098
+  "vis":54.7809609697
  },
  {
   "brand":"Danamon",
@@ -197,11 +197,11 @@
   "n_answers":1,
   "low_n":true,
   "pawc":0.0011110443,
-  "pawc_norm":0.0172296671,
+  "pawc_norm":0.0172037976,
   "authority":0.67,
   "sentiment_norm":1.0,
   "diversity":0.5,
-  "vis":54.6807416782
+  "vis":54.6800949401
  },
  {
   "brand":"Bank BTPN",
@@ -209,11 +209,11 @@
   "n_answers":5,
   "low_n":false,
   "pawc":0.0035441846,
-  "pawc_norm":0.0549619117,
+  "pawc_norm":0.054879389,
   "authority":0.724,
   "sentiment_norm":0.9,
   "diversity":0.5,
-  "vis":54.4740477928
+  "vis":54.4719847256
  },
  {
   "brand":"BTN",
@@ -221,10 +221,10 @@
   "n_answers":1,
   "low_n":true,
   "pawc":0.0018748629,
-  "pawc_norm":0.0290746841,
+  "pawc_norm":0.0290310299,
   "authority":0.67,
   "sentiment_norm":0.5,
   "diversity":0.5,
-  "vis":42.4768671037
+  "vis":42.4757757474
  }
 ]

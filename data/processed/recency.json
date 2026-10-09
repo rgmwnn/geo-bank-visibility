@@ -1,107 +1,722 @@
 [
  {
-  "engine":"All",
+  "cut":"engine",
+  "value":"All",
+  "basis":"all dates",
   "group":"unknown",
-  "citations":116,
-  "share":0.3483483483,
+  "citations":129,
+  "share":0.3873873874,
   "n":333
  },
  {
-  "engine":"All",
+  "cut":"engine",
+  "value":"All",
+  "basis":"all dates",
   "group":">365",
   "citations":102,
   "share":0.3063063063,
   "n":333
  },
  {
-  "engine":"All",
+  "cut":"engine",
+  "value":"All",
+  "basis":"all dates",
   "group":"31-180",
   "citations":56,
   "share":0.1681681682,
   "n":333
  },
  {
-  "engine":"All",
+  "cut":"engine",
+  "value":"All",
+  "basis":"all dates",
   "group":"181-365",
   "citations":32,
   "share":0.0960960961,
   "n":333
  },
  {
-  "engine":"All",
+  "cut":"engine",
+  "value":"All",
+  "basis":"all dates",
   "group":"0-30",
+  "citations":14,
+  "share":0.042042042,
+  "n":333
+ },
+ {
+  "cut":"engine",
+  "value":"All",
+  "basis":"structured dates only",
+  "group":"unknown",
+  "citations":200,
+  "share":0.6006006006,
+  "n":333
+ },
+ {
+  "cut":"engine",
+  "value":"All",
+  "basis":"structured dates only",
+  "group":">365",
+  "citations":65,
+  "share":0.1951951952,
+  "n":333
+ },
+ {
+  "cut":"engine",
+  "value":"All",
+  "basis":"structured dates only",
+  "group":"31-180",
+  "citations":36,
+  "share":0.1081081081,
+  "n":333
+ },
+ {
+  "cut":"engine",
+  "value":"All",
+  "basis":"structured dates only",
+  "group":"181-365",
   "citations":27,
   "share":0.0810810811,
   "n":333
  },
  {
-  "engine":"ChatGPT",
+  "cut":"engine",
+  "value":"All",
+  "basis":"structured dates only",
+  "group":"0-30",
+  "citations":5,
+  "share":0.015015015,
+  "n":333
+ },
+ {
+  "cut":"engine",
+  "value":"ChatGPT",
+  "basis":"all dates",
   "group":"unknown",
-  "citations":83,
-  "share":0.4825581395,
+  "citations":94,
+  "share":0.5465116279,
   "n":172
  },
  {
-  "engine":"ChatGPT",
+  "cut":"engine",
+  "value":"ChatGPT",
+  "basis":"all dates",
   "group":">365",
   "citations":40,
   "share":0.2325581395,
   "n":172
  },
  {
-  "engine":"ChatGPT",
+  "cut":"engine",
+  "value":"ChatGPT",
+  "basis":"all dates",
   "group":"31-180",
   "citations":20,
   "share":0.1162790698,
   "n":172
  },
  {
-  "engine":"ChatGPT",
-  "group":"0-30",
-  "citations":20,
-  "share":0.1162790698,
-  "n":172
- },
- {
-  "engine":"ChatGPT",
+  "cut":"engine",
+  "value":"ChatGPT",
+  "basis":"all dates",
   "group":"181-365",
   "citations":9,
   "share":0.0523255814,
   "n":172
  },
  {
-  "engine":"Gemini",
+  "cut":"engine",
+  "value":"ChatGPT",
+  "basis":"all dates",
+  "group":"0-30",
+  "citations":9,
+  "share":0.0523255814,
+  "n":172
+ },
+ {
+  "cut":"engine",
+  "value":"ChatGPT",
+  "basis":"structured dates only",
+  "group":"unknown",
+  "citations":144,
+  "share":0.8372093023,
+  "n":172
+ },
+ {
+  "cut":"engine",
+  "value":"ChatGPT",
+  "basis":"structured dates only",
+  "group":">365",
+  "citations":15,
+  "share":0.0872093023,
+  "n":172
+ },
+ {
+  "cut":"engine",
+  "value":"ChatGPT",
+  "basis":"structured dates only",
+  "group":"181-365",
+  "citations":6,
+  "share":0.0348837209,
+  "n":172
+ },
+ {
+  "cut":"engine",
+  "value":"ChatGPT",
+  "basis":"structured dates only",
+  "group":"31-180",
+  "citations":5,
+  "share":0.0290697674,
+  "n":172
+ },
+ {
+  "cut":"engine",
+  "value":"ChatGPT",
+  "basis":"structured dates only",
+  "group":"0-30",
+  "citations":2,
+  "share":0.011627907,
+  "n":172
+ },
+ {
+  "cut":"engine",
+  "value":"Gemini",
+  "basis":"all dates",
   "group":">365",
   "citations":62,
   "share":0.3850931677,
   "n":161
  },
  {
-  "engine":"Gemini",
+  "cut":"engine",
+  "value":"Gemini",
+  "basis":"all dates",
   "group":"31-180",
   "citations":36,
   "share":0.2236024845,
   "n":161
  },
  {
-  "engine":"Gemini",
+  "cut":"engine",
+  "value":"Gemini",
+  "basis":"all dates",
   "group":"unknown",
-  "citations":33,
-  "share":0.2049689441,
+  "citations":35,
+  "share":0.2173913043,
   "n":161
  },
  {
-  "engine":"Gemini",
+  "cut":"engine",
+  "value":"Gemini",
+  "basis":"all dates",
   "group":"181-365",
   "citations":23,
   "share":0.1428571429,
   "n":161
  },
  {
-  "engine":"Gemini",
+  "cut":"engine",
+  "value":"Gemini",
+  "basis":"all dates",
   "group":"0-30",
-  "citations":7,
-  "share":0.0434782609,
+  "citations":5,
+  "share":0.0310559006,
   "n":161
+ },
+ {
+  "cut":"engine",
+  "value":"Gemini",
+  "basis":"structured dates only",
+  "group":"unknown",
+  "citations":56,
+  "share":0.347826087,
+  "n":161
+ },
+ {
+  "cut":"engine",
+  "value":"Gemini",
+  "basis":"structured dates only",
+  "group":">365",
+  "citations":50,
+  "share":0.3105590062,
+  "n":161
+ },
+ {
+  "cut":"engine",
+  "value":"Gemini",
+  "basis":"structured dates only",
+  "group":"31-180",
+  "citations":31,
+  "share":0.1925465839,
+  "n":161
+ },
+ {
+  "cut":"engine",
+  "value":"Gemini",
+  "basis":"structured dates only",
+  "group":"181-365",
+  "citations":21,
+  "share":0.1304347826,
+  "n":161
+ },
+ {
+  "cut":"engine",
+  "value":"Gemini",
+  "basis":"structured dates only",
+  "group":"0-30",
+  "citations":3,
+  "share":0.0186335404,
+  "n":161
+ },
+ {
+  "cut":"domain_type",
+  "value":"app_store",
+  "basis":"all dates",
+  "group":"unknown",
+  "citations":1,
+  "share":1.0,
+  "n":1
+ },
+ {
+  "cut":"domain_type",
+  "value":"app_store",
+  "basis":"structured dates only",
+  "group":"unknown",
+  "citations":1,
+  "share":1.0,
+  "n":1
+ },
+ {
+  "cut":"domain_type",
+  "value":"bank_official",
+  "basis":"all dates",
+  "group":"unknown",
+  "citations":105,
+  "share":0.6325301205,
+  "n":166
+ },
+ {
+  "cut":"domain_type",
+  "value":"bank_official",
+  "basis":"all dates",
+  "group":">365",
+  "citations":38,
+  "share":0.2289156627,
+  "n":166
+ },
+ {
+  "cut":"domain_type",
+  "value":"bank_official",
+  "basis":"all dates",
+  "group":"31-180",
+  "citations":10,
+  "share":0.0602409639,
+  "n":166
+ },
+ {
+  "cut":"domain_type",
+  "value":"bank_official",
+  "basis":"all dates",
+  "group":"0-30",
+  "citations":8,
+  "share":0.0481927711,
+  "n":166
+ },
+ {
+  "cut":"domain_type",
+  "value":"bank_official",
+  "basis":"all dates",
+  "group":"181-365",
+  "citations":5,
+  "share":0.0301204819,
+  "n":166
+ },
+ {
+  "cut":"domain_type",
+  "value":"bank_official",
+  "basis":"structured dates only",
+  "group":"unknown",
+  "citations":149,
+  "share":0.8975903614,
+  "n":166
+ },
+ {
+  "cut":"domain_type",
+  "value":"bank_official",
+  "basis":"structured dates only",
+  "group":">365",
+  "citations":13,
+  "share":0.078313253,
+  "n":166
+ },
+ {
+  "cut":"domain_type",
+  "value":"bank_official",
+  "basis":"structured dates only",
+  "group":"181-365",
+  "citations":3,
+  "share":0.0180722892,
+  "n":166
+ },
+ {
+  "cut":"domain_type",
+  "value":"bank_official",
+  "basis":"structured dates only",
+  "group":"31-180",
+  "citations":1,
+  "share":0.0060240964,
+  "n":166
+ },
+ {
+  "cut":"domain_type",
+  "value":"blog_aggregator",
+  "basis":"all dates",
+  "group":">365",
+  "citations":20,
+  "share":0.4255319149,
+  "n":47
+ },
+ {
+  "cut":"domain_type",
+  "value":"blog_aggregator",
+  "basis":"all dates",
+  "group":"31-180",
+  "citations":14,
+  "share":0.2978723404,
+  "n":47
+ },
+ {
+  "cut":"domain_type",
+  "value":"blog_aggregator",
+  "basis":"all dates",
+  "group":"181-365",
+  "citations":11,
+  "share":0.2340425532,
+  "n":47
+ },
+ {
+  "cut":"domain_type",
+  "value":"blog_aggregator",
+  "basis":"all dates",
+  "group":"unknown",
+  "citations":2,
+  "share":0.0425531915,
+  "n":47
+ },
+ {
+  "cut":"domain_type",
+  "value":"blog_aggregator",
+  "basis":"structured dates only",
+  "group":">365",
+  "citations":18,
+  "share":0.3829787234,
+  "n":47
+ },
+ {
+  "cut":"domain_type",
+  "value":"blog_aggregator",
+  "basis":"structured dates only",
+  "group":"31-180",
+  "citations":12,
+  "share":0.2553191489,
+  "n":47
+ },
+ {
+  "cut":"domain_type",
+  "value":"blog_aggregator",
+  "basis":"structured dates only",
+  "group":"181-365",
+  "citations":11,
+  "share":0.2340425532,
+  "n":47
+ },
+ {
+  "cut":"domain_type",
+  "value":"blog_aggregator",
+  "basis":"structured dates only",
+  "group":"unknown",
+  "citations":6,
+  "share":0.1276595745,
+  "n":47
+ },
+ {
+  "cut":"domain_type",
+  "value":"fintech_platform",
+  "basis":"all dates",
+  "group":">365",
+  "citations":18,
+  "share":0.4,
+  "n":45
+ },
+ {
+  "cut":"domain_type",
+  "value":"fintech_platform",
+  "basis":"all dates",
+  "group":"31-180",
+  "citations":17,
+  "share":0.3777777778,
+  "n":45
+ },
+ {
+  "cut":"domain_type",
+  "value":"fintech_platform",
+  "basis":"all dates",
+  "group":"181-365",
+  "citations":10,
+  "share":0.2222222222,
+  "n":45
+ },
+ {
+  "cut":"domain_type",
+  "value":"fintech_platform",
+  "basis":"structured dates only",
+  "group":"31-180",
+  "citations":17,
+  "share":0.3777777778,
+  "n":45
+ },
+ {
+  "cut":"domain_type",
+  "value":"fintech_platform",
+  "basis":"structured dates only",
+  "group":">365",
+  "citations":14,
+  "share":0.3111111111,
+  "n":45
+ },
+ {
+  "cut":"domain_type",
+  "value":"fintech_platform",
+  "basis":"structured dates only",
+  "group":"181-365",
+  "citations":10,
+  "share":0.2222222222,
+  "n":45
+ },
+ {
+  "cut":"domain_type",
+  "value":"fintech_platform",
+  "basis":"structured dates only",
+  "group":"unknown",
+  "citations":4,
+  "share":0.0888888889,
+  "n":45
+ },
+ {
+  "cut":"domain_type",
+  "value":"forum_ugc",
+  "basis":"all dates",
+  "group":"31-180",
+  "citations":1,
+  "share":1.0,
+  "n":1
+ },
+ {
+  "cut":"domain_type",
+  "value":"forum_ugc",
+  "basis":"structured dates only",
+  "group":"unknown",
+  "citations":1,
+  "share":1.0,
+  "n":1
+ },
+ {
+  "cut":"domain_type",
+  "value":"news_media",
+  "basis":"all dates",
+  "group":">365",
+  "citations":10,
+  "share":0.3333333333,
+  "n":30
+ },
+ {
+  "cut":"domain_type",
+  "value":"news_media",
+  "basis":"all dates",
+  "group":"31-180",
+  "citations":6,
+  "share":0.2,
+  "n":30
+ },
+ {
+  "cut":"domain_type",
+  "value":"news_media",
+  "basis":"all dates",
+  "group":"0-30",
+  "citations":5,
+  "share":0.1666666667,
+  "n":30
+ },
+ {
+  "cut":"domain_type",
+  "value":"news_media",
+  "basis":"all dates",
+  "group":"181-365",
+  "citations":5,
+  "share":0.1666666667,
+  "n":30
+ },
+ {
+  "cut":"domain_type",
+  "value":"news_media",
+  "basis":"all dates",
+  "group":"unknown",
+  "citations":4,
+  "share":0.1333333333,
+  "n":30
+ },
+ {
+  "cut":"domain_type",
+  "value":"news_media",
+  "basis":"structured dates only",
+  "group":">365",
+  "citations":10,
+  "share":0.3333333333,
+  "n":30
+ },
+ {
+  "cut":"domain_type",
+  "value":"news_media",
+  "basis":"structured dates only",
+  "group":"31-180",
+  "citations":6,
+  "share":0.2,
+  "n":30
+ },
+ {
+  "cut":"domain_type",
+  "value":"news_media",
+  "basis":"structured dates only",
+  "group":"unknown",
+  "citations":6,
+  "share":0.2,
+  "n":30
+ },
+ {
+  "cut":"domain_type",
+  "value":"news_media",
+  "basis":"structured dates only",
+  "group":"0-30",
+  "citations":5,
+  "share":0.1666666667,
+  "n":30
+ },
+ {
+  "cut":"domain_type",
+  "value":"news_media",
+  "basis":"structured dates only",
+  "group":"181-365",
+  "citations":3,
+  "share":0.1,
+  "n":30
+ },
+ {
+  "cut":"domain_type",
+  "value":"other",
+  "basis":"all dates",
+  "group":"unknown",
+  "citations":2,
+  "share":0.5,
+  "n":4
+ },
+ {
+  "cut":"domain_type",
+  "value":"other",
+  "basis":"all dates",
+  "group":"31-180",
+  "citations":1,
+  "share":0.25,
+  "n":4
+ },
+ {
+  "cut":"domain_type",
+  "value":"other",
+  "basis":"all dates",
+  "group":">365",
+  "citations":1,
+  "share":0.25,
+  "n":4
+ },
+ {
+  "cut":"domain_type",
+  "value":"other",
+  "basis":"structured dates only",
+  "group":"unknown",
+  "citations":3,
+  "share":0.75,
+  "n":4
+ },
+ {
+  "cut":"domain_type",
+  "value":"other",
+  "basis":"structured dates only",
+  "group":">365",
+  "citations":1,
+  "share":0.25,
+  "n":4
+ },
+ {
+  "cut":"domain_type",
+  "value":"regulator",
+  "basis":"all dates",
+  "group":">365",
+  "citations":15,
+  "share":0.3846153846,
+  "n":39
+ },
+ {
+  "cut":"domain_type",
+  "value":"regulator",
+  "basis":"all dates",
+  "group":"unknown",
+  "citations":15,
+  "share":0.3846153846,
+  "n":39
+ },
+ {
+  "cut":"domain_type",
+  "value":"regulator",
+  "basis":"all dates",
+  "group":"31-180",
+  "citations":7,
+  "share":0.1794871795,
+  "n":39
+ },
+ {
+  "cut":"domain_type",
+  "value":"regulator",
+  "basis":"all dates",
+  "group":"181-365",
+  "citations":1,
+  "share":0.0256410256,
+  "n":39
+ },
+ {
+  "cut":"domain_type",
+  "value":"regulator",
+  "basis":"all dates",
+  "group":"0-30",
+  "citations":1,
+  "share":0.0256410256,
+  "n":39
+ },
+ {
+  "cut":"domain_type",
+  "value":"regulator",
+  "basis":"structured dates only",
+  "group":"unknown",
+  "citations":30,
+  "share":0.7692307692,
+  "n":39
+ },
+ {
+  "cut":"domain_type",
+  "value":"regulator",
+  "basis":"structured dates only",
+  "group":">365",
+  "citations":9,
+  "share":0.2307692308,
+  "n":39
  }
 ]

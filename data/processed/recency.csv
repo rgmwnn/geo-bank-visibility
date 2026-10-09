@@ -1,16 +1,81 @@
-engine,group,citations,share,n
-All,unknown,116,0.3483483483483483,333
-All,>365,102,0.3063063063063063,333
-All,31-180,56,0.16816816816816818,333
-All,181-365,32,0.0960960960960961,333
-All,0-30,27,0.08108108108108109,333
-ChatGPT,unknown,83,0.48255813953488375,172
-ChatGPT,>365,40,0.23255813953488372,172
-ChatGPT,31-180,20,0.11627906976744186,172
-ChatGPT,0-30,20,0.11627906976744186,172
-ChatGPT,181-365,9,0.05232558139534884,172
-Gemini,>365,62,0.38509316770186336,161
-Gemini,31-180,36,0.2236024844720497,161
-Gemini,unknown,33,0.20496894409937888,161
-Gemini,181-365,23,0.14285714285714285,161
-Gemini,0-30,7,0.043478260869565216,161
+cut,value,basis,group,citations,share,n
+engine,All,all dates,unknown,129,0.38738738738738737,333
+engine,All,all dates,>365,102,0.3063063063063063,333
+engine,All,all dates,31-180,56,0.16816816816816818,333
+engine,All,all dates,181-365,32,0.0960960960960961,333
+engine,All,all dates,0-30,14,0.042042042042042045,333
+engine,All,structured dates only,unknown,200,0.6006006006006006,333
+engine,All,structured dates only,>365,65,0.19519519519519518,333
+engine,All,structured dates only,31-180,36,0.10810810810810811,333
+engine,All,structured dates only,181-365,27,0.08108108108108109,333
+engine,All,structured dates only,0-30,5,0.015015015015015015,333
+engine,ChatGPT,all dates,unknown,94,0.5465116279069767,172
+engine,ChatGPT,all dates,>365,40,0.23255813953488372,172
+engine,ChatGPT,all dates,31-180,20,0.11627906976744186,172
+engine,ChatGPT,all dates,181-365,9,0.05232558139534884,172
+engine,ChatGPT,all dates,0-30,9,0.05232558139534884,172
+engine,ChatGPT,structured dates only,unknown,144,0.8372093023255814,172
+engine,ChatGPT,structured dates only,>365,15,0.0872093023255814,172
+engine,ChatGPT,structured dates only,181-365,6,0.03488372093023256,172
+engine,ChatGPT,structured dates only,31-180,5,0.029069767441860465,172
+engine,ChatGPT,structured dates only,0-30,2,0.011627906976744186,172
+engine,Gemini,all dates,>365,62,0.38509316770186336,161
+engine,Gemini,all dates,31-180,36,0.2236024844720497,161
+engine,Gemini,all dates,unknown,35,0.21739130434782608,161
+engine,Gemini,all dates,181-365,23,0.14285714285714285,161
+engine,Gemini,all dates,0-30,5,0.031055900621118012,161
+engine,Gemini,structured dates only,unknown,56,0.34782608695652173,161
+engine,Gemini,structured dates only,>365,50,0.3105590062111801,161
+engine,Gemini,structured dates only,31-180,31,0.19254658385093168,161
+engine,Gemini,structured dates only,181-365,21,0.13043478260869565,161
+engine,Gemini,structured dates only,0-30,3,0.018633540372670808,161
+domain_type,app_store,all dates,unknown,1,1.0,1
+domain_type,app_store,structured dates only,unknown,1,1.0,1
+domain_type,bank_official,all dates,unknown,105,0.6325301204819277,166
+domain_type,bank_official,all dates,>365,38,0.2289156626506024,166
+domain_type,bank_official,all dates,31-180,10,0.060240963855421686,166
+domain_type,bank_official,all dates,0-30,8,0.04819277108433735,166
+domain_type,bank_official,all dates,181-365,5,0.030120481927710843,166
+domain_type,bank_official,structured dates only,unknown,149,0.8975903614457831,166
+domain_type,bank_official,structured dates only,>365,13,0.0783132530120482,166
+domain_type,bank_official,structured dates only,181-365,3,0.018072289156626505,166
+domain_type,bank_official,structured dates only,31-180,1,0.006024096385542169,166
+domain_type,blog_aggregator,all dates,>365,20,0.425531914893617,47
+domain_type,blog_aggregator,all dates,31-180,14,0.2978723404255319,47
+domain_type,blog_aggregator,all dates,181-365,11,0.23404255319148937,47
+domain_type,blog_aggregator,all dates,unknown,2,0.0425531914893617,47
+domain_type,blog_aggregator,structured dates only,>365,18,0.3829787234042553,47
+domain_type,blog_aggregator,structured dates only,31-180,12,0.2553191489361702,47
+domain_type,blog_aggregator,structured dates only,181-365,11,0.23404255319148937,47
+domain_type,blog_aggregator,structured dates only,unknown,6,0.1276595744680851,47
+domain_type,fintech_platform,all dates,>365,18,0.4,45
+domain_type,fintech_platform,all dates,31-180,17,0.37777777777777777,45
+domain_type,fintech_platform,all dates,181-365,10,0.2222222222222222,45
+domain_type,fintech_platform,structured dates only,31-180,17,0.37777777777777777,45
+domain_type,fintech_platform,structured dates only,>365,14,0.3111111111111111,45
+domain_type,fintech_platform,structured dates only,181-365,10,0.2222222222222222,45
+domain_type,fintech_platform,structured dates only,unknown,4,0.08888888888888889,45
+domain_type,forum_ugc,all dates,31-180,1,1.0,1
+domain_type,forum_ugc,structured dates only,unknown,1,1.0,1
+domain_type,news_media,all dates,>365,10,0.3333333333333333,30
+domain_type,news_media,all dates,31-180,6,0.2,30
+domain_type,news_media,all dates,0-30,5,0.16666666666666666,30
+domain_type,news_media,all dates,181-365,5,0.16666666666666666,30
+domain_type,news_media,all dates,unknown,4,0.13333333333333333,30
+domain_type,news_media,structured dates only,>365,10,0.3333333333333333,30
+domain_type,news_media,structured dates only,31-180,6,0.2,30
+domain_type,news_media,structured dates only,unknown,6,0.2,30
+domain_type,news_media,structured dates only,0-30,5,0.16666666666666666,30
+domain_type,news_media,structured dates only,181-365,3,0.1,30
+domain_type,other,all dates,unknown,2,0.5,4
+domain_type,other,all dates,31-180,1,0.25,4
+domain_type,other,all dates,>365,1,0.25,4
+domain_type,other,structured dates only,unknown,3,0.75,4
+domain_type,other,structured dates only,>365,1,0.25,4
+domain_type,regulator,all dates,>365,15,0.38461538461538464,39
+domain_type,regulator,all dates,unknown,15,0.38461538461538464,39
+domain_type,regulator,all dates,31-180,7,0.1794871794871795,39
+domain_type,regulator,all dates,181-365,1,0.02564102564102564,39
+domain_type,regulator,all dates,0-30,1,0.02564102564102564,39
+domain_type,regulator,structured dates only,unknown,30,0.7692307692307693,39
+domain_type,regulator,structured dates only,>365,9,0.23076923076923078,39

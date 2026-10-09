@@ -12,7 +12,7 @@ Run date of all answers: 2026-10-09. Engines: ChatGPT and Gemini, 20 prompts eac
 | Citations (links under the source heading, deduplicated within an answer) | 399 | 399 |
 | Unique cited URLs | 243 | 243 |
 | Unique cited domains | 97 | 97 |
-| Answer sentences |  | 894 |
+| Answer sentences |  | 857 |
 | Brand mentions (parent brand credited) |  | 427 |
 | Brands mentioned |  | 19 |
 
@@ -103,7 +103,7 @@ To check the matching, Claude labelled 30 sentences by hand (15 per engine, fixe
 | Threshold | Agreement (of 30) |
 |---|---|
 | 0.15 | 9 |
-| 0.2 | 12 |
+| 0.2 | 13 |
 | 0.25 | 15 |
 | 0.3 | 18 |
 | 0.35 | 17 |
@@ -117,8 +117,8 @@ Share of sentences matched to a readable cited page:
 
 | Engine | Coverage |
 |---|---|
-| ChatGPT | 39.2% |
-| Gemini | 33.9% |
+| ChatGPT | 37.2% |
+| Gemini | 34.2% |
 
 ## Ambiguous brand hits
 
