@@ -1,0 +1,10 @@
+pandas>=2.2
+openpyxl>=3.1
+PyYAML>=6.0
+requests>=2.32
+trafilatura>=1.12
+htmldate>=1.9
+beautifulsoup4>=4.12
+pypdf>=4.3
+fpdf2>=2.7
+pytest>=8.0
