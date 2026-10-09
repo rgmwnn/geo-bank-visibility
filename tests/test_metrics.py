@@ -71,13 +71,23 @@ def test_unreadable_pages_excluded_everywhere():
     # gem-01 s1 points at the unreadable a.id/2, so Gemini coverage is 1/12 and a.id has no Gemini source PAWC
     assert row("attribution_coverage", engine="Gemini").coverage == pytest.approx(1 / 12)
     assert R["source_pawc_domain"].query("domain == 'a.id' and engine == 'Gemini'").empty
-    # a.id/2's 10 Jago mentions are not counted: Jago = 2 + 1 of 11
-    assert row("source_sov", brand="Bank Jago").source_sov == pytest.approx(3 / 11)
+    # a.id/2's 10 Jago mentions are not counted. Page-weighted shares over the 4 readable pages with brands:
+    # a1 BCA 1 | b1 BCA 0.2, Krom 0.8 | b2 Jago 1 | c1 Jago 1  ->  Jago (1 + 1) / 4 = 0.5
+    j = row("source_sov", brand="Bank Jago")
+    assert j.source_sov == pytest.approx(0.5) and j.source_sov_raw == pytest.approx(3 / 11)
 
 
 def test_brand_only_in_pages_kept():
     k = row("source_sov", brand="Krom Bank")
-    assert k.ai_sov == 0 and k.sov_gap == pytest.approx(-4 / 11)
+    assert k.ai_sov == 0 and k.source_sov == pytest.approx(0.2) and k.sov_gap == pytest.approx(-0.2)
+
+
+def test_long_document_does_not_dominate_source_sov():
+    import copy
+    inp = copy.deepcopy(MINI)
+    inp["page_brand_counts"].loc[0, "count"] = 1000  # a.id/1 now mentions BCA 1000 times
+    sov = compute_all(inp, CFG)["source_sov"].set_index("brand")
+    assert sov.loc["BCA", "source_sov"] == pytest.approx(0.3)
 
 
 def test_recency_groups():

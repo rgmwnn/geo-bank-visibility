@@ -150,6 +150,10 @@ def _page_tables(inp: dict, cfg: dict) -> dict:
     pbc = inp["page_brand_counts"]
     pbc = pbc[pbc.url.isin(readable)]
     src = pbc.groupby("brand").agg(source_count=("count", "sum"), n_pages=("url", "nunique"))
+    # each page carries equal weight: its brand shares sum to 1, so one long PDF cannot dominate
+    pbc = pbc.assign(page_share=pbc["count"] / pbc.groupby("url")["count"].transform("sum"))
+    n_brand_pages = pbc.url.nunique()
+    weighted = pbc.groupby("brand").page_share.sum() / n_brand_pages if n_brand_pages else pbc.groupby("brand").page_share.sum()
     ai = inp["mentions"].groupby("brand").size()
     brands = sorted(set(src.index) | set(ai.index))
     total_src, total_ai = src.source_count.sum(), ai.sum()
@@ -157,10 +161,11 @@ def _page_tables(inp: dict, cfg: dict) -> dict:
     for b in brands:
         sc = int(src.source_count.get(b, 0))
         am = int(ai.get(b, 0))
-        s_sov = sc / total_src if total_src else 0.0
+        s_sov = float(weighted.get(b, 0.0))
         a_sov = am / total_ai if total_ai else 0.0
-        rows.append({"brand": b, "source_count": sc, "n_pages": int(src.n_pages.get(b, 0)), "source_sov": s_sov,
-                     "ai_mentions": am, "ai_sov": a_sov, "sov_gap": a_sov - s_sov, "n_readable_pages": len(readable)})
+        rows.append({"brand": b, "source_sov": s_sov, "source_sov_raw": sc / total_src if total_src else 0.0,
+                     "source_count": sc, "n_pages": int(src.n_pages.get(b, 0)), "ai_mentions": am, "ai_sov": a_sov,
+                     "sov_gap": a_sov - s_sov, "n_pages_with_brands": n_brand_pages, "n_readable_pages": len(readable)})
     out["source_sov"] = pd.DataFrame(rows)
 
     def reason(r):
