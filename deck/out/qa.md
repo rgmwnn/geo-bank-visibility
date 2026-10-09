@@ -14,3 +14,9 @@ Found and fixed:
 - Side charts sat high in their area: centred vertically and given more width.
 
 Open: none.
+
+# Canva import check (2026-10-09)
+
+Design DAHXhYnEu0c, 32 pages, imported from the deck branch. Every page read back as a thumbnail and compared with the local render: Work Sans and IBM Plex Mono survived, letterbox bars, slates and transparent charts match, speaker notes present (checked pages 2 and 24). No repairs needed in Canva.
+
+Note: the two thin engine-colour lines on the cover, hero and title cards read faintly in Canva's small thumbnails; at full size they render as drawn.
