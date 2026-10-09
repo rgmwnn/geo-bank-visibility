@@ -193,3 +193,13 @@ def main(cache: Path = ROOT / ".cache/crawl") -> None:
 
 if __name__ == "__main__":
     main()
+
+
+def threshold_agreement(scores: pd.DataFrame, labels: pd.DataFrame, t: float) -> int:
+    m = labels.merge(scores, on=["answer_id", "sent_idx"], how="left")
+    hit = 0
+    for r in m.itertuples():
+        attributed = pd.notna(r.best_score) and r.best_score >= t and pd.notna(r.best_url)
+        if (attributed and r.best_url == r.expected_url) or (not attributed and r.expected_url == "none"):
+            hit += 1
+    return hit
