@@ -16,14 +16,14 @@ This repo holds the data pipeline behind that question. It turns 40 AI answers i
 | Metric | Unit | Meaning |
 |---|---|---|
 | Mention rate | answers | Share of answers that name the bank |
-| AI-SOV | mentions | The bank's share of all bank mentions in the answers |
+| AI-SOV | answers | The bank's share of bank mentions, with each answer weighted equally (a raw mention-count version is kept as `ai_sov`) |
 | Brand PAWC | sentences | How much of an answer talks about the bank, with earlier sentences weighted more (`exp(-position / sentence count)`, from Aggarwal et al. 2024, applied to brands) |
 | First-mention position | sentences | How early in the answer the bank first appears (0 = first sentence) |
 | Sentiment | answer and bank pairs | Positive, neutral, negative or mixed, labelled by Claude with a one-line reason |
 | Domain and page citations | citations | Which sites and pages each engine cites, how often, and at what position in the source list |
-| Source PAWC | sentences | Share of each answer found in each cited page, matched by word-pair overlap |
-| Source-SOV | crawled pages | The bank's share of brand mentions across the readable cited pages, each page weighted equally |
-| SOV gap | | AI-SOV minus Source-SOV. Positive means the engines talk about the bank more than its cited sources do |
+| Source PAWC | sentences | Share of each answer found in each cited page, matched by word-pair overlap. Empty where no cited page could be read |
+| Source-SOV | crawled pages | The bank's share of brand mentions across the readable cited pages, with each page weighted equally (raw version: `source_sov_raw`) |
+| SOV gap | | Answer-weighted AI-SOV minus page-weighted Source-SOV. Positive means the engines talk about the bank more than its cited sources do |
 | VIS (0 to 100) | | Equal-weight mean of brand PAWC (scaled to the leader), source authority, sentiment and engine coverage |
 
 Mobile apps and subsidiaries credit their parent bank: blu, myBCA and BCA mobile count for BCA; Livin' for Bank Mandiri; BRImo and Bank Raya for BRI; wondr for BNI; Jenius for Bank BTPN. The app name stays in the `sub_brand` column.

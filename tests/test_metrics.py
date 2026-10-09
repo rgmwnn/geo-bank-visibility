@@ -1,5 +1,7 @@
 import math
 
+import pandas as pd
+
 import pytest
 
 from scripts.metrics import brand_pawc, compute_all, pawc_weight
@@ -92,9 +94,17 @@ def test_long_document_does_not_dominate_source_sov():
 
 def test_recency_groups():
     # ChatGPT readable citations: a1 (8 days) x2, b1 (161 days) x2, c1 (>365) x1
-    assert row("recency", engine="ChatGPT", group="0-30").citations == 2
-    assert row("recency", engine="ChatGPT", group="31-180").citations == 2
-    assert row("recency", engine="ChatGPT", group=">365").citations == 1
+    rec = dict(cut="engine", value="ChatGPT", basis="all dates")
+    assert row("recency", **rec, group="0-30").citations == 2
+    assert row("recency", **rec, group="31-180").citations == 2
+    assert row("recency", **rec, group=">365").citations == 1
+
+
+def test_recency_structured_dates_and_domain_type_cut():
+    # b.id/1's date came from htmldate, so on the structured basis its 2 ChatGPT citations are unknown
+    assert row("recency", cut="engine", value="ChatGPT", basis="structured dates only", group="unknown").citations == 2
+    # regulator (a.id/1, dated 8 days before the run) is cited 4 times
+    assert row("recency", cut="domain_type", value="regulator", basis="all dates", group="0-30").citations == 4
 
 
 def test_vis_equal_weights_and_low_n():
@@ -113,4 +123,37 @@ def test_soft_404_reason_reported():
     inp["pages"] = inp["pages"].assign(soft_404=[False, False, False, True, False])
     inp["pages"].loc[3, "is_readable"] = False
     rd = compute_all(inp, CFG)["readability"]
-    assert rd.query("cut == 'domain_type' and value == 'All' and reason == 'soft_404'").pages.iloc[0] == 1
+    r = rd.query("cut == 'domain_type' and value == 'All' and reason == 'soft_404'").iloc[0]
+    assert (r["count"], r.unit) == (1, "pages")
+
+
+def test_source_pawc_missing_is_empty_not_zero():
+    import copy
+    inp = copy.deepcopy(MINI)
+    inp["pages"].loc[4, "is_readable"] = False  # c.id/1 unreadable
+    c = inp["citations"]
+    inp["citations"] = c[~((c.answer_id == "gpt-02") & (c.domain == "c.id"))]  # ChatGPT no longer cites c.id
+    d = compute_all(inp, CFG)["domains"].set_index("domain")
+    assert pd.isna(d.loc["c.id", "source_pawc_gpt"])
+    assert pd.isna(d.loc["c.id", "source_pawc_gem"]) and d.loc["c.id", "readable_pages_gem"] == 0
+    assert d.loc["b.id", "source_pawc_gem"] == 0.0  # readable pages cited, nothing matched
+
+
+def test_sov_gap_uses_answer_weighted_ai_sov():
+    # answers with mentions: gpt-01 BCA 2/3 Jago 1/3 | gpt-02 BCA 1 | gem-01 Jago 2/3 BCA 1/3 | gem-02 Jago 1 | gem-03 BCA 1
+    j = row("source_sov", brand="Bank Jago")
+    assert j.ai_sov_weighted == pytest.approx(0.4) and j.sov_gap == pytest.approx(0.4 - 0.5)
+    assert j.sov_gap_raw == pytest.approx(4 / 9 - 3 / 11)
+
+
+def test_pages_top_source_pawc():
+    p = R["pages_top"].set_index("url")
+    assert p.loc["https://a.id/1", "source_pawc"] == pytest.approx(0.40163, abs=1e-4)
+    assert p.loc["https://c.id/1", "source_pawc"] == pytest.approx(0.25)
+    assert p.loc["https://b.id/1", "source_pawc"] == 0.0 and pd.isna(p.loc["https://a.id/2", "source_pawc"])
+
+
+def test_attribution_table_has_final_flag():
+    a = R["attribution"].set_index(["answer_id", "sent_idx"]).attributed
+    assert bool(a["gpt-01", 0]) and not bool(a["gpt-01", 1]) and not bool(a["gem-01", 1])
+    assert int(R["attribution"].attributed.sum()) == 3

@@ -26,11 +26,33 @@ def _inline(text: str) -> str:
     return re.sub(r"\s+", " ", text).strip().strip("|").strip()
 
 
+def _join_soft_wraps(body: str) -> str:
+    """Lines inside one block (no blank line between) are one line, unless a line starts a list item, table row,
+    heading or chip marker. ChatGPT's copied answers break list items across lines this way."""
+    out: list[str] = []
+    joinable = False
+    for line in body.split("\n"):
+        st = line.strip()
+        if not st:
+            out.append("")
+            joinable = False
+            continue
+        marker = st == FAVICON or PLUS_RE.match(line) or HR_RE.match(line) or st == "Add to Favorites"
+        starts_new = marker or LIST_RE.match(line) or st.startswith(("|", "#"))
+        if joinable and not starts_new:
+            out[-1] = out[-1].rstrip() + " " + st
+        else:
+            out.append(line)
+        joinable = not (marker or st.startswith("|"))
+    return "\n".join(out)
+
+
 def clean_body(body: str) -> str:
     out = []
     after_favicon = False
     body = ANY_IMAGE_RE.sub(lambda m: f"\n{FAVICON}\n" if "s2/favicons" in m.group(0) else "\n", body)
     body = re.sub(r"(?m)^\s*(<br\s*/?>\s*)+", "", body, flags=re.IGNORECASE)
+    body = _join_soft_wraps(body)
     lines = body.split("\n")
     nonblank = [i for i, ln in enumerate(lines) if ln.strip()]
     next_of = {i: lines[j] for i, j in zip(nonblank, nonblank[1:])}
@@ -95,13 +117,16 @@ def split_sentences(clean: str) -> list[str]:
     return sents
 
 
-def main() -> None:
-    answers = read_csv("data/interim/answers.csv")
+def build_sentences(answers: pd.DataFrame) -> pd.DataFrame:
     rows = []
     for _, a in answers.iterrows():
         for i, s in enumerate(split_sentences(clean_body(a["answer_body"]))):
             rows.append({"answer_id": a["answer_id"], "sent_idx": i, "text": s, "n_words": len(s.split())})
-    write_csv(pd.DataFrame(rows), "data/interim/sentences.csv")
+    return pd.DataFrame(rows)
+
+
+def main() -> None:
+    write_csv(build_sentences(read_csv("data/interim/answers.csv")), "data/interim/sentences.csv")
 
 
 if __name__ == "__main__":

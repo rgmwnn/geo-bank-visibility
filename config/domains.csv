@@ -1,7 +1,7 @@
 domain,domain_type,authority_tier,note
 akulaku.com,fintech_platform,Medium,
 alamisharia.co.id,fintech_platform,Medium,
-allianz.co.id,other,Medium,insurance company blog
+allianz.co.id,other,Low,insurance company blog
 allobank.com,bank_official,High,
 amarbank.co.id,bank_official,High,
 appmanager.seabank.co.id,bank_official,High,
@@ -47,7 +47,7 @@ id.headtopics.com,blog_aggregator,Low,
 id.tradingview.com,news_media,Medium,syndicated Kontan news article
 id.unstore.io,blog_aggregator,Low,
 idnfinancials.com,news_media,Medium,
-idnic.net,other,Medium,Indonesian domain-name registry association
+idnic.net,other,Low,Indonesian domain-name registry association
 idntimes.com,news_media,Medium,
 infobanknews.com,news_media,Medium,
 infobankstore.com,news_media,Medium,
@@ -73,10 +73,10 @@ medianasabah.com,blog_aggregator,Low,
 metrotvnews.com,news_media,Medium,
 money.kompas.com,news_media,Medium,
 nexapp.co,blog_aggregator,Low,
-nextindonesia.id,other,Medium,independent research centre
+nextindonesia.id,other,Low,independent research centre
 nobugo.nobubank.com,bank_official,High,
 ojk.go.id,regulator,High,
-padangsambian.denpasarkota.go.id,other,Medium,"local government office site, not a financial regulator"
+padangsambian.denpasarkota.go.id,other,Low,"local government office site, not a financial regulator"
 peraturan.bpk.go.id,regulator,High,
 play.google.com,app_store,Low,
 pluang.com,fintech_platform,Medium,

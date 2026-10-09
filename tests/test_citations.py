@@ -1,5 +1,5 @@
-from scripts.io import read_csv
-from scripts.parse import extract_citations, main, normalize_url
+from scripts.io import ROOT
+from scripts.parse import RERUNS, build_citations, extract_citations, load_answers, normalize_url
 
 
 def test_unwrap_google_redirect():
@@ -22,7 +22,6 @@ def test_duplicate_within_answer_kept_once():
 
 
 def test_real_counts():
-    main()
-    c = read_csv("data/interim/citations.csv")
+    c = build_citations(load_answers(ROOT / "data/raw/geo-bank-research.xlsx", RERUNS))
     assert (len(c), c.url.nunique(), c.domain.nunique()) == (399, 243, 97)
     assert c.groupby("answer_id").size().drop("gpt-02").eq(10).all()

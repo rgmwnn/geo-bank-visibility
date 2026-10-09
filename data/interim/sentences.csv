@@ -27,7 +27,7 @@ gpt-02,20,Rekening bluAccount tidak dikenai biaya bulanan.,6
 gpt-02,21,Info Fees & Rates,4
 gpt-02,22,Bank Neo Commerce,3
 gpt-02,23,Rp0,1
-gpt-02,24,Tabungan NOW bebas biaya administrasi bulanan.,6
+gpt-02,24,Tabungan NOW bebas biaya administrasi bulanan. tirto.id,7
 gpt-02,25,Rekomendasi saya: mulai bandingkan Krom Bank dan SeaBank jika kamu ingin rekening tanpa biaya admin sekaligus biaya transaksi yang relatif rendah.,21
 gpt-02,26,Bank Jago dan blu juga menarik jika kamu lebih mengutamakan pengelolaan uang melalui fitur kantong atau rekening terpisah.,18
 gpt-02,27,Perlu dibedakan: biaya admin rekening Rp0 tidak berarti semua transaksi gratis.,11
@@ -36,46 +36,33 @@ gpt-03,0,"Menurut saya, aplikasi mobile banking terbaik di Indonesia saat ini (O
 gpt-03,1,"Kalau harus memilih satu untuk penggunaan sehari-hari, saya akan menjadikan Livin’ by Mandiri, myBCA, dan BRImo sebagai tiga kandidat utama, lalu membandingkan kemudahan aplikasi, kelengkapan fitur, akses layanan, dan biaya transaksi.",31
 gpt-03,2,Salah satu tolok ukur terbaru yang bisa digunakan adalah pemantauan rating Google Play hingga Juni 2026.,16
 gpt-03,3,"Dalam laporan tersebut, Livin’ by Mandiri mendapat rating 4,7/5, SeaBank 4,6/5, dan BRImo serta Bank Neo Commerce masing-masing 4,4/5 dan 4,5/5.",21
-gpt-03,4,Rating aplikasi bisa berubah dan bukan jaminan bahwa aplikasi selalu bebas gangguan.,12
+gpt-03,4,Rating aplikasi bisa berubah dan bukan jaminan bahwa aplikasi selalu bebas gangguan. medianasabah.com,13
 gpt-03,5,5 aplikasi yang paling layak dipertimbangkan,6
-gpt-03,6,Livin’ by Mandiri,3
-gpt-03,7,— terbaik untuk fitur lengkap,5
-gpt-03,8,"Cocok untuk: rekening utama, pembayaran, transfer, kartu, dan kebutuhan finansial lainnya.",11
-gpt-03,9,Situs resmi:,2
-gpt-03,10,Livin’ by Mandiri,3
-gpt-03,11,myBCA,1
-gpt-03,12,— terbaik untuk nasabah BCA,5
-gpt-03,13,"Cocok untuk: mengelola beberapa rekening BCA, transaksi rutin, dan fitur finansial terintegrasi.",12
-gpt-03,14,Situs resmi:,2
-gpt-03,15,myBCA,1
-gpt-03,16,BRImo,1
-gpt-03,17,— terbaik untuk jangkauan layanan,5
-gpt-03,18,"Cocok untuk: kebutuhan harian, transfer, pembayaran, serta nasabah yang membutuhkan jaringan layanan BRI.",13
-gpt-03,19,Situs resmi:,2
-gpt-03,20,Bank BRI,2
-gpt-03,21,SeaBank,1
-gpt-03,22,— terbaik untuk tabungan digital sederhana,6
-gpt-03,23,Cocok untuk: menabung melalui aplikasi dan transaksi digital sehari-hari.,9
-gpt-03,24,Periksa batas transfer gratis dan bunga terbaru.,7
-gpt-03,25,Situs resmi:,2
-gpt-03,26,SeaBank,1
-gpt-03,27,Bank Jago,2
-gpt-03,28,— terbaik untuk mengatur anggaran,5
-gpt-03,29,"Cocok untuk: memisahkan uang belanja, tabungan, dana darurat, dan kebutuhan bulanan dalam Kantong.",13
-gpt-03,30,Situs resmi:,2
-gpt-03,31,Bank Jago,2
-gpt-03,32,"Jadi, mana yang sebaiknya kamu pilih?",6
-gpt-03,33,Satu aplikasi untuk banyak kebutuhan: Livin’ by Mandiri.,8
-gpt-03,34,Jika sudah memiliki rekening BCA: myBCA.,6
-gpt-03,35,Jika mengutamakan tabungan digital: SeaBank.,5
-gpt-03,36,Jika ingin mengatur anggaran dengan rapi: Bank Jago.,8
-gpt-03,37,Jika ingin transaksi sekaligus memantau keuangan dan investasi:,8
-gpt-03,38,wondr by BNI,3
-gpt-03,39,", melalui",2
-gpt-03,40,situs resmi wondr,3
-gpt-03,41,Wondr,1
-gpt-03,42,Tidak ada satu aplikasi yang terbaik untuk semua orang.,9
-gpt-03,43,"Selain rating dan fitur, pertimbangkan biaya transfer, kemudahan pemulihan akun, layanan pelanggan, serta keamanan perangkat.",15
+gpt-03,6,Livin’ by Mandiri — terbaik untuk fitur lengkap,8
+gpt-03,7,"Cocok untuk: rekening utama, pembayaran, transfer, kartu, dan kebutuhan finansial lainnya.",11
+gpt-03,8,Situs resmi: Livin’ by Mandiri,5
+gpt-03,9,myBCA — terbaik untuk nasabah BCA,6
+gpt-03,10,"Cocok untuk: mengelola beberapa rekening BCA, transaksi rutin, dan fitur finansial terintegrasi.",12
+gpt-03,11,Situs resmi: myBCA,3
+gpt-03,12,BRImo — terbaik untuk jangkauan layanan,6
+gpt-03,13,"Cocok untuk: kebutuhan harian, transfer, pembayaran, serta nasabah yang membutuhkan jaringan layanan BRI.",13
+gpt-03,14,Situs resmi: Bank BRI,4
+gpt-03,15,SeaBank — terbaik untuk tabungan digital sederhana,7
+gpt-03,16,Cocok untuk: menabung melalui aplikasi dan transaksi digital sehari-hari.,9
+gpt-03,17,Periksa batas transfer gratis dan bunga terbaru.,7
+gpt-03,18,Situs resmi: SeaBank,3
+gpt-03,19,Bank Jago — terbaik untuk mengatur anggaran,7
+gpt-03,20,"Cocok untuk: memisahkan uang belanja, tabungan, dana darurat, dan kebutuhan bulanan dalam Kantong.",13
+gpt-03,21,Situs resmi: Bank Jago,4
+gpt-03,22,"Jadi, mana yang sebaiknya kamu pilih?",6
+gpt-03,23,Satu aplikasi untuk banyak kebutuhan: Livin’ by Mandiri.,8
+gpt-03,24,Jika sudah memiliki rekening BCA: myBCA.,6
+gpt-03,25,Jika mengutamakan tabungan digital: SeaBank.,5
+gpt-03,26,Jika ingin mengatur anggaran dengan rapi: Bank Jago.,8
+gpt-03,27,"Jika ingin transaksi sekaligus memantau keuangan dan investasi: wondr by BNI , melalui situs resmi wondr .",17
+gpt-03,28,Wondr,1
+gpt-03,29,Tidak ada satu aplikasi yang terbaik untuk semua orang.,9
+gpt-03,30,"Selain rating dan fitur, pertimbangkan biaya transfer, kemudahan pemulihan akun, layanan pelanggan, serta keamanan perangkat.",15
 gpt-04,0,"Kalau tujuanmu adalah menyimpan uang dengan risiko serendah mungkin, saya menyarankan memilih bank digital yang berizin dan diawasi OJK, menjadi peserta penjaminan LPS, serta menawarkan bunga yang memenuhi syarat penjaminan LPS.",31
 gpt-04,1,Tidak ada satu bank digital yang bisa dipastikan paling aman untuk semua orang.,13
 gpt-04,2,"Keamanan simpanan bergantung pada kondisi bank, perlindungan dana, keamanan akun, dan cara kamu mengelola akses ke rekening.",17
@@ -84,34 +71,29 @@ gpt-04,4,Bank Jago,2
 gpt-04,5,Pilihan yang layak untuk rekening tabungan digital.,7
 gpt-04,6,Bank Jago menyatakan berizin dan diawasi OJK serta menjadi peserta penjaminan LPS.,12
 gpt-04,7,Jago,1
-gpt-04,8,Informasi resmi:,2
-gpt-04,9,Legalitas dan perlindungan simpanan,4
-gpt-04,10,blu by BCA Digital,4
-gpt-04,11,Layak dipertimbangkan jika kamu mengutamakan layanan digital dari bank yang terafiliasi dengan ekosistem BCA.,14
-gpt-04,12,Tetap periksa status peserta LPS dan ketentuan rekeningnya.,8
-gpt-04,13,Informasi resmi:,2
-gpt-04,14,blu by BCA Digital,4
-gpt-04,15,SeaBank,1
-gpt-04,16,Alternatif untuk menyimpan uang dan melakukan transaksi harian melalui aplikasi.,10
-gpt-04,17,Pastikan bunga yang diterima tidak melampaui batas bunga penjaminan LPS yang berlaku.,12
-gpt-04,18,Informasi resmi:,2
-gpt-04,19,SeaBank Indonesia,2
-gpt-04,20,Bank Saqu,2
-gpt-04,21,Bisa menjadi alternatif untuk mengelola uang dalam beberapa pos tabungan.,10
-gpt-04,22,Jangan memilih hanya berdasarkan promosi bunga; periksa syarat penjaminannya.,9
-gpt-04,23,Informasi resmi:,2
-gpt-04,24,Bank Saqu,2
-gpt-04,25,Hal terpenting: apakah uangmu dijamin LPS?,6
-gpt-04,26,"Menurut ketentuan penjaminan LPS, simpanan dijamin maksimal Rp2 miliar per nasabah per bank, dengan syarat yang berlaku.",17
-gpt-04,27,Terdapat tiga syarat utama yang dikenal sebagai 3T:,8
-gpt-04,28,Tercatat: simpanan tercatat dalam pembukuan bank.,6
-gpt-04,29,Tingkat bunga: bunga yang diterima tidak melebihi tingkat bunga penjaminan LPS untuk jenis bank terkait.,15
-gpt-04,30,Ketentuan ini berbeda untuk bank syariah.,6
-gpt-04,31,Tidak melakukan tindakan yang merugikan bank: simpanan tidak terkait tindakan yang menyebabkan bank dirugikan sesuai ketentuan LPS.,17
-gpt-04,32,LPS,1
-gpt-04,33,Bunga promosi yang terlalu tinggi bisa membuat simpanan tidak memenuhi syarat penjaminan.,12
-gpt-04,34,"Karena tingkat bunga penjaminan berubah, periksa angka terbaru langsung di",10
-gpt-04,35,situs resmi LPS,3
+gpt-04,8,Informasi resmi: Legalitas dan perlindungan simpanan,6
+gpt-04,9,blu by BCA Digital,4
+gpt-04,10,Layak dipertimbangkan jika kamu mengutamakan layanan digital dari bank yang terafiliasi dengan ekosistem BCA.,14
+gpt-04,11,Tetap periksa status peserta LPS dan ketentuan rekeningnya.,8
+gpt-04,12,Informasi resmi: blu by BCA Digital,6
+gpt-04,13,SeaBank,1
+gpt-04,14,Alternatif untuk menyimpan uang dan melakukan transaksi harian melalui aplikasi.,10
+gpt-04,15,Pastikan bunga yang diterima tidak melampaui batas bunga penjaminan LPS yang berlaku.,12
+gpt-04,16,Informasi resmi: SeaBank Indonesia,4
+gpt-04,17,Bank Saqu,2
+gpt-04,18,Bisa menjadi alternatif untuk mengelola uang dalam beberapa pos tabungan.,10
+gpt-04,19,Jangan memilih hanya berdasarkan promosi bunga; periksa syarat penjaminannya.,9
+gpt-04,20,Informasi resmi: Bank Saqu,4
+gpt-04,21,Hal terpenting: apakah uangmu dijamin LPS?,6
+gpt-04,22,"Menurut ketentuan penjaminan LPS, simpanan dijamin maksimal Rp2 miliar per nasabah per bank, dengan syarat yang berlaku.",17
+gpt-04,23,Terdapat tiga syarat utama yang dikenal sebagai 3T:,8
+gpt-04,24,Tercatat: simpanan tercatat dalam pembukuan bank.,6
+gpt-04,25,Tingkat bunga: bunga yang diterima tidak melebihi tingkat bunga penjaminan LPS untuk jenis bank terkait.,15
+gpt-04,26,Ketentuan ini berbeda untuk bank syariah.,6
+gpt-04,27,Tidak melakukan tindakan yang merugikan bank: simpanan tidak terkait tindakan yang menyebabkan bank dirugikan sesuai ketentuan LPS.,17
+gpt-04,28,LPS,1
+gpt-04,29,Bunga promosi yang terlalu tinggi bisa membuat simpanan tidak memenuhi syarat penjaminan.,12
+gpt-04,30,"Karena tingkat bunga penjaminan berubah, periksa angka terbaru langsung di situs resmi LPS .",14
 gpt-05,0,"Kalau yang paling kamu utamakan adalah customer service yang cepat merespons, mudah dihubungi, dan mampu menyelesaikan masalah, saya akan membedakan antara bank digital dan bank konvensional.",26
 gpt-05,1,"Berdasarkan laporan Bank Customer Experience Tracker 2026 dari Infobank dan Marketing Research Indonesia (MRI), SeaBank menempati posisi pertama dalam kategori pengalaman nasabah bank digital, disusul Bank Neo Commerce dan Bank Raya.",31
 gpt-05,2,Studi ini menilai layanan fisik maupun digital melalui metode mystery shopping dan observasi.,13
@@ -423,8 +405,7 @@ gpt-19,40,Mohon pengaduan ini diregistrasikan secara resmi.,6
 gpt-19,41,"Saya juga memohon nomor registrasi pengaduan, estimasi waktu penyelesaian, dan tanggapan tertulis atas permasalahan tersebut.",15
 gpt-19,42,Bukti pendukung saya lampirkan untuk ditindaklanjuti.,6
 gpt-19,43,Terima kasih.,2
-gpt-19,44,"Hormat saya,",2
-gpt-19,45,(Nama),1
+gpt-19,44,"Hormat saya, (Nama)",3
 gpt-20,0,"Cara paling aman adalah mengecek nama badan hukum bank di direktori resmi OJK, bukan hanya melihat apakah aplikasi terlihat profesional atau memiliki banyak pengguna.",24
 gpt-20,1,1.,1
 gpt-20,2,Periksa melalui direktori resmi OJK,5
@@ -629,18 +610,16 @@ gem-10,0,"Antara Bank Jago dan SeaBank, mana yang lebih menguntungkan tergantung
 gem-10,1,Perbandingan Bunga & Keuntungan Keuangan,5
 gem-10,2,Kriteria SeaBank Bank Jago,4
 gem-10,3,"Suku Bunga Tabungan Harian Unggul (~3,75% – 4,00% p.a.)",9
-gem-10,4,"Bunga dihitung dan dicairkan setiap hari ke rekening. | ~3,00% – 3,25% p.a.",13
-gem-10,5,Bunga dicairkan setiap akhir bulan di Kantong Utama/Nabung.,8
-gem-10,6,"Suku Bunga Deposito / Lock Pocket Hingga 5,00% – 6,00% p.a.",11
-gem-10,7,"Tenor fleksibel mulai dari 1 bulan. | Hingga 4,75% – 5,25% p.a.",12
-gem-10,8,(Kantong Terkunci).,2
-gem-10,9,Gratis Transfer & Top Up 100x / bulan (Tanpa Syarat Saldo). Hingga 150x / bulan (Berjenjang sesuai Jagoan Level).,19
-gem-10,10,"Integrasi Ekosistem Terhubung langsung dengan Shopee & ShopeePay (gratis top up & pembayaran instan). Terhubung langsung dengan Gojek, Bibit, & Stockbit.",21
-gem-10,11,Fitur Pengelolaan Uang (Budgeting) Standar (Tabungan & Deposito). Sangat Unggul (Kantong/Pockets),11
-gem-10,12,Bisa membuat hingga 60 kantong terpisah dengan nomor rekening sendiri.,10
-gem-10,13,Kesimpulan & Rekomendasi,3
-gem-10,14,"Pilih SeaBank JIKA: Anda mengejar keuntungan bunga harian maksimal tanpa syarat saldo mengendap, sering belanja di Shopee, dan menyukai imbal hasil yang langsung cair setiap pagi.",26
-gem-10,15,"Pilih Bank Jago JIKA: Anda ingin merapikan keuangan (budgeting), suka memisah-misahkan dana ke dalam banyak kantong (kos, makan, liburan), serta rutin berinvestasi di Bibit/Stockbit atau bertransaksi di Gojek.",28
+gem-10,4,"Bunga dihitung dan dicairkan setiap hari ke rekening. | ~3,00% – 3,25% p.a. Bunga dicairkan setiap akhir bulan di Kantong Utama/Nabung.",21
+gem-10,5,"Suku Bunga Deposito / Lock Pocket Hingga 5,00% – 6,00% p.a.",11
+gem-10,6,"Tenor fleksibel mulai dari 1 bulan. | Hingga 4,75% – 5,25% p.a. (Kantong Terkunci).",14
+gem-10,7,Gratis Transfer & Top Up 100x / bulan (Tanpa Syarat Saldo). Hingga 150x / bulan (Berjenjang sesuai Jagoan Level).,19
+gem-10,8,"Integrasi Ekosistem Terhubung langsung dengan Shopee & ShopeePay (gratis top up & pembayaran instan). Terhubung langsung dengan Gojek, Bibit, & Stockbit.",21
+gem-10,9,Fitur Pengelolaan Uang (Budgeting) Standar (Tabungan & Deposito). Sangat Unggul (Kantong/Pockets),11
+gem-10,10,Bisa membuat hingga 60 kantong terpisah dengan nomor rekening sendiri.,10
+gem-10,11,Kesimpulan & Rekomendasi,3
+gem-10,12,"Pilih SeaBank JIKA: Anda mengejar keuntungan bunga harian maksimal tanpa syarat saldo mengendap, sering belanja di Shopee, dan menyukai imbal hasil yang langsung cair setiap pagi.",26
+gem-10,13,"Pilih Bank Jago JIKA: Anda ingin merapikan keuangan (budgeting), suka memisah-misahkan dana ke dalam banyak kantong (kos, makan, liburan), serta rutin berinvestasi di Bibit/Stockbit atau bertransaksi di Gojek.",28
 gem-11,0,"Dari segi regulasi hukum dan perlindungan pemerintah, bank digital dan bank konvensional memiliki tingkat keamanan yang setara, karena keduanya sama-sama berizin dan diawasi oleh Otoritas Jasa Keuangan (OJK) serta dijamin oleh Lembaga Penjamin Simpanan (LPS) hingga Rp2 miliar per nasabah.",40
 gem-11,1,"Namun, risiko keamanan dari kedua jenis bank ini berasal dari aspek yang berbeda:",13
 gem-11,2,Perbandingan Faktor Keamanan,3
@@ -657,20 +636,16 @@ gem-12,1,"Namun, terdapat perbedaan fokus layanan dan kenyamanan penggunaan.",8
 gem-12,2,Perbandingan Buka Rekening & Layanan,5
 gem-12,3,Kriteria BRI (BRImo / Digital Save) BNI (BNI Mobile Banking / Digital Opening),13
 gem-12,4,Kemudahan Buka Rekening Online Sangat Mudah & Cepat,8
-gem-12,5,Dapat dilakukan via aplikasi BRImo atau situs bukarekening.bri.co.id dengan verifikasi biometrik/KTP tanpa perlu video call staf. | Sangat Mudah,19
-gem-12,6,Dapat dilakukan via BNI Mobile Banking dengan verifikasi KTP dan swafoto (selfie).,12
-gem-12,7,Setoran Awal Minimum Sangat Ringan,5
-gem-12,8,Tabungan BritAma / Simpedes bisa dimulai dari Rp50.000. | Relatif Ringan,11
-gem-12,9,Tabungan BNI Taplus umumnya membutuhkan setoran awal Rp100.000 – Rp500.000 (tergantung wilayah/jenis tabungan).,13
-gem-12,10,Aplikasi Mobile Banking BRImo,4
-gem-12,11,"Aplikasi modern, user-friendly, fitur lengkap (setor/tarik tunai tanpa kartu, top up e-wallet, pembayaran QRIS instan). | BNI Mobile Banking",19
-gem-12,12,Aplikasi stabil dengan sistem keamanan bertingkat dan pengelolaan investasi terpadu.,10
-gem-12,13,Aksesibilitas & Jangkauan CS Jangkauan Terluas di Indonesia,8
-gem-12,14,"ATM, AgenBRILink, dan kantor cabang tersedia hingga ke pelosok dan daerah terpencil. | Unggul di Area Perkotaan & Luar Negeri",20
-gem-12,15,Jaringan cabang luas di kota-kota besar serta memiliki beberapa kantor cabang luar negeri (LN).,14
-gem-12,16,Kesimpulan & Rekomendasi,3
-gem-12,17,"Pilih BRI JIKA: Anda menginginkan setoran awal yang lebih ringan, aplikasi mobile banking (BRImo) yang sangat praktis, serta akses ATM/kemudahan tarik-setor tunai yang melimpah hingga daerah pedesaan.",27
-gem-12,18,"Pilih BNI JIKA: Anda berada di area perkotaan, sering bertransaksi/bepergian ke luar negeri, atau membutuhkan layanan perbankan yang terintegrasi dengan kebutuhan mahasiswa/pekerja profesional di kota besar.",26
+gem-12,5,Dapat dilakukan via aplikasi BRImo atau situs bukarekening.bri.co.id dengan verifikasi biometrik/KTP tanpa perlu video call staf. | Sangat Mudah Dapat dilakukan via BNI Mobile Banking dengan verifikasi KTP dan swafoto (selfie).,31
+gem-12,6,Setoran Awal Minimum Sangat Ringan,5
+gem-12,7,Tabungan BritAma / Simpedes bisa dimulai dari Rp50.000. | Relatif Ringan Tabungan BNI Taplus umumnya membutuhkan setoran awal Rp100.000 – Rp500.000 (tergantung wilayah/jenis tabungan).,24
+gem-12,8,Aplikasi Mobile Banking BRImo,4
+gem-12,9,"Aplikasi modern, user-friendly, fitur lengkap (setor/tarik tunai tanpa kartu, top up e-wallet, pembayaran QRIS instan). | BNI Mobile Banking Aplikasi stabil dengan sistem keamanan bertingkat dan pengelolaan investasi terpadu.",29
+gem-12,10,Aksesibilitas & Jangkauan CS Jangkauan Terluas di Indonesia,8
+gem-12,11,"ATM, AgenBRILink, dan kantor cabang tersedia hingga ke pelosok dan daerah terpencil. | Unggul di Area Perkotaan & Luar Negeri Jaringan cabang luas di kota-kota besar serta memiliki beberapa kantor cabang luar negeri (LN).",34
+gem-12,12,Kesimpulan & Rekomendasi,3
+gem-12,13,"Pilih BRI JIKA: Anda menginginkan setoran awal yang lebih ringan, aplikasi mobile banking (BRImo) yang sangat praktis, serta akses ATM/kemudahan tarik-setor tunai yang melimpah hingga daerah pedesaan.",27
+gem-12,14,"Pilih BNI JIKA: Anda berada di area perkotaan, sering bertransaksi/bepergian ke luar negeri, atau membutuhkan layanan perbankan yang terintegrasi dengan kebutuhan mahasiswa/pekerja profesional di kota besar.",26
 gem-13,0,"Untuk kebutuhan freelancer dengan penghasilan yang tidak tetap, bank ideal harus memenuhi kriteria tanpa biaya admin bulanan, tanpa syarat saldo minimum/pengendapan, serta memiliki fitur pemisahan kantong (sub-rekening) untuk mengalokasikan uang modal kerja, pajak/pribadi, dan dana darurat.",36
 gem-13,1,1.,1
 gem-13,2,Bank Paling Direkomendasikan: Bank Jago,5
@@ -702,29 +677,17 @@ gem-14,0,"Untuk kebutuhan sering top-up e-wallet, transaksi QRIS harian, dan men
 gem-14,1,Perbandingan Bank Terbaik untuk E-Wallet & QRIS,7
 gem-14,2,Bank / Aplikasi Bebas Biaya Top-Up E-Wallet Fitur & Kecepatan QRIS Kestabilan Aplikasi (UX/UI),14
 gem-14,3,SeaBank Sangat Hemat,3
-gem-14,4,"Gratis top-up e-wallet (ShopeePay, DANA, OVO, GoPay, LinkAja) menggunakan kuota transfer harian/bulanan (hingga 100x/bulan). | Instan & Praktis",18
-gem-14,5,Fitur QRIS mendukung pemindaian langsung dari galeri HP serta shortcut cepat. | Sangat Cepat & Stabil,16
-gem-14,6,"Aplikasi sangat ringan, loading singkat, dan hampir tidak pernah mengalami gangguan (server down).",13
-gem-14,7,Bank Jago Hemat Berjenjang,4
-gem-14,8,Top-up ke GoPay gratis tanpa batas (ekosistem Gojek).,8
-gem-14,9,Untuk e-wallet lain gratis hingga 150x/bulan sesuai Jagoan Level. | Sangat Baik,12
-gem-14,10,Scan QRIS cepat dan bisa langsung memilih sumber dana dari Kantong (Pocket) tertentu. | Sangat Stabil,16
-gem-14,11,"Navigasi responsif, aman, dan terintegrasi mulus dengan ekosistem Gojek.",9
-gem-14,12,blu by BCA Digital Hemat Terbatas,6
-gem-14,13,Gratis biaya top-up e-wallet dan transfer ke bank lain (20x/bulan via bluBebas dengan syarat saldo rata-rata). | Sangat Responsif,19
-gem-14,14,Didukung oleh infrastruktur jaringan QRIS BCA yang sangat luas dan stabil. | Sangat Tinggi (Zero Downtime),16
-gem-14,15,"Tingkat stabilitas mengikuti standar tinggi grup BCA, sangat jarang mengalami maintenance di jam sibuk.",14
-gem-14,16,BCA Mobile / myBCA Biaya Standar Rp1.000–Rp1.500,7
-gem-14,17,(Biaya dipotong langsung saat top up dari aplikasi/e-wallet). | Terbaik & Paling Kompatibel,13
-gem-14,18,Kecepatan pembacaan QRIS terbaik di seluruh merchant Indonesia. | Paling Stabil di Indonesia,13
-gem-14,19,Tingkat keandalan zero downtime nomor satu untuk transaksi mendesak.,9
-gem-14,20,Rekomendasi Sesuai Kebutuhan,3
-gem-14,21,Untuk Hemat Maksimal (Gratis Top-Up & QRIS Lancar):,8
-gem-14,22,SeaBank atau Bank Jago adalah pilihan utama.,7
-gem-14,23,"Keduanya membebaskan biaya admin top-up e-wallet (DANA, OVO, ShopeePay, GoPay) dan memiliki fitur QRIS di halaman depan aplikasi yang sangat cepat.",21
-gem-14,24,Untuk Kestabilan & Keandalan Nomor Satu:,6
-gem-14,25,blu by BCA Digital atau myBCA.,6
-gem-14,26,"Jika Anda sering bertransaksi di jam-jam sibuk (seperti makan siang atau acara besar) dan tidak ingin terkendala app error/maintenance, ekosistem BCA menawarkan jaringan dan server paling stabil.",27
+gem-14,4,"Gratis top-up e-wallet (ShopeePay, DANA, OVO, GoPay, LinkAja) menggunakan kuota transfer harian/bulanan (hingga 100x/bulan). | Instan & Praktis Fitur QRIS mendukung pemindaian langsung dari galeri HP serta shortcut cepat. | Sangat Cepat & Stabil Aplikasi sangat ringan, loading singkat, dan hampir tidak pernah mengalami gangguan (server down).",47
+gem-14,5,Bank Jago Hemat Berjenjang,4
+gem-14,6,Top-up ke GoPay gratis tanpa batas (ekosistem Gojek).,8
+gem-14,7,"Untuk e-wallet lain gratis hingga 150x/bulan sesuai Jagoan Level. | Sangat Baik Scan QRIS cepat dan bisa langsung memilih sumber dana dari Kantong (Pocket) tertentu. | Sangat Stabil Navigasi responsif, aman, dan terintegrasi mulus dengan ekosistem Gojek.",37
+gem-14,8,blu by BCA Digital Hemat Terbatas,6
+gem-14,9,"Gratis biaya top-up e-wallet dan transfer ke bank lain (20x/bulan via bluBebas dengan syarat saldo rata-rata). | Sangat Responsif Didukung oleh infrastruktur jaringan QRIS BCA yang sangat luas dan stabil. | Sangat Tinggi (Zero Downtime) Tingkat stabilitas mengikuti standar tinggi grup BCA, sangat jarang mengalami maintenance di jam sibuk.",49
+gem-14,10,BCA Mobile / myBCA Biaya Standar Rp1.000–Rp1.500,7
+gem-14,11,(Biaya dipotong langsung saat top up dari aplikasi/e-wallet). | Terbaik & Paling Kompatibel Kecepatan pembacaan QRIS terbaik di seluruh merchant Indonesia. | Paling Stabil di Indonesia Tingkat keandalan zero downtime nomor satu untuk transaksi mendesak.,35
+gem-14,12,Rekomendasi Sesuai Kebutuhan,3
+gem-14,13,"Untuk Hemat Maksimal (Gratis Top-Up & QRIS Lancar): SeaBank atau Bank Jago adalah pilihan utama. Keduanya membebaskan biaya admin top-up e-wallet (DANA, OVO, ShopeePay, GoPay) dan memiliki fitur QRIS di halaman depan aplikasi yang sangat cepat.",36
+gem-14,14,"Untuk Kestabilan & Keandalan Nomor Satu: blu by BCA Digital atau myBCA. Jika Anda sering bertransaksi di jam-jam sibuk (seperti makan siang atau acara besar) dan tidak ingin terkendala app error/maintenance, ekosistem BCA menawarkan jaringan dan server paling stabil.",39
 gem-15,0,"Untuk menyimpan dana darurat sebesar Rp50 juta, prinsip utamanya adalah likuiditas (mudah dicairkan kapan saja), keamanan (berizin OJK & dijamin LPS), dan imbal hasil/bunga yang optimal.",26
 gem-15,1,Berikut adalah strategi membagi dan merekomendasikan bank yang cocok untuk dana darurat Anda:,13
 gem-15,2,1.,1

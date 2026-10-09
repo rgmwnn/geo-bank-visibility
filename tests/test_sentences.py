@@ -1,5 +1,5 @@
-from scripts.io import read_csv
-from scripts.sentences import clean_body, main, split_sentences
+from scripts.io import ROOT, read_csv
+from scripts.sentences import build_sentences, clean_body, split_sentences
 
 CHIP = ("Teks pertama.\n\n![](https://www.google.com/s2/favicons?domain=x)\n\nNEXT Indonesia Center\n\n+1\n\n"
         "Add to Favorites\n\nTeks kedua.")
@@ -24,8 +24,9 @@ def test_link_text_kept_hr_dropped():
 
 
 def test_real_file_every_answer_has_sentences():
-    main()
-    s = read_csv("data/interim/sentences.csv")
+    before = (ROOT / "data/interim/sentences.csv").read_bytes()
+    s = build_sentences(read_csv("data/interim/answers.csv"))
+    assert (ROOT / "data/interim/sentences.csv").read_bytes() == before
     assert s.answer_id.nunique() == 40 and (s.n_words > 0).all()
     assert not s.text.str.contains(r"^\+\d+$|Add to Favorites|images\.openai\.com").any()
 
@@ -36,7 +37,7 @@ def test_domain_only_chip_line_dropped():
 
 
 def test_br_tags_and_bullet_char():
-    md = "| Jago | Kuota berjenjang:<br>\n<br>• Level 4: 150x<br>\n<br>• Level 3: 60x |"
+    md = "| Jago | Kuota berjenjang:<br>\n\n<br>• Level 4: 150x<br>\n\n<br>• Level 3: 60x |"
     assert split_sentences(clean_body(md)) == ["Jago Kuota berjenjang:", "Level 4: 150x", "Level 3: 60x"]
 
 
@@ -49,3 +50,14 @@ def test_long_chip_title_between_favicon_and_plus_dropped():
     md = ("Isi pertama.\n\n![](https://www.google.com/s2/favicons?domain=x)\n\nPerbedaan BCA Mobile dan myBCA\n\n+4\n\n"
           "Isi kedua yang panjang sekali di sini.")
     assert split_sentences(clean_body(md)) == ["Isi pertama.", "Isi kedua yang panjang sekali di sini."]
+
+
+def test_soft_wrapped_list_item_is_one_sentence():
+    md = ("1. \nLivin’ by Mandiri\n — terbaik untuk fitur lengkap\n\nCocok untuk: rekening utama.\n\n"
+          "Situs resmi: \nLivin’ by Mandiri\n\n2. \nmyBCA\n — terbaik untuk nasabah BCA")
+    assert split_sentences(clean_body(md)) == ["Livin’ by Mandiri — terbaik untuk fitur lengkap", "Cocok untuk: rekening utama.",
+                                               "Situs resmi: Livin’ by Mandiri", "myBCA — terbaik untuk nasabah BCA"]
+
+
+def test_list_items_in_one_block_stay_separate():
+    assert split_sentences(clean_body("* satu dua\n* tiga empat\n- lima")) == ["satu dua", "tiga empat", "lima"]

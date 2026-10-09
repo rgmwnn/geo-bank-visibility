@@ -36,6 +36,7 @@ pages = pd.DataFrame([
     ("https://b.id/2", 200, "", "html", True, "", "FAQPage"),
     ("https://c.id/1", 200, "", "pdf", True, "2024-01-01", ""),
 ], columns=["url", "http_status", "fetch_error", "content_kind", "is_readable", "published_date", "schema_types"])
+pages["date_source"] = ["jsonld", "", "htmldate", "", "meta"]
 page_brand_counts = pd.DataFrame([
     ("https://a.id/1", "BCA", 3), ("https://a.id/2", "Bank Jago", 10), ("https://b.id/1", "BCA", 1),
     ("https://b.id/1", "Krom Bank", 4), ("https://b.id/2", "Bank Jago", 2), ("https://c.id/1", "Bank Jago", 1),

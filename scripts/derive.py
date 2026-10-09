@@ -87,8 +87,14 @@ def extract_pdf(data: bytes, max_pages: int) -> dict:
     return {"text": text, "n_words": len(text.split()), "n_pages": n_pages}
 
 
-def page_row(meta: dict, extracted: dict, min_words: int) -> dict:
+def page_row(meta: dict, extracted: dict, min_words: int, near_crawl_days: int = 3) -> dict:
     types = set(extracted.get("schema_types") or [])
+    published, date_source = extracted.get("published_date", ""), extracted.get("date_source", "")
+    if date_source == "htmldate" and published and meta.get("fetched_at"):
+        # htmldate falls back to build or crawl dates when a page states none; a date that close to the crawl is not a publish date
+        gap = abs((pd.Timestamp(meta["fetched_at"][:10]) - pd.Timestamp(published)).days)
+        if gap <= near_crawl_days:
+            published, date_source = "", "htmldate_near_crawl"
     status = meta.get("http_status")
     n_words = int(extracted.get("n_words") or 0)
     soft_404 = bool(SOFT_404_RE.search(extracted.get("title") or ""))
@@ -97,7 +103,7 @@ def page_row(meta: dict, extracted: dict, min_words: int) -> dict:
         "fetch_error": meta.get("fetch_error", ""), "content_kind": meta.get("content_kind", ""),
         "is_readable": bool(status == 200 and n_words >= min_words and not soft_404), "soft_404": soft_404,
         "title": extracted.get("title", ""), "n_words": n_words, "n_pages": extracted.get("n_pages", ""),
-        "published_date": extracted.get("published_date", ""), "date_source": extracted.get("date_source", ""),
+        "published_date": published, "date_source": date_source,
         "schema_types": ";".join(sorted(types)),
         "has_article_schema": bool(types & ARTICLE_TYPES), "has_faq_schema": bool(types & FAQ_TYPES),
         "has_org_schema": bool(types & ORG_TYPES), "crawled_at": meta.get("fetched_at", ""),

@@ -17,3 +17,8 @@ def test_every_answer_brand_has_sentiment():
     assert set(map(tuple, m[["answer_id", "brand"]].drop_duplicates().values)) == set(map(tuple, s[["answer_id", "brand"]].values))
     assert s.label.isin(["positive", "neutral", "negative", "mixed"]).all()
     assert (s.score == s.label.map({"positive": 1, "neutral": 0, "negative": -1, "mixed": 0})).all()
+
+
+def test_other_domains_are_low_authority():
+    d = read_csv("config/domains.csv")
+    assert (d[d.domain_type == "other"].authority_tier == "Low").all()

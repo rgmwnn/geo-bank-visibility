@@ -95,11 +95,17 @@ def _citation_tables(inp: dict, cfg: dict) -> dict:
     d = c.groupby(["domain", "domain_type", "authority_tier"]).agg(
         citations=("url", "size"), unique_pages=("url", "nunique"), prompts=("prompt_no", "nunique"),
         answers=("answer_id", "nunique"), avg_rank=("rank", "mean")).reset_index()
+    readable = _readable(inp)
     for eng, col in [("ChatGPT", "gpt"), ("Gemini", "gem")]:
-        e = c[c.engine == eng].groupby("domain").agg(n=("url", "size"), r=("rank", "mean"))
+        ce = c[c.engine == eng]
+        e = ce.groupby("domain").agg(n=("url", "size"), r=("rank", "mean"))
+        rp = ce[ce.url.isin(readable)].groupby("domain").url.nunique()
         d[col] = d.domain.map(e["n"]).fillna(0).astype(int)
         d[f"avg_rank_{col}"] = d.domain.map(e["r"])
-        d[f"source_pawc_{col}"] = d.domain.map(spd[spd.engine == eng].set_index("domain").source_pawc).fillna(0.0)
+        d[f"readable_pages_{col}"] = d.domain.map(rp).fillna(0).astype(int)
+        pawc = d.domain.map(spd[spd.engine == eng].set_index("domain").source_pawc)
+        # 0.0 only when readable cited pages exist and nothing matched; empty when unmeasurable or not cited
+        d[f"source_pawc_{col}"] = pawc.where(pawc.notna(), d[f"readable_pages_{col}"].gt(0).map({True: 0.0, False: float("nan")}))
     d["n"] = len(c)
     out["domains"] = d.sort_values(["citations", "domain"], ascending=[False, True]).reset_index(drop=True)
 
@@ -107,6 +113,8 @@ def _citation_tables(inp: dict, cfg: dict) -> dict:
                                         gem=("engine", lambda s: (s == "Gemini").sum()),
                                         engines=("engine", lambda s: "+".join(sorted(set(s))))).reset_index()
     p = p.sort_values(["citations", "url"], ascending=[False, True]).reset_index(drop=True)
+    pp = p.url.map(att.groupby("best_url").w.sum())
+    p["source_pawc"] = pp.where(pp.notna(), p.url.isin(readable).map({True: 0.0, False: float("nan")}))
     p["rank"] = range(1, len(p) + 1)
     p["n"] = len(c)
     out["pages_top"] = p
@@ -136,6 +144,9 @@ def _citation_tables(inp: dict, cfg: dict) -> dict:
         n_att = att[att.answer_id.isin(set(g.answer_id))].shape[0]
         rows.append({"engine": eng, "n_sentences": len(g), "attributed": n_att, "coverage": n_att / len(g)})
     out["attribution_coverage"] = pd.DataFrame(rows)
+    a = inp["attribution_scores"][["answer_id", "sent_idx", "best_url", "best_score"]].copy()
+    a["attributed"] = (a.best_score >= cfg["attribution_threshold"]) & a.best_url.isin(readable)
+    out["attribution"] = a
     return out
 
 
@@ -155,6 +166,9 @@ def _page_tables(inp: dict, cfg: dict) -> dict:
     n_brand_pages = pbc.url.nunique()
     weighted = pbc.groupby("brand").page_share.sum() / n_brand_pages if n_brand_pages else pbc.groupby("brand").page_share.sum()
     ai = inp["mentions"].groupby("brand").size()
+    per_answer = inp["mentions"].groupby(["answer_id", "brand"]).size()
+    shares = per_answer / per_answer.groupby(level=0).transform("sum")
+    ai_w = shares.groupby(level=1).sum() / per_answer.index.get_level_values(0).nunique()
     brands = sorted(set(src.index) | set(ai.index))
     total_src, total_ai = src.source_count.sum(), ai.sum()
     rows = []
@@ -163,9 +177,12 @@ def _page_tables(inp: dict, cfg: dict) -> dict:
         am = int(ai.get(b, 0))
         s_sov = float(weighted.get(b, 0.0))
         a_sov = am / total_ai if total_ai else 0.0
-        rows.append({"brand": b, "source_sov": s_sov, "source_sov_raw": sc / total_src if total_src else 0.0,
-                     "source_count": sc, "n_pages": int(src.n_pages.get(b, 0)), "ai_mentions": am, "ai_sov": a_sov,
-                     "sov_gap": a_sov - s_sov, "n_pages_with_brands": n_brand_pages, "n_readable_pages": len(readable)})
+        s_raw = sc / total_src if total_src else 0.0
+        a_w = float(ai_w.get(b, 0.0))
+        rows.append({"brand": b, "ai_sov_weighted": a_w, "source_sov": s_sov, "sov_gap": a_w - s_sov,
+                     "ai_sov": a_sov, "source_sov_raw": s_raw, "sov_gap_raw": a_sov - s_raw,
+                     "ai_mentions": am, "source_count": sc, "n_pages": int(src.n_pages.get(b, 0)),
+                     "n_pages_with_brands": n_brand_pages, "n_readable_pages": len(readable)})
     out["source_sov"] = pd.DataFrame(rows)
 
     def reason(r):
@@ -185,11 +202,13 @@ def _page_tables(inp: dict, cfg: dict) -> dict:
     rows = []
     for dt, g in [("All", pages)] + list(pages.groupby("domain_type")):
         for rsn, n in g.reason.value_counts().items():
-            rows.append({"cut": "domain_type", "value": dt, "reason": rsn, "pages": int(n), "share": n / len(g), "n": len(g)})
+            rows.append({"cut": "domain_type", "value": dt, "reason": rsn, "count": int(n), "unit": "pages",
+                         "share": n / len(g), "n": len(g)})
     c = inp["citations"].merge(pages[["url", "reason"]], on="url", how="left")
     for eng, g in [("All", c)] + [(e, c[c.engine == e]) for e in ENGINES]:
         for rsn, n in g.reason.value_counts().items():
-            rows.append({"cut": "engine_citations", "value": eng, "reason": rsn, "pages": int(n), "share": n / len(g), "n": len(g)})
+            rows.append({"cut": "engine", "value": eng, "reason": rsn, "count": int(n), "unit": "citations",
+                         "share": n / len(g), "n": len(g)})
     out["readability"] = pd.DataFrame(rows)
 
     run = pd.Timestamp(cfg["run_date"])
@@ -202,12 +221,18 @@ def _page_tables(inp: dict, cfg: dict) -> dict:
         return f"0-{b1}" if days <= b1 else f"{b1 + 1}-{b2}" if days <= b2 else f"{b2 + 1}-{b3}" if days <= b3 else f">{b3}"
 
     pages["group"] = pages.published_date.map(group)
-    cr = inp["citations"].merge(pages[["url", "group", "is_readable", "domain_type"]], on="url")
+    src = pages["date_source"] if "date_source" in pages else pd.Series("", index=pages.index)
+    pages["group_structured"] = pages.group.where(src.isin(["jsonld", "meta"]), "unknown")
+    cr = inp["citations"].merge(pages[["url", "group", "group_structured", "is_readable", "domain_type"]], on="url")
     cr = cr[cr.is_readable]
     rows = []
-    for eng, g in [("All", cr)] + [(e, cr[cr.engine == e]) for e in ENGINES]:
-        for grp, n in g.group.value_counts().items():
-            rows.append({"engine": eng, "group": grp, "citations": int(n), "share": n / len(g), "n": len(g)})
+    cuts = [("engine", v, g) for v, g in [("All", cr)] + [(e, cr[cr.engine == e]) for e in ENGINES]]
+    cuts += [("domain_type", v, g) for v, g in cr.groupby("domain_type")]
+    for cut, value, g in cuts:
+        for basis, col in [("all dates", "group"), ("structured dates only", "group_structured")]:
+            for grp, n in g[col].value_counts().items():
+                rows.append({"cut": cut, "value": value, "basis": basis, "group": grp, "citations": int(n),
+                             "share": n / len(g), "n": len(g)})
     out["recency"] = pd.DataFrame(rows)
 
     html = pages[pages.is_readable & (pages.content_kind == "html")].copy()

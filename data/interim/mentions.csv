@@ -25,36 +25,36 @@ gpt-03,3,SeaBank,,SeaBank,65
 gpt-03,3,BRI,BRImo,BRImo,84
 gpt-03,3,Bank Neo Commerce,,Bank Neo Commerce,96
 gpt-03,6,Bank Mandiri,Livin' by Mandiri,Livin’ by Mandiri,0
-gpt-03,10,Bank Mandiri,Livin' by Mandiri,Livin’ by Mandiri,0
-gpt-03,11,BCA,myBCA,myBCA,0
-gpt-03,12,BCA,,BCA,24
-gpt-03,13,BCA,,BCA,41
-gpt-03,15,BCA,myBCA,myBCA,0
-gpt-03,16,BRI,BRImo,BRImo,0
-gpt-03,18,BRI,,BRI,101
-gpt-03,20,BRI,,Bank BRI,0
-gpt-03,21,SeaBank,,SeaBank,0
-gpt-03,26,SeaBank,,SeaBank,0
-gpt-03,27,Bank Jago,,Bank Jago,0
-gpt-03,31,Bank Jago,,Bank Jago,0
-gpt-03,33,Bank Mandiri,Livin' by Mandiri,Livin’ by Mandiri,38
-gpt-03,34,BCA,,BCA,29
-gpt-03,34,BCA,myBCA,myBCA,34
-gpt-03,35,SeaBank,,SeaBank,36
-gpt-03,36,Bank Jago,,Bank Jago,42
-gpt-03,38,BNI,wondr by BNI,wondr by BNI,0
-gpt-03,40,BNI,wondr by BNI,wondr,12
-gpt-03,41,BNI,wondr by BNI,wondr,0
+gpt-03,8,Bank Mandiri,Livin' by Mandiri,Livin’ by Mandiri,13
+gpt-03,9,BCA,myBCA,myBCA,0
+gpt-03,9,BCA,,BCA,30
+gpt-03,10,BCA,,BCA,41
+gpt-03,11,BCA,myBCA,myBCA,13
+gpt-03,12,BRI,BRImo,BRImo,0
+gpt-03,13,BRI,,BRI,101
+gpt-03,14,BRI,,Bank BRI,13
+gpt-03,15,SeaBank,,SeaBank,0
+gpt-03,18,SeaBank,,SeaBank,13
+gpt-03,19,Bank Jago,,Bank Jago,0
+gpt-03,21,Bank Jago,,Bank Jago,13
+gpt-03,23,Bank Mandiri,Livin' by Mandiri,Livin’ by Mandiri,38
+gpt-03,24,BCA,,BCA,29
+gpt-03,24,BCA,myBCA,myBCA,34
+gpt-03,25,SeaBank,,SeaBank,36
+gpt-03,26,Bank Jago,,Bank Jago,42
+gpt-03,27,BNI,wondr by BNI,wondr by BNI,64
+gpt-03,27,BNI,wondr by BNI,wondr,99
+gpt-03,28,BNI,wondr by BNI,wondr,0
 gpt-04,4,Bank Jago,,Bank Jago,0
 gpt-04,6,Bank Jago,,Bank Jago,0
 gpt-04,7,Bank Jago,,Jago,0
-gpt-04,10,BCA,blu,blu by BCA Digital,0
-gpt-04,11,BCA,,BCA,105
-gpt-04,14,BCA,blu,blu by BCA Digital,0
-gpt-04,15,SeaBank,,SeaBank,0
-gpt-04,19,SeaBank,,SeaBank Indonesia,0
-gpt-04,20,Bank Saqu,,Bank Saqu,0
-gpt-04,24,Bank Saqu,,Bank Saqu,0
+gpt-04,9,BCA,blu,blu by BCA Digital,0
+gpt-04,10,BCA,,BCA,105
+gpt-04,12,BCA,blu,blu by BCA Digital,17
+gpt-04,13,SeaBank,,SeaBank,0
+gpt-04,16,SeaBank,,SeaBank Indonesia,17
+gpt-04,17,Bank Saqu,,Bank Saqu,0
+gpt-04,20,Bank Saqu,,Bank Saqu,17
 gpt-05,1,SeaBank,,SeaBank,112
 gpt-05,1,Bank Neo Commerce,,Bank Neo Commerce,201
 gpt-05,1,BRI,Bank Raya,Bank Raya,223
@@ -342,8 +342,8 @@ gem-10,0,Bank Jago,,Bank Jago,7
 gem-10,0,SeaBank,,SeaBank,21
 gem-10,2,SeaBank,,SeaBank,9
 gem-10,2,Bank Jago,,Bank Jago,17
-gem-10,14,SeaBank,,SeaBank,6
-gem-10,15,Bank Jago,,Bank Jago,6
+gem-10,12,SeaBank,,SeaBank,6
+gem-10,13,Bank Jago,,Bank Jago,6
 gem-12,0,BRI,,BRI,7
 gem-12,0,BRI,,Bank Rakyat Indonesia,12
 gem-12,0,BNI,,BNI,39
@@ -353,16 +353,16 @@ gem-12,3,BRI,BRImo,BRImo,14
 gem-12,3,BNI,,BNI,36
 gem-12,3,BNI,,BNI,41
 gem-12,5,BRI,BRImo,BRImo,29
-gem-12,6,BNI,,BNI,20
-gem-12,8,BRI,,BritAma,9
-gem-12,8,BRI,,Simpedes,19
-gem-12,9,BNI,,BNI Taplus,9
-gem-12,10,BRI,BRImo,BRImo,24
-gem-12,11,BNI,,BNI,122
-gem-12,14,BRI,,AgenBRILink,5
-gem-12,17,BRI,,BRI,6
-gem-12,17,BRI,BRImo,BRImo,91
-gem-12,18,BNI,,BNI,6
+gem-12,5,BNI,,BNI,165
+gem-12,7,BRI,,BritAma,9
+gem-12,7,BRI,,Simpedes,19
+gem-12,7,BNI,,BNI Taplus,82
+gem-12,8,BRI,BRImo,BRImo,24
+gem-12,9,BNI,,BNI,122
+gem-12,11,BRI,,AgenBRILink,5
+gem-12,13,BRI,,BRI,6
+gem-12,13,BRI,BRImo,BRImo,91
+gem-12,14,BNI,,BNI,6
 gem-13,2,Bank Jago,,Bank Jago,30
 gem-13,3,Bank Jago,,Bank Jago,0
 gem-13,12,BCA,blu,blu by BCA Digital,3
@@ -374,18 +374,18 @@ gem-13,18,Bank BTPN,,Bank BTPN,8
 gem-13,21,Bank BTPN,Jenius,Jenius,9
 gem-13,26,BCA,blu,bluSaving,76
 gem-14,3,SeaBank,,SeaBank,0
-gem-14,7,Bank Jago,,Bank Jago,0
-gem-14,12,BCA,blu,blu by BCA Digital,0
-gem-14,13,BCA,blu,bluBebas,70
-gem-14,14,BCA,,BCA,42
-gem-14,15,BCA,,BCA,49
-gem-14,16,BCA,,BCA,0
-gem-14,16,BCA,myBCA,myBCA,13
-gem-14,22,SeaBank,,SeaBank,0
-gem-14,22,Bank Jago,,Bank Jago,13
-gem-14,25,BCA,blu,blu by BCA Digital,0
-gem-14,25,BCA,myBCA,myBCA,24
-gem-14,26,BCA,,BCA,146
+gem-14,5,Bank Jago,,Bank Jago,0
+gem-14,8,BCA,blu,blu by BCA Digital,0
+gem-14,9,BCA,blu,bluBebas,70
+gem-14,9,BCA,,BCA,172
+gem-14,9,BCA,,BCA,286
+gem-14,10,BCA,,BCA,0
+gem-14,10,BCA,myBCA,myBCA,13
+gem-14,13,SeaBank,,SeaBank,52
+gem-14,13,Bank Jago,,Bank Jago,65
+gem-14,14,BCA,blu,blu by BCA Digital,41
+gem-14,14,BCA,myBCA,myBCA,65
+gem-14,14,BCA,,BCA,218
 gem-15,13,SeaBank,,SeaBank,0
 gem-15,18,BCA,blu,blu by BCA Digital,0
 gem-15,18,BCA,myBCA,myBCA,21

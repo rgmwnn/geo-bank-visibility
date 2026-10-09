@@ -66,3 +66,14 @@ def test_load_body_prefers_rendered_html(tmp_path):
     (tmp_path / "k.rendered.html").write_bytes(b"<html>rendered</html>")
     assert load_body(tmp_path, "k", {"rendered": True}) == (b"<html>rendered</html>", "rendered")
     assert load_body(tmp_path, "missing", {}) == (None, "")
+
+
+def test_htmldate_near_crawl_day_is_treated_as_unknown():
+    meta = {"url": "u", "final_url": "u", "http_status": 200, "fetch_error": "", "content_kind": "html",
+            "fetched_at": "2026-10-09T07:10:00+00:00"}
+    near = page_row(meta, {"title": "t", "n_words": 80, "published_date": "2026-10-08", "date_source": "htmldate"}, 50)
+    assert (near["published_date"], near["date_source"]) == ("", "htmldate_near_crawl")
+    far = page_row(meta, {"title": "t", "n_words": 80, "published_date": "2026-09-01", "date_source": "htmldate"}, 50)
+    assert far["published_date"] == "2026-09-01"
+    js = page_row(meta, {"title": "t", "n_words": 80, "published_date": "2026-10-09", "date_source": "jsonld"}, 50)
+    assert js["published_date"] == "2026-10-09"
