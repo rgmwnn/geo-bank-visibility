@@ -92,7 +92,7 @@ Splitting: each list item and each table row is one sentence. Paragraphs are spl
 `config/brands.yaml` lists every bank that appears in the 40 answers. Claude builds it from the answers, and RG reviews it before Step 3. Each entry has:
 
 - `brand`: canonical name (e.g. `Bank Jago`)
-- `group`: parent group for roll-ups (e.g. `blu` → `BCA Group`), optional
+- `parent`: the main brand that gets the credit for a subsidiary (e.g. `blu` → `BCA`). Empty for main brands.
 - `type`: `conventional`, `digital`, `sharia`
 - `aliases`: strings that count as a mention
 - `case_sensitive`: true for short acronyms (`BCA`, `BRI`, `BNI`, `BSI`, `BTN`)
@@ -100,10 +100,12 @@ Splitting: each list item and each table row is one sentence. Paragraphs are spl
 
 Matching rules:
 - Whole-word match only.
-- Longest alias wins, so `blu by BCA Digital` counts as blu, not BCA.
+- Longest alias wins, so `blu by BCA Digital` is one match on the blu entry, not two matches.
+- Subsidiaries roll up (decided by RG): a mention of a subsidiary counts as a mention of its parent in every metric. `blu` and `BCA Digital` score for BCA. The sub-brand is kept in a `sub_brand` column so the detail stays visible, but metrics are computed per parent brand.
+- If one sentence names both a parent and its subsidiary, the parent gets two mentions in that sentence (one per match), and the sentence counts once for PAWC.
 - For ambiguous aliases, Claude reviews each hit in context and records it in `data/labels/ambiguous_hits.csv` (keep or reject, with the sentence). Only kept hits count.
 
-**Mentions** (`mentions.csv`): `answer_id`, `sent_idx`, `brand`, `alias_matched`, `char_pos`.
+**Mentions** (`mentions.csv`): `answer_id`, `sent_idx`, `brand` (parent brand), `sub_brand` (the subsidiary matched, empty for main brands), `alias_matched`, `char_pos`.
 
 The same dictionary is used again in Step 3 to count brands in crawled pages, so it must be final before the crawl runs.
 
@@ -284,5 +286,5 @@ Dashboard views and design, deployment to GitHub Pages, scheduled re-runs, more 
 | # | Question | Default |
 |---|---|---|
 | Q1 | Repo name and visibility | Settled: `rgmwnn/geo-bank-visibility`, public |
-| Q2 | Date of the original runs | 2026-10-09 for all 40 answers |
-| Q3 | Keep bank subsidiaries such as blu (BCA Digital) as separate brands? | Separate brands, with a `group` field for roll-ups |
+| Q2 | Date of the original runs | Settled: all 40 answers, including the prompt 8 re-run, were run on 2026-10-09 |
+| Q3 | How to treat subsidiaries such as blu (BCA Digital) | Settled: they count toward the parent brand (blu scores for BCA), with `sub_brand` kept for detail |
