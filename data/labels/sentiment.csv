@@ -1,0 +1,137 @@
+answer_id,brand,label,score,evidence,reason
+gem-01,Allo Bank,positive,1,11,listed among the highest deposit rates (7.5%)
+gem-01,Amar Bank,positive,1,6,listed with deposit rate up to 9%
+gem-01,Bank Aladin Syariah,positive,1,8,listed with deposit returns up to 9%
+gem-01,Bank Saqu,positive,1,7;16,listed with savings rate up to 6% and deposit up to 9%
+gem-01,Krom Bank,positive,1,9;15,listed with high flexible and deposit rates
+gem-01,SeaBank,positive,1,17,listed with daily savings interest 3.5 to 4%
+gem-01,Superbank,positive,1,10,listed with 7.5% digital deposit
+gem-02,BCA,positive,1,7;14;19,blu listed with Rp0 admin; Xpresi cheap admin
+gem-02,BNI,neutral,0,14,named only as a bank offering the generic TabunganKu program
+gem-02,BRI,neutral,0,14,named only as a bank offering the generic TabunganKu program
+gem-02,BSI,positive,1,16,listed as a sharia option with no monthly fee
+gem-02,BTN,neutral,0,14,named only as a bank offering the generic TabunganKu program
+gem-02,Bank Jago,positive,1,6,listed with Rp0 admin and free transfers
+gem-02,Bank Mandiri,neutral,0,14,named only as a bank offering the generic TabunganKu program
+gem-02,Bank Neo Commerce,positive,1,10,listed with Rp0 admin and free transfers
+gem-02,CIMB Niaga,positive,1,14;17,sharia savings listed as a no-fee option
+gem-02,Danamon,positive,1,18;19,listed as a cheap or sharia no-fee option
+gem-02,Krom Bank,positive,1,8,listed with Rp0 admin and 30 free transfers
+gem-02,SeaBank,positive,1,5,listed with Rp0 admin and free transfers
+gem-02,Superbank,positive,1,9,"listed with Rp0 admin, no minimum balance"
+gem-03,BCA,positive,1,4;10,recommended for reliability and transactions
+gem-03,BRI,positive,1,8,recommended for reach and accessibility
+gem-03,Bank BTPN,positive,1,6;12,Jenius recommended for travel and foreign currency
+gem-03,Bank Jago,positive,1,5;11,recommended for budgeting
+gem-03,Bank Mandiri,positive,1,3;10,Livin' recommended as the super app
+gem-03,SeaBank,positive,1,7;13,recommended for online shopping and free transfers
+gem-04,BCA,positive,1,5;6;7;21,"blu and myBCA described as most stable, very high security"
+gem-04,BRI,positive,1,9,BRImo listed among the safe options
+gem-04,Bank BTPN,positive,1,11,Jenius listed among the safe options
+gem-04,Bank Jago,positive,1,22;23,described as backed by a large ecosystem with biometric protection
+gem-04,Bank Mandiri,positive,1,9,Livin' listed among the safe options
+gem-04,Bank Neo Commerce,neutral,0,22,named only as an example of an LPS-insured digital bank
+gem-04,Krom Bank,neutral,0,22,named only as an example of an LPS-insured digital bank
+gem-04,SeaBank,positive,1,22;23,described as backed by a large ecosystem with biometric protection
+gem-05,BCA,positive,1,3;4;22,"named best for contact centre, cites awards"
+gem-05,BNI,positive,1,9;24,listed among responsive banks
+gem-05,Bank BTPN,positive,1,18,Jenius listed among responsive banks
+gem-05,Bank Jago,positive,1,12;13;23,very fast response via live chat and WhatsApp
+gem-05,Bank Mandiri,positive,1,6;7;24,named best for in-app CS and fast social media replies
+gem-05,SeaBank,positive,1,15;23,listed with 24-hour in-app live chat
+gem-06,BCA,positive,1,12;20,recommended for payroll; blu with Rp0 admin
+gem-06,Bank BTPN,positive,1,15,Jenius listed for multi-currency debit card
+gem-06,Bank Jago,positive,1,3;21,"recommended for budgeting, no admin fee"
+gem-06,Bank Mandiri,positive,1,9;20,"recommended for payroll, widest ATM network"
+gem-06,Krom Bank,positive,1,22,recommended for emergency savings with high interest
+gem-06,SeaBank,positive,1,6;22,recommended for no admin fee and emergency savings
+gem-07,Allo Bank,positive,1,13,100 free transfers a month
+gem-07,BCA,mixed,0,12,blu offers 20 free transfers but only with a minimum average balance
+gem-07,Bank Jago,mixed,0,7;16,largest quota (150) but needs a high average balance
+gem-07,Bank Neo Commerce,positive,1,11,25 to 30 free transfers
+gem-07,Bank Saqu,positive,1,4;15,100 free transfers with no balance condition
+gem-07,Krom Bank,positive,1,5,"100 free transfers, no hidden fees"
+gem-07,SeaBank,positive,1,6;15,100 free transfers with no balance condition
+gem-07,Superbank,positive,1,3;15,100 free transfers with no minimum balance
+gem-08,BCA,positive,1,3;5;15,strongest capital among private banks
+gem-08,BNI,positive,1,10;11;15,"large core capital, KBMI 4"
+gem-08,BRI,positive,1,8;9;15,"widest network, strongest state-owned stability"
+gem-08,BSI,positive,1,12;13,largest sharia bank
+gem-08,Bank Mandiri,positive,1,6;7;15,largest total assets
+gem-09,BCA,positive,1,0;2;7;11;16,"best server stability, zero downtime"
+gem-09,Bank Mandiri,positive,1,0;2;15,Livin' as the all-in-one super app
+gem-10,Bank Jago,positive,1,0;2;15,recommended for budgeting with pockets
+gem-10,SeaBank,positive,1,0;2;14,recommended for maximum daily interest
+gem-12,BNI,positive,1,0;3;6;9;11;18,recommended for urban and overseas users
+gem-12,BRI,positive,1,0;3;5;8;10;14;17,recommended for low opening deposit and wide reach
+gem-13,BCA,positive,1,12;13;16;26,blu listed with up to 20 savings pockets
+gem-13,Bank BTPN,mixed,0,18;21,"Jenius listed but charges a Rp10,000 monthly fee"
+gem-13,Bank Jago,positive,1,2;3,named the most recommended bank for freelancers
+gem-14,BCA,mixed,0,12;13;14;15;16;25;26,"most stable network, but standard fees on myBCA and limited free quota on blu"
+gem-14,Bank Jago,positive,1,7;22,"named a main choice, tiered savings"
+gem-14,SeaBank,positive,1,3;22,"named a main choice, very cheap"
+gem-15,BCA,positive,1,18;19;20,blu described as safest in class with 3 to 3.75% interest
+gem-15,Bank Jago,positive,1,22,listed among the options
+gem-15,Krom Bank,positive,1,28;35,listed with 6.5 to 8% returns
+gem-15,SeaBank,positive,1,13;33;34,listed with daily savings and deposit rates
+gem-16,BCA,positive,1,4;14,"best branch service, staff help elderly customers"
+gem-16,BNI,positive,1,12;14,wide branch network and supportive tellers
+gem-16,BRI,positive,1,7;9;14,most branches nationwide down to village level
+gem-16,Bank Mandiri,positive,1,10,Mandiri Taspen designed for pensioners
+gem-17,Bank Jago,neutral,0,7,used only as an example account in the LPS explanation
+gem-20,BCA,neutral,0,7;15,blu named only as an example in the OJK check
+gem-20,Bank Jago,neutral,0,7;16,named only as an example in the OJK check
+gem-20,Bank Neo Commerce,neutral,0,19,named only as an example in the OJK check
+gem-20,Krom Bank,neutral,0,7,named only as an example in the OJK check
+gem-20,SeaBank,neutral,0,7;17,named only as an example in the OJK check
+gem-20,Superbank,neutral,0,7;18,named only as an example in the OJK check
+gpt-01,Allo Bank,positive,1,0;2,"named a top candidate, up to 6.5% savings rate"
+gpt-01,Bank Neo Commerce,positive,1,0;2,"named a top candidate, 4% savings rate"
+gpt-01,Krom Bank,positive,1,0,named a top candidate for digital savings interest
+gpt-02,BCA,positive,1,18;20;26,"blu account has no monthly fee, good for pockets"
+gpt-02,Bank Jago,positive,1,14;26,"listed with no admin fee, good for pockets"
+gpt-02,Bank Neo Commerce,positive,1,22,listed among no-admin-fee banks
+gpt-02,Krom Bank,positive,1,6;9;25,recommended to compare first for no admin fee
+gpt-02,SeaBank,positive,1,10;13;25,recommended to compare first for no admin fee
+gpt-03,BCA,positive,1,1;11;12;13;15;34,myBCA among the three main candidates
+gpt-03,BNI,positive,1,38;40;41,wondr listed among the apps worth considering
+gpt-03,BRI,positive,1,1;3;16;18;20,BRImo among the three main candidates
+gpt-03,Bank Jago,positive,1,27;31;36,recommended for budgeting
+gpt-03,Bank Mandiri,positive,1,1;3;6;10;33,"Livin' among the main candidates, highest rating cited"
+gpt-03,Bank Neo Commerce,neutral,0,3,only its app rating is cited
+gpt-03,SeaBank,positive,1,3;21;26;35,recommended for digital savings
+gpt-04,BCA,positive,1,10;11;14,blu worth considering for the BCA ecosystem
+gpt-04,Bank Jago,positive,1,4;6;7,"licensed, supervised by OJK and LPS-insured"
+gpt-04,Bank Saqu,positive,1,20;24,listed among the options
+gpt-04,SeaBank,positive,1,15;19,listed among the options
+gpt-05,BCA,positive,1,11;12;13;14;15;22,strong multichannel help; notes this is not proof of fastest response
+gpt-05,BRI,positive,1,1;8;9;10;21,top contact centre score in 2026 Infobank report
+gpt-05,Bank Jago,positive,1,16;18;19,"clear complaint procedure, five working days"
+gpt-05,Bank Neo Commerce,positive,1,1,second in the digital bank customer experience tracker
+gpt-05,SeaBank,positive,1,1;5;7;20,first in the digital bank customer experience tracker; try first
+gpt-06,BCA,positive,1,4;5;15,blu best for daily transactions
+gpt-06,BRI,positive,1,10;17,Bank Raya as a no-admin-fee alternative
+gpt-06,Bank Jago,positive,1,1;14,best for managing monthly money
+gpt-06,SeaBank,positive,1,7;16,best for a simple digital account
+gpt-07,Bank Jago,mixed,0,2;4;8;13,large free quota but depends on account level
+gpt-07,Krom Bank,positive,1,11,up to 100 free transfers
+gpt-07,Nobu Bank,positive,1,1;3;7;12,unlimited free transfers during the promo
+gpt-07,SeaBank,positive,1,9;10,up to 100 free transfers
+gpt-08,BCA,positive,1,3;20,one of four big banks worth comparing
+gpt-08,BNI,positive,1,12;14;20,one of four big banks worth comparing
+gpt-08,BRI,positive,1,9;11;20,one of four big banks worth comparing
+gpt-08,Bank Mandiri,positive,1,6;20,one of four big banks worth comparing
+gpt-10,Bank Jago,positive,1,0;3;6;9;12,better for goal-based saving and more free transfers
+gpt-10,SeaBank,positive,1,0;3;9;11;13,better for daily interest
+gpt-12,BNI,positive,1,0;2;4;5;6;7;9;11;14;15,recommended for youth savings and digital help channels
+gpt-12,BRI,positive,1,0;1;4;5;10;13,recommended for easy BRImo opening and wide network
+gpt-13,BCA,positive,1,3,blu offered as an alternative with no admin fee
+gpt-13,Bank Jago,mixed,0,1;4;5;11,"most recommended, but charges a fee on some inactive accounts"
+gpt-13,SeaBank,positive,1,12,attractive for no minimum balance and daily interest
+gpt-14,Bank Jago,positive,1,0;1;5;11;13,recommended for high e-wallet and transfer volume
+gpt-14,SeaBank,positive,1,0;2;5;11;14,recommended for QRIS and low top-up fees
+gpt-15,Bank Jago,positive,1,2;13,suggested as the main emergency-fund account
+gpt-15,SeaBank,positive,1,4,worth checking as a comparison
+gpt-16,BCA,positive,1,2;3,good alternative with branch staff help
+gpt-16,BRI,positive,1,0;1,most recommended for its wide network
+gpt-17,BTN,neutral,0,8,named only as an example bank in the LPS explanation
