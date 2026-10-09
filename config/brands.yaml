@@ -1,0 +1,51 @@
+# Banks named in the 40 answers. Built by Claude from the answers, reviewed by RG.
+# parent: the brand that gets the credit (subsidiaries and mobile apps roll up to it).
+# ambiguous_aliases: aliases that are also ordinary words; each hit in the answers is reviewed by hand.
+
+- {brand: BCA, parent: null, type: conventional, case_sensitive: true,
+   aliases: [BCA, Bank Central Asia, PT Bank Central Asia Tbk, Tahapan Xpresi, Tahapan]}
+- {brand: myBCA, parent: BCA, type: conventional, case_sensitive: true, aliases: [myBCA]}
+- {brand: BCA mobile, parent: BCA, type: conventional, case_sensitive: true, aliases: [BCA mobile, KlikBCA]}
+- {brand: blu, parent: BCA, type: digital, case_sensitive: true,
+   aliases: [blu by BCA Digital, PT Bank Digital BCA, Bank Digital BCA, BCA Digital, blu, bluSaving, bluBebas, bluAccount],
+   ambiguous_aliases: [blu]}
+
+- {brand: Bank Mandiri, parent: null, type: conventional, case_sensitive: true,
+   aliases: [Bank Mandiri, Mandiri, PT Bank Mandiri (Persero) Tbk], ambiguous_aliases: [Mandiri]}
+- {brand: Livin' by Mandiri, parent: Bank Mandiri, type: conventional, case_sensitive: true,
+   aliases: ["Livin' by Mandiri", "Livin’ by Mandiri", "Livin'", "Livin’", Livin]}
+
+- {brand: BRI, parent: null, type: conventional, case_sensitive: true,
+   aliases: [BRI, Bank BRI, Bank Rakyat Indonesia, BritAma, Simpedes, AgenBRILink]}
+- {brand: BRImo, parent: BRI, type: conventional, case_sensitive: true, aliases: [BRImo]}
+- {brand: Bank Raya, parent: BRI, type: digital, case_sensitive: true, aliases: [Bank Raya]}
+
+- {brand: BNI, parent: null, type: conventional, case_sensitive: true,
+   aliases: [BNI, Bank BNI, Bank Negara Indonesia, BNI Taplus, Taplus]}
+- {brand: wondr by BNI, parent: BNI, type: conventional, case_sensitive: false, aliases: [wondr by BNI, wondr]}
+
+- {brand: BSI, parent: null, type: sharia, case_sensitive: true, aliases: [BSI, Bank Syariah Indonesia]}
+- {brand: BTN, parent: null, type: conventional, case_sensitive: true, aliases: [BTN, Bank Tabungan Negara]}
+- {brand: CIMB Niaga, parent: null, type: conventional, case_sensitive: true,
+   aliases: [CIMB Niaga, CIMB Niaga Syariah, OCTO]}
+- {brand: Danamon, parent: null, type: conventional, case_sensitive: true,
+   aliases: [Bank Danamon, Danamon, Danamon Syariah]}
+- {brand: Bank BTPN, parent: null, type: conventional, case_sensitive: true,
+   aliases: [Bank BTPN, BTPN, PT Bank BTPN Tbk, SMBC Indonesia]}
+- {brand: Jenius, parent: Bank BTPN, type: digital, case_sensitive: true, aliases: [Jenius]}
+
+- {brand: Bank Jago, parent: null, type: digital, case_sensitive: true,
+   aliases: [Bank Jago, Jago Syariah, Jago], ambiguous_aliases: [Jago]}
+- {brand: SeaBank, parent: null, type: digital, case_sensitive: false,
+   aliases: [SeaBank, SeaBank Indonesia, Bank Seabank Indonesia, SeaBank ID]}
+- {brand: Krom Bank, parent: null, type: digital, case_sensitive: true, aliases: [Krom Bank, Krom]}
+- {brand: Bank Neo Commerce, parent: null, type: digital, case_sensitive: true,
+   aliases: [PT Bank Neo Commerce Tbk, Bank Neo Commerce, Neo Commerce, BNC, Neobank, neobank, Neo], ambiguous_aliases: [Neobank, neobank, Neo]}
+- {brand: Allo Bank, parent: null, type: digital, case_sensitive: true,
+   aliases: [Allo Bank, Allo Prime, Allo], ambiguous_aliases: [Allo]}
+- {brand: Bank Saqu, parent: null, type: digital, case_sensitive: true, aliases: [Bank Saqu, Saqu]}
+- {brand: Superbank, parent: null, type: digital, case_sensitive: true, aliases: [Superbank]}
+- {brand: Bank Aladin Syariah, parent: null, type: sharia, case_sensitive: true, aliases: [Bank Aladin Syariah, Aladin]}
+- {brand: Amar Bank, parent: null, type: digital, case_sensitive: true,
+   aliases: [Amar Bank, Bank Amar, Amar], ambiguous_aliases: [Amar]}
+- {brand: Nobu Bank, parent: null, type: conventional, case_sensitive: false, aliases: [nobu Go, Nobu Bank, nobu]}

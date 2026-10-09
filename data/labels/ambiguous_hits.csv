@@ -1,0 +1,24 @@
+answer_id,sent_idx,alias,char_pos,sentence,decision,note
+gpt-01,0,neobank,67,"Berdasarkan informasi yang tersedia untuk 2026, Bank Neo Commerce (neobank), Krom Bank, dan Allo Bank termasuk kandidat teratas untuk bunga tabungan digital di Indonesia.",keep,refers to the bank in context
+gpt-02,26,blu,14,Bank Jago dan blu juga menarik jika kamu lebih mengutamakan pengelolaan uang melalui fitur kantong atau rekening terpisah.,keep,refers to the bank in context
+gpt-04,7,Jago,0,Jago,keep,refers to the bank in context
+gpt-06,15,blu,35,Transaksi harian dan ekosistem BCA blu,keep,refers to the bank in context
+gpt-08,20,Mandiri,17,"Kesimpulan: BCA, Mandiri, BRI, dan BNI merupakan empat pilihan bank besar yang layak dibandingkan.",keep,refers to the bank in context
+gpt-10,6,Jago,47,Biaya admin bulanan Rp0 untuk rekening digital Jago Rp0,keep,refers to the bank in context
+gpt-13,4,Jago,69,"Namun, untuk pemisahan uang berdasarkan banyak tujuan, fitur Kantong Jago lebih langsung sesuai dengan kebutuhanmu.",keep,refers to the bank in context
+gpt-13,5,Jago,35,Cara membagi uang freelance dengan Jago,keep,refers to the bank in context
+gem-01,6,Amar,19,"Amar Bank Deposito Amar Hingga 9,00% Tenor panjang (36 bulan)",keep,refers to the bank in context
+gem-01,11,Allo,19,"Allo Bank Deposito Allo 7,50% Tenor 12 bulan",keep,refers to the bank in context
+gem-02,10,Neobank,19,Bank Neo Commerce (Neobank) Gratis (Rp0) Gratis transfer antarbank (kuota harian/bulanan),keep,refers to the bank in context
+gem-02,14,Mandiri,135,"Program TabunganKu (Semua Bank): Program resmi Bank Indonesia (BI) dan OJK yang tersedia di hampir seluruh bank nasional (seperti BCA, Mandiri, BRI, BNI, BTN, CIMB Niaga). Rekening ini bebas biaya admin bulanan (Rp0) dengan setoran awal ringan.",keep,refers to the bank in context
+gem-04,22,Jago,41,"Terjamin LPS 100% Bank Digital mana pun (Jago, SeaBank, Krom, Neo) Asal suku bunga tabungan yang diambil $\le$ Tingkat Bunga Penjaminan LPS.",keep,refers to the bank in context
+gem-05,13,Jago,51,"Respon: Sangat cepat melalui Live Chat di aplikasi Jago, WhatsApp resmi, dan Telepon.",keep,refers to the bank in context
+gem-06,12,blu,22,"BCA (Tahapan Xpresi / blu) Bank Konvensional / Digital • Biaya admin murah (Xpresi Rp7.500/bulan, blu Rp0)",keep,refers to the bank in context
+gem-06,12,blu,98,"BCA (Tahapan Xpresi / blu) Bank Konvensional / Digital • Biaya admin murah (Xpresi Rp7.500/bulan, blu Rp0)",keep,refers to the bank in context
+gem-07,11,Neobank,19,Bank Neo Commerce (Neobank) 25x – 30x / bulan Bebas biaya transfer antarbank via BI-FAST dan online transfer (sesuai promo/level aktif).,keep,refers to the bank in context
+gem-08,7,Mandiri,78,"Integrasi investasi lengkap via Livin' (Reksadana, Obligasi Negara/ORI/SBR) | Mandiri Tabungan Rencana (MTR)",keep,refers to the bank in context
+gem-08,15,Mandiri,70,"Kelompok KBMI 4 (Modal Inti > Rp70 Triliun): Bank dalam kategori ini (Mandiri, BRI, BCA, BNI) memiliki bantalan modal paling tebal untuk menyerap risiko ekonomi jangka panjang.",keep,refers to the bank in context
+gem-20,7,blu,87,"Buka chat dan ketik nama bank digital yang ingin Anda cek (contoh: Bank Jago, SeaBank, blu, Krom Bank, atau Superbank).",keep,refers to the bank in context
+gem-20,15,blu,0,blu $\rightarrow$ PT Bank Digital BCA,keep,refers to the bank in context
+gem-20,19,Neobank,0,Neobank $\rightarrow$ PT Bank Neo Commerce Tbk,keep,refers to the bank in context
+gem-04,22,Neo,62,"Terjamin LPS 100% Bank Digital mana pun (Jago, SeaBank, Krom, Neo) Asal suku bunga tabungan yang diambil $\le$ Tingkat Bunga Penjaminan LPS.",keep,Neo is listed among digital banks (Bank Neo Commerce)
