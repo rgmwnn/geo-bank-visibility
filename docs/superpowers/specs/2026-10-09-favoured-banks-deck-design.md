@@ -59,8 +59,8 @@ The Nolan references are principles only. No film stills, logos, titles, charact
 | Primary text | `#ECE7DD` (bone) |
 | Secondary text | `#9A9EA6` |
 | Dim marks, rules | `#3A3D43` |
-| ChatGPT | `#E39B45` (ember) |
-| Gemini | `#6FA3D2` (steel blue) |
+| ChatGPT | `#D07A28` (ember) |
+| Gemini | `#4790D8` (steel blue) |
 
 The dark background is a choice, not a default: the deck reads as a screening, charts behave like lit objects, and LinkedIn document posts show dark slides well. All text pairs are checked for WCAG AA contrast before build.
 

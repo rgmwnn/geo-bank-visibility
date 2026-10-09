@@ -6,8 +6,8 @@ C = {
     "text": "#ECE7DD",
     "secondary": "#9A9EA6",
     "dim": "#3A3D43",
-    "gpt": "#E39B45",
-    "gem": "#6FA3D2",
+    "gpt": "#D07A28",
+    "gem": "#4790D8",
 }
 SANS = "Work Sans"
 MONO = "IBM Plex Mono"

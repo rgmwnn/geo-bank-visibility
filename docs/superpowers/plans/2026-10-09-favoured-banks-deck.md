@@ -13,7 +13,7 @@
 ## Global Constraints
 
 - Canvas 1920 x 1080 px (13.333 x 7.5 in). Letterbox band for evidence slides: 2.39:1, so bars of 138 px top and bottom.
-- Palette: background `#0B0C0E`, bars `#000000`, text `#ECE7DD`, secondary `#9A9EA6`, dim `#3A3D43`, ChatGPT `#E39B45`, Gemini `#6FA3D2`. No other colours.
+- Palette: background `#0B0C0E`, bars `#000000`, text `#ECE7DD`, secondary `#9A9EA6`, dim `#3A3D43`, ChatGPT `#D07A28`, Gemini `#4790D8`. No other colours.
 - Fonts: Work Sans (titles, body), IBM Plex Mono (data labels, slate). Nothing else.
 - Slate line on evidence slides: `09.10.2026 · 40 ANSWERS · SCENE NN`.
 - ChatGPT is always ember, Gemini always steel blue.
