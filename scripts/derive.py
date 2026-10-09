@@ -162,6 +162,14 @@ def attribution_scores(sentences: pd.DataFrame, citations: pd.DataFrame, page_te
     return pd.DataFrame(rows, columns=["answer_id", "sent_idx", "best_url", "best_score", "second_url", "second_score"])
 
 
+def load_body(cache: Path, key: str, meta: dict) -> tuple[bytes | None, str]:
+    rendered = cache / f"{key}.rendered.html"
+    if meta.get("rendered") and rendered.exists():
+        return rendered.read_bytes(), "rendered"
+    raw = cache / f"{key}.bin"
+    return (raw.read_bytes(), "raw") if raw.exists() else (None, "")
+
+
 def main(cache: Path = ROOT / ".cache/crawl") -> None:
     cfg = load_config()
     brands = load_brands(ROOT / "config/brands.yaml")
@@ -170,18 +178,19 @@ def main(cache: Path = ROOT / ".cache/crawl") -> None:
     for url in sorted(cits["url"].unique()):
         key = cache_key(url)
         meta = json.loads((cache / f"{key}.json").read_text(encoding="utf-8"))
-        body = cache / f"{key}.bin"
+        data, source = load_body(cache, key, meta)
         extracted: dict = {}
-        if body.exists():
-            data = body.read_bytes()
+        if data is not None:
+            encoding = "utf-8" if source == "rendered" else (meta.get("encoding") or "utf-8")
             try:
                 if meta.get("content_kind") == "pdf":
                     extracted = extract_pdf(data, cfg["pdf_max_pages"])
                 elif meta.get("content_kind") == "html":
-                    extracted = extract_html(data.decode(meta.get("encoding") or "utf-8", errors="replace"), url)
+                    extracted = extract_html(data.decode(encoding, errors="replace"), url)
             except Exception as e:
                 meta["fetch_error"] = f"extract_error: {type(e).__name__}"
         row = page_row(meta, extracted, cfg["readable_min_words"])
+        row["body_source"] = source
         pages.append(row)
         if row["is_readable"]:
             texts[url] = extracted["text"]

@@ -47,3 +47,19 @@ def test_robots_cached_per_host():
     cache = {}
     robots_decision(get, "https://a.id/1", cache); robots_decision(get, "https://a.id/2", cache)
     assert calls == ["https://a.id/robots.txt"]
+
+
+def test_needs_render_only_for_short_html_200():
+    from scripts.crawl import needs_render
+    assert needs_render({"http_status": 200, "content_kind": "html"}, 10, 50) is True
+    assert needs_render({"http_status": 200, "content_kind": "html"}, 80, 50) is False
+    assert needs_render({"http_status": 403, "content_kind": "html"}, 0, 50) is False
+    assert needs_render({"http_status": 200, "content_kind": "pdf"}, 0, 50) is False
+
+
+def test_retry_wait_reads_retry_after():
+    from scripts.crawl import retry_wait
+    assert retry_wait({"Retry-After": "7"}) == 7
+    assert retry_wait({}) == 5
+    assert retry_wait({"Retry-After": "999"}) == 30
+    assert retry_wait({"Retry-After": "Wed, 21 Oct 2026 07:28:00 GMT"}) == 5

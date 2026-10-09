@@ -57,3 +57,12 @@ def test_soft_404_title_not_readable():
         assert row["is_readable"] is False and row["soft_404"] is True
     ok = page_row(meta, {"title": "BNI Taplus | BNI", "text": "kata " * 80, "n_words": 80}, 50)
     assert ok["is_readable"] is True and ok["soft_404"] is False
+
+
+def test_load_body_prefers_rendered_html(tmp_path):
+    from scripts.derive import load_body
+    (tmp_path / "k.bin").write_bytes(b"<html>raw</html>")
+    assert load_body(tmp_path, "k", {"rendered": False}) == (b"<html>raw</html>", "raw")
+    (tmp_path / "k.rendered.html").write_bytes(b"<html>rendered</html>")
+    assert load_body(tmp_path, "k", {"rendered": True}) == (b"<html>rendered</html>", "rendered")
+    assert load_body(tmp_path, "missing", {}) == (None, "")

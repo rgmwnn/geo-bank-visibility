@@ -21,6 +21,15 @@ def content_kind(content_type: str, url: str) -> str:
     return "other"
 
 
+def needs_render(meta: dict, n_words: int, min_words: int) -> bool:
+    return meta.get("http_status") == 200 and meta.get("content_kind") == "html" and n_words < min_words
+
+
+def retry_wait(headers: dict, default: int = 5, cap: int = 30) -> int:
+    value = str(headers.get("Retry-After", "")).strip()
+    return min(int(value), cap) if value.isdigit() else default
+
+
 def by_host(urls: list[str]) -> dict[str, list[str]]:
     groups: dict[str, list[str]] = defaultdict(list)
     for u in urls:
@@ -73,6 +82,9 @@ def _fetch_host(urls: list[str], cache: Path, delay: float, timeout: int) -> Non
                 meta["fetch_error"] = reason
             else:
                 r = session.get(url, timeout=timeout, allow_redirects=True)
+                if r.status_code == 429:
+                    time.sleep(retry_wait(r.headers))
+                    r = session.get(url, timeout=timeout, allow_redirects=True)
                 meta.update(final_url=r.url, http_status=r.status_code, content_type=r.headers.get("content-type", ""),
                             encoding=r.encoding or r.apparent_encoding or "utf-8")
                 meta["content_kind"] = content_kind(meta["content_type"], r.url)
@@ -94,9 +106,46 @@ def fetch_all(urls: list[str], cache: Path, delay: float = 1.0, timeout: int = 2
             f.result()
 
 
+def render_short_pages(cache: Path, min_words: int, timeout_ms: int = 30000) -> None:
+    """Pages built by JavaScript return almost no text in their raw HTML. Render those in headless Chromium."""
+    from playwright.sync_api import sync_playwright
+
+    from scripts.derive import extract_html
+
+    todo = []
+    for meta_path in sorted(cache.glob("*.json")):
+        meta = json.loads(meta_path.read_text(encoding="utf-8"))
+        body = cache / f"{meta_path.stem}.bin"
+        if not body.exists():
+            continue
+        html = body.read_bytes().decode(meta.get("encoding") or "utf-8", errors="replace")
+        if needs_render(meta, extract_html(html, meta["url"])["n_words"], min_words):
+            todo.append((meta_path, meta))
+    print(f"rendering {len(todo)} short pages", flush=True)
+    with sync_playwright() as pw:
+        browser = pw.chromium.launch()
+        context = browser.new_context(user_agent=USER_AGENT, locale="id-ID")
+        for meta_path, meta in todo:
+            page = context.new_page()
+            try:
+                page.goto(meta["url"], wait_until="networkidle", timeout=timeout_ms)
+                (cache / f"{meta_path.stem}.rendered.html").write_text(page.content(), encoding="utf-8")
+                meta["rendered"] = True
+            except Exception as e:
+                meta["render_error"] = f"{type(e).__name__}: {str(e)[:120]}"
+            finally:
+                page.close()
+            meta_path.write_text(json.dumps(meta, ensure_ascii=False), encoding="utf-8")
+            print("rendered" if meta.get("rendered") else "render failed", meta["url"], flush=True)
+        browser.close()
+
+
 def main() -> None:
+    from scripts.io import load_config
+
     urls = sorted(read_csv("data/interim/citations.csv")["url"].unique())
     fetch_all(urls, ROOT / ".cache/crawl")
+    render_short_pages(ROOT / ".cache/crawl", load_config()["readable_min_words"])
 
 
 if __name__ == "__main__":

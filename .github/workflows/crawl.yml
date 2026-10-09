@@ -19,6 +19,10 @@ jobs:
           python-version: "3.11"
           cache: pip
       - run: pip install -r requirements.txt
+      - name: Install headless Chromium for JavaScript-built pages
+        run: |
+          pip install playwright==1.47.0
+          python -m playwright install --with-deps chromium
       - name: Fetch cited pages
         run: python -m scripts.crawl
       - name: Derive page facts, brand counts and attribution scores
