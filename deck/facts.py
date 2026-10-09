@@ -48,6 +48,8 @@ def load() -> dict:
     readable = pages[_truthy(pages.is_readable)]
     f.update(answers=len(answers), sentences=len(sentences), mentions=len(mentions), citations=len(citations),
              pages=len(pages), readable_pages=len(readable))
+    page_brands = read_csv("data/interim/page_brand_counts.csv")
+    f["readable_pages_with_bank"] = page_brands[page_brands.url.isin(readable.url)].url.nunique()
 
     m = mentions.merge(answers[["answer_id", "engine"]], on="answer_id")
     f["banks_gpt"] = m[m.engine == "ChatGPT"].brand.nunique()

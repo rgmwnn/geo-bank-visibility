@@ -17,3 +17,7 @@ def test_cold_open_prompt_13_has_banks_from_both_engines():
     c = F["cold_open"]
     assert c["prompt"].startswith("Saya freelancer")
     assert c["banks_gpt"] and c["banks_gem"]
+
+
+def test_readable_pages_naming_a_bank():
+    assert F["readable_pages_with_bank"] == 148

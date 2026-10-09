@@ -2,3 +2,5 @@
 .cache/
 __pycache__/
 .pytest_cache/
+deck/out/render/
+deck/out/charts/

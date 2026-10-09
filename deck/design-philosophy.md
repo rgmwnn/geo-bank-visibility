@@ -1,0 +1,13 @@
+# Practical Light
+
+A visual philosophy for evidence shown in the dark.
+
+The frame begins dark and stays mostly dark. Darkness here is the room the viewer sits in, quiet enough that one lit thing can hold the whole frame. Each composition chooses a single subject and lights only that. Everything else stays present but recessive, in the low grey of objects at the edge of a dark set. The viewer's eye should never have to search: it goes straight to the light, then outward to the context. That one decision, which mark to light, is made with painstaking care on every frame, because it is the whole argument of the frame.
+
+Space is used at the scale of a very large screen. Subjects are often small against an empty field, and that emptiness is deliberate structure, not leftover room. A number can be enormous and alone; a chart can sit low in the frame with open dark above it, like a horizon. The frame itself changes shape when the subject's weight changes: wide letterboxed bands for the record of evidence, the full open frame for the moments that carry the claim. The change of frame is felt more than noticed, and it is placed with the precision of someone who has spent years deciding when a picture should breathe.
+
+Two parallel threads run through the work, each with its own temperature: one warm like a filament, one cold like steel under daylight. They never trade colours and never blur together. When the two threads meet in one frame, the composition becomes symmetrical, a mirror with a fold down the middle, so the comparison is built into the geometry rather than explained in words. Every other colour is withheld. The palette is bone, graphite and black, plus these two temperatures, and the restraint is part of the craft.
+
+Type is quiet and exact. A clean, upright sans carries the few words a frame needs; a monospaced face records measurements, counts and timestamps the way a camera slate records a take. Text never competes with the lit subject. It sits at the margins, labels a mark directly, or appears once, large, when a statement is the subject. Nothing touches the edge of the frame, nothing overlaps, and every gap between elements is measured, so the result reads as master-level work produced over countless careful refinements.
+
+The finished frames should feel like plates from a meticulous record: patient, precise, and lit with intent. Marks are thin and honest, scales start where they should, and every value can be traced. The beauty comes from accuracy held to a very high standard and from the discipline of showing less, so the one thing that matters is impossible to miss.
