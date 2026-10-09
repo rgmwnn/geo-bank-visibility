@@ -1,4 +1,3 @@
-import math
 import re
 
 import pytest
@@ -59,6 +58,7 @@ def test_numbers_come_from_facts(deck):
 
 
 def test_text_fits(deck):
+    from deck.measure import height
     for i, sh, _ in _texts(deck):
         if sh is None:
             continue
@@ -67,13 +67,9 @@ def test_text_fits(deck):
         for p in sh.text_frame.paragraphs:
             if not p.runs:
                 continue
-            size_px = p.runs[0].font.size.pt * 2
-            em = 0.62 if p.runs[0].font.name == "IBM Plex Mono" else 0.52
-            cpl = max(1, int(w_px / (em * size_px)))
-            text = "".join(r.text for r in p.runs)
-            lines = sum(max(1, math.ceil(len(part) / cpl)) for part in text.split("\v"))
-            need += lines * size_px * 1.25
-        assert need <= h_px + 2, (i, text[:60], round(need), round(h_px))
+            r = p.runs[0]
+            need += height("".join(x.text for x in p.runs), w_px, r.font.size.pt, r.font.name == "IBM Plex Mono")
+        assert need <= h_px + 2, (i, sh.text_frame.text[:60], round(need), round(h_px))
 
 
 def test_letterbox_slides_have_slate(deck):
@@ -82,3 +78,15 @@ def test_letterbox_slides_have_slate(deck):
         texts = [sh.text_frame.text for sh in s.shapes if sh.has_text_frame]
         has = any(t == f"09.10.2026  ·  40 ANSWERS  ·  SCENE {n:02d}" for t in texts)
         assert has == (k == "letterbox"), (n, k)
+
+
+def test_letterbox_content_stays_inside_the_band(deck):
+    kinds = [s["kind"] for s in copy.slides(load())]
+    for n, (k, s) in enumerate(zip(kinds, deck.slides), start=1):
+        if k != "letterbox":
+            continue
+        for sh in s.shapes:
+            top, bottom = sh.top / PX, (sh.top + sh.height) / PX
+            is_footnote = sh.has_text_frame and round(top) == 902
+            if 150 <= top < 942 and not is_footnote:  # content, not bars, slate or footnote
+                assert bottom <= 895, (n, sh.shape_type, round(top), round(bottom))

@@ -1,5 +1,4 @@
 """Assemble the editable deck (deck/out/favoured-banks.pptx) from facts, charts and copy."""
-import math
 from pathlib import Path
 
 from PIL import Image
@@ -9,7 +8,7 @@ from pptx.enum.shapes import MSO_CONNECTOR, MSO_SHAPE
 from pptx.enum.text import MSO_ANCHOR, PP_ALIGN
 from pptx.util import Emu, Pt
 
-from deck import charts, copy
+from deck import charts, copy, measure
 from deck.facts import load
 from deck.theme import C, MONO, SANS
 
@@ -24,10 +23,8 @@ def _rgb(hex_color: str) -> RGBColor:
     return RGBColor.from_string(hex_color.lstrip("#"))
 
 
-def est_h(text: str, w: float, pt: float, mono: bool = False) -> float:
-    size = pt * 2
-    cpl = max(1, int(w / ((0.62 if mono else 0.52) * size)))
-    return max(1, math.ceil(len(text) / cpl)) * size * 1.3
+def est_h(t: str, w: float, pt: float, mono: bool = False) -> float:
+    return measure.height(t, w, pt, mono)
 
 
 def rect(slide, x, y, w, h, color):
@@ -47,7 +44,9 @@ def hline(slide, x0, x1, y, color, weight=1.5):
 
 
 def text(slide, x, y, w, h, paras, align=PP_ALIGN.LEFT, anchor=MSO_ANCHOR.TOP):
-    """paras: list of (text, pt, color, font, bold, tracking) tuples, one paragraph each."""
+    """paras: list of (text, pt, color, font, bold, tracking) tuples, one paragraph each.
+    The box grows to the measured height of its text, so nothing overflows."""
+    h = max(h, sum(est_h(t, w, pt, font == MONO) for t, pt, _, font, _, _ in paras))
     tb = slide.shapes.add_textbox(Emu(int(x * PX)), Emu(int(y * PX)), Emu(int(w * PX)), Emu(int(h * PX)))
     tf = tb.text_frame
     tf.word_wrap = True
@@ -72,12 +71,13 @@ def P(t, pt, color=C["text"], font=SANS, bold=False, track=0):
     return (t, pt, color, font, bold, track)
 
 
-def picture(slide, path: Path, box):
+def picture(slide, path: Path, box, valign: str = "top"):
     x, y, w, h = box
     iw, ih = Image.open(path).size
     scale = min(w / iw, h / ih)
     pw, ph = iw * scale, ih * scale
-    slide.shapes.add_picture(str(path), Emu(int((x + (w - pw) / 2) * PX)), Emu(int(y * PX)),
+    top = y + (h - ph) / 2 if valign == "middle" else y
+    slide.shapes.add_picture(str(path), Emu(int((x + (w - pw) / 2) * PX)), Emu(int(top * PX)),
                              Emu(int(pw * PX)), Emu(int(ph * PX)))
 
 
@@ -138,16 +138,16 @@ def lay_hero(slide, s, n, art):
 
 def lay_card(slide, s, n, art):
     text(slide, 0, 400, W, 34, [P(s["part"], 12, C["secondary"], MONO, track=400)], align=PP_ALIGN.CENTER)
-    text(slide, 0, 450, W, 150, [P(s["title"], 60)], align=PP_ALIGN.CENTER)
-    text(slide, 0, 600, W, 50, [P(s["body"][0], 18, C["secondary"])], align=PP_ALIGN.CENTER)
-    timelines(slide, W / 2 - 80, W / 2 + 80, 700)
+    text(slide, 0, 440, W, 150, [P(s["title"], 60)], align=PP_ALIGN.CENTER)
+    text(slide, 0, 620, W, 50, [P(s["body"][0], 18, C["secondary"])], align=PP_ALIGN.CENTER)
+    timelines(slide, W / 2 - 80, W / 2 + 80, 720)
 
 
 def lay_side(slide, s, n, art):
-    y = _title(slide, s, LEFT, 190, 620)
-    _body(slide, s["body"], LEFT, y + 26, 620, bullets=s.get("bullets", False))
+    y = _title(slide, s, LEFT, 190, 600)
+    _body(slide, s["body"], LEFT, y + 26, 600, bullets=s.get("bullets", False))
     if s.get("chart"):
-        picture(slide, art[s["chart"]], (790, 190, 1010, 680))
+        picture(slide, art[s["chart"]], (770, 180, 1060, 700), valign="middle")
 
 
 def lay_stack(slide, s, n, art):
@@ -157,23 +157,29 @@ def lay_stack(slide, s, n, art):
 
 
 def lay_list(slide, s, n, art):
-    y = _title(slide, s, LEFT, 200, 1500, pt=30) + 34
+    y0 = _title(slide, s, LEFT, 200, 1680, pt=30) + 34
+    numbered = s.get("numbered", False)
+    x, w = (LEFT + 110, 1360) if numbered else (LEFT, 1470)
+    pt, gap = 17, 22
+    while pt > 13 and y0 + sum(est_h(i, w, pt) + gap for i in s["body"]) > 880:
+        pt, gap = pt - 1, gap - 2
+    y = y0
     for i, item in enumerate(s["body"], start=1):
-        h = est_h(item, 1360, 17)
-        if s.get("numbered"):
+        h = est_h(item, w, pt)
+        if numbered:
             text(slide, LEFT, y + 4, 90, 34, [P(f"{i:02d}", 13, C["secondary"], MONO)])
-        text(slide, LEFT + 110, y, 1360, h, [P(item, 17)])
-        y += h + 22
+        text(slide, x, y, w, h, [P(item, pt)])
+        y += h + gap
 
 
 def lay_metrics(slide, s, n, art):
-    y = _title(slide, s, LEFT, 190, 1680) + 26
+    y = _title(slide, s, LEFT, 186, 1680) + 18
     for term, definition in s["body"]:
-        text(slide, LEFT, y, 760, 40, [P(term, 15)])
-        h = est_h(definition, 760, 12)
-        text(slide, LEFT, y + 38, 760, h, [P(definition, 12, C["secondary"])])
-        y += 38 + h + 16
-    picture(slide, art[s["chart"]], (960, 300, 840, 520))
+        text(slide, LEFT, y, 820, 36, [P(term, 14)])
+        h = est_h(definition, 820, 12)
+        text(slide, LEFT, y + 36, 820, h, [P(definition, 12, C["secondary"])])
+        y += 36 + h + 12
+    picture(slide, art[s["chart"]], (1000, 300, 800, 500))
 
 
 def lay_cold_open(slide, s, n, art):

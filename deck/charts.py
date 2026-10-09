@@ -17,7 +17,7 @@ LAST_DATA: dict = {}
 DPI_SCALE = 2
 ENGINE_COLOR = {"ChatGPT": C["gpt"], "Gemini": C["gem"]}
 TYPE_LABEL = {"bank_official": "Bank websites", "regulator": "Regulators", "fintech_platform": "Fintech platforms",
-              "blog_aggregator": "Blogs and comparison sites", "news_media": "News media",
+              "blog_aggregator": "Comparison blogs", "news_media": "News media",
               "forum_ugc": "Forums", "app_store": "App stores", "other": "Other"}
 PAGE_LABEL = {
     "https://akulaku.com/blog/perbandingan-bank-digital-terbaik-2026": "akulaku.com  ·  digital bank comparison 2026",
@@ -42,8 +42,11 @@ def _setup() -> None:
     })
 
 
+SHRINK = 1.3  # draw on a smaller canvas so type reads at slide scale once the image is placed full size
+
+
 def _fig(w_px: int, h_px: int, **kw):
-    return plt.subplots(figsize=(w_px / 100, h_px / 100), dpi=100, **kw)
+    return plt.subplots(figsize=(w_px / 100 / SHRINK, h_px / 100 / SHRINK), dpi=100, **kw)
 
 
 def _bare(ax) -> None:
@@ -54,7 +57,7 @@ def _bare(ax) -> None:
 
 
 def _save(fig, path: Path) -> Path:
-    fig.savefig(path, dpi=100 * DPI_SCALE)
+    fig.savefig(path, dpi=100 * DPI_SCALE * SHRINK, transparent=True)
     plt.close(fig)
     return path
 
@@ -96,7 +99,7 @@ def chart_prompt_grid(f: dict, path: Path) -> Path:
     pillars = ["Fees & rates", "Digital experience", "Safety & security", "Service", "Trust"]
     intents = ["Best", "Compare", "Decision brief", "How-to", "Informational"]
     fig, ax = _fig(1200, 560)
-    fig.subplots_adjust(left=0.2, right=0.98, top=0.88, bottom=0.04)
+    fig.subplots_adjust(left=0.25, right=0.98, top=0.88, bottom=0.04)
     for j, it in enumerate(intents):
         ax.text(j, len(pillars) - 0.35, it, ha="center", va="bottom", fontsize=15, color=C["secondary"])
     for i, p in enumerate(pillars):
@@ -106,9 +109,9 @@ def chart_prompt_grid(f: dict, path: Path) -> Path:
         for j, it in enumerate(intents):
             nos = list(g[(g.pillar == p) & (g.intent == it)].prompt_no)
             for k, no in enumerate(nos):
-                x = j + (k - (len(nos) - 1) / 2) * 0.3
+                x = j + (k - (len(nos) - 1) / 2) * 0.34
                 lit = no == 13
-                ax.scatter([x], [y], s=620, facecolor=C["text"] if lit else C["bg"],
+                ax.scatter([x], [y], s=460, facecolor=C["text"] if lit else C["bg"],
                            edgecolor=C["text"] if lit else C["secondary"], linewidth=1.2, zorder=2)
                 _mono(ax, x, y, str(no), ha="center", va="center", fontsize=12,
                       color=C["bg"] if lit else C["text"], zorder=3)
@@ -132,10 +135,10 @@ def chart_pipeline(f: dict, path: Path) -> Path:
         ax.plot([x0, x0 + 0.84], [y, y], color=C["text"] if lit else C["secondary"], lw=2.4 if lit else 1.2)
         if i < n - 1:
             ax.plot([x0 + 0.84, x0 + 1.0], [y, y - 1], color=C["dim"], lw=1)
-        _mono(ax, x0, y + 0.86, f"{i + 1:02d}  {lab.upper()}", fontsize=11.5)
-        ax.text(x0, y + 0.14, f"{val:,}", fontsize=32, va="bottom", color=C["text"], alpha=1 if lit else 0.8,
+        _mono(ax, x0, y + 0.9, f"{i + 1:02d}  {lab.upper()}", fontsize=10)
+        ax.text(x0, y + 0.12, f"{val:,}", fontsize=24, va="bottom", color=C["text"], alpha=1 if lit else 0.8,
                 fontweight="bold" if lit else "normal")
-        _mono(ax, x0, y - 0.34, name, fontsize=13, color=C["text"] if lit else C["secondary"])
+        _mono(ax, x0, y - 0.38, name, fontsize=11.5, color=C["text"] if lit else C["secondary"])
     ax.set_xlim(-0.05, n)
     ax.set_ylim(-0.75, n + 0.1)
     _bare(ax)
@@ -153,9 +156,9 @@ def chart_funnel(f: dict, path: Path) -> Path:
         w = v / top
         lit = i == len(rows) - 1
         ax.add_patch(Rectangle((-w / 2, y - 0.3), w, 0.6, facecolor=C["text"] if lit else C["dim"], lw=0))
-        _mono(ax, 0.56, y, f"{v:,}", va="center", fontsize=18, color=C["text"])
-        _mono(ax, 0.7, y, name, va="center", fontsize=13)
-    ax.set_xlim(-0.55, 1.45)
+        _mono(ax, 0.56, y, f"{v:,}", va="center", fontsize=17, color=C["text"])
+        _mono(ax, 0.8, y, name, va="center", fontsize=12)
+    ax.set_xlim(-0.55, 2.05)
     ax.set_ylim(-0.6, len(rows) - 0.4)
     _bare(ax)
     return _save(fig, path)
@@ -165,7 +168,7 @@ def chart_mention_dots(f: dict, path: Path) -> Path:
     banks = _top_banks(f, 10)
     mr = f["mention_rate"]
     fig, ax = _fig(1180, 640)
-    fig.subplots_adjust(left=0.25, right=0.97, top=0.86, bottom=0.04)
+    fig.subplots_adjust(left=0.31, right=0.97, top=0.86, bottom=0.04)
     for i, b in enumerate(banks):
         y = len(banks) - 1 - i
         g, m = mr[b].get("ChatGPT", 0), mr[b].get("Gemini", 0)
@@ -193,7 +196,7 @@ def chart_vis_rank(f: dict, path: Path) -> Path:
     v = f["vis"].sort_values("vis", ascending=False).reset_index(drop=True)
     LAST_DATA["vis_rank"] = v
     fig, ax = _fig(1180, 700)
-    fig.subplots_adjust(left=0.2, right=0.9, top=0.97, bottom=0.03)
+    fig.subplots_adjust(left=0.28, right=0.9, top=0.97, bottom=0.03)
     n = len(v)
     for i, r in v.iterrows():
         y = n - 1 - i
@@ -247,7 +250,7 @@ def chart_pillar_heatmap(f: dict, path: Path) -> Path:
     pr = f["pillar_rates"].pivot(index="pillar", columns="brand", values="mention_rate").reindex(index=pillars, columns=banks).fillna(0)
     top = pr.max(axis=1)
     fig, ax = _fig(1680, 560)
-    fig.subplots_adjust(left=0.13, right=0.99, top=0.86, bottom=0.03)
+    fig.subplots_adjust(left=0.17, right=0.97, top=0.86, bottom=0.03)
     for i, p in enumerate(pillars):
         y = len(pillars) - 1 - i
         ax.text(-0.6, y, p, ha="right", va="center", fontsize=15, color=C["secondary"])
@@ -255,14 +258,14 @@ def chart_pillar_heatmap(f: dict, path: Path) -> Path:
             v = pr.loc[p, b]
             lead = v == top[p]
             ax.add_patch(FancyBboxPatch((j - 0.44, y - 0.4), 0.88, 0.8, boxstyle="round,pad=0,rounding_size=0.04",
-                                        facecolor=C["text"], alpha=0.06 + 0.8 * v, lw=0))
+                                        facecolor=C["text"], alpha=0.05 + 0.35 * v, lw=0))
             if lead:
                 ax.add_patch(FancyBboxPatch((j - 0.44, y - 0.4), 0.88, 0.8, boxstyle="round,pad=0,rounding_size=0.04",
                                             facecolor="none", edgecolor=C["text"], lw=2))
             _mono(ax, j, y, f"{pct(v)}" if v else "·", ha="center", va="center", fontsize=14,
-                  color=C["bg"] if v >= 0.5 else C["text"])
+                  color=C["text"])
     for j, b in enumerate(banks):
-        ax.text(j, len(pillars) - 0.35, b, ha="center", va="bottom", fontsize=14, color=C["secondary"])
+        ax.text(j, len(pillars) - 0.35, b, ha="center", va="bottom", fontsize=11.5, color=C["secondary"])
     ax.set_xlim(-0.55, len(banks) - 0.45)
     ax.set_ylim(-0.5, len(pillars) - 0.1)
     _bare(ax)
@@ -279,7 +282,8 @@ def chart_often_vs_early(f: dict, path: Path) -> Path:
         on = r.brand in lit
         ax.scatter(r.mention_rate, r.pawc, s=130 if on else 80, color=C["text"] if on else C["secondary"],
                    edgecolor=C["bg"], linewidth=1.5, zorder=3, alpha=1 if on else 0.8)
-        dx, dy, ha = {"Bank Jago": (-0.012, 0.0018, "right"), "Bank Saqu": (-0.012, -0.0035, "right"),
+        dx, dy, ha = {"Bank Jago": (-0.012, 0.0018, "right"), "Bank Saqu": (0.0, -0.0048, "center"),
+                      "Krom Bank": (0.012, -0.0034, "left"),
                       "Superbank": (0.0, 0.0028, "center"), "Bank BTPN": (0.012, -0.0032, "left")
                       }.get(r.brand, (0.012, 0.0018, "left"))
         ax.text(r.mention_rate + dx, r.pawc + dy, r.brand, fontsize=13, ha=ha,
@@ -331,7 +335,7 @@ def chart_intent_named(f: dict, path: Path) -> Path:
     order = ["Best", "Decision brief", "Compare", "Informational", "How-to"]
     d = f["intent_named_share"]
     fig, ax = _fig(1100, 480)
-    fig.subplots_adjust(left=0.2, right=0.9, top=0.96, bottom=0.04)
+    fig.subplots_adjust(left=0.25, right=0.9, top=0.96, bottom=0.04)
     for i, it in enumerate(order):
         y = len(order) - 1 - i
         share, n = d[it]
@@ -365,8 +369,11 @@ def chart_source_mix(f: dict, path: Path) -> Path:
             ax.add_patch(Rectangle((x, row - 0.28), w, 0.56, facecolor=col, alpha=alpha, edgecolor=C["bg"], lw=2))
             if w >= 0.06:
                 _mono(ax, x + w / 2, row + 0.4, f"{pct(w)}", ha="center", fontsize=15, color=C["text"])
-                ax.text(x + w / 2, row - 0.02, TYPE_LABEL[t], ha="center", va="center", fontsize=13.5,
-                        color=C["bg"] if (first_party and t == "bank_official") else C["text"])
+                if w >= 0.13:
+                    ax.text(x + w / 2, row - 0.02, TYPE_LABEL[t], ha="center", va="center", fontsize=13.5,
+                            color=C["bg"] if (first_party and t == "bank_official") else C["text"])
+                else:
+                    _mono(ax, x + w / 2, row - 0.46, TYPE_LABEL[t].lower(), ha="center", fontsize=11, color=C["text"])
             x += w
         small = [f"{TYPE_LABEL[t].lower()} {pct(mix[t])}" for t in order if 0 < mix.get(t, 0) < 0.06]
         if small:
@@ -387,10 +394,9 @@ def chart_overlap(f: dict, path: Path) -> Path:
     ax.text(-1.15, 0, str(o["sites_gpt_only"]), ha="center", va="center", fontsize=40, color=C["secondary"])
     ax.text(1.32, 0, str(o["sites_gem_only"]), ha="center", va="center", fontsize=40, color=C["secondary"])
     ax.text(-0.11, 0.08, str(o["sites_both"]), ha="center", va="center", fontsize=52, color=C["text"], fontweight="bold")
-    _mono(ax, -0.11, -1.52, "cited by both", ha="center", va="center", fontsize=13, color=C["text"])
-    ax.plot([-0.11, -0.11], [-0.45, -1.36], color=C["text"], lw=0.8)
-    _mono(ax, -1.15, -0.42, "ChatGPT only", ha="center", fontsize=13)
-    _mono(ax, 1.32, -0.42, "Gemini only", ha="center", fontsize=13)
+    _mono(ax, -0.11, -1.52, "cited by both", ha="center", va="center", fontsize=12.5, color=C["text"])
+    _mono(ax, -1.2, -1.52, "ChatGPT only", ha="center", va="center", fontsize=12.5)
+    _mono(ax, 1.32, -1.52, "Gemini only", ha="center", va="center", fontsize=12.5)
     ax.set_xlim(-1.9, 2.1)
     ax.set_ylim(-1.7, 1.35)
     ax.set_aspect("equal")
@@ -451,7 +457,7 @@ def chart_top_pages(f: dict, path: Path) -> Path:
 
 def chart_concentration(f: dict, path: Path) -> Path:
     fig, ax = _fig(1100, 360)
-    fig.subplots_adjust(left=0.13, right=0.86, top=0.96, bottom=0.08)
+    fig.subplots_adjust(left=0.18, right=0.86, top=0.96, bottom=0.08)
     for row, e in ((1, "ChatGPT"), (0, "Gemini")):
         s = f["concentration"][e]
         ax.barh(row, 1, height=0.42, color=C["dim"], alpha=0.5)
@@ -470,7 +476,7 @@ def chart_sov_gap(f: dict, path: Path) -> Path:
     d["pts"] = d.sov_gap * 100
     d = d.sort_values("pts", ascending=False).reset_index(drop=True)
     fig, ax = _fig(1180, 600)
-    fig.subplots_adjust(left=0.2, right=0.96, top=0.88, bottom=0.04)
+    fig.subplots_adjust(left=0.28, right=0.96, top=0.88, bottom=0.04)
     lit = {"Bank Jago", "BCA", "Bank Mandiri"}
     n = len(d)
     for i, r in d.iterrows():
@@ -493,7 +499,7 @@ def chart_sov_gap(f: dict, path: Path) -> Path:
 def chart_dead_links(f: dict, path: Path) -> Path:
     wd, wt, dd, dt = f["dead_links"]
     fig, ax = _fig(1180, 380)
-    fig.subplots_adjust(left=0.33, right=0.86, top=0.95, bottom=0.08)
+    fig.subplots_adjust(left=0.41, right=0.84, top=0.95, bottom=0.08)
     rows = [("Wrapped in a Google redirect", wd, wt), ("Direct links", dd, dt)]
     for i, (name, d, t) in enumerate(rows):
         y = 1 - i
@@ -501,7 +507,7 @@ def chart_dead_links(f: dict, path: Path) -> Path:
         ax.barh(y, d / t, height=0.46, color=C["text"])
         ax.text(-0.02, y, name, ha="right", va="center", fontsize=16, color=C["text"])
         _mono(ax, 1.02, y, f"{d} of {t} dead", va="center", fontsize=14, color=C["text"])
-    _mono(ax, 0, -0.62, "Gemini citations  ·  dead = HTTP 404 or an error page", fontsize=12)
+    _mono(ax, 0, -0.62, "Gemini citations  ·  dead: HTTP 404 or error page", fontsize=11)
     ax.set_xlim(0, 1.25)
     ax.set_ylim(-0.8, 1.5)
     _bare(ax)
@@ -513,8 +519,8 @@ def chart_schema(f: dict, path: Path) -> Path:
     share = f["citation_share_by_type"]
     keep = ["bank_official", "regulator", "news_media", "blog_aggregator", "fintech_platform"]
     s = s[s.domain_type.isin(keep)].set_index("domain_type").reindex(keep)
-    fig, ax = _fig(1180, 520)
-    fig.subplots_adjust(left=0.28, right=0.95, top=0.86, bottom=0.04)
+    fig, ax = _fig(1180, 580)
+    fig.subplots_adjust(left=0.35, right=0.95, top=0.78, bottom=0.04)
     for i, t in enumerate(keep):
         y = len(keep) - 1 - i
         lit = t == "bank_official"
@@ -527,8 +533,8 @@ def chart_schema(f: dict, path: Path) -> Path:
         _mono(ax, share[t] + 0.01, y - 0.32, f"cited {pct(share[t])}", fontsize=11.5, color=C["text"] if lit else C["secondary"])
     ax.add_patch(Rectangle((0.0, len(keep) + 0.05), 0.03, 0.22, facecolor=C["secondary"], clip_on=False))
     _mono(ax, 0.045, len(keep) + 0.08, "share of all citations", fontsize=12)
-    ax.scatter([0.4], [len(keep) + 0.16], s=110, facecolor=C["bg"], edgecolor=C["secondary"], linewidth=2, clip_on=False)
-    _mono(ax, 0.425, len(keep) + 0.08, "share of its readable pages with schema", fontsize=12)
+    ax.scatter([0.0 + 0.015], [len(keep) + 0.62], s=110, facecolor=C["bg"], edgecolor=C["secondary"], linewidth=2, clip_on=False)
+    _mono(ax, 0.045, len(keep) + 0.54, "share of its readable pages with schema", fontsize=12)
     ax.set_xlim(0, 1.12)
     ax.set_ylim(-0.6, len(keep) - 0.3)
     _bare(ax)

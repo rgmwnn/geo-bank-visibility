@@ -197,7 +197,8 @@ def slides(f: dict) -> list[dict]:
     add("letterbox", "stack", "ChatGPT cites banks and regulators. Gemini cites fintech, blog and news sites.",
         [f"{N['gpt_first']} of ChatGPT's citations go to bank and regulator sites. {N['gem_third']} of Gemini's go to "
          f"fintech platforms, blogs and news."],
-        chart="source_mix", part="PART III · THE SOURCES", foot="source: data/processed/domain_type_mix.csv",
+        chart="source_mix", part="PART III · THE SOURCES",
+        foot="source: data/processed/domain_type_mix.csv  ·  each share rounded on its own, so sums can differ by 1 point",
         notes="Site types were labelled per domain. Percentages are rounded.")
     add("letterbox", "side", "The two engines barely share a source",
         [f"{N['sites_both']} of {N['sites_total']} sites and {N['pages_both']} of {N['pages_total']} pages are cited by "
@@ -228,7 +229,7 @@ def slides(f: dict) -> list[dict]:
         chart="sov_gap", part="PART III · THE SOURCES",
         foot="source: data/processed/source_sov.csv  ·  answers weighted equally, pages weighted equally",
         notes="A positive gap means the engines talk about the bank more than the cited pages do.")
-    add("letterbox", "side", "Gemini's dead links come from links it wrapped in a Google search",
+    add("letterbox", "side", "Gemini's dead links all sit behind a Google redirect",
         [f"{N['wrapped_dead']} of its {N['wrapped']} links wrapped in google.com/search were dead. None of its "
          f"{N['direct']} direct links were.",
          "The Tow Center found Gemini gave more fabricated links than correct ones in its 2025 tests (Nieman Lab)."],
