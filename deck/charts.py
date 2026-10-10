@@ -56,7 +56,31 @@ def _bare(ax) -> None:
     ax.set_yticks([])
 
 
+def _bar_marks(fig) -> int:
+    """Filled bar marks in a figure: bar containers plus plain rectangles (the line language draws none)."""
+    return sum(len(ax.containers) + sum(type(p) is Rectangle for p in ax.patches) for ax in fig.axes)
+
+
+def _track(ax, x0, x1, y, color=None, lw=1.2):
+    """The empty run behind a value line: how far it could have gone."""
+    ax.plot([x0, x1], [y, y], color=color or C["dim"], lw=lw, solid_capstyle="butt", zorder=1)
+
+
+def _stem(ax, x0, x1, y, color, lw=3.0, ls="-", dot=True, hollow=False, zorder=3):
+    """A value as a line ending in a point: length carries the value, the point carries the light."""
+    ax.plot([x0, x1], [y, y], color=color, lw=lw, ls=ls, solid_capstyle="butt", zorder=zorder)
+    if dot:
+        ax.scatter([x1], [y], s=lw * 22, facecolor=C["bg"] if hollow else color, edgecolor=color,
+                   linewidth=1.6, zorder=zorder + 1)
+
+
+def _key(ax, x, y, color, label, length=0.35):
+    ax.plot([x, x + length], [y, y], color=color, lw=3, solid_capstyle="butt", clip_on=False)
+    _mono(ax, x + length + 0.12, y, label, va="center", fontsize=12.5, color=C["text"])
+
+
 def _save(fig, path: Path) -> Path:
+    LAST_DATA.setdefault("bars", {})[Path(path).stem] = _bar_marks(fig)
     fig.savefig(path, dpi=100 * DPI_SCALE * SHRINK, transparent=True)
     plt.close(fig)
     return path
@@ -79,12 +103,16 @@ def chart_pawc_curve(f: dict, path: Path) -> Path:
     w = [math.exp(-i / n) for i in range(n)]
     fig, ax = _fig(1000, 500)
     fig.subplots_adjust(left=0.04, right=0.98, top=0.86, bottom=0.16)
-    ax.bar(range(n), w, width=0.62, color=C["dim"])
-    ax.bar([0], [w[0]], width=0.62, color=C["text"])
+    ax.plot([-0.5, n - 0.5], [0, 0], color=C["dim"], lw=1)
+    for i in range(n):
+        lit = i == 0
+        col = C["text"] if lit else C["secondary"]
+        ax.plot([i, i], [0, w[i]], color=col, lw=3 if lit else 2, solid_capstyle="butt", zorder=2)
+        ax.scatter([i], [w[i]], s=70 if lit else 42, color=col, zorder=3)
     xs = np.linspace(-0.3, n - 0.7, 200)
-    ax.plot(xs, [math.exp(-max(x, 0) / n) for x in xs], color=C["secondary"], lw=1.2, ls=(0, (2, 3)))
+    ax.plot(xs, [math.exp(-max(x, 0) / n) for x in xs], color=C["dim"], lw=1.2, ls=(0, (2, 3)), zorder=1)
     for i in (0, n - 1):
-        _mono(ax, i, w[i] + 0.04, f"{w[i]:.2f}", ha="center", color=C["text"] if i == 0 else C["secondary"], fontsize=14)
+        _mono(ax, i, w[i] + 0.06, f"{w[i]:.2f}", ha="center", color=C["text"] if i == 0 else C["secondary"], fontsize=14)
     for i in range(n):
         _mono(ax, i, -0.09, f"s{i + 1}", ha="center", fontsize=12)
     _mono(ax, -0.4, 1.17, "weight = exp( - position / sentence count )", fontsize=14, color=C["text"])
@@ -155,7 +183,11 @@ def chart_funnel(f: dict, path: Path) -> Path:
         y = len(rows) - 1 - i
         w = v / top
         lit = i == len(rows) - 1
-        ax.add_patch(Rectangle((-w / 2, y - 0.3), w, 0.6, facecolor=C["text"] if lit else C["dim"], lw=0))
+        col = C["text"] if lit else C["secondary"]
+        _track(ax, -0.5, 0.5, y)
+        ax.plot([-w / 2, w / 2], [y, y], color=col, lw=4 if lit else 2.6, solid_capstyle="butt", zorder=2)
+        for x in (-w / 2, w / 2):
+            ax.plot([x, x], [y - 0.16, y + 0.16], color=col, lw=1.4, zorder=2)
         _mono(ax, 0.56, y, f"{v:,}", va="center", fontsize=17, color=C["text"])
         _mono(ax, 0.8, y, name, va="center", fontsize=12)
     ax.set_xlim(-0.55, 2.05)
@@ -201,13 +233,13 @@ def chart_vis_rank(f: dict, path: Path) -> Path:
     for i, r in v.iterrows():
         y = n - 1 - i
         lit = i == 0
+        col = C["text"] if lit else C["secondary"]
         if r.low_n:
-            ax.barh(y, r.vis, height=0.56, facecolor="none", edgecolor=C["secondary"], lw=1, ls=(0, (2, 2)))
+            _stem(ax, 0, r.vis, y, C["secondary"], lw=1.6, ls=(0, (2, 2)), hollow=True)
         else:
-            ax.barh(y, r.vis, height=0.56, color=C["text"] if lit else C["secondary"], alpha=1 if lit else 0.55)
-        ax.text(-1.2, y, r.brand, ha="right", va="center", fontsize=13.5,
-                color=C["text"] if lit else C["secondary"])
-        _mono(ax, r.vis + 1, y, num(r.vis, 1), va="center", fontsize=12, color=C["text"] if lit else C["secondary"])
+            _stem(ax, 0, r.vis, y, col, lw=3 if lit else 2.2)
+        ax.text(-1.2, y, r.brand, ha="right", va="center", fontsize=13.5, color=col)
+        _mono(ax, r.vis + 2, y, num(r.vis, 1), va="center", fontsize=12, color=col)
         if r.low_n:
             _mono(ax, 76, y, f"low n · {int(r.n_answers)} answer{'s' if r.n_answers > 1 else ''}",
                   va="center", fontsize=11, color=C["secondary"])
@@ -344,10 +376,10 @@ def chart_intent_named(f: dict, path: Path) -> Path:
         y = len(order) - 1 - i
         share, n = d[it]
         lit = it == "How-to"
-        ax.barh(y, 1, height=0.5, color=C["dim"], alpha=0.5)
-        ax.barh(y, share, height=0.5, color=C["text"] if lit else C["secondary"])
+        _track(ax, 0, 1, y)
+        _stem(ax, 0, share, y, C["text"] if lit else C["secondary"], lw=3.4 if lit else 2.6)
         ax.text(-0.02, y, it, ha="right", va="center", fontsize=16, color=C["text"] if lit else C["secondary"])
-        _mono(ax, 1.02, y, f"{pct(share)}  of {n}", va="center", fontsize=13, color=C["text"] if lit else C["secondary"])
+        _mono(ax, 1.04, y, f"{pct(share)}  of {n}", va="center", fontsize=13, color=C["text"] if lit else C["secondary"])
     ax.set_xlim(0, 1.22)
     ax.set_ylim(-0.6, len(order) - 0.4)
     _bare(ax)
@@ -422,16 +454,18 @@ def chart_mirror_sites(f: dict, path: Path) -> Path:
     for i, r in t.iterrows():
         y = n - 1 - i
         on = r.domain in lit
-        ax.barh(y, -r.gpt, left=-gap, height=0.58, color=C["gpt"], alpha=0.45)
-        ax.barh(y, r.gem, left=gap, height=0.58, color=C["gem"], alpha=1 if on else 0.45)
+        if r.gpt:
+            _stem(ax, -gap, -gap - r.gpt, y, C["gpt"], lw=2.4)
+        if r.gem:
+            _stem(ax, gap, gap + r.gem, y, C["gem"], lw=3.4 if on else 2.4)
         ax.text(0, y, r.domain, ha="center", va="center", fontsize=14, color=C["text"] if on else C["secondary"],
                 fontweight="bold" if on else "normal")
         if r.gpt:
-            _mono(ax, -gap - r.gpt - 0.6, y, str(r.gpt), ha="right", va="center", fontsize=12, color=C["text"])
+            _mono(ax, -gap - r.gpt - 1.0, y, str(r.gpt), ha="right", va="center", fontsize=12, color=C["text"])
         else:
             _mono(ax, -gap - 0.6, y, "0", ha="right", va="center", fontsize=12)
         if r.gem:
-            _mono(ax, gap + r.gem + 0.6, y, str(r.gem), va="center", fontsize=12, color=C["text"])
+            _mono(ax, gap + r.gem + 1.0, y, str(r.gem), va="center", fontsize=12, color=C["text"])
         else:
             _mono(ax, gap + 0.6, y, "0", va="center", fontsize=12)
     _mono(ax, -gap, n - 0.1, "ChatGPT  citations", ha="right", fontsize=13, color=C["text"])
@@ -452,14 +486,15 @@ def chart_top_pages(f: dict, path: Path) -> Path:
     for i, r in t.iterrows():
         y = n - 1 - i
         lit = r.gpt == 0
-        ax.barh(y, r.gpt, height=0.56, color=C["gpt"], alpha=1)
-        ax.barh(y, r.gem, left=r.gpt, height=0.56, color=C["gem"], alpha=1)
+        if r.gpt:
+            ax.plot([0, r.gpt], [y, y], color=C["gpt"], lw=5, solid_capstyle="butt", zorder=2)
+        ax.plot([r.gpt, r.gpt + r.gem], [y, y], color=C["gem"], lw=5, solid_capstyle="butt", zorder=2)
+        ax.plot([r.citations, r.citations], [y - 0.22, y + 0.22], color=C["text"], lw=1.6, zorder=3)
         ax.text(-0.3, y, PAGE_LABEL.get(r.url, r.url), ha="right", va="center", fontsize=14,
                 color=C["text"] if lit else C["secondary"])
-        _mono(ax, r.citations + 0.25, y, str(r.citations), va="center", fontsize=12, color=C["text"])
-    for x, e in ((0, "ChatGPT"), (2.6, "Gemini")):
-        ax.add_patch(Rectangle((x, n - 0.25), 0.35, 0.36, facecolor=ENGINE_COLOR[e], clip_on=False))
-        _mono(ax, x + 0.5, n - 0.07, e, va="center", fontsize=12.5, color=C["text"])
+        _mono(ax, r.citations + 0.3, y, str(r.citations), va="center", fontsize=12, color=C["text"])
+    _key(ax, 0, n - 0.07, C["gpt"], "ChatGPT")
+    _key(ax, 2.8, n - 0.07, C["gem"], "Gemini")
     ax.set_xlim(0, 16)
     ax.set_ylim(-0.6, n + 0.2)
     _bare(ax)
@@ -471,10 +506,10 @@ def chart_concentration(f: dict, path: Path) -> Path:
     fig.subplots_adjust(left=0.18, right=0.86, top=0.96, bottom=0.08)
     for row, e in ((1, "ChatGPT"), (0, "Gemini")):
         s = f["concentration"][e]
-        ax.barh(row, 1, height=0.42, color=C["dim"], alpha=0.5)
-        ax.barh(row, s, height=0.42, color=ENGINE_COLOR[e])
+        _track(ax, 0, 1, row)
+        _stem(ax, 0, s, row, ENGINE_COLOR[e], lw=4)
         ax.text(-0.02, row, e, ha="right", va="center", fontsize=17, color=C["text"])
-        _mono(ax, 1.02, row, f"{pct(s)}", va="center", fontsize=22, color=C["text"])
+        _mono(ax, 1.04, row, f"{pct(s)}", va="center", fontsize=22, color=C["text"])
     _mono(ax, 0, -0.55, "share of each engine's citations held by its top five sites", fontsize=12)
     ax.set_xlim(0, 1.15)
     ax.set_ylim(-0.7, 1.5)
@@ -495,10 +530,11 @@ def chart_sov_gap(f: dict, path: Path) -> Path:
     for i, r in d.iterrows():
         y = n - 1 - i
         on = r.brand in lit or r.brand in named
-        ax.barh(y, r.pts, height=0.56, color=C["text"] if r.brand in lit else (C["secondary"] if on else C["dim"]))
+        col = C["text"] if r.brand in lit else (C["secondary"] if on else C["dim"])
+        _stem(ax, 0, r.pts, y, col, lw=3 if r.brand in lit else 2.2)
         ax.text(-10.2, y, r.brand, ha="right", va="center", fontsize=15, color=C["text"] if on else C["secondary"])
         lab = f"{r.pts:+.1f} pts"
-        _mono(ax, r.pts + (0.25 if r.pts >= 0 else -0.25), y, lab, va="center", ha="left" if r.pts >= 0 else "right",
+        _mono(ax, r.pts + (0.45 if r.pts >= 0 else -0.45), y, lab, va="center", ha="left" if r.pts >= 0 else "right",
               fontsize=12.5, color=C["text"] if on else C["secondary"])
     ax.axvline(0, color=C["secondary"], lw=1)
     _mono(ax, 0.3, n - 0.05, "answers mention it more", fontsize=12)
@@ -516,10 +552,10 @@ def chart_dead_links(f: dict, path: Path) -> Path:
     rows = [("Wrapped in a Google redirect", wd, wt), ("Direct links", dd, dt)]
     for i, (name, d, t) in enumerate(rows):
         y = 1 - i
-        ax.barh(y, 1, height=0.46, color=C["gem"], alpha=0.35)
-        ax.barh(y, d / t, height=0.46, color=C["text"])
+        _track(ax, 0, 1, y, color=C["gem"], lw=1.6)
+        _stem(ax, 0, d / t, y, C["text"], lw=4, dot=d > 0)
         ax.text(-0.02, y, name, ha="right", va="center", fontsize=16, color=C["text"])
-        _mono(ax, 1.02, y, f"{d} of {t} dead", va="center", fontsize=14, color=C["text"])
+        _mono(ax, 1.04, y, f"{d} of {t} dead", va="center", fontsize=14, color=C["text"])
     _mono(ax, 0, -0.62, "Gemini citations  ·  dead: HTTP 404 or error page", fontsize=11)
     ax.set_xlim(0, 1.25)
     ax.set_ylim(-0.8, 1.5)
@@ -537,14 +573,14 @@ def chart_schema(f: dict, path: Path) -> Path:
     for i, t in enumerate(keep):
         y = len(keep) - 1 - i
         lit = t == "bank_official"
-        ax.barh(y, share[t], height=0.36, color=C["text"] if lit else C["secondary"], alpha=1 if lit else 0.55)
+        _stem(ax, 0, share[t], y, C["text"] if lit else C["secondary"], lw=3 if lit else 2.2, dot=False)
         ax.scatter([s.loc[t, "any_jsonld"]], [y], s=120, facecolor=C["bg"], edgecolor=C["text"] if lit else C["secondary"],
                    linewidth=2, zorder=3)
         ax.text(-0.02, y, TYPE_LABEL[t], ha="right", va="center", fontsize=15, color=C["text"] if lit else C["secondary"])
         _mono(ax, s.loc[t, "any_jsonld"] + 0.025, y + 0.22, f"schema {pct(s.loc[t, 'any_jsonld'])}", fontsize=11.5,
               color=C["text"] if lit else C["secondary"])
         _mono(ax, share[t] + 0.01, y - 0.32, f"cited {pct(share[t])}", fontsize=11.5, color=C["text"] if lit else C["secondary"])
-    ax.add_patch(Rectangle((0.0, len(keep) + 0.05), 0.03, 0.22, facecolor=C["secondary"], clip_on=False))
+    ax.plot([0.0, 0.03], [len(keep) + 0.16] * 2, color=C["secondary"], lw=3, solid_capstyle="butt", clip_on=False)
     _mono(ax, 0.045, len(keep) + 0.08, "share of all citations", fontsize=12)
     ax.scatter([0.0 + 0.015], [len(keep) + 0.62], s=110, facecolor=C["bg"], edgecolor=C["secondary"], linewidth=2, clip_on=False)
     _mono(ax, 0.045, len(keep) + 0.54, "share of its readable pages with schema", fontsize=12)

@@ -140,3 +140,17 @@ Each slide states one claim. Numbers come from the files named.
 ## 7. Out of scope
 
 Animation and transitions, a portrait LinkedIn carousel version, an Indonesian translation of the deck, and the dashboard. Each can follow.
+
+## Revision 2026-10-10: line language (Interstellar)
+
+RG asked for line visuals in the spirit of Interstellar after the first version read as an empty background. Every line has a job, and none crosses text (tested).
+
+| Element | Where | Job |
+| --- | --- | --- |
+| Ring with two disk lines (ember, steel) | Cover | Opens the record; the disk is the two engine threads |
+| Corridor to a far wall, one more receding frame per part | Title cards 5, 10, 18, 27 | Depth: the viewer moves further into the study each part |
+| Horizon arc, ember over steel | Hero (3), close (32) | Grounds the open frames; the two threads bent into one arc |
+| Scene ruler, 32 ticks, current lit | Bottom bar of letterbox slides | Position in the deck, read like an instrument |
+| Bar edge hairlines | Letterbox slides | Marks the screen edge between bars and image |
+| Rail with a stop per item | List slides | Order of the items |
+| Value lines ending in a point, empty track behind | Charts 8, 9, 12, 17, 21, 22, 23, 24, 25, 26 | Length carries the value; replaces filled bars |

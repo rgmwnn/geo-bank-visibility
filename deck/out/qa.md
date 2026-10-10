@@ -24,3 +24,7 @@ Note: the two thin engine-colour lines on the cover, hero and title cards read f
 ## Final-review fix pass
 
 Re-rendered after the fixes. Slides checked by eye: 2 (prompt and translation now 24 px apart), 9, 12, 14 (unbranded prompts, row n), 17, 19 (Gemini third-party segments lit), 20, 21 (Gemini-only sites lit), 22, 24 (Bank Mandiri lit, alias caveat), 26, 28. Every chart footnote carries its n and stays on one line above the bar.
+
+## Line-language revision (2026-10-10)
+
+All 32 slides re-rendered and checked by eye: cover ring, title-card corridors (1 to 4 receding frames), horizon arcs on 3 and 32, scene ruler on every letterbox slide, list rails, and the ten charts redrawn as value lines. Two layout faults found and fixed by test: the cover title wrapped onto its subtitle, and slide 8 terms were 3 px taller than their slot. The closing title now flows from its measured height.
