@@ -133,7 +133,7 @@ def test_page_level_counts_do_not_depend_on_row_order(f):
 
 def test_comparison_article_counts_stay_at_page_level(f, slides):
     # Review item 7: keep one level. The recommendation counts one article's answers, as slide 22 does.
-    s = next(x for x in slides if x["title"] == "For content and marketing")
+    s = next(x for x in slides if x["title"].startswith("Beyond the website"))
     item = next(i for i in s["body"] if "Akulaku" in i)
     assert "article" in item and str(f["top_page_gem_answers"]["akulaku.com"]) in item
 

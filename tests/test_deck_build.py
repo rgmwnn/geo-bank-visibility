@@ -25,7 +25,7 @@ def _texts(deck):
 
 
 def test_slide_count_and_kinds(deck):
-    assert len(deck.slides) == 33
+    assert len(deck.slides) == 32
     kinds = [s["kind"] for s in copy.slides(load())]
     assert [i + 1 for i, k in enumerate(kinds) if k == "title_card"] == [5, 10, 18, 27]
 
@@ -113,15 +113,30 @@ def test_no_tracked_capitals_or_dot_chains(deck):
                     assert "·" not in r.text, (n, r.text)
 
 
-ROLES = ["For the SEO strategist", "For content and marketing", "For the web team"]
-
-
-def test_recommendations_address_the_people_who_run_the_website():
-    specs = copy.slides(load())
+def _recs(specs):
     titles = [s["title"] for s in specs]
-    assert not [t for t in titles if t.startswith("For banks") or "GEO practitioners" in t]
-    start = titles.index(ROLES[0])
-    assert titles[start:start + 3] == ROLES
-    for s in specs[start:start + 3]:
-        for item in s["body"]:
-            assert re.search(r"\d", item), (s["title"], item)  # every recommendation carries its evidence
+    start = titles.index("What it means") + 1
+    end = titles.index("These numbers come from one run")
+    return specs[start:end]
+
+
+def test_recommendations_come_in_two_parts_the_website_and_beyond():
+    # RG, 2026-10-12: no role labels; two parts, tied to the findings.
+    f = load()
+    N = copy.numbers(f)
+    recs = _recs(copy.slides(f))
+    assert [r["title"] for r in recs] == [
+        f"On the website: ChatGPT took {N['bank_share_gpt']} of its citations from bank sites",
+        f"Beyond the website: Gemini took {N['other_share_gem']} of its citations elsewhere"]
+    for r in recs:
+        assert not r["title"].startswith("For ")
+        for item in r["body"]:
+            assert re.search(r"\d", item), (r["title"], item)  # every recommendation carries its evidence
+
+
+def test_recommendations_cover_writing_web_setup_and_media():
+    site, beyond = (" ".join(r["body"]) for r in _recs(copy.slides(load())))
+    for word in ["fee", "how-to", "HTML", "OAI-SearchBot"]:  # what to write on the site, how to set it up
+        assert word in site, word
+    for word in ["media budget", "sponsored", "quotations", "Akulaku"]:  # media buying, how to write articles
+        assert word in beyond, word

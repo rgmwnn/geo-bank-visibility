@@ -427,7 +427,7 @@ def lay_close(slide, s, n, art):
     for src in s["sources"]:
         text(slide, LEFT, y, 1600, 28, [P(src, 12, C["secondary"], MONO)])
         y += 38
-    text(slide, LEFT, 800, 1300, 34, [P(s["byline"], 14, C["text"], MONO)])
+    text(slide, LEFT, max(800, y + 24), 1300, 34, [P(s["byline"], 14, C["text"], MONO)])
     horizon(slide)
 
 

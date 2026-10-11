@@ -19,6 +19,10 @@ EXTERNAL = {
     "3,000": "SparkToro and Gumshoe: runs",
     "1 in 100": "SparkToro and Gumshoe: chance of the same list twice",
     "2311.09735": "arXiv id of the GEO paper",
+    "41%": "Aggarwal et al.: PAWC gain from adding quotations (27.2 against a 19.3 baseline)",
+    "31%": "Aggarwal et al.: PAWC gain from adding statistics (25.2 against 19.3)",
+    "85%": "AirOps, October 2025: share of brand mentions that came from third-party sites",
+    "21,311": "AirOps: brand mentions analysed",
 }
 
 REPO = "github.com/rgmwnn/geo-bank-visibility"
@@ -84,6 +88,7 @@ def numbers(f: dict) -> dict:
         "sparktoro_prompts": "12", "run_day": RUN_DAY, "ext_ahrefs": "12%",
         "http_404": "404",  # an HTTP status code, named on the slide as a label, not a measurement
         "bank_share_gpt": pct(f["bank_site"]["share_gpt"]), "bank_share_gem": pct(f["bank_site"]["share_gem"]),
+        "other_share_gem": pct(1 - f["bank_site"]["share_gem"]),
         "fee_sea": str(f["bank_site"]["fee_page_citations_gpt"]["seabank.co.id"]),
         "fee_blu": str(f["bank_site"]["fee_page_citations_gpt"]["blubybcadigital.id"]),
         "dead_bank_pages": str(f["bank_site"]["dead_pages"]), "dead_bank_cit": str(f["bank_site"]["dead_citations"]),
@@ -282,44 +287,36 @@ def slides(f: dict) -> list[dict]:
              f"n = {N['schema_pages']} pages, {N['readable_cit']} citations",
         notes="This suggests schema did not decide which pages got cited. One run cannot test it.")
 
-    add("title_card", "card", "What it means", ["What the bank's website team can do with this"], part="Part IV")
-    add("letterbox", "list", "For the SEO strategist",
-        [f"Measure AI answers as a channel of their own. Google rank is a weak proxy: {N['ext_ahrefs']} of URLs cited by "
-         f"AI assistants rank in Google's top 10 for the same query (Ahrefs).",
-         f"Report ChatGPT and Gemini separately. ChatGPT took {N['bank_share_gpt']} of its citations from bank "
-         f"websites, Gemini {N['bank_share_gem']}. A blended figure would hide that gap.",
-         f"Track pages, not only domains. The engines cited {N['sites_both']} of the same {N['sites_total']} sites but "
-         f"only {N['pages_both']} of the same {N['pages_total']} pages.",
-         f"Run a fixed set of customer questions in both engines every month, in Bahasa Indonesia. This study is one "
-         f"run of {N['prompts']} questions, so treat it as the baseline."],
-        part="Part IV: What it means", numbered=True,
-        foot="Source: data/interim/citations.csv  ·  Ahrefs, AI search overlap with Google results",
-        notes="The strategist owns measurement. With these four habits the team can report one number each month.")
-    add("letterbox", "list", "For content and marketing",
-        [f"Keep fee and rate pages complete and current. ChatGPT cited SeaBank's fees page {N['fee_sea']} times and "
-         f"blu's {N['fee_blu']} times, by URL.",
-         f"Write explainers for how-to questions on deposit insurance, scams and complaints. Only {N['how_named']} of "
+    add("title_card", "card", "What it means", ["On the bank's website, and beyond it"], part="Part IV")
+    add("letterbox", "list", f"On the website: ChatGPT took {N['bank_share_gpt']} of its citations from bank sites",
+        [f"Keep fee and rate pages current and dated. ChatGPT cited SeaBank's fees page {N['fee_sea']} times "
+         f"and blu's {N['fee_blu']} times.",
+         f"Publish explainers for how-to questions on deposit insurance, scams and complaints. Only {N['how_named']} of "
          f"{N['how_n']} how-to answers named a bank.",
-         f"Read the comparison articles Gemini cites and send their publishers corrections when a fact about your bank "
-         f"is out of date. One Akulaku article appeared in {N['aku_page']} of Gemini's {N['gem_answers']} answers.",
-         f"Report how often the bank is named before reporting tone. Of {N['pairs']} answer and bank pairs, none was "
-         f"negative."],
+         f"Put the answer and its figure at the top of each page, in the HTML the server sends. "
+         f"{N['rendered_bank']} cited bank pages showed text only after JavaScript ran.",
+         f"Keep cited pages live. Gemini cited {N['dead_bank_pages']} broken bank pages {N['dead_bank_cit']} times. "
+         f"OpenAI says sites blocking OAI-SearchBot do not appear in ChatGPT search answers."],
         part="Part IV: What it means", numbered=True,
-        foot="Source: data/interim/citations.csv, data/processed/no_brand_rate.csv, pages_top.csv, data/labels/sentiment.csv",
-        notes="Content owns the pages the engines quote and the explainers they do not yet have.")
-    add("letterbox", "list", "For the web team",
-        [f"Fix or redirect cited pages that no longer work. Gemini cited {N['dead_bank_pages']} broken bank pages "
-         f"{N['dead_bank_cit']} times: a {N['http_404']} on jago.com and a BNI complaints page that loads as an error page.",
-         f"Send key text in the HTML from the server. {N['rendered_bank']} cited bank pages, SeaBank's fees and rates "
-         f"page among them, showed their text only after a browser ran JavaScript. A crawler that skips JavaScript may "
-         f"read them as empty.",
-         f"Check robots.txt on reports and product pages. It blocked our crawler from {N['robots_dis']} BNI annual "
-         f"reports, and {N['robots_unr']} bank sites returned no robots.txt our crawler could read.",
-         f"Treat schema as optional for AI citations. Bank sites carried schema on {N['sch_bank']} of cited pages and "
-         f"were still the most cited type."],
+        foot=f"Source: data/interim/citations.csv, pages.csv, data/processed/no_brand_rate.csv, crawled on {RUN_DAY}  ·  "
+             f"OpenAI, Overview of OpenAI crawlers",
+        notes=f"In this run, ChatGPT's answers drew mostly on bank websites, so the bank's own pages are where its "
+              f"citations came from. robots.txt also blocked our crawler from {N['robots_dis']} BNI annual reports. Our "
+              f"crawler is not an AI crawler: the blocked and script-only pages are signs to check, not proof that an "
+              f"engine was blocked.")
+    add("letterbox", "list", f"Beyond the website: Gemini took {N['other_share_gem']} of its citations elsewhere",
+        [f"Send corrections to the comparison articles Gemini cites when a fact about your bank is out of date. One "
+         f"Akulaku article appeared in {N['aku_page']} of Gemini's {N['gem_answers']} answers.",
+         f"Put part of the media budget on fintech platforms, comparison blogs and news sites, which took "
+         f"{N['gem_third']} of Gemini's citations. Ask for a dated product entry and label paid placements as sponsored.",
+         "Write articles with quotations and statistics from named sources. In the GEO study, quotations raised a "
+         "page's PAWC by 41% and statistics by about 31%. Keyword stuffing lowered it."],
         part="Part IV: What it means", numbered=True,
-        foot=f"Source: data/interim/pages.csv, crawled from GitHub's servers on {RUN_DAY}  ·  Google Search Central",
-        notes="Our crawler is not an AI crawler, so these are signs to check, not proof that an engine was blocked.")
+        foot="Source: data/processed/domain_type_mix.csv, pages_top.csv  ·  AirOps (2025)  ·  Aggarwal et al. (2024)",
+        notes="Gemini drew most of its citations from other sites in this run, so how those sites describe the bank "
+              "is likely to matter more for Gemini's answers than for ChatGPT's. AirOps found the same pattern across 21,311 brand mentions "
+              "in ChatGPT, Claude and Perplexity: 85% came from sites other than the brand's own. PAWC is the measure "
+              "defined on slide 8 (Aggarwal et al., 2024).")
     add("letterbox", "list", "These numbers come from one run",
         ["SparkToro and Gumshoe ran 12 prompts nearly 3,000 times. The same brand list came back less than 1 in 100 "
          "times (Search Engine Land, January 2026).",
@@ -341,7 +338,9 @@ def slides(f: dict) -> list[dict]:
                  "Nieman Lab (2025). Tow Center study of AI search citations",
                  "Google Search Central. AI features and your website",
                  "Search Engine Journal. OpenAI usage study",
-                 "Bisnis (2023). Akulaku stake in Bank Neo Commerce"],
+                 "Bisnis (2023). Akulaku stake in Bank Neo Commerce",
+                 "OpenAI. Overview of OpenAI crawlers",
+                 "AirOps (2025). Third-party sources drive 85% of brand discovery"],
         byline="Rahmananda Ridho Gamawan, data analyst, Indonesia")
     return S
 
