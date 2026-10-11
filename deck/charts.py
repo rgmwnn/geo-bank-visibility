@@ -6,6 +6,7 @@ import matplotlib
 
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
+import matplotlib.text as mtext  # noqa: E402
 import numpy as np  # noqa: E402
 import pandas as pd  # noqa: E402
 from matplotlib.patches import Circle, FancyBboxPatch, Rectangle  # noqa: E402
@@ -20,15 +21,15 @@ TYPE_LABEL = {"bank_official": "Bank websites", "regulator": "Regulators", "fint
               "blog_aggregator": "Comparison blogs", "news_media": "News media",
               "forum_ugc": "Forums", "app_store": "App stores", "other": "Other"}
 PAGE_LABEL = {
-    "https://akulaku.com/blog/perbandingan-bank-digital-terbaik-2026": "akulaku.com  ·  digital bank comparison 2026",
-    "https://seabank.co.id/produk-layanan/digital/tabungan": "seabank.co.id  ·  savings product page",
-    "https://zaipad.com/bank-digital-terbaik-di-indonesia": "zaipad.com  ·  best digital banks in Indonesia",
-    "https://seabank.co.id": "seabank.co.id  ·  home page",
-    "https://lps.go.id": "lps.go.id  ·  home page",
-    "https://kawula.id/rekomendasi-bank-digital-terbaik": "kawula.id  ·  digital bank recommendations",
-    "https://fazz.com/id/newsroom/fazza/bank-digital-tanpa-biaya-admin": "fazz.com  ·  digital banks with no admin fee",
+    "https://akulaku.com/blog/perbandingan-bank-digital-terbaik-2026": "akulaku.com, digital bank comparison 2026",
+    "https://seabank.co.id/produk-layanan/digital/tabungan": "seabank.co.id, savings product page",
+    "https://zaipad.com/bank-digital-terbaik-di-indonesia": "zaipad.com, best digital banks in Indonesia",
+    "https://seabank.co.id": "seabank.co.id, home page",
+    "https://lps.go.id": "lps.go.id, home page",
+    "https://kawula.id/rekomendasi-bank-digital-terbaik": "kawula.id, digital bank recommendations",
+    "https://fazz.com/id/newsroom/fazza/bank-digital-tanpa-biaya-admin": "fazz.com, banks with no admin fee",
     "https://fazz.com/id/newsroom/fazza/daftar-bank-digital-dengan-bunga-tertinggi-2026":
-        "fazz.com  ·  digital banks with the highest rates",
+        "fazz.com, highest rate digital banks",
 }
 
 
@@ -42,7 +43,7 @@ def _setup() -> None:
     })
 
 
-SHRINK = 1.3  # draw on a smaller canvas so type reads at slide scale once the image is placed full size
+SHRINK = 1.8  # draw on a smaller canvas so type reads at slide scale once the image is placed full size
 
 
 def _fig(w_px: int, h_px: int, **kw):
@@ -76,11 +77,33 @@ def _stem(ax, x0, x1, y, color, lw=3.0, ls="-", dot=True, hollow=False, zorder=3
 
 def _key(ax, x, y, color, label, length=0.35):
     ax.plot([x, x + length], [y, y], color=color, lw=3, solid_capstyle="butt", clip_on=False)
-    _mono(ax, x + length + 0.12, y, label, va="center", fontsize=12.5, color=C["text"])
+    _mono(ax, x + length + 0.12, y, label, va="center", fontsize=14, color=C["text"])
+
+
+def _label_faults(fig, texts, pad: float = 1.0):
+    """Labels that run off the image, and pairs of labels whose boxes overlap (in display pixels)."""
+    fig.canvas.draw()  # fixed-aspect axes settle their layout only when drawn
+    r = fig.canvas.get_renderer()
+    W_, H_ = fig.bbox.width, fig.bbox.height
+    boxes = [(t.get_text().replace("\n", " ")[:24], t.get_window_extent(r), t.get_rotation()) for t in texts]
+    clipped = [n for n, b, _ in boxes if b.x0 < -pad or b.y0 < -pad or b.x1 > W_ + pad or b.y1 > H_ + pad]
+    flat = [(n, b) for n, b, rot in boxes if rot % 180 == 0]
+    overlaps = []
+    for i, (na, a) in enumerate(flat):
+        for nb, b in flat[i + 1:]:
+            if a.x0 < b.x1 - pad and a.x1 > b.x0 + pad and a.y0 < b.y1 - pad and a.y1 > b.y0 + pad:
+                overlaps.append((na, nb))
+    return clipped, overlaps
 
 
 def _save(fig, path: Path) -> Path:
     LAST_DATA.setdefault("bars", {})[Path(path).stem] = _bar_marks(fig)
+    texts = [t for t in fig.findobj(mtext.Text) if t.get_visible() and t.get_text().strip()]
+    key = Path(path).stem
+    LAST_DATA.setdefault("min_pt", {})[key] = min(t.get_fontsize() for t in texts)
+    clipped, overlaps = _label_faults(fig, texts)
+    LAST_DATA.setdefault("clipped", {})[key] = clipped
+    LAST_DATA.setdefault("overlaps", {})[key] = overlaps
     fig.savefig(path, dpi=100 * DPI_SCALE * SHRINK, transparent=True)
     plt.close(fig)
     return path
@@ -115,37 +138,43 @@ def chart_pawc_curve(f: dict, path: Path) -> Path:
         _mono(ax, i, w[i] + 0.06, f"{w[i]:.2f}", ha="center", color=C["text"] if i == 0 else C["secondary"], fontsize=14)
     for i in range(n):
         _mono(ax, i, -0.09, f"s{i + 1}", ha="center", fontsize=12)
-    _mono(ax, -0.4, 1.17, "weight = exp( - position / sentence count )", fontsize=14, color=C["text"])
+    _mono(ax, -0.4, 1.3, "weight = exp( - position / sentence count )", fontsize=14, color=C["text"])
     ax.set_xlim(-0.6, n - 0.4)
-    ax.set_ylim(-0.14, 1.12)
+    ax.set_ylim(-0.14, 1.42)
     _bare(ax)
     return _save(fig, path)
 
 
 def chart_prompt_grid(f: dict, path: Path) -> Path:
     g = f["prompt_grid"]
+    branded = set(f.get("branded_prompt_nos", []))
     pillars = ["Fees & rates", "Digital experience", "Safety & security", "Service", "Trust"]
     intents = ["Best", "Compare", "Decision brief", "How-to", "Informational"]
-    fig, ax = _fig(1200, 560)
-    fig.subplots_adjust(left=0.25, right=0.98, top=0.88, bottom=0.04)
+    fig, ax = _fig(1680, 540)
+    fig.subplots_adjust(left=0.2, right=0.99, top=0.86, bottom=0.1)
     for j, it in enumerate(intents):
-        ax.text(j, len(pillars) - 0.35, it, ha="center", va="bottom", fontsize=15, color=C["secondary"])
+        ax.text(j, len(pillars) - 0.42, it, ha="center", va="bottom", fontsize=14, color=C["text"])
     for i, p in enumerate(pillars):
         y = len(pillars) - 1 - i
-        ax.text(-0.62, y, p, ha="right", va="center", fontsize=15, color=C["secondary"])
-        ax.plot([-0.5, len(intents) - 0.5], [y - 0.5, y - 0.5], color=C["dim"], lw=0.8)
+        ax.text(-0.58, y, p, ha="right", va="center", fontsize=14, color=C["text"])
+        ax.plot([-0.5, len(intents) - 0.5], [y - 0.5, y - 0.5], color=C["dim"], lw=0.9)
         for j, it in enumerate(intents):
             nos = list(g[(g.pillar == p) & (g.intent == it)].prompt_no)
             for k, no in enumerate(nos):
-                x = j + (k - (len(nos) - 1) / 2) * 0.34
-                lit = no == 13
-                ax.scatter([x], [y], s=460, facecolor=C["text"] if lit else C["bg"],
-                           edgecolor=C["text"] if lit else C["secondary"], linewidth=1.2, zorder=2)
-                _mono(ax, x, y, str(no), ha="center", va="center", fontsize=12,
-                      color=C["bg"] if lit else C["text"], zorder=3)
+                x = j + (k - (len(nos) - 1) / 2) * 0.27
+                example = no == 13
+                ax.scatter([x], [y], s=620, facecolor=C["text"] if example else C["bg"],
+                           edgecolor=C["text"] if example else C["secondary"], linewidth=1.6, zorder=2,
+                           linestyle=(0, (2, 1.6)) if no in branded else "-")
+                _mono(ax, x, y, str(no), ha="center", va="center", fontsize=13,
+                      color=C["bg"] if example else C["text"], zorder=3)
+    ax.scatter([1.75], [-0.86], s=260, facecolor=C["bg"], edgecolor=C["secondary"], linewidth=1.6,
+               linestyle=(0, (2, 1.6)), clip_on=False)
+    _mono(ax, 1.87, -0.86, "names a bank", va="center", fontsize=12, color=C["secondary"])
+    ax.scatter([2.95], [-0.86], s=260, facecolor=C["text"], edgecolor=C["text"], clip_on=False)
+    _mono(ax, 3.07, -0.86, "example on slide 2", va="center", fontsize=12, color=C["secondary"])
     ax.set_xlim(-0.6, len(intents) - 0.4)
     ax.set_ylim(-0.6, len(pillars) - 0.1)
-    ax.set_aspect("auto")
     _bare(ax)
     return _save(fig, path)
 
@@ -160,22 +189,22 @@ def chart_pipeline(f: dict, path: Path) -> Path:
     for i, ((name, val), lab) in enumerate(zip(steps, labels)):
         x0, y = i * 1.0, n - 1 - i
         lit = i == n - 1
-        ax.plot([x0, x0 + 0.84], [y, y], color=C["text"] if lit else C["secondary"], lw=2.4 if lit else 1.2)
+        ax.plot([x0, x0 + 0.95], [y, y], color=C["text"] if lit else C["secondary"], lw=2.4 if lit else 1.2)
         if i < n - 1:
-            ax.plot([x0 + 0.84, x0 + 1.0], [y, y - 1], color=C["dim"], lw=1)
-        _mono(ax, x0, y + 0.9, f"{i + 1:02d}  {lab.upper()}", fontsize=10)
-        ax.text(x0, y + 0.12, f"{val:,}", fontsize=24, va="bottom", color=C["text"], alpha=1 if lit else 0.8,
+            ax.plot([x0 + 0.95, x0 + 1.0], [y, y - 1], color=C["dim"], lw=1)
+        _mono(ax, x0, y + 1.0, f"{i + 1:02d}  {lab}", fontsize=12.5)
+        ax.text(x0, y + 0.1, f"{val:,}", fontsize=20, va="bottom", color=C["text"], alpha=1 if lit else 0.8,
                 fontweight="bold" if lit else "normal")
-        _mono(ax, x0, y - 0.38, name, fontsize=11.5, color=C["text"] if lit else C["secondary"])
+        _mono(ax, x0, y - 0.38, name, fontsize=13, color=C["text"] if lit else C["secondary"])
     ax.set_xlim(-0.05, n)
-    ax.set_ylim(-0.75, n + 0.1)
+    ax.set_ylim(-0.75, n + 0.62)
     _bare(ax)
     return _save(fig, path)
 
 
 def chart_funnel(f: dict, path: Path) -> Path:
     rows = [("citations", f["citations"]), ("unique pages", f["pages"]), ("readable pages", f["readable_pages"]),
-            ("readable pages that name a bank", f["readable_pages_with_bank"])]
+            ("name a bank", f["readable_pages_with_bank"])]
     fig, ax = _fig(1000, 480)
     fig.subplots_adjust(left=0.02, right=0.98, top=0.96, bottom=0.04)
     top = rows[0][1]
@@ -199,8 +228,8 @@ def chart_funnel(f: dict, path: Path) -> Path:
 def chart_mention_dots(f: dict, path: Path) -> Path:
     banks = _top_banks(f, 10)
     mr = f["mention_rate"]
-    fig, ax = _fig(1180, 640)
-    fig.subplots_adjust(left=0.31, right=0.97, top=0.86, bottom=0.04)
+    fig, ax = _fig(1180, 780)
+    fig.subplots_adjust(left=0.36, right=0.97, top=0.84, bottom=0.03)
     for i, b in enumerate(banks):
         y = len(banks) - 1 - i
         g, m = mr[b].get("ChatGPT", 0), mr[b].get("Gemini", 0)
@@ -214,10 +243,10 @@ def chart_mention_dots(f: dict, path: Path) -> Path:
     for t in (0, 0.2, 0.4, 0.6):
         ax.plot([t, t], [-0.6, len(banks) - 0.4], color=C["dim"], lw=0.6, zorder=0)
         _mono(ax, t, len(banks) - 0.1, f"{pct(t)}", ha="center", fontsize=12)
-    ax.scatter([0.0], [len(banks) + 0.75], s=110, color=C["gpt"], clip_on=False)
-    _mono(ax, 0.015, len(banks) + 0.75, "ChatGPT", va="center", color=C["text"], fontsize=13)
-    ax.scatter([0.13], [len(banks) + 0.75], s=150, facecolor=C["bg"], edgecolor=C["gem"], linewidth=2.4, clip_on=False)
-    _mono(ax, 0.145, len(banks) + 0.75, "Gemini", va="center", color=C["text"], fontsize=13)
+    ax.scatter([0.0], [len(banks) + 1.3], s=110, color=C["gpt"], clip_on=False)
+    _mono(ax, 0.02, len(banks) + 1.3, "ChatGPT", va="center", color=C["text"], fontsize=13)
+    ax.scatter([0.2], [len(banks) + 1.3], s=150, facecolor=C["bg"], edgecolor=C["gem"], linewidth=2.4, clip_on=False)
+    _mono(ax, 0.22, len(banks) + 1.3, "Gemini", va="center", color=C["text"], fontsize=13)
     ax.set_xlim(-0.01, 0.72)
     ax.set_ylim(-0.6, len(banks) + 0.2)
     _bare(ax)
@@ -225,10 +254,11 @@ def chart_mention_dots(f: dict, path: Path) -> Path:
 
 
 def chart_vis_rank(f: dict, path: Path) -> Path:
-    v = f["vis"].sort_values("vis", ascending=False).reset_index(drop=True)
-    LAST_DATA["vis_rank"] = v
+    LAST_DATA["vis_rank"] = f["vis"].sort_values("vis", ascending=False).reset_index(drop=True)
+    v = LAST_DATA["vis_rank"]
+    v = v[~v.low_n].reset_index(drop=True)  # banks named in fewer than 3 answers are left off, and said so on the slide
     fig, ax = _fig(1180, 700)
-    fig.subplots_adjust(left=0.28, right=0.9, top=0.97, bottom=0.03)
+    fig.subplots_adjust(left=0.33, right=0.92, top=0.97, bottom=0.03)
     n = len(v)
     for i, r in v.iterrows():
         y = n - 1 - i
@@ -239,9 +269,9 @@ def chart_vis_rank(f: dict, path: Path) -> Path:
         else:
             _stem(ax, 0, r.vis, y, col, lw=3 if lit else 2.2)
         ax.text(-1.2, y, r.brand, ha="right", va="center", fontsize=13.5, color=col)
-        _mono(ax, r.vis + 2, y, num(r.vis, 1), va="center", fontsize=12, color=col)
+        _mono(ax, r.vis + 3, y, num(r.vis, 1), va="center", fontsize=12, color=col)
         if r.low_n:
-            _mono(ax, 76, y, f"low n · {int(r.n_answers)} answer{'s' if r.n_answers > 1 else ''}",
+            _mono(ax, 76, y, f"low n, {int(r.n_answers)} answer{'s' if r.n_answers > 1 else ''}",
                   va="center", fontsize=11, color=C["secondary"])
     ax.set_xlim(0, 112)
     ax.set_ylim(-0.6, n - 0.4)
@@ -254,8 +284,8 @@ def chart_wider_field(f: dict, path: Path) -> Path:
     a = be[(be.engine == "All") & (be.n_answers_mentioning > 0)].sort_values(["mention_rate", "brand"], ascending=[False, True])
     banks = list(a.brand)
     named = {e: set(be[(be.engine == e) & (be.n_answers_mentioning > 0)].brand) for e in ("ChatGPT", "Gemini")}
-    fig, ax = _fig(1680, 430)
-    fig.subplots_adjust(left=0.08, right=0.99, top=0.98, bottom=0.36)
+    fig, ax = _fig(1680, 540)
+    fig.subplots_adjust(left=0.09, right=0.99, top=0.98, bottom=0.5)
     for j, b in enumerate(banks):
         only_gem = b in named["Gemini"] and b not in named["ChatGPT"]
         only_gpt = b in named["ChatGPT"] and b not in named["Gemini"]
@@ -277,7 +307,7 @@ def chart_wider_field(f: dict, path: Path) -> Path:
 
 
 def chart_pillar_heatmap(f: dict, path: Path) -> Path:
-    banks = _top_banks(f, 8)
+    banks = _top_banks(f, 6)
     banks += [b for v in f["pillar_leaders"].values() for b in v if b not in banks]
     pillars = ["Fees & rates", "Digital experience", "Safety & security", "Service", "Trust"]
     row_n = f["pillar_counts"].groupby("pillar").n.first().to_dict()
@@ -285,11 +315,11 @@ def chart_pillar_heatmap(f: dict, path: Path) -> Path:
     pr = f["pillar_rates"].pivot(index="pillar", columns="brand", values="mention_rate").reindex(index=pillars, columns=banks).fillna(0)
     top = pr.max(axis=1)
     fig, ax = _fig(1680, 560)
-    fig.subplots_adjust(left=0.17, right=0.97, top=0.86, bottom=0.03)
+    fig.subplots_adjust(left=0.235, right=0.995, top=0.9, bottom=0.03)
     for i, p in enumerate(pillars):
         y = len(pillars) - 1 - i
-        ax.text(-0.6, y + 0.13, p, ha="right", va="center", fontsize=15, color=C["secondary"])
-        _mono(ax, -0.6, y - 0.2, f"n = {row_n[p]}", ha="right", va="center", fontsize=11.5)
+        ax.text(-0.6, y, p, ha="right", va="center", fontsize=15, color=C["text"])
+        _mono(ax, len(banks) - 0.4, y, f"n = {row_n[p]}", va="center", fontsize=14)
         for j, b in enumerate(banks):
             v = pr.loc[p, b]
             lead = v == top[p]
@@ -298,12 +328,13 @@ def chart_pillar_heatmap(f: dict, path: Path) -> Path:
             if lead:
                 ax.add_patch(FancyBboxPatch((j - 0.44, y - 0.4), 0.88, 0.8, boxstyle="round,pad=0,rounding_size=0.04",
                                             facecolor="none", edgecolor=C["text"], lw=2))
-            _mono(ax, j, y, f"{pct(v)}" if v else "·", ha="center", va="center", fontsize=14,
+            _mono(ax, j, y, pct(v), ha="center", va="center", fontsize=14,
                   color=C["text"])
     for j, b in enumerate(banks):
-        ax.text(j, len(pillars) - 0.35, b, ha="center", va="bottom", fontsize=11.5, color=C["secondary"])
-    ax.set_xlim(-0.55, len(banks) - 0.45)
-    ax.set_ylim(-0.5, len(pillars) - 0.1)
+        ax.text(j, len(pillars) - 0.35, "\n".join(b.rsplit(" ", 1)) if len(b) > 7 else b, ha="center", va="bottom",
+                fontsize=14, color=C["text"], linespacing=1.1)
+    ax.set_xlim(-0.55, len(banks) + 0.35)
+    ax.set_ylim(-0.5, len(pillars) + 0.35)
     _bare(ax)
     return _save(fig, path)
 
@@ -318,9 +349,9 @@ def chart_often_vs_early(f: dict, path: Path) -> Path:
         on = r.brand in lit
         ax.scatter(r.mention_rate, r.pawc, s=130 if on else 80, color=C["text"] if on else C["secondary"],
                    edgecolor=C["bg"], linewidth=1.5, zorder=3, alpha=1 if on else 0.8)
-        dx, dy, ha = {"Bank Jago": (-0.012, 0.0018, "right"), "Bank Saqu": (0.0, -0.0048, "center"),
+        dx, dy, ha = {"Bank Jago": (-0.012, 0.0018, "right"), "Bank Saqu": (-0.004, -0.0068, "center"),
                       "Krom Bank": (0.012, -0.0034, "left"),
-                      "Superbank": (0.0, 0.0028, "center"), "Bank BTPN": (0.012, -0.0032, "left")
+                      "Superbank": (0.0, 0.0028, "center"), "Bank BTPN": (0.03, -0.0026, "left")
                       }.get(r.brand, (0.012, 0.0018, "left"))
         ax.text(r.mention_rate + dx, r.pawc + dy, r.brand, fontsize=13, ha=ha,
                 color=C["text"] if on else C["secondary"])
@@ -330,10 +361,10 @@ def chart_often_vs_early(f: dict, path: Path) -> Path:
     for t in (0, 0.02, 0.04, 0.06):
         ax.axhline(t, color=C["dim"], lw=0.6, zorder=0)
         _mono(ax, -0.012, t, f"{t:.2f}", ha="right", va="center", fontsize=12)
-    _mono(ax, 0.6, -0.0145, "named in this share of answers", ha="right", fontsize=12)
+    _mono(ax, 0.6, -0.0185, "named in this share of answers", ha="right", fontsize=12)
     _mono(ax, -0.058, 0.0735, "brand PAWC (how much, how early)", fontsize=12)
     ax.set_xlim(-0.06, 0.63)
-    ax.set_ylim(-0.016, 0.076)
+    ax.set_ylim(-0.021, 0.08)
     _bare(ax)
     return _save(fig, path)
 
@@ -356,12 +387,12 @@ def chart_sentiment_marks(f: dict, path: Path) -> Path:
     total_h = rows * fh + (rows - 1) * gap_y
     x0 = per_row + 1.6
     ax.add_patch(Rectangle((x0, 0), 7.5, total_h, facecolor="none", edgecolor=C["text"], lw=1.6, ls=(0, (4, 3))))
-    ax.text(x0 + 3.75, total_h / 2 + 0.35, "0", ha="center", va="center", fontsize=40, color=C["text"])
-    _mono(ax, x0 + 3.75, total_h / 2 - 1.15, "negative", ha="center", va="center", fontsize=14, color=C["text"])
-    _mono(ax, 0, -0.9, f"{sc['positive']} positive   ·   {sc['neutral']} neutral   ·   {sc['mixed']} mixed (outlined)",
-          fontsize=13)
+    ax.text(x0 + 3.75, total_h / 2, "0", ha="center", va="center", fontsize=34, color=C["text"])
+    _mono(ax, x0 + 3.75, -0.45, "negative", ha="center", va="top", fontsize=14, color=C["text"])
+    _mono(ax, 0, -0.45, f"{sc['positive']} positive, {sc['neutral']} neutral, {sc['mixed']} mixed (outlined)",
+          va="top", fontsize=13)
     ax.set_xlim(-0.4, x0 + 8)
-    ax.set_ylim(-1.5, total_h + 0.3)
+    ax.set_ylim(-1.9, total_h + 0.3)
     ax.set_aspect("equal")
     _bare(ax)
     return _save(fig, path)
@@ -371,7 +402,7 @@ def chart_intent_named(f: dict, path: Path) -> Path:
     order = ["Best", "Decision brief", "Compare", "Informational", "How-to"]
     d = f["intent_named_share"]
     fig, ax = _fig(1100, 480)
-    fig.subplots_adjust(left=0.25, right=0.9, top=0.96, bottom=0.04)
+    fig.subplots_adjust(left=0.31, right=0.88, top=0.96, bottom=0.04)
     for i, it in enumerate(order):
         y = len(order) - 1 - i
         share, n = d[it]
@@ -389,7 +420,7 @@ def chart_intent_named(f: dict, path: Path) -> Path:
 def chart_source_mix(f: dict, path: Path) -> Path:
     order = ["bank_official", "regulator", "fintech_platform", "blog_aggregator", "news_media", "forum_ugc", "app_store", "other"]
     fig, ax = _fig(1680, 460)
-    fig.subplots_adjust(left=0.09, right=0.99, top=0.9, bottom=0.04)
+    fig.subplots_adjust(left=0.135, right=0.99, top=0.9, bottom=0.04)
     # Each row lights the types its claim is about: first-party for ChatGPT, third-party for Gemini.
     lit_types = {"ChatGPT": {"bank_official", "regulator"},
                  "Gemini": {"fintech_platform", "blog_aggregator", "news_media"}}
@@ -416,7 +447,7 @@ def chart_source_mix(f: dict, path: Path) -> Path:
             x += w
         small = [f"{TYPE_LABEL[t].lower()} {pct(mix[t])}" for t in order if 0 < mix.get(t, 0) < 0.06]
         if small:
-            _mono(ax, 1.0, row - 0.44, "smaller:  " + "  ·  ".join(small), ha="right", fontsize=11.5)
+            _mono(ax, 1.0, row - 0.44, "smaller: " + ", ".join(small), ha="right", fontsize=11.5)
     ax.set_xlim(0, 1.0)
     ax.set_ylim(-0.6, 1.9)
     _bare(ax)
@@ -433,11 +464,11 @@ def chart_overlap(f: dict, path: Path) -> Path:
     ax.text(-1.15, 0, str(o["sites_gpt_only"]), ha="center", va="center", fontsize=40, color=C["secondary"])
     ax.text(1.32, 0, str(o["sites_gem_only"]), ha="center", va="center", fontsize=40, color=C["secondary"])
     ax.text(-0.11, 0.08, str(o["sites_both"]), ha="center", va="center", fontsize=52, color=C["text"], fontweight="bold")
-    _mono(ax, -0.11, -1.52, "cited by both", ha="center", va="center", fontsize=12.5, color=C["text"])
+    _mono(ax, -0.11, -1.9, "cited by both", ha="center", va="center", fontsize=12.5, color=C["text"])
     _mono(ax, -1.2, -1.52, "ChatGPT only", ha="center", va="center", fontsize=12.5)
     _mono(ax, 1.32, -1.52, "Gemini only", ha="center", va="center", fontsize=12.5)
     ax.set_xlim(-1.9, 2.1)
-    ax.set_ylim(-1.7, 1.35)
+    ax.set_ylim(-2.1, 1.35)
     ax.set_aspect("equal")
     _bare(ax)
     return _save(fig, path)
@@ -481,7 +512,7 @@ def chart_mirror_sites(f: dict, path: Path) -> Path:
 def chart_top_pages(f: dict, path: Path) -> Path:
     t = f["top_pages"]
     fig, ax = _fig(1680, 600)
-    fig.subplots_adjust(left=0.38, right=0.97, top=0.95, bottom=0.04)
+    fig.subplots_adjust(left=0.46, right=0.97, top=0.95, bottom=0.04)
     n = len(t)
     for i, r in t.iterrows():
         y = n - 1 - i
@@ -492,9 +523,9 @@ def chart_top_pages(f: dict, path: Path) -> Path:
         ax.plot([r.citations, r.citations], [y - 0.22, y + 0.22], color=C["text"], lw=1.6, zorder=3)
         ax.text(-0.3, y, PAGE_LABEL.get(r.url, r.url), ha="right", va="center", fontsize=14,
                 color=C["text"] if lit else C["secondary"])
-        _mono(ax, r.citations + 0.3, y, str(r.citations), va="center", fontsize=12, color=C["text"])
+        _mono(ax, r.citations + 0.3, y, str(r.citations), va="center", fontsize=14, color=C["text"])
     _key(ax, 0, n - 0.07, C["gpt"], "ChatGPT")
-    _key(ax, 2.8, n - 0.07, C["gem"], "Gemini")
+    _key(ax, 3.8, n - 0.07, C["gem"], "Gemini")
     ax.set_xlim(0, 16)
     ax.set_ylim(-0.6, n + 0.2)
     _bare(ax)
@@ -510,7 +541,7 @@ def chart_concentration(f: dict, path: Path) -> Path:
         _stem(ax, 0, s, row, ENGINE_COLOR[e], lw=4)
         ax.text(-0.02, row, e, ha="right", va="center", fontsize=17, color=C["text"])
         _mono(ax, 1.04, row, f"{pct(s)}", va="center", fontsize=22, color=C["text"])
-    _mono(ax, 0, -0.55, "share of each engine's citations held by its top five sites", fontsize=12)
+    _mono(ax, 0, -0.55, "share of citations held by the top five sites", fontsize=12)
     ax.set_xlim(0, 1.15)
     ax.set_ylim(-0.7, 1.5)
     _bare(ax)
@@ -522,7 +553,7 @@ def chart_sov_gap(f: dict, path: Path) -> Path:
     d["pts"] = d.sov_gap * 100
     d = d.sort_values("pts", ascending=False).reset_index(drop=True)
     fig, ax = _fig(1180, 600)
-    fig.subplots_adjust(left=0.28, right=0.96, top=0.88, bottom=0.04)
+    fig.subplots_adjust(left=0.36, right=0.97, top=0.88, bottom=0.04)
     lit = {"Bank Mandiri"}  # the slide's claim; Jago and BCA gaps depend on alias counting
     named = {"Bank Jago", "BCA"}  # named in the body, shown at secondary weight
     LAST_DATA["sov_gap_lit"] = lit
@@ -532,14 +563,14 @@ def chart_sov_gap(f: dict, path: Path) -> Path:
         on = r.brand in lit or r.brand in named
         col = C["text"] if r.brand in lit else (C["secondary"] if on else C["dim"])
         _stem(ax, 0, r.pts, y, col, lw=3 if r.brand in lit else 2.2)
-        ax.text(-10.2, y, r.brand, ha="right", va="center", fontsize=15, color=C["text"] if on else C["secondary"])
+        ax.text(-14.2, y, r.brand, ha="right", va="center", fontsize=15, color=C["text"] if on else C["secondary"])
         lab = f"{r.pts:+.1f} pts"
         _mono(ax, r.pts + (0.45 if r.pts >= 0 else -0.45), y, lab, va="center", ha="left" if r.pts >= 0 else "right",
               fontsize=12.5, color=C["text"] if on else C["secondary"])
     ax.axvline(0, color=C["secondary"], lw=1)
-    _mono(ax, 0.3, n - 0.05, "answers mention it more", fontsize=12)
-    _mono(ax, -0.3, n - 0.05, "sources mention it more", ha="right", fontsize=12)
-    ax.set_xlim(-10, 9)
+    _mono(ax, 0.3, n - 0.05, "more in answers", fontsize=12)
+    _mono(ax, -0.3, n - 0.05, "more in pages", ha="right", fontsize=12)
+    ax.set_xlim(-14, 11)
     ax.set_ylim(-0.6, n + 0.3)
     _bare(ax)
     return _save(fig, path)
@@ -548,15 +579,15 @@ def chart_sov_gap(f: dict, path: Path) -> Path:
 def chart_dead_links(f: dict, path: Path) -> Path:
     wd, wt, dd, dt = f["dead_links"]
     fig, ax = _fig(1180, 380)
-    fig.subplots_adjust(left=0.41, right=0.84, top=0.95, bottom=0.08)
-    rows = [("Wrapped in a Google redirect", wd, wt), ("Direct links", dd, dt)]
+    fig.subplots_adjust(left=0.46, right=0.8, top=0.95, bottom=0.1)
+    rows = [("Behind a Google redirect", wd, wt), ("Direct links", dd, dt)]
     for i, (name, d, t) in enumerate(rows):
         y = 1 - i
         _track(ax, 0, 1, y, color=C["gem"], lw=1.6)
         _stem(ax, 0, d / t, y, C["text"], lw=4, dot=d > 0)
         ax.text(-0.02, y, name, ha="right", va="center", fontsize=16, color=C["text"])
         _mono(ax, 1.04, y, f"{d} of {t} dead", va="center", fontsize=14, color=C["text"])
-    _mono(ax, 0, -0.62, "Gemini citations  ·  dead: HTTP 404 or error page", fontsize=11)
+    _mono(ax, 0, -0.62, "dead: 404 or error page", fontsize=11)
     ax.set_xlim(0, 1.25)
     ax.set_ylim(-0.8, 1.5)
     _bare(ax)
@@ -584,7 +615,7 @@ def chart_schema(f: dict, path: Path) -> Path:
     _mono(ax, 0.045, len(keep) + 0.08, "share of all citations", fontsize=12)
     ax.scatter([0.0 + 0.015], [len(keep) + 0.62], s=110, facecolor=C["bg"], edgecolor=C["secondary"], linewidth=2, clip_on=False)
     _mono(ax, 0.045, len(keep) + 0.54, "share of its readable pages with schema", fontsize=12)
-    ax.set_xlim(0, 1.12)
+    ax.set_xlim(0, 1.22)
     ax.set_ylim(-0.6, len(keep) - 0.3)
     _bare(ax)
     return _save(fig, path)

@@ -183,8 +183,10 @@ def picture(slide, path: Path, box, valign: str = "top"):
     scale = min(w / iw, h / ih)
     pw, ph = iw * scale, ih * scale
     top = y + (h - ph) / 2 if valign == "middle" else y
-    slide.shapes.add_picture(str(path), Emu(int((x + (w - pw) / 2) * PX)), Emu(int(top * PX)),
-                             Emu(int(pw * PX)), Emu(int(ph * PX)))
+    pic = slide.shapes.add_picture(str(path), Emu(int((x + (w - pw) / 2) * PX)), Emu(int(top * PX)),
+                                   Emu(int(pw * PX)), Emu(int(ph * PX)))
+    pic.name = f"chart-{Path(path).stem}"
+    return pic
 
 
 def timelines(slide, x0, x1, y):
@@ -201,11 +203,9 @@ def frame(slide, kind: str):
         bar_edges(slide)
 
 
-def chrome(slide, n: int, s: dict):
-    text(slide, LEFT, 58, 700, 26, [P("FAVOURED BANKS", 9, C["secondary"], MONO, track=200)])
-    text(slide, W - LEFT - 800, 58, 800, 26, [P(s.get("part", ""), 9, C["secondary"], MONO, track=200)], align=PP_ALIGN.RIGHT)
-    text(slide, LEFT, H - BAR + 54, 900, 26,
-         [P(f"{copy.SLATE_DATE}  ·  40 ANSWERS  ·  SCENE {n:02d}", 9, C["secondary"], MONO, track=150)])
+def chrome(slide, n: int, s: dict, total: int):
+    text(slide, LEFT, 56, 900, 28, [P(s.get("part", ""), 11, C["secondary"])])
+    text(slide, 1060, H - BAR + 54, 140, 26, [P(f"{n} / {total}", 10, C["secondary"], MONO)], align=PP_ALIGN.RIGHT)
     if s.get("foot"):
         text(slide, LEFT, H - BAR - 40, W - 2 * LEFT, 26, [P(s["foot"], 9, C["secondary"], MONO)])
 
@@ -218,7 +218,7 @@ def _title(slide, s, x, y, w, pt=26):
 
 def _body(slide, paras, x, y, w, pt=14, gap=14, color=C["secondary"], bullets=False):
     for b in paras:
-        t = ("·  " + b) if bullets else b
+        t = ("•  " + b) if bullets else b
         h = est_h(t, w, pt)
         text(slide, x, y, w, h, [P(t, pt, color)])
         y += h + gap
@@ -227,32 +227,37 @@ def _body(slide, paras, x, y, w, pt=14, gap=14, color=C["secondary"], bullets=Fa
 
 def lay_cover(slide, s, n, art):
     ring(slide, 1560, 440, 200)  # its disk runs level with the title
-    text(slide, LEFT, 300, 940, 30, [P(s["kicker"], 11, C["secondary"], MONO, track=200)])
     th = est_h(s["title"], 1110, 68)
     text(slide, LEFT, 340, 1110, th, [P(s["title"], 68)])
     y = 340 + th + 20
-    text(slide, LEFT, y, 1060, est_h(s["body"][0], 1060, 20), [P(s["body"][0], 20, C["secondary"])])
+    bh = est_h(s["body"][0], 1060, 20)
+    text(slide, LEFT, y, 1060, bh, [P(s["body"][0], 20, C["secondary"])])
+    text(slide, LEFT, y + bh + 24, 1060, est_h(s["body"][1], 1060, 14), [P(s["body"][1], 14, C["secondary"], MONO)])
     text(slide, LEFT, 860, 940, 34, [P(s["byline"], 12, C["text"], MONO)])
 
 
 def lay_hero(slide, s, n, art):
-    text(slide, LEFT, 170, 1500, est_h(s["title"], 1500, 26), [P(s["title"], 26)])
+    th = est_h(s["title"], 1500, 26)
+    text(slide, LEFT, 170, 1500, th, [P(s["title"], 26)])
+    top = max(380, 170 + th + 60)
+    bigh = max(est_h(big, 820, 72) for big, _, _ in s["heroes"])
+    caph = max(est_h(cap, 720, 16) for _, cap, _ in s["heroes"])
     for i, (big, cap, src) in enumerate(s["heroes"]):
         x = LEFT + i * 860
-        text(slide, x, 390, 820, 200, [P(big, 72)])
-        text(slide, x, 600, 720, est_h(cap, 720, 16), [P(cap, 16, C["secondary"])])
-        text(slide, x, 720, 720, 30, [P(src, 9, C["secondary"], MONO)])
+        text(slide, x, top, 820, bigh, [P(big, 72)])
+        text(slide, x, top + bigh + 10, 720, caph, [P(cap, 16, C["secondary"])])
+        text(slide, x, top + bigh + 10 + caph + 16, 720, 30, [P(src, 9, C["secondary"], MONO)])
     horizon(slide)
 
 
-CARD_PARTS = {"PART I": 1, "PART II": 2, "PART III": 3, "PART IV": 4}
+CARD_PARTS = {"Part I": 1, "Part II": 2, "Part III": 3, "Part IV": 4}
 
 
 def lay_card(slide, s, n, art):
     corridor(slide, CARD_PARTS[s["part"]])
     x0, _, x1, _ = WALL
     w = x1 - x0 - 60
-    text(slide, x0 + 30, 400, w, 34, [P(s["part"], 12, C["secondary"], MONO, track=400)], align=PP_ALIGN.CENTER)
+    text(slide, x0 + 30, 384, w, 46, [P(s["part"], 16, C["secondary"])], align=PP_ALIGN.CENTER)
     text(slide, x0 + 30, 440, w, 150, [P(s["title"], 60)], align=PP_ALIGN.CENTER)
     text(slide, x0 + 30, 620, w, 50, [P(s["body"][0], 18, C["secondary"])], align=PP_ALIGN.CENTER)
     timelines(slide, W / 2 - 80, W / 2 + 80, 720)
@@ -319,7 +324,7 @@ def lay_cold_open(slide, s, n, art):
     for i, (head, banks, key) in enumerate(s["cols"]):
         x = LEFT + i * 760
         rect(slide, x, y + 8, 14, 14, C[key])
-        text(slide, x + 30, y, 600, 30, [P(head.upper(), 11, C["secondary"], MONO, track=200)])
+        text(slide, x + 30, y - 2, 600, 30, [P(head, 14, C["secondary"])])
         names = banks.split("\n")
         text(slide, x, y + 50, 680, len(names) * 62, [P(b, 24) for b in names])
 
@@ -329,7 +334,7 @@ def lay_close(slide, s, n, art):
     text(slide, LEFT, 170, 1680, th, [P(s["title"], 40)])
     text(slide, LEFT, 170 + th + 10, 1600, 40, [P(s["body"][0], 16, C["text"], MONO)])
     y = 400
-    text(slide, LEFT, y, 400, 28, [P("SOURCES", 10, C["secondary"], MONO, track=300)])
+    text(slide, LEFT, y, 400, 28, [P("Sources", 13, C["secondary"])])
     y += 44
     for src in s["sources"]:
         text(slide, LEFT, y, 1500, 28, [P(src, 11, C["secondary"], MONO)])
@@ -354,7 +359,7 @@ def build(out: Path = OUT) -> Path:
         frame(slide, s["kind"])
         LAYOUTS[s["layout"]](slide, s, n, art)
         if s["kind"] == "letterbox":
-            chrome(slide, n, s)
+            chrome(slide, n, s, len(specs))
             ruler(slide, n, len(specs))
         if s.get("notes"):
             slide.notes_slide.notes_text_frame.text = s["notes"]

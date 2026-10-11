@@ -52,7 +52,7 @@ def test_numbers_come_from_facts(deck):
     allowed = copy.allowed_numbers(load())
     for i, _, t in _texts(deck):
         t = t.replace("09.10.2026", "")
-        t = re.sub(r"SCENE \d+", "", t)
+        t = re.sub(r"^\d+ / \d+$", "", t)
         for tok in re.findall(r"\d[\d,.]*\d|\d", t):
             assert tok.rstrip(".,") in allowed, (i, tok, t[:80])
 
@@ -76,7 +76,7 @@ def test_letterbox_slides_have_slate(deck):
     kinds = [s["kind"] for s in copy.slides(load())]
     for n, (k, s) in enumerate(zip(kinds, deck.slides), start=1):
         texts = [sh.text_frame.text for sh in s.shapes if sh.has_text_frame]
-        has = any(t == f"09.10.2026  ·  40 ANSWERS  ·  SCENE {n:02d}" for t in texts)
+        has = any(t == f"{n} / {len(kinds)}" for t in texts)
         assert has == (k == "letterbox"), (n, k)
 
 
@@ -92,3 +92,19 @@ def test_letterbox_content_stays_inside_the_band(deck):
                 assert bottom <= 942, (n, "footnote runs into the bar", sh.text_frame.text[:60])
             if 150 <= top < 942 and not is_footnote:  # content, not bars, slate or footnote
                 assert bottom <= 895, (n, sh.shape_type, round(top), round(bottom))
+
+
+def test_no_tracked_capitals_or_dot_chains(deck):
+    """Audit 002: wide-tracked uppercase labels and middle-dot chains read as AI defaults."""
+    for n, s in enumerate(deck.slides, start=1):
+        for sh in s.shapes:
+            if not sh.has_text_frame:
+                continue
+            for p in sh.text_frame.paragraphs:
+                for r in p.runs:
+                    rpr = r._r.find("{http://schemas.openxmlformats.org/drawingml/2006/main}rPr")
+                    assert rpr is None or int(rpr.get("spc", "0")) <= 0, (n, r.text)
+                    letters = re.sub(r"[^A-Za-z]", "", r.text)
+                    shouted = len(letters) >= 6 and letters.isupper() and " " in r.text.strip()
+                    assert not shouted, (n, r.text)  # an all-caps label, not an acronym such as BTPN
+                    assert "·" not in r.text, (n, r.text)
