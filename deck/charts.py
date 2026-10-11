@@ -37,7 +37,7 @@ def _setup() -> None:
     register_fonts()
     plt.rcParams.update({
         "font.family": SANS, "font.size": 13, "text.color": C["text"],
-        "axes.facecolor": C["bg"], "figure.facecolor": C["bg"], "savefig.facecolor": C["bg"],
+        "axes.facecolor": C["panel"], "figure.facecolor": C["panel"], "savefig.facecolor": C["panel"],
         "axes.edgecolor": C["line"], "axes.labelcolor": C["secondary"],
         "xtick.color": C["secondary"], "ytick.color": C["secondary"],
     })
@@ -71,7 +71,7 @@ def _stem(ax, x0, x1, y, color, lw=3.0, ls="-", dot=True, hollow=False, zorder=3
     """A value as a line ending in a point: length carries the value, the point carries the light."""
     ax.plot([x0, x1], [y, y], color=color, lw=lw, ls=ls, solid_capstyle="butt", zorder=zorder)
     if dot:
-        ax.scatter([x1], [y], s=lw * 22, facecolor=C["bg"] if hollow else color, edgecolor=color,
+        ax.scatter([x1], [y], s=lw * 22, facecolor=C["panel"] if hollow else color, edgecolor=color,
                    linewidth=1.6, zorder=zorder + 1)
 
 
@@ -163,12 +163,12 @@ def chart_prompt_grid(f: dict, path: Path) -> Path:
             for k, no in enumerate(nos):
                 x = j + (k - (len(nos) - 1) / 2) * 0.27
                 example = no == 13
-                ax.scatter([x], [y], s=620, facecolor=C["text"] if example else C["bg"],
+                ax.scatter([x], [y], s=620, facecolor=C["text"] if example else C["panel"],
                            edgecolor=C["text"] if example else C["secondary"], linewidth=1.6, zorder=2,
                            linestyle=(0, (2, 1.6)) if no in branded else "-")
                 _mono(ax, x, y, str(no), ha="center", va="center", fontsize=13,
-                      color=C["bg"] if example else C["text"], zorder=3)
-    ax.scatter([1.75], [-0.86], s=260, facecolor=C["bg"], edgecolor=C["secondary"], linewidth=1.6,
+                      color=C["panel"] if example else C["text"], zorder=3)
+    ax.scatter([1.75], [-0.86], s=260, facecolor=C["panel"], edgecolor=C["secondary"], linewidth=1.6,
                linestyle=(0, (2, 1.6)), clip_on=False)
     _mono(ax, 1.87, -0.86, "names a bank", va="center", fontsize=12, color=C["secondary"])
     ax.scatter([2.95], [-0.86], s=260, facecolor=C["text"], edgecolor=C["text"], clip_on=False)
@@ -236,8 +236,8 @@ def chart_mention_dots(f: dict, path: Path) -> Path:
         lit = i < 3
         ax.text(-0.02, y, b, ha="right", va="center", fontsize=16, color=C["text"] if lit else C["secondary"])
         ax.plot([g, m], [y, y], color=C["line"], lw=2, zorder=1)
-        ax.scatter([m], [y], s=150, facecolor=C["bg"], edgecolor=C["gem"], linewidth=2.4, zorder=3)
-        ax.scatter([g], [y], s=110, color=C["gpt"], zorder=4, edgecolor=C["bg"], linewidth=1.5)
+        ax.scatter([m], [y], s=150, facecolor=C["panel"], edgecolor=C["gem"], linewidth=2.4, zorder=3)
+        ax.scatter([g], [y], s=110, color=C["gpt"], zorder=4, edgecolor=C["panel"], linewidth=1.5)
         if g == m:
             _mono(ax, g + 0.025, y, f"{pct(g)} in both", va="center", fontsize=11)
     for t in (0, 0.2, 0.4, 0.6):
@@ -245,7 +245,7 @@ def chart_mention_dots(f: dict, path: Path) -> Path:
         _mono(ax, t, len(banks) - 0.1, f"{pct(t)}", ha="center", fontsize=12)
     ax.scatter([0.0], [len(banks) + 1.3], s=110, color=C["gpt"], clip_on=False)
     _mono(ax, 0.02, len(banks) + 1.3, "ChatGPT", va="center", color=C["text"], fontsize=13)
-    ax.scatter([0.2], [len(banks) + 1.3], s=150, facecolor=C["bg"], edgecolor=C["gem"], linewidth=2.4, clip_on=False)
+    ax.scatter([0.2], [len(banks) + 1.3], s=150, facecolor=C["panel"], edgecolor=C["gem"], linewidth=2.4, clip_on=False)
     _mono(ax, 0.22, len(banks) + 1.3, "Gemini", va="center", color=C["text"], fontsize=13)
     ax.set_xlim(-0.01, 0.72)
     ax.set_ylim(-0.6, len(banks) + 0.2)
@@ -293,7 +293,7 @@ def chart_wider_field(f: dict, path: Path) -> Path:
             on = b in named[e]
             lit = (only_gem and e == "Gemini") or (only_gpt and e == "ChatGPT")
             col = ENGINE_COLOR[e]
-            ax.add_patch(Circle((j, row), 0.2, facecolor=col if on else C["bg"],
+            ax.add_patch(Circle((j, row), 0.2, facecolor=col if on else C["panel"],
                                 edgecolor=col if on else C["line"], lw=1.2, alpha=1 if (lit or not on) else 0.5))
         ax.text(j, -0.45, b, rotation=40, ha="right", va="top", fontsize=12.5,
                 color=C["text"] if (only_gem or only_gpt) else C["secondary"])
@@ -324,7 +324,7 @@ def chart_pillar_heatmap(f: dict, path: Path) -> Path:
             v = pr.loc[p, b]
             lead = v == top[p]
             ax.add_patch(FancyBboxPatch((j - 0.44, y - 0.4), 0.88, 0.8, boxstyle="round,pad=0,rounding_size=0.04",
-                                        facecolor=C["text"], alpha=0.05 + 0.35 * v, lw=0))
+                                        facecolor=C["glow"], alpha=0.08 + 0.37 * v, lw=0))
             if lead:
                 ax.add_patch(FancyBboxPatch((j - 0.44, y - 0.4), 0.88, 0.8, boxstyle="round,pad=0,rounding_size=0.04",
                                             facecolor="none", edgecolor=C["text"], lw=2))
@@ -348,10 +348,10 @@ def chart_often_vs_early(f: dict, path: Path) -> Path:
     for r in a.itertuples():
         on = r.brand in lit
         ax.scatter(r.mention_rate, r.pawc, s=130 if on else 80, color=C["text"] if on else C["secondary"],
-                   edgecolor=C["bg"], linewidth=1.5, zorder=3, alpha=1 if on else 0.8)
+                   edgecolor=C["panel"], linewidth=1.5, zorder=3, alpha=1 if on else 0.8)
         dx, dy, ha = {"Bank Jago": (-0.012, 0.0018, "right"), "Bank Saqu": (-0.004, -0.0068, "center"),
                       "Krom Bank": (0.012, -0.0034, "left"),
-                      "Superbank": (0.0, 0.0028, "center"), "Bank BTPN": (0.03, -0.0026, "left")
+                      "Superbank": (0.0, 0.0042, "center"), "Bank BTPN": (0.03, -0.0026, "left")
                       }.get(r.brand, (0.012, 0.0018, "left"))
         ax.text(r.mention_rate + dx, r.pawc + dy, r.brand, fontsize=13, ha=ha,
                 color=C["text"] if on else C["secondary"])
@@ -435,13 +435,13 @@ def chart_source_mix(f: dict, path: Path) -> Path:
                 continue
             lit = t in lit_types[e]
             col, alpha = (ENGINE_COLOR[e], 1) if lit else (C["secondary"], 0.22)
-            ax.add_patch(Rectangle((x, row - 0.28), w, 0.56, facecolor=col, alpha=alpha, edgecolor=C["bg"], lw=2))
+            ax.add_patch(Rectangle((x, row - 0.28), w, 0.56, facecolor=col, alpha=alpha, edgecolor=C["panel"], lw=2))
             if w >= 0.06:
                 _mono(ax, x + w / 2, row + 0.4, f"{pct(w)}", ha="center", fontsize=15,
                       color=C["text"] if lit else C["secondary"])
                 if w >= 0.13:
                     ax.text(x + w / 2, row - 0.02, TYPE_LABEL[t], ha="center", va="center", fontsize=13.5,
-                            color=C["bg"] if lit else C["text"])
+                            color=C["panel"] if lit else C["text"])
                 else:
                     _mono(ax, x + w / 2, row - 0.46, TYPE_LABEL[t].lower(), ha="center", fontsize=11, color=C["text"])
             x += w
@@ -583,7 +583,7 @@ def chart_dead_links(f: dict, path: Path) -> Path:
     rows = [("Behind a Google redirect", wd, wt), ("Direct links", dd, dt)]
     for i, (name, d, t) in enumerate(rows):
         y = 1 - i
-        _track(ax, 0, 1, y, color=C["gem"], lw=1.6)
+        _track(ax, 0, 1, y, lw=1.6)
         _stem(ax, 0, d / t, y, C["text"], lw=4, dot=d > 0)
         ax.text(-0.02, y, name, ha="right", va="center", fontsize=16, color=C["text"])
         _mono(ax, 1.04, y, f"{d} of {t} dead", va="center", fontsize=14, color=C["text"])
@@ -605,7 +605,7 @@ def chart_schema(f: dict, path: Path) -> Path:
         y = len(keep) - 1 - i
         lit = t == "bank_official"
         _stem(ax, 0, share[t], y, C["text"] if lit else C["secondary"], lw=3 if lit else 2.2, dot=False)
-        ax.scatter([s.loc[t, "any_jsonld"]], [y], s=120, facecolor=C["bg"], edgecolor=C["text"] if lit else C["secondary"],
+        ax.scatter([s.loc[t, "any_jsonld"]], [y], s=120, facecolor=C["panel"], edgecolor=C["text"] if lit else C["secondary"],
                    linewidth=2, zorder=3)
         ax.text(-0.02, y, TYPE_LABEL[t], ha="right", va="center", fontsize=15, color=C["text"] if lit else C["secondary"])
         _mono(ax, s.loc[t, "any_jsonld"] + 0.025, y + 0.22, f"schema {pct(s.loc[t, 'any_jsonld'])}", fontsize=11.5,
@@ -613,7 +613,7 @@ def chart_schema(f: dict, path: Path) -> Path:
         _mono(ax, share[t] + 0.01, y - 0.32, f"cited {pct(share[t])}", fontsize=11.5, color=C["text"] if lit else C["secondary"])
     ax.plot([0.0, 0.03], [len(keep) + 0.16] * 2, color=C["secondary"], lw=3, solid_capstyle="butt", clip_on=False)
     _mono(ax, 0.045, len(keep) + 0.08, "share of all citations", fontsize=12)
-    ax.scatter([0.0 + 0.015], [len(keep) + 0.62], s=110, facecolor=C["bg"], edgecolor=C["secondary"], linewidth=2, clip_on=False)
+    ax.scatter([0.0 + 0.015], [len(keep) + 0.62], s=110, facecolor=C["panel"], edgecolor=C["secondary"], linewidth=2, clip_on=False)
     _mono(ax, 0.045, len(keep) + 0.54, "share of its readable pages with schema", fontsize=12)
     ax.set_xlim(0, 1.22)
     ax.set_ylim(-0.6, len(keep) - 0.3)
