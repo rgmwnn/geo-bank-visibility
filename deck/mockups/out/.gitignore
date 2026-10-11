@@ -1,0 +1,4 @@
+# Render previews and intermediates, rebuilt by build_mockups.py; only the .pptx files are kept
+*
+!.gitignore
+!*.pptx
