@@ -1,4 +1,5 @@
 """Text measurement with the real font files, so layout matches what renderers draw."""
+import math
 from functools import lru_cache
 
 from PIL import ImageFont
@@ -25,6 +26,7 @@ def lines(text: str, width_px: float, pt: float, mono: bool = False, bold: bool 
         n += 1
         cur = ""
         for word in para.split(" "):
+            n += max(0, math.ceil(font.getlength(word) / (width_px * SAFETY)) - 1)  # renderers break inside it
             trial = f"{cur} {word}".strip()
             if cur and font.getlength(trial) > width_px * SAFETY:
                 n += 1

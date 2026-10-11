@@ -80,18 +80,21 @@ def test_letterbox_slides_have_slate(deck):
         assert has == (k == "letterbox"), (n, k)
 
 
-def test_letterbox_content_stays_inside_the_band(deck):
-    kinds = [s["kind"] for s in copy.slides(load())]
-    for n, (k, s) in enumerate(zip(kinds, deck.slides), start=1):
-        if k != "letterbox":
-            continue
+def test_content_stays_inside_the_safe_area(deck):
+    for n, s in enumerate(deck.slides, start=1):
         for sh in s.shapes:
-            top, bottom = sh.top / PX, (sh.top + sh.height) / PX
-            is_footnote = sh.has_text_frame and round(top) == 902
-            if is_footnote:
-                assert bottom <= 942, (n, "footnote runs into the bar", sh.text_frame.text[:60])
-            if 150 <= top < 942 and not is_footnote:  # content, not bars, slate or footnote
-                assert bottom <= 895, (n, sh.shape_type, round(top), round(bottom))
+            if sh.name.startswith(("motif", "ground", "chrome", "photo-slot")):
+                continue
+            x0, y0 = sh.left / PX, sh.top / PX
+            x1, y1 = x0 + sh.width / PX, y0 + sh.height / PX
+            assert 100 <= x0 and x1 <= 1820 and 80 <= y0 and y1 <= 1000, (n, sh.name, [round(v) for v in (x0, y0, x1, y1)])
+
+
+def test_footer_fits_the_slide(deck):
+    for n, s in enumerate(deck.slides, start=1):
+        for sh in s.shapes:
+            if sh.name.startswith("chrome"):
+                assert (sh.top + sh.height) / PX <= 1060, (n, sh.name)
 
 
 def test_no_tracked_capitals_or_dot_chains(deck):

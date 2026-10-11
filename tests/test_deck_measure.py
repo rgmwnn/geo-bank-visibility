@@ -14,3 +14,9 @@ def test_bold_text_is_measured_with_the_bold_face():
     assert lines(t, 900, 40, bold=True) >= lines(t, 900, 40)
     from deck.measure import _font
     assert _font(80, False, True).getlength(t) > _font(80, False, False).getlength(t)
+
+
+def test_a_word_wider_than_the_box_counts_as_wrapping():
+    # Eye check 2026-10-11: "24%" at 110 pt in a 460 px box broke before the % sign in LibreOffice.
+    assert lines("24%", 460, 110, bold=True) == 2
+    assert lines("24%", 560, 110, bold=True) == 1

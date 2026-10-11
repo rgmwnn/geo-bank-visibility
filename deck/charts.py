@@ -511,7 +511,7 @@ def chart_mirror_sites(f: dict, path: Path) -> Path:
 
 def chart_top_pages(f: dict, path: Path) -> Path:
     t = f["top_pages"]
-    fig, ax = _fig(1680, 600)
+    fig, ax = _fig(1680, 560)
     fig.subplots_adjust(left=0.46, right=0.97, top=0.95, bottom=0.04)
     n = len(t)
     for i, r in t.iterrows():
