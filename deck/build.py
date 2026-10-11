@@ -249,11 +249,6 @@ def framed_chart(slide, path: Path, box, valign: str = "middle"):
     return picture(slide, path, inner, valign="middle")
 
 
-def timelines(slide, x0, x1, y):
-    hline(slide, x0, x1, y, C["gpt"], 1.25)
-    hline(slide, x0, x1, y + 12, C["gem"], 1.25)
-
-
 def frame(slide, kind: str):
     slide.background.fill.solid()
     slide.background.fill.fore_color.rgb = _rgb(C["bg"])
