@@ -22,13 +22,13 @@ PX, W, H = 6350, 1920, 1080
 DIRS = {
     "A": dict(name="Annual report", bg="#F6F3EC", ink="#13294B", sub="#4A5568", navy="#13294B", on_navy="#F6F3EC",
               on_navy_sub="#B9C6DA", accent="#8F6212", gpt="#B4651C", gem="#2E6CB5",
-              head="Instrument Serif", body="Instrument Sans", head_bold=False),
+              head="DM Serif Display", body="DM Sans", head_bold=False),
     "B": dict(name="Consulting", bg="#FFFFFF", ink="#0E2A52", sub="#4B5563", navy="#0E2A52", on_navy="#FFFFFF",
               on_navy_sub="#C9D4E5", accent="#D2622F", gpt="#D2622F", gem="#2A64B4",
-              head="Bricolage Grotesque", body="Instrument Sans", head_bold=True),
+              head="Bricolage Grotesque", body="IBM Plex Sans", head_bold=True),
     "C": dict(name="Navy night", bg="#0F2747", ink="#F4F6FA", sub="#AFC0D8", navy="#0F2747", on_navy="#F4F6FA",
               on_navy_sub="#AFC0D8", accent="#F2A541", gpt="#F2A541", gem="#7FC0F5",
-              head="Outfit", body="Outfit", head_bold=True),
+              head="Plus Jakarta Sans", body="Plus Jakarta Sans", head_bold=True),
 }
 
 
@@ -47,13 +47,14 @@ def rect(s, x, y, w, h, color, name=None):
     return r
 
 
-FILES = {("Instrument Serif", False, False): "InstrumentSerif-Regular.ttf",
-         ("Instrument Serif", False, True): "InstrumentSerif-Italic.ttf",
-         ("Instrument Sans", False, False): "InstrumentSans-Regular.ttf",
-         ("Instrument Sans", True, False): "InstrumentSans-Bold.ttf",
+FILES = {("DM Serif Display", False, False): "dm-serif-display-400-normal.ttf",
+         ("DM Sans", False, False): "dm-sans-400-normal.ttf", ("DM Sans", True, False): "dm-sans-700-normal.ttf",
+         ("IBM Plex Sans", False, False): "ibm-plex-sans-400-normal.ttf",
+         ("IBM Plex Sans", True, False): "ibm-plex-sans-700-normal.ttf",
          ("Bricolage Grotesque", True, False): "BricolageGrotesque-Bold.ttf",
          ("Bricolage Grotesque", False, False): "BricolageGrotesque-Regular.ttf",
-         ("Outfit", True, False): "Outfit-Bold.ttf", ("Outfit", False, False): "Outfit-Regular.ttf"}
+         ("Plus Jakarta Sans", False, False): "plus-jakarta-sans-400-normal.ttf",
+         ("Plus Jakarta Sans", True, False): "plus-jakarta-sans-700-normal.ttf"}
 
 
 def measure(t, w, size, font, bold=False, italic=False):
@@ -144,11 +145,11 @@ def cover(prs, key, d):
     meta, by = "40 answers, collected on 9 October 2026", "Rahmananda Ridho Gamawan, data analyst"
     if key == "A":
         s.background.fill.fore_color.rgb = rgb(d["navy"])
-        rect(s, 1110, 0, 810, H, "#1D3A63", name="photo-slot")  # the tower photo lands here in Canva
+        rect(s, 1180, 0, 740, H, "#1D3A63", name="photo-slot")  # the tower photo lands here in Canva
         text(s, 120, 250, 900, 40, meta, 16, d["on_navy_sub"], d["body"])
-        y = text(s, 120, 300, 1010, 10, title, 84, d["on_navy"], d["head"]).bottom
+        y = text(s, 120, 280, 1030, 10, title, 64, d["on_navy"], d["head"]).bottom
         rect(s, 124, y + 10, 140, 4, "#C9A65A")
-        y = text(s, 120, y + 50, 900, 10, sub, 28, d["on_navy_sub"], d["head"], italic=True).bottom
+        y = text(s, 120, y + 50, 880, 10, sub, 26, d["on_navy_sub"], d["body"]).bottom
         text(s, 120, max(y + 60, 930), 900, 40, by, 15, d["on_navy"], d["body"])
     elif key == "B":
         s.background.fill.fore_color.rgb = rgb(d["bg"])
@@ -191,7 +192,7 @@ def finding(prs, key, d, f):
         if key == "A":
             rect(s, 120, 96, 60, 4, d["accent"])
         text(s, 120, 120, 640, 40, part, 15, d["sub"], d["body"])
-        y = text(s, 120, 170, 640, 10, title, 42 if key == "A" else 36, d["ink"], d["head"], bold=d["head_bold"]).bottom
+        y = text(s, 120, 170, 640, 10, title, 36, d["ink"], d["head"], bold=d["head_bold"]).bottom
         text(s, 120, y + 30, 600, 10, body, 22, d["sub"], d["body"])
     iw, ih = Image.open(png).size
     bw, bh = 1060, min(760, 975 - (top + 10))
