@@ -111,8 +111,10 @@ def test_vis_title_names_banks_close_to_the_top(f, slides):
 
 # Important 6: line pitch and slide 2 spacing
 def test_line_factor_covers_the_rendered_pitch():
-    # LibreOffice draws Work Sans at line_spacing 1.15 with a pitch of 1.379 em (slide 2, 22 pt and 14 pt lines).
-    assert measure.LINE >= 1.379
+    # LibreOffice draws Plus Jakarta Sans at line_spacing 1.15 with a pitch of 1.374 em, regular and bold
+    # (3-line 22 pt paragraphs rendered to PDF at 300 dpi, band tops measured, 2026-10-11).
+    assert measure.LINE >= 1.374
+    assert measure._font(44, False, False).path.endswith("PlusJakartaSans-Regular.ttf")
 
 
 def test_cold_open_prompt_and_translation_do_not_touch(deck):

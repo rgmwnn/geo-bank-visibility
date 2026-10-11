@@ -38,7 +38,7 @@ def _setup() -> None:
     plt.rcParams.update({
         "font.family": SANS, "font.size": 13, "text.color": C["text"],
         "axes.facecolor": C["bg"], "figure.facecolor": C["bg"], "savefig.facecolor": C["bg"],
-        "axes.edgecolor": C["dim"], "axes.labelcolor": C["secondary"],
+        "axes.edgecolor": C["line"], "axes.labelcolor": C["secondary"],
         "xtick.color": C["secondary"], "ytick.color": C["secondary"],
     })
 
@@ -64,7 +64,7 @@ def _bar_marks(fig) -> int:
 
 def _track(ax, x0, x1, y, color=None, lw=1.2):
     """The empty run behind a value line: how far it could have gone."""
-    ax.plot([x0, x1], [y, y], color=color or C["dim"], lw=lw, solid_capstyle="butt", zorder=1)
+    ax.plot([x0, x1], [y, y], color=color or C["line"], lw=lw, solid_capstyle="butt", zorder=1)
 
 
 def _stem(ax, x0, x1, y, color, lw=3.0, ls="-", dot=True, hollow=False, zorder=3):
@@ -126,14 +126,14 @@ def chart_pawc_curve(f: dict, path: Path) -> Path:
     w = [math.exp(-i / n) for i in range(n)]
     fig, ax = _fig(1000, 500)
     fig.subplots_adjust(left=0.04, right=0.98, top=0.86, bottom=0.16)
-    ax.plot([-0.5, n - 0.5], [0, 0], color=C["dim"], lw=1)
+    ax.plot([-0.5, n - 0.5], [0, 0], color=C["line"], lw=1)
     for i in range(n):
         lit = i == 0
         col = C["text"] if lit else C["secondary"]
         ax.plot([i, i], [0, w[i]], color=col, lw=3 if lit else 2, solid_capstyle="butt", zorder=2)
         ax.scatter([i], [w[i]], s=70 if lit else 42, color=col, zorder=3)
     xs = np.linspace(-0.3, n - 0.7, 200)
-    ax.plot(xs, [math.exp(-max(x, 0) / n) for x in xs], color=C["dim"], lw=1.2, ls=(0, (2, 3)), zorder=1)
+    ax.plot(xs, [math.exp(-max(x, 0) / n) for x in xs], color=C["line"], lw=1.2, ls=(0, (2, 3)), zorder=1)
     for i in (0, n - 1):
         _mono(ax, i, w[i] + 0.06, f"{w[i]:.2f}", ha="center", color=C["text"] if i == 0 else C["secondary"], fontsize=14)
     for i in range(n):
@@ -157,7 +157,7 @@ def chart_prompt_grid(f: dict, path: Path) -> Path:
     for i, p in enumerate(pillars):
         y = len(pillars) - 1 - i
         ax.text(-0.58, y, p, ha="right", va="center", fontsize=14, color=C["text"])
-        ax.plot([-0.5, len(intents) - 0.5], [y - 0.5, y - 0.5], color=C["dim"], lw=0.9)
+        ax.plot([-0.5, len(intents) - 0.5], [y - 0.5, y - 0.5], color=C["line"], lw=0.9)
         for j, it in enumerate(intents):
             nos = list(g[(g.pillar == p) & (g.intent == it)].prompt_no)
             for k, no in enumerate(nos):
@@ -191,7 +191,7 @@ def chart_pipeline(f: dict, path: Path) -> Path:
         lit = i == n - 1
         ax.plot([x0, x0 + 0.95], [y, y], color=C["text"] if lit else C["secondary"], lw=2.4 if lit else 1.2)
         if i < n - 1:
-            ax.plot([x0 + 0.95, x0 + 1.0], [y, y - 1], color=C["dim"], lw=1)
+            ax.plot([x0 + 0.95, x0 + 1.0], [y, y - 1], color=C["line"], lw=1)
         _mono(ax, x0, y + 1.0, f"{i + 1:02d}  {lab}", fontsize=12.5)
         ax.text(x0, y + 0.1, f"{val:,}", fontsize=20, va="bottom", color=C["text"], alpha=1 if lit else 0.8,
                 fontweight="bold" if lit else "normal")
@@ -235,13 +235,13 @@ def chart_mention_dots(f: dict, path: Path) -> Path:
         g, m = mr[b].get("ChatGPT", 0), mr[b].get("Gemini", 0)
         lit = i < 3
         ax.text(-0.02, y, b, ha="right", va="center", fontsize=16, color=C["text"] if lit else C["secondary"])
-        ax.plot([g, m], [y, y], color=C["dim"], lw=2, zorder=1)
+        ax.plot([g, m], [y, y], color=C["line"], lw=2, zorder=1)
         ax.scatter([m], [y], s=150, facecolor=C["bg"], edgecolor=C["gem"], linewidth=2.4, zorder=3)
         ax.scatter([g], [y], s=110, color=C["gpt"], zorder=4, edgecolor=C["bg"], linewidth=1.5)
         if g == m:
             _mono(ax, g + 0.025, y, f"{pct(g)} in both", va="center", fontsize=11)
     for t in (0, 0.2, 0.4, 0.6):
-        ax.plot([t, t], [-0.6, len(banks) - 0.4], color=C["dim"], lw=0.6, zorder=0)
+        ax.plot([t, t], [-0.6, len(banks) - 0.4], color=C["line"], lw=0.6, zorder=0)
         _mono(ax, t, len(banks) - 0.1, f"{pct(t)}", ha="center", fontsize=12)
     ax.scatter([0.0], [len(banks) + 1.3], s=110, color=C["gpt"], clip_on=False)
     _mono(ax, 0.02, len(banks) + 1.3, "ChatGPT", va="center", color=C["text"], fontsize=13)
@@ -294,7 +294,7 @@ def chart_wider_field(f: dict, path: Path) -> Path:
             lit = (only_gem and e == "Gemini") or (only_gpt and e == "ChatGPT")
             col = ENGINE_COLOR[e]
             ax.add_patch(Circle((j, row), 0.2, facecolor=col if on else C["bg"],
-                                edgecolor=col if on else C["dim"], lw=1.2, alpha=1 if (lit or not on) else 0.5))
+                                edgecolor=col if on else C["line"], lw=1.2, alpha=1 if (lit or not on) else 0.5))
         ax.text(j, -0.45, b, rotation=40, ha="right", va="top", fontsize=12.5,
                 color=C["text"] if (only_gem or only_gpt) else C["secondary"])
     _mono(ax, -0.6, 1, f"ChatGPT  {f['banks_gpt']}", ha="right", va="center", fontsize=13, color=C["text"])
@@ -356,10 +356,10 @@ def chart_often_vs_early(f: dict, path: Path) -> Path:
         ax.text(r.mention_rate + dx, r.pawc + dy, r.brand, fontsize=13, ha=ha,
                 color=C["text"] if on else C["secondary"])
     for t in (0, 0.2, 0.4, 0.6):
-        ax.axvline(t, color=C["dim"], lw=0.6, zorder=0)
+        ax.axvline(t, color=C["line"], lw=0.6, zorder=0)
         _mono(ax, t, -0.0085, f"{pct(t)}", ha="center", fontsize=12)
     for t in (0, 0.02, 0.04, 0.06):
-        ax.axhline(t, color=C["dim"], lw=0.6, zorder=0)
+        ax.axhline(t, color=C["line"], lw=0.6, zorder=0)
         _mono(ax, -0.012, t, f"{t:.2f}", ha="right", va="center", fontsize=12)
     _mono(ax, 0.6, -0.0185, "named in this share of answers", ha="right", fontsize=12)
     _mono(ax, -0.058, 0.0735, "brand PAWC (how much, how early)", fontsize=12)
@@ -381,7 +381,7 @@ def chart_sentiment_marks(f: dict, path: Path) -> Path:
         if s_ == "positive":
             ax.add_patch(Rectangle((x, y), fw, fh, facecolor=C["secondary"], alpha=0.5, lw=0))
         elif s_ == "neutral":
-            ax.add_patch(Rectangle((x, y), fw, fh, facecolor=C["dim"], lw=0))
+            ax.add_patch(Rectangle((x, y), fw, fh, facecolor=C["line"], lw=0))
         else:
             ax.add_patch(Rectangle((x + 0.05, y + 0.05), fw - 0.1, fh - 0.1, facecolor="none", edgecolor=C["secondary"], lw=1.2))
     total_h = rows * fh + (rows - 1) * gap_y
@@ -501,8 +501,8 @@ def chart_mirror_sites(f: dict, path: Path) -> Path:
             _mono(ax, gap + 0.6, y, "0", va="center", fontsize=12)
     _mono(ax, -gap, n - 0.1, "ChatGPT  citations", ha="right", fontsize=13, color=C["text"])
     _mono(ax, gap, n - 0.1, "Gemini  citations", fontsize=13, color=C["text"])
-    ax.axvline(-gap, color=C["dim"], lw=0.8)
-    ax.axvline(gap, color=C["dim"], lw=0.8)
+    ax.axvline(-gap, color=C["line"], lw=0.8)
+    ax.axvline(gap, color=C["line"], lw=0.8)
     ax.set_xlim(-gap - 32, gap + 32)
     ax.set_ylim(-0.6, n + 0.5)
     _bare(ax)
@@ -561,7 +561,7 @@ def chart_sov_gap(f: dict, path: Path) -> Path:
     for i, r in d.iterrows():
         y = n - 1 - i
         on = r.brand in lit or r.brand in named
-        col = C["text"] if r.brand in lit else (C["secondary"] if on else C["dim"])
+        col = C["text"] if r.brand in lit else (C["secondary"] if on else C["line"])
         _stem(ax, 0, r.pts, y, col, lw=3 if r.brand in lit else 2.2)
         ax.text(-14.2, y, r.brand, ha="right", va="center", fontsize=15, color=C["text"] if on else C["secondary"])
         lab = f"{r.pts:+.1f} pts"

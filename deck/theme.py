@@ -1,15 +1,16 @@
 from pathlib import Path
 
 C = {
-    "bg": "#0B0C0E",
-    "bar": "#000000",
-    "text": "#ECE7DD",
-    "secondary": "#9A9EA6",
-    "dim": "#3A3D43",
-    "gpt": "#D07A28",
-    "gem": "#4790D8",
+    "bg": "#0F2747",
+    "panel": "#0A1C36",
+    "text": "#F4F6FA",
+    "secondary": "#AFC0D8",
+    "line": "#3B5A85",
+    "glow": "#7FC0F5",
+    "gpt": "#F2A541",
+    "gem": "#7FC0F5",
 }
-SANS = "Work Sans"
+SANS = "Plus Jakarta Sans"
 MONO = "IBM Plex Mono"
 FONT_DIR = Path(__file__).parent / "fonts"
 

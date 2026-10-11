@@ -45,7 +45,7 @@ def test_fonts_only_sans_and_mono(deck):
             if sh.has_text_frame:
                 for p in sh.text_frame.paragraphs:
                     for r in p.runs:
-                        assert r.font.name in ("Work Sans", "IBM Plex Mono"), r.text
+                        assert r.font.name in ("Plus Jakarta Sans", "IBM Plex Mono"), r.text
 
 
 def test_numbers_come_from_facts(deck):
@@ -68,7 +68,7 @@ def test_text_fits(deck):
             if not p.runs:
                 continue
             r = p.runs[0]
-            need += height("".join(x.text for x in p.runs), w_px, r.font.size.pt, r.font.name == "IBM Plex Mono")
+            need += height("".join(x.text for x in p.runs), w_px, r.font.size.pt, r.font.name == "IBM Plex Mono", bool(r.font.bold))
         assert need <= h_px + 2, (i, sh.text_frame.text[:60], round(need), round(h_px))
 
 

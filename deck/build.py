@@ -69,11 +69,11 @@ def oval(slide, cx, cy, w, h, color, weight, name, fill=None):
 
 def ring(slide, cx, cy, r):
     """A dark body with thin orbits behind it and the two engine threads crossing in front as its disk."""
-    oval(slide, cx, cy, r * 2.9, r * 0.62, C["dim"], 1.0, "motif-ring-orbit-wide")
-    oval(slide, cx, cy, r * 2.3, r * 0.44, C["dim"], 1.0, "motif-ring-orbit-near")
-    oval(slide, cx, cy, r * 2.75, r * 2.75, C["dim"], 0.75, "motif-ring-halo")
-    oval(slide, cx, cy, r * 2, r * 2, C["text"], 1.5, "motif-ring-photon", fill=C["bar"])
-    oval(slide, cx, cy, r * 1.86, r * 1.86, C["dim"], 0.75, "motif-ring-inner")
+    oval(slide, cx, cy, r * 2.9, r * 0.62, C["line"], 1.0, "motif-ring-orbit-wide")
+    oval(slide, cx, cy, r * 2.3, r * 0.44, C["line"], 1.0, "motif-ring-orbit-near")
+    oval(slide, cx, cy, r * 2.75, r * 2.75, C["line"], 0.75, "motif-ring-halo")
+    oval(slide, cx, cy, r * 2, r * 2, C["text"], 1.5, "motif-ring-photon", fill=C["panel"])
+    oval(slide, cx, cy, r * 1.86, r * 1.86, C["line"], 0.75, "motif-ring-inner")
     half = r * 1.6
     seg(slide, cx - half, cy - 6, cx + half, cy - 6, C["gpt"], 1.5, "motif-line-disk-gpt")
     seg(slide, cx - half, cy + 6, cx + half, cy + 6, C["gem"], 1.5, "motif-line-disk-gem")
@@ -91,19 +91,19 @@ def corridor(slide, frames: int):
         return x0 * t, y0 * t, W - (W - x1) * t, H - (H - y1) * t
 
     for k, (ax, ay, bx, by) in enumerate([(0, 0, x0, y0), (W, 0, x1, y0), (0, H, x0, y1), (W, H, x1, y1)]):
-        seg(slide, ax, ay, bx, by, C["dim"], 1.0, f"motif-line-corridor-corner-{k}")
+        seg(slide, ax, ay, bx, by, C["line"], 1.0, f"motif-line-corridor-corner-{k}")
     for k in range(1, 6):
         u = k / 6
-        seg(slide, W * u, 0, x0 + (x1 - x0) * u, y0, C["dim"], 0.75, f"motif-line-corridor-top-{k}")
-        seg(slide, W * u, H, x0 + (x1 - x0) * u, y1, C["dim"], 0.75, f"motif-line-corridor-floor-{k}")
+        seg(slide, W * u, 0, x0 + (x1 - x0) * u, y0, C["line"], 0.75, f"motif-line-corridor-top-{k}")
+        seg(slide, W * u, H, x0 + (x1 - x0) * u, y1, C["line"], 0.75, f"motif-line-corridor-floor-{k}")
     for k in range(1, 4):
         v = k / 4
-        seg(slide, 0, H * v, x0, y0 + (y1 - y0) * v, C["dim"], 0.75, f"motif-line-corridor-left-{k}")
-        seg(slide, W, H * v, x1, y0 + (y1 - y0) * v, C["dim"], 0.75, f"motif-line-corridor-right-{k}")
+        seg(slide, 0, H * v, x0, y0 + (y1 - y0) * v, C["line"], 0.75, f"motif-line-corridor-left-{k}")
+        seg(slide, W, H * v, x1, y0 + (y1 - y0) * v, C["line"], 0.75, f"motif-line-corridor-right-{k}")
     for i, t in enumerate(DEPTHS[:frames], start=1):
         a, b, c, d = at(t)
         for side, (p, q, r_, s_) in zip("tblr", [(a, b, c, b), (a, d, c, d), (a, b, a, d), (c, b, c, d)]):
-            seg(slide, p, q, r_, s_, C["secondary"] if i == frames else C["dim"], 1.0, f"motif-line-depth-{i}-{side}")
+            seg(slide, p, q, r_, s_, C["secondary"] if i == frames else C["line"], 1.0, f"motif-line-depth-{i}-{side}")
 
 
 def ruler(slide, n: int, total: int):
@@ -114,12 +114,12 @@ def ruler(slide, n: int, total: int):
         if k == n:
             seg(slide, x, y - 16, x, y + 16, C["text"], 2.0, f"motif-line-tick-{k:02d}")
         else:
-            seg(slide, x, y - 6, x, y + 6, C["secondary"] if k < n else C["dim"], 1.0, f"motif-line-tick-{k:02d}")
+            seg(slide, x, y - 6, x, y + 6, C["secondary"] if k < n else C["line"], 1.0, f"motif-line-tick-{k:02d}")
 
 
 def bar_edges(slide):
-    hline(slide, 0, W, BAR, C["dim"], 0.75, "motif-line-edge-top")
-    hline(slide, 0, W, H - BAR, C["dim"], 0.75, "motif-line-edge-bottom")
+    hline(slide, 0, W, BAR, C["line"], 0.75, "motif-line-edge-top")
+    hline(slide, 0, W, H - BAR, C["line"], 0.75, "motif-line-edge-bottom")
 
 
 def horizon(slide, top: float = 868):
@@ -196,10 +196,10 @@ def timelines(slide, x0, x1, y):
 
 def frame(slide, kind: str):
     slide.background.fill.solid()
-    slide.background.fill.fore_color.rgb = _rgb(C["bar"] if kind == "title_card" else C["bg"])
+    slide.background.fill.fore_color.rgb = _rgb(C["panel"] if kind == "title_card" else C["bg"])
     if kind == "letterbox":
-        rect(slide, 0, 0, W, BAR, C["bar"])
-        rect(slide, 0, H - BAR, W, BAR, C["bar"])
+        rect(slide, 0, 0, W, BAR, C["panel"])
+        rect(slide, 0, H - BAR, W, BAR, C["panel"])
         bar_edges(slide)
 
 
@@ -296,7 +296,7 @@ def lay_list(slide, s, n, art):
         text(slide, x, y, w, h, [P(item, pt)])
         stops.append(y + pt * measure.LINE)
         y += h + gap
-    seg(slide, RAIL_X, stops[0] - 18, RAIL_X, stops[-1] + 18, C["dim"], 1.0, "motif-line-rail")
+    seg(slide, RAIL_X, stops[0] - 18, RAIL_X, stops[-1] + 18, C["line"], 1.0, "motif-line-rail")
     for k, sy in enumerate(stops, start=1):
         seg(slide, RAIL_X - 7, sy, RAIL_X + 7, sy, C["secondary"], 1.25, f"motif-line-stop-{k}")
 
