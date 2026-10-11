@@ -81,7 +81,14 @@ def numbers(f: dict) -> dict:
         "sch_bank": pct(sch["bank_official"]), "sch_news": pct(sch["news_media"]), "sch_blog": pct(sch["blog_aggregator"]),
         "dated": str(f["dated_citations"]), "readable_cit": str(f["readable_citations"]),
         "bca_rate": pct(mr["BCA"]["All"]), "sea_rate": pct(mr["SeaBank"]["All"]),
-        "sparktoro_prompts": "12", "run_day": RUN_DAY, "slides": "32", "vis_lo": "0", "vis_hi": "100",
+        "sparktoro_prompts": "12", "run_day": RUN_DAY, "ext_ahrefs": "12%",
+        "http_404": "404",  # an HTTP status code, named on the slide as a label, not a measurement
+        "bank_share_gpt": pct(f["bank_site"]["share_gpt"]), "bank_share_gem": pct(f["bank_site"]["share_gem"]),
+        "fee_sea": str(f["bank_site"]["fee_page_citations_gpt"]["seabank.co.id"]),
+        "fee_blu": str(f["bank_site"]["fee_page_citations_gpt"]["blubybcadigital.id"]),
+        "dead_bank_pages": str(f["bank_site"]["dead_pages"]), "dead_bank_cit": str(f["bank_site"]["dead_citations"]),
+        "rendered_bank": str(f["bank_site"]["rendered"]), "robots_dis": str(f["bank_site"]["robots_disallowed"]),
+        "robots_unr": str(f["bank_site"]["robots_unreachable"]), "vis_lo": "0", "vis_hi": "100",
     }
 
 
@@ -275,25 +282,44 @@ def slides(f: dict) -> list[dict]:
              f"n = {N['schema_pages']} pages, {N['readable_cit']} citations",
         notes="This suggests schema did not decide which pages got cited. One run cannot test it.")
 
-    add("title_card", "card", "What it means", ["For banks, and for people who measure AI search"], part="Part IV")
-    add("letterbox", "list", "For banks",
-        ["Plan for each engine. ChatGPT cites bank and regulator pages; Gemini cites comparison sites, blogs and news.",
-         "Fee and rate pages get cited directly. ChatGPT cites SeaBank's and blu's fee pages by name.",
-         f"Know what the comparison sites say about you. Gemini cites Akulaku's, Zaipad's and Fazz's sites in "
-         f"{N['comp_lo']} to {N['comp_hi']} of its {N['gem_answers']} answers.",
-         "Track how often you are named. No answer in this run was negative about any bank.",
-         f"Write the explainers. Only {N['how_named']} of {N['how_n']} how-to answers named a bank."],
+    add("title_card", "card", "What it means", ["What the bank's website team can do with this"], part="Part IV")
+    add("letterbox", "list", "For the SEO strategist",
+        [f"Measure AI answers as a channel of their own. Google rank is a weak proxy: {N['ext_ahrefs']} of URLs cited by "
+         f"AI assistants rank in Google's top 10 for the same query (Ahrefs).",
+         f"Report ChatGPT and Gemini separately. ChatGPT took {N['bank_share_gpt']} of its citations from bank "
+         f"websites, Gemini {N['bank_share_gem']}. A blended figure would hide that gap.",
+         f"Track pages, not only domains. The engines cited {N['sites_both']} of the same {N['sites_total']} sites but "
+         f"only {N['pages_both']} of the same {N['pages_total']} pages.",
+         f"Run a fixed set of customer questions in both engines every month, in Bahasa Indonesia. This study is one "
+         f"run of {N['prompts']} questions, so treat it as the baseline."],
         part="Part IV: What it means", numbered=True,
-        notes="These are likely levers based on one snapshot, not tested interventions.")
-    add("letterbox", "list", "For GEO practitioners: what building this taught me",
-        ["Count only the listed sources. Inline links and source chips inflate citation counts.",
-         "Unwrap redirects and normalise URLs before counting pages.",
-         f"Render pages built with JavaScript. {N['rendered']} cited pages needed a headless browser to be read.",
-         "Weight pages equally in source share, or one long annual report can dominate it.",
-         "Weight answers equally in answer share, so one long answer does not count many times.",
-         "Per-source PAWC needs inline citation markers. Neither engine gave them, so only brand PAWC is reported."],
+        foot="Source: data/interim/citations.csv  ·  Ahrefs, AI search overlap with Google results",
+        notes="The strategist owns measurement. With these four habits the team can report one number each month.")
+    add("letterbox", "list", "For content and marketing",
+        [f"Keep fee and rate pages complete and current. ChatGPT cited SeaBank's fees page {N['fee_sea']} times and "
+         f"blu's {N['fee_blu']} times, by URL.",
+         f"Write explainers for how-to questions on deposit insurance, scams and complaints. Only {N['how_named']} of "
+         f"{N['how_n']} how-to answers named a bank.",
+         f"Read the comparison articles Gemini cites and send their publishers corrections when a fact about your bank "
+         f"is out of date. One Akulaku article appeared in {N['aku_page']} of Gemini's {N['gem_answers']} answers.",
+         f"Report how often the bank is named before reporting tone. Of {N['pairs']} answer and bank pairs, none was "
+         f"negative."],
         part="Part IV: What it means", numbered=True,
-        notes="Each of these came from a bug or a check during the build. The fixes and tests are in the repo history.")
+        foot="Source: data/interim/citations.csv, data/processed/no_brand_rate.csv, pages_top.csv, data/labels/sentiment.csv",
+        notes="Content owns the pages the engines quote and the explainers they do not yet have.")
+    add("letterbox", "list", "For the web team",
+        [f"Fix or redirect cited pages that no longer work. Gemini cited {N['dead_bank_pages']} broken bank pages "
+         f"{N['dead_bank_cit']} times: a {N['http_404']} on jago.com and a BNI complaints page that loads as an error page.",
+         f"Send key text in the HTML from the server. {N['rendered_bank']} cited bank pages, SeaBank's fees and rates "
+         f"page among them, showed their text only after a browser ran JavaScript. A crawler that skips JavaScript may "
+         f"read them as empty.",
+         f"Check robots.txt on reports and product pages. It blocked our crawler from {N['robots_dis']} BNI annual "
+         f"reports, and {N['robots_unr']} bank sites returned no robots.txt our crawler could read.",
+         f"Treat schema as optional for AI citations. Bank sites carried schema on {N['sch_bank']} of cited pages and "
+         f"were still the most cited type."],
+        part="Part IV: What it means", numbered=True,
+        foot=f"Source: data/interim/pages.csv, crawled from GitHub's servers on {RUN_DAY}  ·  Google Search Central",
+        notes="Our crawler is not an AI crawler, so these are signs to check, not proof that an engine was blocked.")
     add("letterbox", "list", "These numbers come from one run",
         ["SparkToro and Gumshoe ran 12 prompts nearly 3,000 times. The same brand list came back less than 1 in 100 "
          "times (Search Engine Land, January 2026).",

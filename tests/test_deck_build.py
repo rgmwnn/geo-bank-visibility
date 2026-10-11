@@ -25,7 +25,7 @@ def _texts(deck):
 
 
 def test_slide_count_and_kinds(deck):
-    assert len(deck.slides) == 32
+    assert len(deck.slides) == 33
     kinds = [s["kind"] for s in copy.slides(load())]
     assert [i + 1 for i, k in enumerate(kinds) if k == "title_card"] == [5, 10, 18, 27]
 
@@ -108,3 +108,17 @@ def test_no_tracked_capitals_or_dot_chains(deck):
                     shouted = len(letters) >= 6 and letters.isupper() and " " in r.text.strip()
                     assert not shouted, (n, r.text)  # an all-caps label, not an acronym such as BTPN
                     assert "·" not in r.text, (n, r.text)
+
+
+ROLES = ["For the SEO strategist", "For content and marketing", "For the web team"]
+
+
+def test_recommendations_address_the_people_who_run_the_website():
+    specs = copy.slides(load())
+    titles = [s["title"] for s in specs]
+    assert not [t for t in titles if t.startswith("For banks") or "GEO practitioners" in t]
+    start = titles.index(ROLES[0])
+    assert titles[start:start + 3] == ROLES
+    for s in specs[start:start + 3]:
+        for item in s["body"]:
+            assert re.search(r"\d", item), (s["title"], item)  # every recommendation carries its evidence

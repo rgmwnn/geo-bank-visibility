@@ -160,4 +160,24 @@ def load() -> dict:
     f["citations_per_answer"] = int(citations.groupby("answer_id").size().mode().iloc[0])
     f["digital_prompts"] = sorted(DIGITAL_PROMPTS)
     f["rendered_pages"] = int((pages.body_source == "rendered").sum())
+
+    # The bank's own website, as the engines cite it (for the web team's recommendations)
+    dtype = dict(zip(domains.domain, domains.domain_type))
+    page_domain = citations.drop_duplicates("url").set_index("url").domain
+    bank_pages = pages[pages.url.map(page_domain).map(dtype) == "bank_official"]
+    bank_dead = set(bank_pages.url) & dead
+    bank_cit = citations[citations.domain.map(dtype) == "bank_official"]
+    fee = bank_cit[(bank_cit.engine == "ChatGPT") & bank_cit.url.str.contains("fees-rates")]
+    f["bank_site"] = {
+        "pages": len(bank_pages),
+        "dead_pages": len(bank_dead),
+        "dead_citations": int(citations.url.isin(bank_dead).sum()),
+        "rendered": int((bank_pages.body_source == "rendered").sum()),
+        "rendered_urls": sorted(bank_pages[bank_pages.body_source == "rendered"].url),
+        "robots_disallowed": int((bank_pages.fetch_error == "robots_disallowed").sum()),
+        "robots_unreachable": int((bank_pages.fetch_error == "robots_unreachable").sum()),
+        "fee_page_citations_gpt": fee.groupby("domain").size().to_dict(),
+        "share_gpt": (bank_cit.engine == "ChatGPT").sum() / (citations.engine == "ChatGPT").sum(),
+        "share_gem": (bank_cit.engine == "Gemini").sum() / (citations.engine == "Gemini").sum(),
+    }
     return f

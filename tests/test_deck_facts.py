@@ -27,3 +27,14 @@ def test_prompt_design_counts():
     assert (F["prompts"], F["pillars"], F["intents"], F["citations_per_answer"]) == (20, 5, 5, 10)
     assert F["branded_prompts"] == 3
     assert len(F["digital_prompts"]) == 10
+
+
+def test_bank_website_facts_for_the_web_team():
+    from deck.facts import load
+    w = load()["bank_site"]
+    assert w["pages"] == 121
+    assert w["dead_pages"] == 2 and w["dead_citations"] == 4
+    assert w["rendered"] == 12 and "https://seabank.co.id/fees-rates" in w["rendered_urls"]
+    assert w["robots_disallowed"] == 2 and w["robots_unreachable"] == 3
+    assert w["fee_page_citations_gpt"] == {"seabank.co.id": 5, "blubybcadigital.id": 4}
+    assert round(w["share_gpt"], 2) == 0.64 and round(w["share_gem"], 2) == 0.29
